@@ -1,0 +1,32 @@
+.text-animate {
+    display: inline-block;
+    opacity: 0;
+    animation: bounceIn 1s 1s;
+    animation-fill-mode: forwards; // animation-fill-mode makes the letters stay visible
+    min-width: 10px;
+
+}
+
+
+// this is for the hover effects in the main text.
+.text-animate-hover {
+    min-width: 10px;
+    display: inline-block;
+    animation-fill-mode: both;
+
+    &:hover {
+        animation: rubberBand 1s;
+        color: #ffd700;
+    }
+}
+
+
+
+// what does this do exactly?
+// this is used to create animation of words appearing on the Slobodan web developer text
+// this is SASS and it is useful so we don't have to code classes 1-35.
+@for $i from 1 through 35 {
+    .text-animate._#{$i} {
+        animation-delay: #{$i / 10}s; // every letter we are delaying by a 10th of a second.
+    }
+}

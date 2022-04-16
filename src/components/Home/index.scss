@@ -1,0 +1,91 @@
+.home-page {
+
+
+
+
+    .text-zone {
+        position: absolute;
+        left: 10%;
+        top: 50%;
+        transform: translateY(-50%); // this moves the text up a bit.
+        width: 40%; // This is 40% because 60% of the rest of the elements are going to be on the other side
+        max-height: 90%;
+    }
+
+
+
+    h1 {
+        color: #fff; // this changes the font color of "Hi, I'm Slobodan web developer.
+        font-size: 53px;
+        margin: 0;
+        font-family: 'Coolvetica';
+        font-weight: 400; //font-weight changes the boldness/thickness of the font
+
+        // this adds a content of h1 before the h1 element.
+        &::before {
+            content: '<h1>';
+            font-family: 'La Belle Aurore';
+            color: #ffd700;
+            font-size: 18px;
+            position: absolute;
+            margin-top: -40px;
+            left: 15px;
+            opacity: 0.6;
+        }
+
+        // this adds a content of <h1/> after the h1 element.
+        &::after {
+            content: '<h1/>';
+            font-family: 'La Belle Aurore';
+            color: #ffd700;
+            font-size: 18px;
+            position: absolute;
+            margin-top: 18px;
+            margin-left: 20px;
+            animation: fade-in 1s 1.7s backwards;
+            opacity: 0.6;
+        }
+
+        // this makes the S in Slobodan show up a few seconds after the rest of the page loads.
+        img { 
+            width: 32px;
+            margin-left: 20px;
+            opacity: 0;
+            height: auto;
+            animation: rotateIn 1s linear both;
+            animation-delay: 1.4s;
+
+        }
+    }
+
+    h2 {
+        color: #FBEC5D;
+        margin-top: 20px;
+        font-weight: 525;
+        font-size: 14px;
+        font-family: sans-serif;
+        letter-spacing: 2.5px;
+        animation: fadeIn 1s 1.8s backwards; // animation type, when to fade in, how long to fade in, and how to fade in
+    }
+
+    .flat-button {
+        color: #ffd700;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 4px; // the distance between letters
+        font-family: sans-serif;
+        text-decoration: none;  // this gets rid of the link appearance for example the underline
+        padding: 10px 18px;
+        border: 1px solid #ffd700; // this creates the box around your "contact me" to make it look like a button
+        margin-top: 25px;
+        float: left;
+        animation: fadeIn 1s 1.8s backwards;
+        white-space: nowrap;
+        
+        // this is what happens when you hover over the .flat-button with the text "contact me"
+        &:hover {
+            background: #ffd700;
+            color: #333;
+        }
+    }
+}

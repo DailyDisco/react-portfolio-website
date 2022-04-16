@@ -1,0 +1,96 @@
+.stage-cube-cont {
+
+    width: 50%;
+    height: 100%;
+    top: 0;
+    padding-top: 18%;
+    margin-left: 0;
+    position: absolute;
+    right: 0;
+    overflow: hidden;
+
+}
+
+
+
+// this .cubespinner is going to hold the spinning animation
+.cubespinner {
+    animation-name: spincube;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 12s;
+    transform-style: preserve-3d;
+    transform-origin: 100px 100px 0;
+    margin-left: calc(50% - 100px); // this puts it in the middle of the right side of the page.
+
+    // animation-name is used to create a new animation function
+    // animation-timing-function is used to make the animation smooth.
+    // animation-iteration-count is used to make the animation continue as long as the user is on the page.
+    // animation-duration is how long it take for the animation to occur, in this case, 12s.
+
+    // this sets style properties to the divs that make up each logo in the .cubespinner animation.
+    div {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border: 1px solid #ccc;
+        background: rgba(255, 255, 255, 0.4);
+        font-size: 180px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 20px 0px lightyellow;
+    }
+
+    // this is the code that seperates each div in the list to make them not stacked.
+    // it puts each programming logo on one side of the cube through rotating them in a specified container.
+    .face1 {
+        transform: translateZ(100px);
+    }
+    .face2 {
+        transform: rotateY(90deg) translateZ(100px);
+    }
+    .face3 {
+        transform: rotateY(90deg) rotateX(90deg) translateZ(100px);
+    }
+    .face4 {
+        transform: rotateY(180deg) rotateZ(90deg) translateZ(100px);
+    }
+    .face5 {
+        transform: rotateY(-90deg) rotateZ(90deg) translateZ(100px);
+    }.face6 {
+        transform: rotateX(-90deg) translateZ(100px);
+    }
+}
+
+
+
+@keyframes spincube {
+    from,
+    to {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    16% {
+        transform: rotateY(-90deg);
+    }
+    33% {
+        transform: rotateY(-90deg) rotateZ(90deg);
+    }
+    50% {
+        transform: rotateY(-180deg) rotateZ(90deg);
+    }
+    66% {
+        transform: rotateY(-270deg) rotateZ(90deg);
+    }
+    88% {
+        transform: rotateY(90deg);
+    }
+}
+
+
+
+.keywords {
+    color: #FBEC5D;
+    font-size: 18px;
+    font-weight: 600;
+}
