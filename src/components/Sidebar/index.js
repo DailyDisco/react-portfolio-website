@@ -121,7 +121,7 @@ const Sidebar = () => {
 
                 target="_blank" 
                 rel='noreferrer' 
-                href='https://twitter.com/WebDevDiego'
+                href='https://twitter.com/digitaIDiego'
                 
                 >
                     <FontAwesomeIcon icon={faTwitter} color="#4d4d4e" />
