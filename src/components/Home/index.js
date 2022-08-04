@@ -16,20 +16,7 @@ import Loader from 'react-loaders'
 const Home = () => {
     const [letterClass, setLetterClass] = useState('text-animate')
     const nameArray = ['o', 'f', 't', 'w', 'a', 'r', 'e', ' ', 'D', 'e', 'v', 'e', 'l', 'o', 'p', 'e', 'r']
-    const jobArray = ['D',
-    'i',
-    'e',
-    'g',
-    'o',
-    ' ',
-    'E',
-    's',
-    'p',
-    'i',
-    'n',
-    'o',
-    '.',
-]
+    const jobArray = ['D', 'i', 'e', 'g', 'o']
     
     // what does this function do?
     // this is a hook that is used to update classes after 4 seconds have passed.
