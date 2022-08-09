@@ -10,7 +10,7 @@ import './index.scss'
 // import LogoSubtitle from '../../assets/images/logo_sub.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faHome, faSuitcase, faUser } from '@fortawesome/free-solid-svg-icons'
-import { faGithub, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons' // add faTwitter and faSkype to the import
 import { /*Link, we may later define this when we get a custom logo*/ NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
