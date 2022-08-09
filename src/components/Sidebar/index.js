@@ -126,7 +126,7 @@ const Sidebar = () => {
 
     
 
-            <li>
+            {/* <li>
                 <a
 
                 target="_blank" 
@@ -136,7 +136,7 @@ const Sidebar = () => {
                 >
                     <FontAwesomeIcon icon={faTwitter} color="#4d4d4e" />
                 </a>
-            </li>
+            </li> */}
 
     {/* this is edited out because I don't use these socials yet.
 

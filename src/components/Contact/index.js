@@ -64,7 +64,7 @@ const Contact = () => {
                     />
                 </h1>
                 <p>
-                    I am interested in <em className='keywords'>remote and hybrid work oppurtunities</em>, especially those oppurtunities that
+                    I am interested in <em className='keywords'>remote and hybrid work opportunities</em>, especially those opportunities that
                     include working in teams on large projects, or testing and debugging. I can 
                     <em className='keywords'> collaborate in English and Spanish</em> if needed.
                     
@@ -75,7 +75,8 @@ const Contact = () => {
                     <button id="normalColor"> DiegoEspinoWork@gmail.com</button>
                     
                     
-                    </em> - the form below, or <em className='keywords'>any of my socials</em> on <a className='normalLinkText' href="https://github.com/DailyDisco">GitHub</a>, <a className='normalLinkText' href="https://www.linkedin.com/in/diego-espino-774202232/">LinkedIn</a>, or <a className='normalLinkText' href="https://twitter.com/digitaIDiego">Twitter</a>.
+                    </em> - the form below, or <em className='keywords'></em> on <a className='normalLinkText' href="https://github.com/DailyDisco">GitHub</a>, <a className='normalLinkText' href="https://www.linkedin.com/in/diego-espino-774202232/">LinkedIn</a>.
+                     {/* or <a className='normalLinkText' href="https://twitter.com/digitaIDiego">Twitter</a>. */}
         
 
                 </p>

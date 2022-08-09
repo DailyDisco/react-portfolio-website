@@ -35,7 +35,7 @@
 
         // this adds a content of <h1/> after the h1 element.
         &::after {
-            content: '<h1/>';
+            content: '</h1>';
             font-family: 'La Belle Aurore';
             color: #ffd700;
             font-size: 18px;
