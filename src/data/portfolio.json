@@ -1,6 +1,12 @@
 {
     "portfolio": [
         {
+            "cover": "/portfolio/two/thumbnail2.png",
+            "title": "E-Commerce Shop",
+            "description": "E-Commerce MVP made with Next.js, Tailwind CSS, and Sanity.io.",
+            "url": "https://ecommerce-mvp.netlify.app/"
+        },
+        {
             "cover": "/portfolio/one/thumbnail1.png",
             "title": "Medical Pager",
             "description": "A medical pager for hospitals using MERN",
