@@ -9,7 +9,7 @@
         {
             "cover": "/portfolio/one/thumbnail1.png",
             "title": "Medical Pager",
-            "description": "A medical pager for hospitals using MERN",
+            "description": "A medical pager for hospitals using MERN + SteamChat API",
             "url": "https://medical-pager-demo.netlify.app/"
         },
         {
