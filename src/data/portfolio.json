@@ -1,7 +1,7 @@
 {
     "portfolio": [
         {
-            "cover": "/portfolio/two/thumbnail2.png",
+            "cover": "/portfolio/three/ecommerceShop.jpg",
             "title": "E-Commerce Shop",
             "description": "E-Commerce MVP made with Next.js, Tailwind CSS, and Sanity.io.",
             "url": "https://ecommerce-mvp.netlify.app/"
