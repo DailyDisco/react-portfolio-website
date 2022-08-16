@@ -37,14 +37,14 @@ const About = () => {
                     />
                 </h1>
                 <p>
-                Hello my name is <em className='keywords'>Diego!</em>, I speak <em className='keywords'>English and Spanish.</em> I <em className='keywords'>studied Computer Science</em> while in school, and I am currently working on projects such as portfolio sites and a national Pokédex to showcase my full stack web development and CS skills. 
+                Hello my name is <em className='keywords'>Diego!</em>, I speak <em className='keywords'>English and Spanish.</em> I <em className='keywords'>studied Computer Science</em> while in school.
                 </p>
                 <p>
-                I am <em className='keywords'>looking to work remotely</em> as a member of a team to either help create features for web and mobile apps. I am familiar with multiple coding languages such as <em className='keywords'>JavaScript, SQL, React, Python, C++, CSS, and HTML.</em> 
+                I am <em className='keywords'>looking to work remotely</em> as a member of a team to help create features for web and mobile apps. I am familiar with multiple coding languages such as <em className='keywords'>GitHub, Git, JavaScript, React, Node.js, Python, C++, CSS, and HTML.</em> 
                 </p>
-                <p>
-                    I am also learning more <em className='keywords'>Swift</em> so I can program iOS programs. Eventually, I would love to work with <em className='keywords'>Artifical Intellgence</em>, either in <em className='keywords'>machine learning</em> or <em className='keywords'>natural language processing</em>.
-                </p>
+//                 <p>
+                    
+//                 </p>
                 </div>
 
                 <div className='stage-cube-cont'>
