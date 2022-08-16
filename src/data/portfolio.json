@@ -19,7 +19,7 @@
             "url": "https://grouptictactoe.dailydisco.repl.co/"
         },
          {
-            "cover": "/portfolio/four/web3.png",
+            "cover": "/portfolio/four/web3.jpg",
             "title": "Testing MetaMask Connection",
             "description": "A basic web 3.0 app that allows for MetaMask integration. It previously did transfers, but the Goerli test network has merged and is no longer available.",
             "url": "https://metamasktester.netlify.app/"
