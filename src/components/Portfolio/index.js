@@ -62,7 +62,9 @@ const Portfolio = () => {
             </h1>
             <div>{renderPortfolio(portfolioData.portfolio)}</div>
         </div>
+        <div className="Loader">
         <Loader type="pacman" />
+        </div>
         </>
     );
 }

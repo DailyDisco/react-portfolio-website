@@ -37,13 +37,10 @@ const About = () => {
                     />
                 </h1>
                 <p>
-                Hello my name is <em className='keywords'>Diego.</em>. I speak <em className='keywords'>English and Spanish.</em> I <em className='keywords'>studied Computer Science</em> while in school.
+                Hello my name is <em className='keywords'>Diego</em>. I studied Computer Science in school and love researching AI. You can see my work on my portfolio page.
                 </p>
                 <p>
-                I am <em className='keywords'>looking to work remotely</em> as a member of a team to help create features for web and mobile apps. I am familiar with multiple coding languages such as <em className='keywords'>GitHub, Git, JavaScript, React, Node.js, Python, CSS, and HTML.</em> 
-                </p>
-                <p>
-                    I currently am working on my Machine Learning skills with Python so that I can work in ML or with NLP.
+                I am <em className='keywords'>looking to work remotely</em> as a member of a team to help create features for web and mobile apps. I am familiar with multiple coding languages such as <em className='keywords'>GitHub, Git, JavaScript, React, Node.js, Python, Next.js, TailwindCSS, Rapid API, and HTML.</em> 
                 </p>
                 </div>
 
@@ -74,7 +71,9 @@ const About = () => {
         </div>
 
         {/* this Loader tag is used to import Loaders */}
+        <div className='Loader'>
         <Loader type="pacman" />
+        </div>
         </>
     )
 }

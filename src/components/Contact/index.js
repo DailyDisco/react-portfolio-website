@@ -154,7 +154,9 @@ const Contact = () => {
 
 
         </div>
+        <div className='Loader'>
         <Loader type="pacman" />
+        </div>
     </>)
 }
 

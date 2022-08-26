@@ -15,7 +15,7 @@ import Loader from 'react-loaders'
 
 const Home = () => {
     const [letterClass, setLetterClass] = useState('text-animate')
-    const nameArray = ['o', 'f', 't', 'w', 'a', 'r', 'e', ' ', 'D', 'e', 'v', 'e', 'l', 'o', 'p', 'e', 'r']
+    const nameArray = ['o', 'f', 't', 'w', 'a', 'r', 'e', ' ',  'D', 'e', 'v', 'e', 'l', 'o', 'p', 'e', 'r']
     const jobArray = ['D', 'i', 'e', 'g', 'o']
     
     // what does this function do?
@@ -58,14 +58,16 @@ const Home = () => {
                     idx={22} 
                 />
                 </h1>
-                <h2>Software Engineer / Focused on AI and Web Development / Learning Machine Learning</h2>
+                <h2>Software Developer / Focused on AI and Web Development / Learning Machine Learning</h2>
                 <Link to="/contact" className="flat-button">
                     CONTACT ME
                 </Link>
             </div>
             <Logo />
         </div>
+        <div className='Loader'>
         <Loader type="pacman" />
+        </div>
         </>
     )
 }

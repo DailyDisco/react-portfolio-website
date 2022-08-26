@@ -34,7 +34,8 @@
 
     a {
       font-size: 22px;
-      color: #4d4d4e;
+      font-weight: 700;
+      color: #cdcdcd;
       display: block;
       line-height: 51px;
       height: 51px;
@@ -154,6 +155,7 @@
       position: fixed;
       z-index: 2;
       margin: 0;
+      padding-top: 24em;
 
       a {
         display: flex;
