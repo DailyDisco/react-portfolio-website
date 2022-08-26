@@ -1,3 +1,6 @@
+// to add: message that says "click on link to copy to clipboard" when hovering over email address.
+// to add: message that says "email has been copied to keyboard" when email is clicked.
+
 .contact-form {
     width: 100%;
     margin-top: 20px;
@@ -172,5 +175,18 @@ button:focus{
 }
 
 
-// to add: message that says "click on link to copy to clipboard" when hovering over email address.
-// to add: message that says "email has been copied to keyboard" when email is clicked.
+
+
+@media screen and (max-width: 1200px) {
+  .map-wrap {
+    float: none;
+    width: 100%;
+    height: 400px;
+    margin: 0;
+  }
+
+  .info-map {
+    display: none;
+  }
+
+}

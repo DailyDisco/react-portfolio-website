@@ -94,3 +94,12 @@
     font-size: 18px;
     font-weight: 600;
 }
+
+@media screen and (max-width: 1200px) {
+    .stage-cube-cont {
+        position: initial;
+        width: 100%;
+        height: 0%;
+        overflow: visible;
+    }
+}

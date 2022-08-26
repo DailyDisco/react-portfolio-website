@@ -4,7 +4,7 @@ import './index.scss'
 import { useState } from 'react'
 import LogoS from '../../assets/images/logo-s.png'
 // imports LogoS from the assets folder
-import LogoSubtitle from '../../assets/images/logo_sub.png'
+// import LogoSubtitle from '../../assets/images/logo_sub.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faEnvelope,
@@ -15,44 +15,33 @@ import {
   faClose,
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons' // add faTwitter and faSkype to the import
-import {
-  Link, NavLink
-} from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
-  const [showNav, setShowNav] = useState(false);
+  const [showNav, setShowNav] = useState(false)
 
   return (
     <div className="nav-bar">
       {/* this is edited out because I don't have my own logo yet. */}
 
+      <Link className="logo" to="/">
+        <img src={LogoS} alt="Logo" />
 
-        <Link className="logo" to='/'>
+        {/* <img className="sub-logo" src={LogoSubtitle} alt="Name: Diego Espino" /> */}
+      </Link>
 
-
-
-            <img src={LogoS} alt="Logo" />
-
-
-
-            <img className="sub-logo" src={LogoSubtitle} alt="Name: Diego Espino" />
-
-
-
-        </Link>
-
-   
-
-<nav className={showNav ? 'mobile-show' : ''}>
-      <NavLink 
+      <nav className={showNav ? 'mobile-show' : ''}>
+        <NavLink
+          onClick={() => setShowNav(false)}
           exact="true"
           activeclassname="active"
           to="/"
-          onClick={() => setShowNav(false)}>
+        >
           <FontAwesomeIcon icon={faHome} color="#4d4d4e" />
         </NavLink>
 
         <NavLink
+          onClick={() => setShowNav(false)}
           exact="true"
           activeclassname="active"
           className="about-link"
@@ -62,6 +51,7 @@ const Sidebar = () => {
         </NavLink>
 
         <NavLink
+          onClick={() => setShowNav(false)}
           exact="true"
           activeclassname="active"
           className="portfolio-link"
@@ -71,6 +61,7 @@ const Sidebar = () => {
         </NavLink>
 
         <NavLink
+          onClick={() => setShowNav(false)}
           exact="true"
           activeclassname="active"
           className="contact-link"
@@ -84,7 +75,7 @@ const Sidebar = () => {
           icon={faClose}
           color="#ffd700"
           size="3x"
-          className='close-icon'
+          className="close-icon"
         />
       </nav>
 
