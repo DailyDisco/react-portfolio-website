@@ -37,13 +37,13 @@ const About = () => {
                     />
                 </h1>
                 <p>
-                Hello my name is <em className='keywords'>Diego!</em>, I speak <em className='keywords'>English and Spanish.</em> I <em className='keywords'>studied Computer Science</em> while in school.
+                Hello my name is <em className='keywords'>Diego.</em>. I speak <em className='keywords'>English and Spanish.</em> I <em className='keywords'>studied Computer Science</em> while in school.
                 </p>
                 <p>
-                I am <em className='keywords'>looking to work remotely</em> as a member of a team to help create features for web and mobile apps. I am familiar with multiple coding languages such as <em className='keywords'>GitHub, Git, JavaScript, React, Node.js, Python, C++, CSS, and HTML.</em> 
+                I am <em className='keywords'>looking to work remotely</em> as a member of a team to help create features for web and mobile apps. I am familiar with multiple coding languages such as <em className='keywords'>GitHub, Git, JavaScript, React, Node.js, Python, CSS, and HTML.</em> 
                 </p>
                 <p>
-                    I currently am working on my Data Science and Machine Learning skills with Python so that I can work in ML or with NLP.
+                    I currently am working on my Machine Learning skills with Python so that I can work in ML or with NLP.
                 </p>
                 </div>
 

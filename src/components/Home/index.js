@@ -58,7 +58,7 @@ const Home = () => {
                     idx={22} 
                 />
                 </h1>
-                <h2>Frontend Developer / Focused on Web Development / Learning Python for Machine Learning & Data Science</h2>
+                <h2>Software Engineer / Focused on AI and Web Development / Learning Machine Learning</h2>
                 <Link to="/contact" className="flat-button">
                     CONTACT ME
                 </Link>
