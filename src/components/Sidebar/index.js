@@ -60,6 +60,16 @@ const Sidebar = () => {
           <FontAwesomeIcon icon={faSuitcase} color="#4d4d4e" />
         </NavLink>
 
+        {/* <NavLink
+          onClick={() => setShowNav(false)}
+          exact="true"
+          activeclassname="active"
+          className="blog-link"
+          to="/blog"
+        >
+          <FontAwesomeIcon icon={faSuitcase} color="#4d4d4e" />
+        </NavLink> */}
+
         <NavLink
           onClick={() => setShowNav(false)}
           exact="true"

@@ -96,6 +96,12 @@
       }
     }
 
+    a.blog-link {
+      &:after {
+        content: 'BLOG';
+      }
+    }
+
     a.active {
       svg {
         color: #ffd700;

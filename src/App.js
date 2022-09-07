@@ -5,6 +5,7 @@ import Contact from './components/Contact'
 import Layout from './components/Layout'
 import './App.scss'
 import Portfolio from './components/Portfolio'
+import Blog from './components/Portfolio'
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<Contact />} />
         </Route>
       </Routes>
     </>
