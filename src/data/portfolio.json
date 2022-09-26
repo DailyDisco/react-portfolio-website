@@ -12,12 +12,6 @@
             "description": "A medical pager for hospitals using MERN + SteamChat API",
             "url": "https://medical-pager-demo.netlify.app/"
         },
-        {
-            "cover": "/portfolio/two/thumbnail2.png",
-            "title": "Tic-Tac-Toe with AI oppenent",
-            "description": "A Tic-Tac-Toe game with an AI opponent built using JS, jQuery, CSS, and HTML",
-            "url": "https://grouptictactoe.dailydisco.repl.co/"
-        },
          {
             "cover": "/portfolio/four/web3.jpg",
             "title": "Testing MetaMask Connection",

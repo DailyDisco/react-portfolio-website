@@ -4,11 +4,14 @@ import React, { useEffect, useState } from "react";
 import Loader from "react-loaders";
 import AnimatedLetters from "../AnimatedLetters";
 import "./index.scss";
-import portfolioData from '../../data/portfolio.json';
+// import portfolioData from '../../data/portfolio.json';
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from '../../firebase';
+
 
 const Portfolio = () => {
     const [letterClass, setLetterClass] = useState('text-animate');
-    console.log(portfolioData);
+    const [portfolio, setPortfolio] = useState([]);
 
     // creates the hover effect for the word Portfolio
     useEffect(() => {
@@ -21,25 +24,32 @@ const Portfolio = () => {
         }
     });
 
+    useEffect(() => {
+        getPortfolio();
+    }, []);
+
+    const getPortfolio = async () => {
+        const querySnapshot = await getDocs(collection(db, 'portfolio'));
+        setPortfolio(querySnapshot.docs.map((doc) => doc.data()));
+    }
+
     const renderPortfolio = (portfolio) => {
         return (
             <div className="images-container">
-                {   
-                    // don't map with index when using real data
+                {
                     portfolio.map((port, idx) => {
                         return (
                             <div className="image-box" key={idx}>
                                 <img 
-                                src={port.cover}
+                                src={port.image}
                                 className="portfolio-image"
-                                alt="portfolio" 
-                                />
+                                alt="portfolio" />
                                 <div className="content">
-                                    <p className="title">{port.title}</p>
+                                    <p className="title">{port.name}</p>
                                     <h4 className="description">{port.description}</h4>
-                                    <button 
-                                    className="btn"
-                                    onClick={() => window.open(port.url)}
+                                    <button
+                                        className="btn"
+                                        onClick={() => window.open(port.url)}
                                     >View</button>
                                 </div>
                             </div>
@@ -47,22 +57,47 @@ const Portfolio = () => {
                     })
                 }
             </div>
+
+            // <div className="images-container">
+            //     {   
+            //         // don't map with index when using real data
+            //         portfolio.map((port, idx) => {
+            //             return (
+            //                 <div className="image-box" key={idx}>
+            //                     <img 
+            //                     src={port.cover}
+            //                     className="portfolio-image"
+            //                     alt="portfolio" 
+            //                     />
+            //                     <div className="content">
+            //                         <p className="title">{port.title}</p>
+            //                         <h4 className="description">{port.description}</h4>
+            //                         <button 
+            //                         className="btn"
+            //                         onClick={() => window.open(port.url)}
+            //                         >View</button>
+            //                     </div>
+            //                 </div>
+            //             )
+            //         })
+            //     }
+            // </div>
         )
     }
 
     return (
         <>
-        <div className="container portfolio-page">
-            <h1 className="page-title">
-                <AnimatedLetters
-                    letterClass={letterClass} 
-                    strArray={"Portfolio".split("")} // array of letters to animate
-                    idx={15} // delay for each letter, you can change this to any number
-                />
-            </h1>
-            <div>{renderPortfolio(portfolioData.portfolio)}</div>
-        </div>
-        <Loader type="pacman" />
+            <div className="container portfolio-page">
+                <h1 className="page-title">
+                    <AnimatedLetters
+                        letterClass={letterClass} 
+                        strArray={"Portfolio".split("")} // array of letters to animate
+                        idx={15} // delay for each letter, you can change this to any number
+                    />
+                </h1>
+                <div>{renderPortfolio(portfolio)}</div>
+            </div>
+            <Loader type="pacman" />
         </>
     );
 }
