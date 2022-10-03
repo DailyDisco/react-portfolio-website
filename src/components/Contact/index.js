@@ -75,7 +75,7 @@ const Contact = () => {
                     <button id="normalColor"> DiegoEspinoWork@gmail.com</button>
                     
                     
-                    </em> - the form below, or <em className='keywords'></em> on <a className='normalLinkText' href="https://github.com/DailyDisco">GitHub</a>, <a className='normalLinkText' href="https://www.linkedin.com/in/diego-espino-774202232/">LinkedIn</a>.
+                    </em> - the form below, or <em className='keywords'></em> on <a className='normalLinkText' href="https://github.com/DailyDisco">GitHub</a>, <a className='normalLinkText' href="https://www.linkedin.com/in/developerdiego/">LinkedIn</a>.
                      {/* or <a className='normalLinkText' href="https://twitter.com/digitaIDiego">Twitter</a>. */}
         
 
