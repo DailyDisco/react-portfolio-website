@@ -1,57 +1,4 @@
 import { Link } from 'react-router-dom'
-export function StackDiagram() {
-  return (
-    <div
-      className="stack-diagram"
-      aria-label="The full stack: React, TypeScript, and Next.js product interfaces; Go, Python, and PostgreSQL services; AWS, Linux, and GPU infrastructure. Architecture, delivery, and operations."
-      role="img"
-    >
-      <div className="diagram-topline">
-        <span className="mono">THE FULL STACK</span>
-        <span className="diagram-dot" />
-      </div>
-      {[
-        {
-          name: 'The experience',
-          layer: '01 / PRODUCT',
-          tags: 'React · TypeScript · Next.js',
-          symbol: '◫',
-        },
-        {
-          name: 'The engine',
-          layer: '02 / SERVICES',
-          tags: 'Go · Python · PostgreSQL',
-          symbol: '⌘',
-        },
-        {
-          name: 'The foundation',
-          layer: '03 / INFRASTRUCTURE',
-          tags: 'AWS · Linux · GPU compute',
-          symbol: '▥',
-        },
-      ].map((item) => (
-        <div className="stack-layer" key={item.layer}>
-          <span className="stack-symbol" aria-hidden="true">
-            {item.symbol}
-          </span>
-          <div>
-            <span className="mono">{item.layer}</span>
-            <strong>{item.name}</strong>
-            <small>{item.tags}</small>
-          </div>
-          <span className="layer-corner" aria-hidden="true">
-            ↗
-          </span>
-        </div>
-      ))}
-      <div className="diagram-bottomline">
-        <span>Architecture</span>
-        <span>Delivery</span>
-        <span>Operations</span>
-      </div>
-    </div>
-  )
-}
 export function GpuRack() {
   return (
     <figure className="gpu-figure">
@@ -82,7 +29,7 @@ export function GpuRack() {
         </div>
       </div>
       <figcaption>
-        System illustration · Six GPUs, one hands-on learning loop.
+        System illustration · Six RTX 3090 GPUs with 24 GB each.
       </figcaption>
     </figure>
   )
@@ -92,25 +39,18 @@ export default function Infrastructure() {
     <div className="page-shell">
       <header className="page-heading">
         <p className="eyebrow">INFRASTRUCTURE & OPEN SOURCE</p>
-        <h1>
-          Beyond the app.
-          <br />
-          <em>Into the system.</em>
-        </h1>
+        <h1>My homelab and open-source work</h1>
         <p>
-          Building the software is part of the work. Understanding how it runs,
-          fails, and recovers is the rest.
+          I run local models for coding agents and maintain my own Linux
+          services. Here’s the hardware, the homelab, and two upstream fixes
+          that came from using them.
         </p>
       </header>
       <section className="infrastructure-feature">
         <GpuRack />
         <div>
           <p className="eyebrow">THE INFERENCE SERVER</p>
-          <h2>
-            Six GPUs.
-            <br />
-            Useful constraints.
-          </h2>
+          <h2>Six RTX 3090s for local inference</h2>
           <p>
             I built and operate a six-RTX-3090 inference server with 144 GB of
             combined GPU memory. It serves local models to coding agents through
@@ -129,11 +69,9 @@ export default function Infrastructure() {
         <div className="section-heading">
           <div>
             <p className="eyebrow">CONTRIBUTIONS MERGED UPSTREAM</p>
-            <h2>Measure. Trace. Contribute.</h2>
+            <h2>ExLlamaV3 and TabbyAPI</h2>
           </div>
-          <p>
-            Small, specific changes backed by benchmarks and regression tests.
-          </p>
+          <p>Both fixes came from debugging my own inference server.</p>
         </div>
         <div className="contribution-grid">
           <article>
@@ -159,7 +97,7 @@ export default function Infrastructure() {
               Release → replace
             </span>
             <p className="eyebrow">TABBYAPI / PYTHON</p>
-            <h3>More predictable error recovery</h3>
+            <h3>Release the old generator before replacing it</h3>
             <p>
               Release the previous generator before allocating its replacement,
               preventing overlapping main-process host caches during recovery.
@@ -177,10 +115,7 @@ export default function Infrastructure() {
       <section className="homelab-section">
         <div>
           <p className="eyebrow">THE HOMELAB</p>
-          <h2>
-            Infrastructure
-            <br />I live with.
-          </h2>
+          <h2>Proxmox and self-hosted services</h2>
           <p>
             Proxmox virtual machines and a dozen self-hosted services give me a
             practical place to work through provisioning, networking,

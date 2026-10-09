@@ -6,14 +6,10 @@ export default function Portfolio() {
     <div className="page-shell">
       <header className="page-heading">
         <p className="eyebrow">SELECTED WORK / 2025–2026</p>
-        <h1>
-          Products shipped.
-          <br />
-          <em>Systems understood.</em>
-        </h1>
+        <h1>Selected projects</h1>
         <p>
-          Full-stack delivery and technical leadership, from property operations
-          and cloud migrations to real-time platforms and local inference.
+          Recent client work and personal infrastructure, with the problems I
+          worked on, my contributions, and the results.
         </p>
       </header>
       <div className="work-grid">

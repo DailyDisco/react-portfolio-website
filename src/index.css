@@ -1,15 +1,25 @@
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('./assets/fonts/CoolveticaRg-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+@font-face {
+  font-family: 'La Belle Aurore';
+  src: url('./assets/fonts/LaBelleAurore.woff2') format('woff2');
+  font-display: swap;
+}
 :root {
   color-scheme: dark;
-  --background: #0b2027;
-  --surface: #112b32;
-  --surface-raised: #19353c;
-  --ink: #f2f0e9;
-  --muted: #afbec0;
-  --line: #2d454a;
-  --gold: #e8c56a;
-  --teal: #83c8bd;
+  --background: #022c3f;
+  --surface: #07374a;
+  --surface-raised: #104356;
+  --ink: #ffffff;
+  --muted: #b7cbd4;
+  --line: #285266;
+  --gold: #ffd700;
+  --teal: #90c9df;
   --error: #ffc0b5;
-  --font: 'Inter', 'Aptos', 'Segoe UI', sans-serif;
+  --font: Arial, Helvetica, sans-serif;
   --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
 }
 * {
@@ -77,8 +87,9 @@ h1,
 h2,
 h3 {
   line-height: 1.13;
-  letter-spacing: -0.04em;
-  font-weight: 600;
+  letter-spacing: -0.01em;
+  font-family: 'Coolvetica', Arial, sans-serif;
+  font-weight: 400;
 }
 p + p {
   margin-top: 1.2em;
@@ -122,7 +133,7 @@ main:focus {
   margin-inline: auto;
 }
 .section {
-  padding-block: 110px;
+  padding-block: 75px;
 }
 .text-link {
   display: inline-flex;
@@ -149,9 +160,9 @@ main:focus {
   min-height: 52px;
   padding: 13px 23px;
   border: 1px solid var(--gold);
-  border-radius: 4px;
-  background: var(--gold);
-  color: #13292e;
+  border-radius: 0;
+  background: transparent;
+  color: var(--gold);
   font-size: 0.88rem;
   font-weight: 650;
   transition:
@@ -159,7 +170,8 @@ main:focus {
     transform 0.2s;
 }
 .button:hover {
-  background: #f2d887;
+  background: var(--gold);
+  color: var(--background);
   transform: translateY(-2px);
 }
 .button-secondary {

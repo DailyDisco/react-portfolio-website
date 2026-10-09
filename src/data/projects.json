@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1dWg8XimbVL9QdNiqr7v",
+    "name": "The Daily Disco",
+    "description": "Social Media site for AI generated content and tutorials.",
+    "url": "https://thedailydisco.vercel.app/",
+    "image": null
+  },
+  {
+    "id": "5tmKT57E6BBCDXpcQGy9",
+    "name": "Photography Portfolio",
+    "description": "A website for photographers to promote their work and take payments / schedule sessions!",
+    "url": "https://photography-videography-portfolio-site-production.up.railway.app/",
+    "image": null
+  },
+  {
+    "id": "9PGArJDxwSBJft0GL5Yy",
+    "name": "Electric Realm",
+    "description": "Music Artist/Label Site",
+    "url": "https://electric-realm.vercel.app/",
+    "image": null
+  },
+  {
+    "id": "GlD8lzMdXZ61QbFy8Vls",
+    "name": "React Golang Starter Kit",
+    "description": "A template to speed run the React and Golang integration with a few extras",
+    "url": "https://linkedin-recommendation-writer-production.up.railway.app/",
+    "image": null
+  },
+  {
+    "id": "VI8UFxnUbgd9PEM5vs4A",
+    "name": "AI LinkedIn Recommendation Writer",
+    "description": "Helps you write LinkedIn Recommendations using Github Repos and Profiles with support for commit and PR history",
+    "url": "https://linkedin-recommendation-writer-production.up.railway.app/",
+    "image": null
+  },
+  {
+    "id": "kqhHTfYHtqBWQT8BSPq3",
+    "name": "Testing MetaMask Connection",
+    "description": "A basic web 3.0 app that allows for MetaMask integration.",
+    "url": "https://metamasktester.netlify.app/",
+    "image": null
+  },
+  {
+    "id": "phWQYQSuBYRUiDXyoHio",
+    "name": "E-Commerce Shop",
+    "description": "E-Commerce MVP made with Next.js, Tailwind CSS, and Sanity.io.",
+    "url": "https://ecommerce-mvp.netlify.app/",
+    "image": "/portfolio/three/ecommerceShop.jpg"
+  },
+  {
+    "id": "rokcnsQ7wjK28k3TeQgi",
+    "name": "Modern Restaurant Menu",
+    "description": "A restaurant menu similar to previous client's menus.",
+    "url": "https://restaurant-template-7lt3.vercel.app/",
+    "image": null
+  }
+]

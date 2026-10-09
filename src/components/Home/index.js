@@ -1,159 +1,102 @@
 import { Link } from 'react-router-dom'
 import { caseStudies } from '../../data/caseStudies'
 import WorkCard from '../WorkCard'
-import { StackDiagram, GpuRack } from '../Infrastructure'
+
 export default function Home() {
   return (
-    <>
+    <div className="personal-home">
       <section className="hero page-shell">
         <div className="hero-copy">
-          <p className="availability">
-            <span aria-hidden="true" />
-            Open to senior & lead engineering roles
+          <p className="handwritten" aria-hidden="true">
+            hello, world.
           </p>
           <h1>
-            From interface
+            Hi,
             <br />
-            to <em>infrastructure.</em>
+            I’m <em>Diego.</em>
           </h1>
+          <p className="hero-role">Full-stack engineer & technical lead</p>
           <p className="hero-description">
-            I’m Diego, a full-stack engineer and technical lead. I build web
-            products, lead cloud migrations, and operate the systems behind
-            them.
+            I build web applications and the systems behind them. These days,
+            that means property management software, cloud migrations, and
+            backend services through my company, Lumara.
           </p>
           <div className="actions">
             <Link className="button" to="/#selected-work">
-              Explore my work <span aria-hidden="true">↘</span>
+              View my work
             </Link>
             <a
-              className="button button-secondary"
+              className="text-link"
               href={`${process.env.PUBLIC_URL || ''}/resume/Diego_Espino_Resume.pdf`}
               download
             >
-              Download resume <span aria-hidden="true">↓</span>
+              Download resume ↓
             </a>
           </div>
           <p className="hero-location">
-            Based in Dallas-Fort Worth · Working across product and platform
+            Dallas-Fort Worth · Open to senior and lead roles
           </p>
         </div>
-        <div className="hero-system">
-          <StackDiagram />
-          <div className="system-caption">
-            <span className="mono">PRODUCT → PRODUCTION</span>
-            <span>Ownership across the stack</span>
-          </div>
+        <div className="personal-mark" aria-hidden="true">
+          <svg viewBox="0 0 360 450" fill="none">
+            <path
+              className="mark-shadow"
+              d="M75 55H165C280 55 322 124 322 225C322 326 280 395 165 395H75V55ZM143 121V329H168C226 329 252 298 252 225C252 152 226 121 168 121H143Z"
+            />
+            <path d="M65 45H155C270 45 312 114 312 215C312 316 270 385 155 385H65V45ZM133 111V319H158C216 319 242 288 242 215C242 142 216 111 158 111H133Z" />
+          </svg>
+          <span className="handwritten">Diego Espino</span>
         </div>
       </section>
-      <section
-        className="proof-strip page-shell"
-        aria-label="Selected engineering results"
-      >
-        <div>
-          <strong>
-            1,000<span>+</span>
-          </strong>
-          <p>
-            property units on a platform
-            <br />I helped lead
-          </p>
-        </div>
-        <div>
-          <strong>
-            3h <span>→</span> 1h
-          </strong>
-          <p>
-            daily admin work per employee
-            <br />
-            after workflow automation
-          </p>
-        </div>
-        <div>
-          <strong>
-            6 <span>GPUs</span>
-          </strong>
-          <p>
-            local inference infrastructure
-            <br />
-            with fixes merged upstream
-          </p>
-        </div>
-      </section>
-      <section id="selected-work" className="section page-shell">
+      <section id="selected-work" className="selected-work page-shell">
         <div className="section-heading">
-          <div>
-            <p className="eyebrow">01 / SELECTED WORK</p>
-            <h2>
-              Built to do
-              <br />
-              real work.
-            </h2>
-          </div>
-          <p>
-            Client platforms, cloud migrations, and systems engineering. Here’s
-            what I owned, the decisions behind it, and what changed.
-          </p>
+          <h2>Some recent work.</h2>
+          <Link className="text-link" to="/portfolio">
+            All projects →
+          </Link>
         </div>
         <div className="work-grid">
-          {caseStudies.map((study) => (
+          {caseStudies.slice(0, 3).map((study) => (
             <WorkCard key={study.slug} study={study} />
           ))}
         </div>
       </section>
-      <section className="infra-band">
-        <div className="page-shell infra-intro">
-          <div>
-            <p className="eyebrow">02 / BEYOND THE APPLICATION</p>
-            <h2>
-              I run what
-              <br />I build.
-            </h2>
-            <p>
-              Cloud infrastructure is part of my client work. At home, I go
-              deeper: six GPUs, a Proxmox lab, self-hosted services, and
-              performance fixes contributed upstream.
-            </p>
-            <Link className="text-link" to="/infrastructure">
-              Inside the infrastructure <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
-          <GpuRack />
-        </div>
-      </section>
-      <section className="section page-shell about-preview">
-        <p className="eyebrow">03 / THE PERSON BEHIND THE CODE</p>
+      <section className="home-lab page-shell">
         <div>
+          <p className="handwritten">and at home...</p>
           <h2>
-            Hands-on engineering.
+            Six GPUs.
             <br />
-            Shared responsibility.
+            Lots of tinkering.
           </h2>
+        </div>
+        <div className="home-lab-description">
           <p>
-            I work through Lumara Technologies, partnering with teams at DFW
-            Software Consulting and Craft Digital. I care about clear
-            architecture, useful tests, and systems the next engineer can
-            understand.
+            I built a six-RTX-3090 inference server and run a Proxmox homelab.
+            Working on my own setup led to fixes merged into ExLlamaV3 and
+            TabbyAPI, including an 18% improvement in cold prompt processing on
+            my server.
           </p>
-          <p>
-            Outside work: bass music, the occasional hardware rabbit hole, and
-            finding the next thing to learn.
-          </p>
-          <Link className="text-link" to="/about">
-            A little more about me <span aria-hidden="true">↗</span>
+          <Link className="text-link" to="/infrastructure">
+            The hardware and open-source work →
           </Link>
         </div>
       </section>
-      <section className="contact-banner page-shell">
-        <p className="eyebrow">HAVE A ROLE IN MIND?</p>
-        <h2>
-          Let’s build something
-          <br />
-          worth owning.
-        </h2>
-        <Link className="button" to="/contact">
-          Get in touch <span aria-hidden="true">↗</span>
-        </Link>
+      <section className="home-personal page-shell">
+        <p>
+          Away from the terminal, I make bass music, learn piano, and work on
+          hardware projects.{' '}
+          <Link className="text-link" to="/about">
+            More about me →
+          </Link>
+        </p>
+        <p>
+          Have an engineering role in mind?{' '}
+          <Link className="text-link" to="/contact">
+            Let’s talk.
+          </Link>
+        </p>
       </section>
-    </>
+    </div>
   )
 }

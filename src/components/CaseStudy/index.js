@@ -12,7 +12,7 @@ export default function CaseStudy() {
     <article className="page-shell case-study">
       <header className="page-heading">
         <Link className="text-link back-link" to="/portfolio">
-          ← All work
+          ← All projects
         </Link>
         <p className="eyebrow">
           CASE STUDY {study.number} / {study.category}
@@ -43,20 +43,16 @@ export default function CaseStudy() {
       </div>
       <div className="case-narrative">
         <aside>
-          <p className="eyebrow">THE ENGINEERING</p>
-          <p>
-            Context, decisions,
-            <br />
-            and outcomes.
-          </p>
+          <p className="eyebrow">PROJECT DETAILS</p>
+          <p>My contributions and the results.</p>
         </aside>
         <div>
           <section>
-            <h2>The challenge</h2>
+            <h2>Context</h2>
             <p>{study.challenge}</p>
           </section>
           <section>
-            <h2>How I approached it</h2>
+            <h2>My contributions</h2>
             {study.approach.map((item, index) => (
               <div className="approach-item" key={item.title}>
                 <span className="mono">0{index + 1}</span>
@@ -68,7 +64,7 @@ export default function CaseStudy() {
             ))}
           </section>
           <section>
-            <h2>What changed</h2>
+            <h2>Results</h2>
             <ul className="results-list">
               {study.results.map((result) => (
                 <li key={result}>{result}</li>
@@ -78,7 +74,7 @@ export default function CaseStudy() {
           </section>
           {study.links.length > 0 && (
             <section>
-              <h2>See the work</h2>
+              <h2>Source and pull requests</h2>
               <div className="evidence-links">
                 {study.links.map((link) => (
                   <a
@@ -97,7 +93,7 @@ export default function CaseStudy() {
         </div>
       </div>
       <div className="next-case">
-        <p className="eyebrow">NEXT CASE STUDY</p>
+        <p className="eyebrow">NEXT PROJECT</p>
         <Link to={`/work/${nextStudy.slug}`}>
           {nextStudy.title}
           <span aria-hidden="true">↗</span>

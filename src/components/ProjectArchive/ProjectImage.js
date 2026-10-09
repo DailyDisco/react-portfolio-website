@@ -4,15 +4,7 @@ const ProjectImage = ({ name, imageUrl }) => {
   const [failedImageUrl, setFailedImageUrl] = useState(null)
 
   if (!imageUrl || failedImageUrl === imageUrl) {
-    return (
-      <div
-        className="archive-placeholder"
-        role="img"
-        aria-label={`${name} preview unavailable`}
-      >
-        <span aria-hidden="true">Preview unavailable</span>
-      </div>
-    )
+    return null
   }
 
   return (

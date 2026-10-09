@@ -4,11 +4,7 @@ export default function About() {
     <div className="page-shell">
       <header className="page-heading">
         <p className="eyebrow">ABOUT DIEGO</p>
-        <h1>
-          Curiosity in.
-          <br />
-          <em>Working software out.</em>
-        </h1>
+        <h1>About me</h1>
         <p>
           I’m a full-stack engineer and technical lead in Dallas-Fort Worth. I
           work across the application, its data, and the infrastructure that
@@ -17,12 +13,13 @@ export default function About() {
       </header>
       <div className="about-layout">
         <section className="about-story">
-          <h2>Ownership across the stack.</h2>
+          <h2>My work</h2>
           <p>
-            Through Lumara Technologies, I partner with teams to turn business
-            problems into software people can use. My work includes a property
-            management platform, lead-intake and reporting systems, and backend
-            services for a confidential mixed reality product.
+            I run Lumara Technologies and work with teams at DFW Software
+            Consulting and Craft Digital. My projects include Emmut’s property
+            management platform, lead-intake and reporting systems for Joshua
+            Tree Experts, and backend services for a confidential mixed reality
+            product.
           </p>
           <p>
             I’ve led architecture and delivery with teams of four and five
@@ -31,9 +28,9 @@ export default function About() {
             explain and failure modes that are possible to debug.
           </p>
           <p>
-            That curiosity carries into my own infrastructure. I operate a
-            multi-GPU inference server and Proxmox homelab, and contribute fixes
-            upstream when I find something worth improving.
+            At home, I operate a multi-GPU inference server and Proxmox homelab.
+            Debugging my inference setup led to fixes merged into ExLlamaV3 and
+            TabbyAPI.
           </p>
           <p>
             Outside engineering, I produce bass music in Ableton, learn piano,
@@ -42,7 +39,7 @@ export default function About() {
           </p>
           <div className="actions">
             <Link className="button" to="/contact">
-              Let’s talk ↗
+              Contact me ↗
             </Link>
             <a
               className="text-link"
@@ -53,7 +50,7 @@ export default function About() {
           </div>
         </section>
         <aside className="experience-panel">
-          <p className="eyebrow">WHERE I’M BUILDING</p>
+          <p className="eyebrow">CURRENT ROLES</p>
           <div>
             <h3>DFW Software Consulting</h3>
             <p>Full Stack Engineer · Primary contract through Lumara</p>

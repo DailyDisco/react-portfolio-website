@@ -55,19 +55,14 @@ export default function WorkCard({ study }) {
   return (
     <article className="work-card">
       <Link className="work-card-link" to={`/work/${study.slug}`}>
-        <WorkDiagram slug={study.slug} />
         <div className="work-card-body">
-          <p className="eyebrow">{study.category}</p>
+          <p className="project-context">{study.category}</p>
           <h3>
             {study.title}
             <span aria-hidden="true">↗</span>
           </h3>
           <p>{study.summary}</p>
-          <ul className="tag-list">
-            {study.stack.slice(0, 4).map((tag) => (
-              <li key={tag}>{tag}</li>
-            ))}
-          </ul>
+          <p className="project-stack">{study.stack.slice(0, 4).join(' / ')}</p>
           <span className="case-link">
             Read case study <span aria-hidden="true">→</span>
           </span>

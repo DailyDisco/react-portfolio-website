@@ -8,7 +8,6 @@ const titles = {
   '/infrastructure': 'Infrastructure & Open Source | Diego Espino',
   '/about': 'About Diego Espino',
   '/contact': 'Contact Diego Espino',
-  '/dashboard': 'Project Dashboard | Diego Espino',
 }
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -75,13 +74,13 @@ export default function Layout() {
           aria-label="Main navigation"
         >
           <NavLink to="/portfolio">Work</NavLink>
-          <NavLink to="/infrastructure">Infrastructure</NavLink>
+          <NavLink to="/infrastructure">Homelab</NavLink>
           <NavLink to="/about">About</NavLink>
           <a href={resumeUrl} target="_blank" rel="noreferrer">
             Resume <span aria-hidden="true">↗</span>
           </a>
           <NavLink className="nav-contact" to="/contact">
-            Let’s talk <span aria-hidden="true">↗</span>
+            Contact
           </NavLink>
         </nav>
       </header>
@@ -101,7 +100,7 @@ export default function Layout() {
           <Link className="footer-name" to="/">
             Diego Espino<span>.</span>
           </Link>
-          <p>Full stack. Cloud. A little curiosity.</p>
+          <p>Engineer, music producer, hardware tinkerer.</p>
         </div>
         <div className="footer-links">
           <a href="https://github.com/DailyDisco">GitHub ↗</a>

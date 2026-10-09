@@ -1,6 +1,6 @@
 # Diego Espino's portfolio
 
-A React portfolio focused on full-stack engineering, technical leadership, cloud migrations, and infrastructure. The public site is https://www.digitaldiego.xyz/.
+A personal portfolio for full-stack engineering, technical leadership, cloud migrations, and infrastructure. The public site is https://www.digitaldiego.xyz/.
 
 ## Run locally
 
@@ -9,7 +9,24 @@ npm ci
 npm start
 ```
 
-The checked-in lockfile retains the existing React 17 / Create React App 5 stack. `.npmrc` enables legacy peer resolution because the preserved React Leaflet dependency declares React 18 peers. The refreshed interface does not import Leaflet. A framework or dependency migration is separate work.
+Node 22 is pinned for local and Vercel builds. This checkout retains React 17 and Create React App 5. `.npmrc` enables legacy peer resolution because the preserved React Leaflet dependency declares React 18 peers; the current interface does not import Leaflet. A framework migration is separate work.
+
+## Edit content
+
+All portfolio content and images live in the repository. There is no database, sign-in, or upload dashboard.
+
+- `src/data/projects.json`: the eight earlier projects exported from Firestore. Each record has an `id`, `name`, `description`, `url`, and `image`.
+- `src/data/caseStudies.js`: current engineering case studies, measured outcomes, and public source links.
+- `src/components/Home`, `About`, and `Infrastructure`: introduction, experience, and technical background.
+- `public/portfolio/`: project images. Set a record's `image` to a path such as `/portfolio/my-project/preview.jpg`, or `null` for a text-only entry.
+- `public/resume/`: current one-page and detailed resumes. The primary download uses the one-page PDF.
+- `public/index.html`, `og-image.png`, and `favicon.svg`: metadata and sharing assets.
+
+Edit the relevant file, run checks, and deploy the new build. No runtime database request is needed to display projects. `/dashboard` redirects to `/portfolio` for old bookmarks; `/blog` remains an alias for the work page.
+
+The Firestore migration preserved all eight record IDs, names, descriptions, and project links. Firebase Storage URLs were removed. One ecommerce thumbnail was recovered from an existing bundled image; the other seven entries remain text-only because their original Storage images are unavailable. The old cloud project and its data were not deleted or changed.
+
+Keep the mixed-reality client anonymous and avoid private repository links. Preserve scope notes that distinguish reporting implementation from completed production cutover, and development Terraform definitions from production deployment.
 
 ## Verify
 
@@ -18,31 +35,14 @@ CI=true npm test -- --watchAll=false --runInBand
 CI=true npm run build
 ```
 
-Tests cover navigation, archive loading and failure states, safe project links, contact submission states, authentication state, and project uploads. Contact and write operations use mocks in tests. Public Firestore reads can be checked on `/portfolio` without signing in.
-
-## Content and data
-
-- `src/data/caseStudies.js`: curated engineering case studies, outcomes, and public source links.
-- `src/components/Home`, `About`, and `Infrastructure`: positioning, experience, and technical background.
-- `public/resume/`: current one-page and detailed resumes. The main navigation uses the one-page PDF.
-- `public/og-image.png`, `favicon.svg`, and `index.html`: sharing image, icon, and metadata.
-- `/portfolio`: curated case studies followed by the existing Firebase project archive.
-- `/dashboard`: existing Google sign-in and project creation flow.
-
-The Firebase project and existing `portfolio` collection are retained. Documents use `{ name, description, url, image }`. Images remain in the `portfolio/` Storage prefix with unique filenames for new uploads. No migration is required. Curated case studies are versioned in source; dashboard submissions go into the archive.
-
-Firestore and Storage rules are managed outside this checkout. Server-side authorization must remain the authority for dashboard writes. The Google login UI is not an authorization boundary. No security-rule changes are included.
-
-The contact form retains the existing EmailJS service and template. Automated verification intercepts requests rather than sending real messages. End-to-end email delivery and signed-in production writes require an owner check.
-
-Client case studies distinguish shipped results from implementation work. Keep the mixed-reality client anonymous and avoid private repository links. Preserve the reporting and Terraform scope notes when editing.
+Tests cover navigation and old-route redirects, archive rendering, failed images, safe external links, and contact submission behavior. Contact requests are mocked in automated checks; actual email delivery still needs an owner-controlled check. The existing EmailJS service and template remain separate from the removed Firebase integration.
 
 ## Deploy
 
-Vercel serves the CRA production build. `vercel.json` pins the existing framework preset and lockfile-based installation. The CRA preset handles browser route fallbacks while serving static assets normally.
+Vercel serves the static CRA build. `vercel.json` pins the framework preset and `npm ci`; the preset handles browser route fallbacks while serving static assets normally.
 
-Before release, review a Vercel preview for direct case-study URLs, Firebase archive loading, the contact form, and resume downloads. Confirm the intended Vercel project and production domain before promoting. For rollback, promote the previous known-good deployment; this update does not migrate data.
+Review the preview's direct case-study URLs, all eight archive entries, image loading, contact form, and resume downloads. Confirm the intended project and domain before promoting. For rollback, promote the previous known-good deployment. The Firebase source remains available until the replacement has been accepted and its retirement is explicitly approved.
 
 ## Preserved work
 
-The local branch includes checkpoint `7b51de7`, which preserves the previous day-vault workspace edits before this refresh. Legacy components and the video route remain in the repository.
+Checkpoint `7b51de7` preserves the previous day-vault workspace edits. Commit `736deff` preserves the first refresh before the personal design revision and Firebase removal. The original remote checkout remains untouched.
