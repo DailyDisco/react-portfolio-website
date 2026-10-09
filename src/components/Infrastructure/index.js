@@ -1,78 +1,104 @@
+import PageSurface from '../PageSurface'
+import NextChapter from '../NextChapter'
+import { ArrowRight, ArrowUpRight, GitPullRequest } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import LabExplorer from '../LabExplorer'
+import './style.css'
+
 export default function Infrastructure() {
   return (
-    <div className="page-shell">
-      <header className="page-heading">
-        <p className="eyebrow">INFRASTRUCTURE & OPEN SOURCE</p>
-        <h1>My homelab and open-source work</h1>
-        <p>
-          I run local models for coding agents and maintain my own Linux
-          services. Here’s the hardware, the homelab, and two upstream fixes
-          that came from using them.
+    <PageSurface className="page-shell infrastructure-page segmented-page">
+      <section className="page-panel page-panel-primary">
+        <header className="page-heading">
+          <p className="eyebrow">HOMELAB & OPEN SOURCE</p>
+          <h1>Under the hood.</h1>
+          <p>
+            I built a six-GPU server for coding agents. Operating it led to
+            fixes merged into ExLlamaV3 and TabbyAPI.
+          </p>
+        </header>
+        <LabExplorer />
+        <p className="infrastructure-case-link">
+          <Link className="text-link" to="/work/local-inference">
+            Read the inference case study{' '}
+            <ArrowRight size={18} aria-hidden="true" />
+          </Link>
         </p>
-      </header>
-      <LabExplorer />
-      <p className="infrastructure-case-link">
-        <Link className="text-link" to="/work/local-inference">
-          Read the inference engineering case study →
-        </Link>
-      </p>
-      <section className="section">
+      </section>
+      <section
+        className="page-panel infrastructure-contributions"
+        aria-labelledby="upstream-heading"
+      >
         <div className="section-heading">
           <div>
-            <p className="eyebrow">CONTRIBUTIONS MERGED UPSTREAM</p>
-            <h2>ExLlamaV3 and TabbyAPI</h2>
+            <p className="eyebrow">MERGED UPSTREAM</p>
+            <h2 id="upstream-heading">Fixes from running the stack.</h2>
           </div>
-          <p>Both fixes came from debugging my own inference server.</p>
         </div>
         <div className="contribution-grid">
           <article>
-            <span className="contribution-number">
-              +18<span>%</span>
-            </span>
-            <p className="eyebrow">EXLLAMAV3 / C++</p>
-            <h3>Faster cold prompt processing</h3>
+            <div
+              className="contribution-readout"
+              aria-label="18 percent faster cold prompt processing"
+            >
+              <span className="contribution-number">
+                +18<span>%</span>
+              </span>
+              <span>cold prompt throughput</span>
+            </div>
+            <p className="eyebrow">EXLLAMAV3 · C++</p>
+            <h3>Faster cold prompts</h3>
             <p>
-              Multithreaded AVX2 CPU all-reduce increased throughput from 1,238
-              to 1,458 tokens/second in my six-GPU benchmark. Decode speed was
+              Multithreaded AVX2 CPU all-reduce raised throughput from 1,238 to
+              1,458 tokens/second in my six-GPU benchmark. Decode speed was
               unchanged.
             </p>
             <a
               className="text-link"
               href="https://github.com/turboderp-org/exllamav3/pull/447"
             >
-              Merged pull request #447 ↗
+              <GitPullRequest size={17} aria-hidden="true" />
+              Merged PR #447 <ArrowUpRight size={17} aria-hidden="true" />
             </a>
           </article>
           <article>
-            <span className="contribution-number contribution-word">
-              Release → replace
-            </span>
-            <p className="eyebrow">TABBYAPI / PYTHON</p>
-            <h3>Release the old generator before replacing it</h3>
+            <div
+              className="contribution-readout contribution-sequence"
+              aria-hidden="true"
+            >
+              <span>Release</span>
+              <ArrowRight size={27} />
+              <span>Replace</span>
+            </div>
+            <p className="eyebrow">TABBYAPI · PYTHON</p>
+            <h3>Safer generator recovery</h3>
             <p>
-              Release the previous generator before allocating its replacement,
-              preventing overlapping main-process host caches during recovery.
-              Covered by an object-release regression test.
+              Release the old generator before allocating its replacement to
+              prevent overlapping main-process host caches. Covered by an
+              object-release regression test.
             </p>
             <a
               className="text-link"
               href="https://github.com/theroyallab/tabbyAPI/pull/493"
             >
-              Merged pull request #493 ↗
+              <GitPullRequest size={17} aria-hidden="true" />
+              Merged PR #493 <ArrowUpRight size={17} aria-hidden="true" />
             </a>
           </article>
         </div>
       </section>
-      <section className="homelab-section">
+      <section
+        className="page-panel homelab-section"
+        aria-labelledby="homelab-operations-heading"
+      >
         <div>
-          <p className="eyebrow">THE HOMELAB</p>
-          <h2>Proxmox and self-hosted services</h2>
+          <p className="eyebrow">DAY-TO-DAY OPERATIONS</p>
+          <h2 id="homelab-operations-heading">
+            A dozen services. My responsibility.
+          </h2>
           <p>
-            Proxmox virtual machines and a dozen self-hosted services give me a
-            practical place to work through provisioning, networking,
-            observability, and recovery.
+            Proxmox VMs and self-hosted services give me a practical place to
+            work through provisioning, networking, observability, and recovery.
           </p>
         </div>
         <dl className="system-list">
@@ -94,6 +120,11 @@ export default function Infrastructure() {
           </div>
         </dl>
       </section>
-    </div>
+      <NextChapter
+        to="/about"
+        title="Meet the engineer"
+        description="How I work, what I care about, and what I build away from the screen."
+      />
+    </PageSurface>
   )
 }

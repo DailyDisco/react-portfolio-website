@@ -1,10 +1,10 @@
+import SiteFooter from '../SiteFooter'
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   ArrowUpRight,
   Cpu,
   Download,
-  Mail,
   PanelsTopLeft,
   Workflow,
 } from 'lucide-react'
@@ -122,7 +122,7 @@ export default function Home() {
               <p>Full-stack engineer & technical lead.</p>
             </div>
             <p className="console-intro">
-              Software, cloud infrastructure, and hardware.
+              I build web products and the systems they run on.
             </p>
             <div className="console-availability">
               <span aria-hidden="true" />
@@ -217,20 +217,7 @@ export default function Home() {
           </a>
         </div>
       </section>
-      <div className="console-outside-footer">
-        <p>Code, hardware, and bass music.</p>
-        <div>
-          <a href="https://github.com/DailyDisco">GitHub ↗</a>
-          <a href="https://www.linkedin.com/in/developerdiego/">LinkedIn ↗</a>
-          <a
-            className="console-email-link"
-            href="mailto:diegoespinowork@gmail.com"
-          >
-            <Mail size={13} aria-hidden="true" /> Email
-          </a>
-        </div>
-        <Link to="/about">About me ↗</Link>
-      </div>
+      <SiteFooter />
     </div>
   )
 }

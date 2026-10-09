@@ -50,7 +50,7 @@ test('switching views changes both the schematic and engineering details', async
 
   await user.click(screen.getByRole('button', { name: 'The homelab' }))
   expect(screen.getByText('Proxmox · Linux · Docker Compose')).toBeVisible()
-  expect(screen.getByText('Tailscale · Caddy')).toBeVisible()
+  expect(screen.getByText('Tailscale · Caddy', { selector: 'dd' })).toBeVisible()
   expect(
     screen.getByText('Metrics, logs, backup and restore validation')
   ).toBeVisible()

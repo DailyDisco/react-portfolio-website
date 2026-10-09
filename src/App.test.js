@@ -77,7 +77,7 @@ test('old dashboard bookmarks redirect to portfolio without retaining dashboard 
     </MemoryRouter>
   )
   expect(
-    await screen.findByRole('heading', { level: 1, name: 'Selected projects' })
+    await screen.findByRole('heading', { level: 1, name: 'What I’ve shipped.' })
   ).toBeInTheDocument()
   expect(screen.getByLabelText('Current path')).toHaveTextContent('/portfolio')
 
@@ -93,7 +93,7 @@ test('selected work shows the three featured projects and preserves the confiden
     </MemoryRouter>
   )
   expect(
-    await screen.findByRole('heading', { name: 'Selected projects' })
+    await screen.findByRole('heading', { name: 'What I’ve shipped.' })
   ).toBeVisible()
   expect(screen.getByRole('heading', { name: 'Emmut' })).toBeVisible()
   expect(screen.getByRole('heading', { name: 'AWS → Railway' })).toBeVisible()

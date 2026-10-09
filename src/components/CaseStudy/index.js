@@ -1,73 +1,107 @@
+import PageSurface from '../PageSurface'
+import NextChapter from '../NextChapter'
 import { Link, useParams } from 'react-router-dom'
-import { caseStudies, getCaseStudy } from '../../data/caseStudies'
+import { getCaseStudy } from '../../data/caseStudies'
 import ProjectFigure from '../ProjectFigure'
 import NotFound from '../NotFound'
+import { ArrowLeft, ArrowUpRight } from 'lucide-react'
+import './style.css'
+
+const nextChapters = {
+  'property-platform': {
+    to: '/work/workflow-migration',
+    title: 'AWS → Railway',
+    description: 'Moving seven production workflows from Kestra to n8n.',
+  },
+  'workflow-migration': {
+    to: '/work/local-inference',
+    title: 'Local inference',
+    description:
+      'How operating my own server led to two fixes merged upstream.',
+  },
+  'local-inference': {
+    to: '/about',
+    title: 'Meet the engineer',
+    description:
+      'How I work, what I care about, and what I build away from the screen.',
+  },
+}
+
 export default function CaseStudy() {
   const { slug } = useParams()
   const study = getCaseStudy(slug)
   if (!study) return <NotFound />
-  const nextStudy =
-    caseStudies[(caseStudies.indexOf(study) + 1) % caseStudies.length]
+  const nextChapter = nextChapters[slug] || {
+    to: '/portfolio',
+    title: 'Explore selected work',
+    description: 'Products, cloud systems, and the infrastructure behind them.',
+  }
   return (
-    <article className="page-shell case-study">
-      <header className="page-heading">
-        <Link className="text-link back-link" to="/portfolio">
-          ← All projects
-        </Link>
-        <p className="eyebrow">
-          CASE STUDY {study.number} / {study.category}
-        </p>
-        <h1>{study.title}</h1>
-        <p>{study.summary}</p>
-      </header>
-      {slug === 'property-platform' && (
-        <section
-          className="case-product-proof"
-          aria-label="Emmut interface examples"
-        >
-          <div className="case-product-screens">
-            <img
-              src="/work/emmut-maintenance-desktop.png"
-              alt="Emmut maintenance worker management dialog on desktop, using synthetic demo workers."
-              width="2560"
-              height="1600"
-            />
-            <img
-              src="/work/emmut-maintenance-mobile.png"
-              alt="The same actual Emmut maintenance component as a mobile drawer with synthetic demo data."
-              width="780"
-              height="1688"
-              loading="lazy"
-            />
-          </div>
-          <p>
-            Emmut maintenance workflow. Actual application components rendered
-            with synthetic demo data.
+    <PageSurface
+      key={slug}
+      as="article"
+      className="page-shell case-study segmented-page"
+    >
+      <section className="page-panel page-panel-primary">
+        <header className="page-heading">
+          <Link className="text-link back-link" to="/portfolio">
+            <ArrowLeft size={17} aria-hidden="true" /> All projects
+          </Link>
+          <p className="eyebrow">
+            CASE STUDY {study.number} / {study.category}
           </p>
-        </section>
-      )}
-      <div className="case-overview">
-        <div>
-          <p className="eyebrow">MY ROLE</p>
-          <p>{study.role}</p>
-          <p className="muted">{study.period}</p>
-          <ul className="tag-list">
-            {study.stack.map((tag) => (
-              <li key={tag}>{tag}</li>
-            ))}
-          </ul>
-        </div>
-        <ProjectFigure slug={slug} />
-      </div>
-      <div className="case-metrics">
-        {study.highlights.map((item) => (
-          <div key={item.value}>
-            <strong>{item.value}</strong>
-            <span>{item.label}</span>
+          <h1>{study.title}</h1>
+          <p>{study.summary}</p>
+        </header>
+        {slug === 'property-platform' && (
+          <section
+            className="case-product-proof"
+            aria-label="Emmut interface examples"
+          >
+            <div className="case-product-screens">
+              <img
+                src="/work/emmut-maintenance-desktop.png"
+                alt="Emmut maintenance worker management dialog on desktop, using synthetic demo workers."
+                width="2560"
+                height="1600"
+              />
+              <img
+                src="/work/emmut-maintenance-mobile.png"
+                alt="The same actual Emmut maintenance component as a mobile drawer with synthetic demo data."
+                width="780"
+                height="1688"
+                loading="lazy"
+              />
+            </div>
+            <p>
+              Emmut maintenance workflow. Actual application components rendered
+              with synthetic demo data.
+            </p>
+          </section>
+        )}
+        <div className="case-overview">
+          <div>
+            <p className="eyebrow">MY ROLE</p>
+            <p>{study.role}</p>
+            <p className="muted">{study.period}</p>
+            <ul className="tag-list">
+              {study.stack.map((tag) => (
+                <li key={tag}>{tag}</li>
+              ))}
+            </ul>
           </div>
-        ))}
-      </div>
-      <div className="case-narrative">
+          <ProjectFigure slug={slug} />
+        </div>
+        <div className="case-metrics">
+          {study.highlights.map((item) => (
+            <div key={item.value}>
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+      <div className="page-panel case-narrative">
         <aside>
           <p className="eyebrow">PROJECT DETAILS</p>
           <nav className="case-contents" aria-label="On this page">
@@ -114,7 +148,7 @@ export default function CaseStudy() {
                     target="_blank"
                     rel="noreferrer"
                   >
-                    {link.label} ↗
+                    {link.label} <ArrowUpRight size={16} aria-hidden="true" />
                   </a>
                 ))}
               </div>
@@ -122,13 +156,7 @@ export default function CaseStudy() {
           )}
         </div>
       </div>
-      <div className="next-case">
-        <p className="eyebrow">NEXT PROJECT</p>
-        <Link to={`/work/${nextStudy.slug}`}>
-          {nextStudy.title}
-          <span aria-hidden="true">↗</span>
-        </Link>
-      </div>
-    </article>
+      <NextChapter {...nextChapter} />
+    </PageSurface>
   )
 }

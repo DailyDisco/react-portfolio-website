@@ -1,6 +1,7 @@
 import { Suspense, useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
+import SiteFooter from '../SiteFooter'
 import { getCaseStudy } from '../../data/caseStudies'
 const resumeUrl = `${process.env.PUBLIC_URL || ''}/resume/Diego_Espino_Resume.pdf`
 const titles = {
@@ -121,30 +122,7 @@ export default function Layout() {
           <Outlet />
         </Suspense>
       </main>
-      {location.pathname !== '/' && (
-        <footer className="site-footer">
-          <div className="footer-bottom">
-            <div>
-              <Link className="footer-name" to="/">
-                Diego Espino<span>.</span>
-              </Link>
-              <p>Engineer, music producer, hardware tinkerer.</p>
-            </div>
-            <div className="footer-links">
-              <a href="https://github.com/DailyDisco">GitHub ↗</a>
-              <a href="https://www.linkedin.com/in/developerdiego/">
-                LinkedIn ↗
-              </a>
-              <a href="mailto:diegoespinowork@gmail.com">Email ↗</a>
-            </div>
-            <p className="footer-location">
-              Dallas-Fort Worth, Texas
-              <br />
-              English & Spanish
-            </p>
-          </div>
-        </footer>
-      )}
+      {location.pathname !== '/' && <SiteFooter />}
     </div>
   )
 }

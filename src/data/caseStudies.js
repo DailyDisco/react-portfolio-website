@@ -5,10 +5,12 @@ export const caseStudies = [
     category: 'Product engineering · Technical leadership',
     title: 'Emmut property management',
     cardTitle: 'Emmut',
+    cardSummary:
+      'Property management for 1,000+ units. Led four developers; reduced daily admin work from 3 hours to 1 per employee.',
     visual: {
       src: '/work/emmut-maintenance-desktop.png',
       alt: 'Actual Emmut maintenance-worker management dialog rendered with synthetic demo workers.',
-      caption: 'Actual Emmut components · synthetic demo data',
+      caption: 'Emmut UI · synthetic demo data',
     },
     summary:
       'I led architecture and delivery with a four-developer team. The platform manages 1,000+ property units and cut daily admin work from 3 hours to 1 per employee.',
@@ -50,6 +52,8 @@ export const caseStudies = [
     category: 'Cloud migration · Data engineering',
     title: 'AWS to Railway workflow migration',
     cardTitle: 'AWS → Railway',
+    cardSummary:
+      'Moved seven production lead workflows from AWS/Kestra to Railway/n8n, with durable intake and safer retries.',
     visual: {
       src: '/work/migration-map.svg',
       alt: 'Architecture overview showing seven lead workflows moving from Kestra on AWS to n8n on Railway.',
@@ -152,10 +156,12 @@ export const caseStudies = [
     category: 'GPU infrastructure · Open source',
     title: 'Local LLM inference and upstream fixes',
     cardTitle: 'Local AI & open source',
+    cardSummary:
+      'Built a six-GPU inference server. Two fixes merged upstream; 18% faster cold prompt processing in my benchmark.',
     visual: {
       src: '/work/inference-benchmark.svg',
       alt: 'Six GPU plates alongside measured cold prompt throughput rising from 1,238 to 1,458 tokens per second.',
-      caption: 'Six-GPU benchmark and upstream contribution',
+      caption: 'Six-GPU benchmark · merged fixes',
     },
     summary:
       'I built a six-GPU server for local AI and contributed two merged fixes to ExLlamaV3 and TabbyAPI. One improved cold prompt processing by 18% in my benchmark.',

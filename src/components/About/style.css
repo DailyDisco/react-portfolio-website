@@ -1,0 +1,296 @@
+.about-page .about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr);
+  gap: 30px;
+  align-items: start;
+}
+
+.about-page .about-story h2 {
+  font-family: var(--font);
+  font-size: clamp(1.35rem, 2vw, 1.65rem);
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 16px;
+}
+
+.about-page .about-story > p {
+  color: #41584d;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  max-width: 63ch;
+}
+
+.about-page .about-personal-notes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.about-page .about-secondary-title {
+  font-family: var(--font);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+.about-page .about-personal-note {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 15px;
+  padding: 20px;
+  border: 1px solid #adb8a6;
+  border-radius: 6px;
+  background: #eeecdf;
+  box-shadow: inset 0 1px 0 #fff9;
+}
+
+.about-page .about-personal-note > svg {
+  color: #6e5707;
+  margin-top: 3px;
+}
+
+.about-page .about-personal-note h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.45;
+  margin-bottom: 8px;
+}
+
+.about-page .about-personal-note p {
+  color: #41584d;
+  font-size: 1rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.about-page .about-personal-note a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 7px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: #9ca88e;
+  text-underline-offset: 5px;
+}
+
+.about-page .about-personal-note a:hover {
+  text-decoration-color: currentColor;
+}
+
+.about-page .about-story .actions {
+  margin-top: 22px;
+  gap: 22px;
+}
+
+.about-page .about-story .actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  font-size: 1rem;
+}
+
+.about-page .experience-panel {
+  padding: 18px 22px;
+  border: 5px solid #b8c1aa;
+  border-radius: 7px;
+  background: #193e36;
+  color: #eef1df;
+  box-shadow: inset 0 2px 6px #071f2655;
+}
+
+.about-page .experience-panel > h2 {
+  color: #d6e7a8;
+  font-family: var(--font);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0 0 3px;
+}
+
+.about-page .experience-panel > div {
+  padding: 14px 0;
+  border-bottom: 1px solid #567462;
+}
+
+.about-page .experience-panel > div:last-child {
+  padding-bottom: 2px;
+  border-bottom: 0;
+}
+
+.about-page .experience-panel h3 {
+  color: #eef1df;
+  font-family: var(--font);
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.about-page .experience-panel p:not(.eyebrow) {
+  color: #d4dfc9;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 5px;
+}
+
+.about-page .experience-panel span {
+  color: #b7cda8;
+  font-family: var(--font);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-top: 5px;
+}
+
+.about-page .skills-section {
+  border-top: 1px solid #adb8a6;
+  margin-top: 26px;
+  padding-top: 22px;
+}
+
+.about-page .skills-section > h2 {
+  font-family: var(--font);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.about-page .skill-groups {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.about-page .skill-groups > div {
+  padding: 16px;
+  border: 1px solid #adb8a6;
+  border-radius: 5px;
+  background: #ece9db;
+  box-shadow: inset 0 1px 0 #fff8;
+}
+
+.about-page .skill-groups h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.about-page .skill-groups p {
+  color: #41584d;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.about-page .certification-line {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-color: #adb8a6;
+}
+
+@media (max-width: 900px) {
+  .about-page .about-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .about-page .about-story > p {
+    max-width: none;
+  }
+
+  .about-page .skill-groups {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 540px) {
+  .about-page .experience-panel {
+    padding: 20px;
+    border-width: 4px;
+  }
+
+  .about-page .about-personal-notes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-page .about-personal-note {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+    padding: 17px;
+  }
+
+  .about-page .about-personal-note > svg {
+    display: none;
+  }
+
+  .about-page .skill-groups {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .about-page .skill-groups > div {
+    padding: 18px;
+  }
+
+  .about-page .about-story .actions {
+    gap: 12px 20px;
+  }
+}
+
+@media (min-width: 901px) {
+  .about-page .about-story {
+    align-self: center;
+  }
+  .about-page .experience-panel > div {
+    padding-block: 12px;
+  }
+}
+
+.about-off-clock-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 28px;
+  align-items: center;
+}
+.about-page .about-study {
+  margin: 0;
+  padding: 8px;
+  border: 4px solid #bdc4ac;
+  border-radius: 7px;
+  background: #193e36;
+  color: #c3d4b7;
+}
+.about-study img {
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+.about-study figcaption {
+  padding: 12px 10px 5px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.about-page .about-off-clock-layout .about-personal-notes {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+  margin: 0;
+}
+.about-page .about-secondary-title {
+  font: 550 clamp(1.5rem, 2.6vw, 2.3rem) / 1.3 var(--display-font);
+  margin-bottom: 26px;
+}
+@media (max-width: 760px) {
+  .about-off-clock-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .about-study {
+    max-width: 440px;
+    margin-inline: auto;
+  }
+}

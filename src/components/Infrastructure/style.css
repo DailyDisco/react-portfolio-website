@@ -1,0 +1,192 @@
+.infrastructure-page .page-heading > p:not(.eyebrow) {
+  max-width: 680px;
+}
+.infrastructure-page .infrastructure-case-link {
+  margin-top: 16px;
+  text-align: right;
+}
+.infrastructure-page .text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+.infrastructure-page .text-link svg {
+  flex-shrink: 0;
+}
+.infrastructure-page .text-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+.infrastructure-contributions {
+  margin-top: 0;
+}
+.infrastructure-contributions .section-heading {
+  margin-bottom: 25px;
+}
+.infrastructure-page .infrastructure-contributions h2,
+.infrastructure-page .homelab-section h2 {
+  font-size: clamp(1.65rem, 2.6vw, 2.3rem);
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+.infrastructure-page .contribution-grid {
+  gap: 36px;
+}
+.infrastructure-page .contribution-grid article {
+  padding-top: 0;
+  border-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.infrastructure-page .contribution-readout {
+  width: 100%;
+  min-height: 128px;
+  padding: 19px 25px;
+  margin-bottom: 22px;
+  border: 4px solid #bdc4ac;
+  border-radius: 5px;
+  background: #193e36;
+  color: #dce9b4;
+  box-shadow: inset 0 2px 6px #0a241b44;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.infrastructure-page .contribution-number {
+  flex-shrink: 0;
+  display: inline-block;
+  margin: 0;
+  color: #ebcc61;
+  font-family: var(--display-font);
+  font-size: 3.75rem;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+.infrastructure-page .contribution-number > span {
+  font-size: 2.15rem;
+  letter-spacing: -0.03em;
+}
+.infrastructure-page
+  .contribution-readout
+  > span:last-child:not(.contribution-number) {
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+.infrastructure-page .contribution-readout.contribution-sequence {
+  justify-content: center;
+  gap: 18px;
+}
+.infrastructure-page .contribution-sequence > span,
+.infrastructure-page
+  .contribution-sequence
+  > span:last-child:not(.contribution-number) {
+  font-size: clamp(1.1rem, 2vw, 1.65rem);
+  font-weight: 550;
+}
+.infrastructure-page .contribution-sequence > svg {
+  flex-shrink: 0;
+  color: #ebcc61;
+}
+.infrastructure-page .contribution-grid .eyebrow {
+  margin-bottom: 9px;
+}
+.infrastructure-page .contribution-grid h3 {
+  font-size: 1.3rem;
+  line-height: 1.3;
+  font-weight: 600;
+}
+.infrastructure-page .contribution-grid p:not(.eyebrow) {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-top: 12px;
+  margin-bottom: 21px;
+  color: #41584d;
+}
+.infrastructure-page .contribution-grid .text-link {
+  margin-top: auto;
+  font-size: 0.9375rem;
+}
+.infrastructure-page .homelab-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 55px;
+  margin-top: 0;
+}
+.infrastructure-page .homelab-section h2 {
+  max-width: 450px;
+}
+.infrastructure-page .homelab-section p:not(.eyebrow) {
+  max-width: 460px;
+  margin-top: 17px;
+  color: #41584d;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.infrastructure-page .system-list > div {
+  padding: 14px 0;
+  border-bottom: 1px solid #adb8a6;
+}
+.infrastructure-page .system-list > div:first-child {
+  padding-top: 0;
+}
+.infrastructure-page .system-list > div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.infrastructure-page .system-list dt {
+  color: #41584d;
+  font: 500 0.875rem/1.5 var(--font);
+  text-transform: none;
+  letter-spacing: 0;
+}
+.infrastructure-page .system-list dd {
+  margin-top: 4px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+@media (max-width: 900px) {
+  .infrastructure-page .contribution-grid {
+    gap: 24px;
+  }
+  .infrastructure-page .contribution-readout {
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 8px 18px;
+    padding: 18px;
+  }
+  .infrastructure-page .homelab-section {
+    gap: 30px;
+  }
+}
+@media (max-width: 700px) {
+  .infrastructure-page .contribution-grid,
+  .infrastructure-page .homelab-section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+  .infrastructure-page .contribution-readout {
+    min-height: 110px;
+  }
+  .infrastructure-page .contribution-sequence > span,
+  .infrastructure-page
+    .contribution-sequence
+    > span:last-child:not(.contribution-number) {
+    font-size: 1.45rem;
+  }
+  .infrastructure-page .infrastructure-case-link {
+    text-align: left;
+  }
+}
+@media (max-width: 420px) {
+  .infrastructure-page .contribution-sequence > span,
+  .infrastructure-page
+    .contribution-sequence
+    > span:last-child:not(.contribution-number) {
+    font-size: 1.15rem;
+  }
+}

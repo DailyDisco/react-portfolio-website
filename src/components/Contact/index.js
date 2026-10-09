@@ -1,5 +1,8 @@
+import PageSurface from '../PageSurface'
 import { useEffect, useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
+import { ArrowUpRight, Send } from 'lucide-react'
+import './style.css'
 
 const Contact = () => {
   const formReference = useRef(null)
@@ -53,37 +56,45 @@ const Contact = () => {
   const isSending = status === 'sending'
 
   return (
-    <section className="page-shell contact-page" aria-labelledby="contact-heading">
+    <PageSurface
+      as="section"
+      className="page-shell contact-page"
+      aria-labelledby="contact-heading"
+    >
       <header className="page-heading">
         <p className="eyebrow">Contact</p>
-        <h1 id="contact-heading">Discuss a role or project.</h1>
+        <h1 id="contact-heading">Let’s talk.</h1>
         <p>
-          I’m open to senior and lead full-stack engineering opportunities across
-          product delivery, cloud infrastructure, and reliable systems.
+          Open to senior and lead full-stack roles. Tell me about your team, the
+          product, and where you need ownership.
         </p>
       </header>
       <div className="contact-grid">
         <div className="contact-details">
-          <h2>Start a conversation</h2>
+          <h2>Email me directly</h2>
+          <p className="contact-email">
+            <a href="mailto:diegoespinowork@gmail.com">
+              diegoespinowork
+              <wbr />
+              @gmail.com
+            </a>
+          </p>
           <p>
             Based in Dallas-Fort Worth. Available for remote work and local
             collaboration. I work in English and Spanish.
           </p>
-          <p>
-            <a href="mailto:diegoespinowork@gmail.com">diegoespinowork@gmail.com</a>
-          </p>
-          <div className="field-row">
+          <div className="contact-social-links">
             <a
               className="button button-secondary"
               href="https://www.linkedin.com/in/developerdiego/"
             >
-              LinkedIn
+              LinkedIn <ArrowUpRight size={17} aria-hidden="true" />
             </a>
             <a
               className="button button-secondary"
               href="https://github.com/DailyDisco"
             >
-              GitHub
+              GitHub <ArrowUpRight size={17} aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -91,9 +102,14 @@ const Contact = () => {
           ref={formReference}
           className="contact-form"
           aria-label="Contact Diego"
+          aria-describedby="contact-form-note"
           aria-busy={isSending}
           onSubmit={sendEmail}
         >
+          <div className="contact-form-heading">
+            <h2>Send a message</h2>
+            <p id="contact-form-note">All fields are required.</p>
+          </div>
           <div className="field-row">
             <div className="form-field">
               <label htmlFor="contact-name">Name</label>
@@ -135,7 +151,7 @@ const Contact = () => {
             <textarea
               id="contact-message"
               name="message"
-              rows="7"
+              rows="4"
               required
               readOnly={isSending}
               onInput={clearValidation}
@@ -143,6 +159,7 @@ const Contact = () => {
           </div>
           <button className="button" type="submit" disabled={isSending}>
             {isSending ? 'Sending…' : 'Send message'}
+            <Send size={18} strokeWidth={1.7} aria-hidden="true" />
           </button>
           <div role="status" aria-live="polite">
             {status === 'success' && (
@@ -159,7 +176,7 @@ const Contact = () => {
           )}
         </form>
       </div>
-    </section>
+    </PageSurface>
   )
 }
 

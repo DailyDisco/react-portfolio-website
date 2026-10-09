@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Cpu, Server, Workflow } from 'lucide-react'
 import './style.css'
 
 const views = {
@@ -55,53 +56,39 @@ const views = {
 function MachineDrawing() {
   return (
     <>
-      <path
-        className="lab-trace lab-trace-faint"
-        d="M74 334H536M106 350H568M66 70H135V35H540"
-      />
-      <text className="lab-svg-small" x="440" y="44">
-        GPU MEMORY
-      </text>
-      <text className="lab-svg-total" x="437" y="108">
-        144
-      </text>
-      <text className="lab-svg-unit" x="443" y="136">
-        GB COMBINED
-      </text>
-      <path className="lab-trace lab-trace-accent" d="M457 154V253H409" />
-      <circle className="lab-dot" cx="409" cy="253" r="4" />
+      <path className="lab-guide" d="M38 286H438" />
       {Array.from({ length: 6 }, (_, index) => (
         <g
           className="lab-board"
           key={index}
-          transform={`translate(${92 + index * 10}, ${43 + index * 44})`}
+          transform={`translate(${49 + index * 7} ${36 + index * 37})`}
         >
           <path
             className="lab-board-edge"
-            d="M0 15L40 0H257L292 26V45H44L0 31Z"
+            d="M0 17L31 0H186L218 20V35H34L0 23Z"
           />
-          <path className="lab-board-face" d="M0 15L44 32H292L253 15Z" />
-          <path className="lab-board-line" d="M44 32V45M55 36H139M155 36H241" />
-          <path className="lab-board-chip" d="M157 6H195L211 15H173Z" />
+          <path className="lab-board-face" d="M0 17L34 27H218L185 17Z" />
+          <path className="lab-board-line" d="M34 27V35M43 30H100M111 30H175" />
+          <path className="lab-board-chip" d="M125 5H151L167 14H141Z" />
           <path
             className="lab-board-circuit"
-            d="M82 5H134L152 13M86 10H120M213 6H240"
+            d="M58 5H96L109 13M61 10H90M170 6H185"
           />
-          <text className="lab-svg-index" x="52" y="27">
-            0{index + 1}
-          </text>
-          <text className="lab-svg-card" x="86" y="27">
-            RTX 3090
-          </text>
-          <text className="lab-svg-card" x="217" y="27">
-            24 GB
-          </text>
-          <circle className="lab-dot" cx="279" cy="37" r="2" />
         </g>
       ))}
-      <text className="lab-svg-small" x="90" y="371">
-        SIX CARDS / LOCAL MODELS
+      <text className="lab-svg-total" x="334" y="109" textAnchor="middle">
+        144
       </text>
+      <text
+        className="lab-svg-label lab-svg-accent"
+        x="334"
+        y="139"
+        textAnchor="middle"
+      >
+        GB
+      </text>
+      <path className="lab-trace lab-trace-accent" d="M335 159V228H309" />
+      <circle className="lab-dot" cx="309" cy="228" r="4" />
     </>
   )
 }
@@ -110,65 +97,37 @@ function SoftwareDrawing() {
   return (
     <>
       <path
-        className="lab-trace lab-trace-faint"
-        d="M65 70H548V336H90M90 55V344"
-      />
-      <text className="lab-svg-small" x="90" y="41">
-        REQUEST → INFERENCE
-      </text>
-      <path
         className="lab-request-path"
-        d="M103 98H277Q306 98 306 127V173Q306 202 336 202H414"
+        d="M137 83H341Q377 83 377 119V206Q377 238 343 238H140"
       />
-      <path className="lab-return-path" d="M439 262V313H125V261" />
       <path
         className="lab-arrow"
-        d="M399 194L414 202L399 210M117 273L125 261L133 273"
+        d="M238 76L248 83L238 90M257 231L247 238L257 245"
       />
-      <circle className="lab-endpoint" cx="104" cy="98" r="16" />
+      <circle className="lab-operation-node" cx="116" cy="83" r="24" />
       <path
-        className="lab-terminal-mark"
-        d="M98 93L104 98L98 103M108 104H114"
+        className="lab-operation-icon"
+        d="M106 77L113 83L106 89M118 90H128"
       />
-      <text className="lab-svg-label" x="86" y="140">
-        Coding agent
-      </text>
-      <text className="lab-svg-small" x="86" y="164">
-        CLIENT
-      </text>
-      <path className="lab-gateway" d="M224 75V121M237 75V121M250 75V121" />
-      <text className="lab-svg-label" x="185" y="55">
-        Gateway
-      </text>
-      <text className="lab-svg-small" x="182" y="151">
-        OPENAI-COMPATIBLE
-      </text>
-      <circle className="lab-api-ring" cx="306" cy="202" r="27" />
-      <circle className="lab-api-center" cx="306" cy="202" r="10" />
-      <text className="lab-svg-label" x="206" y="244">
-        TabbyAPI
-      </text>
-      <text className="lab-svg-small" x="206" y="266">
-        MODEL SERVING
-      </text>
-      <circle className="lab-engine-orbit" cx="461" cy="202" r="84" />
-      <circle className="lab-engine-ring" cx="461" cy="202" r="66" />
+      <path className="lab-gateway" d="M331 65V101M341 65V101M351 65V101" />
+      <circle className="lab-operation-node" cx="343" cy="238" r="24" />
+      <circle className="lab-api-center" cx="343" cy="238" r="8" />
       <path
         className="lab-engine-core"
-        d="M441 167H480L500 202L480 237H441L422 202Z"
+        d="M95 216H120L133 238L120 260H95L82 238Z"
       />
-      <path
-        className="lab-engine-circuit"
-        d="M447 189H475M447 202H475M447 215H475"
-      />
-      <text className="lab-svg-label" x="414" y="101">
+      <path className="lab-operation-icon" d="M98 233H118M98 242H118" />
+      <text className="lab-svg-label" x="116" y="142" textAnchor="middle">
+        Coding agent
+      </text>
+      <text className="lab-svg-label" x="341" y="142" textAnchor="middle">
+        Gateway
+      </text>
+      <text className="lab-svg-label" x="343" y="296" textAnchor="middle">
+        TabbyAPI
+      </text>
+      <text className="lab-svg-label" x="109" y="296" textAnchor="middle">
         ExLlamaV3
-      </text>
-      <text className="lab-svg-small" x="418" y="337">
-        GPU INFERENCE
-      </text>
-      <text className="lab-svg-small" x="89" y="371">
-        A FAMILIAR API / LOCAL COMPUTE
       </text>
     </>
   )
@@ -177,85 +136,43 @@ function SoftwareDrawing() {
 function HomelabDrawing() {
   return (
     <>
-      <text className="lab-svg-small" x="82" y="42">
-        OPERATING THE SYSTEM
-      </text>
-      <ellipse className="lab-orbit" cx="322" cy="203" rx="176" ry="126" />
-      <ellipse
-        className="lab-orbit lab-orbit-inner"
-        cx="322"
-        cy="203"
-        rx="108"
-        ry="78"
-      />
       <path
         className="lab-trace"
-        d="M322 110V146M397 203H444M322 260V295M190 203H244"
+        d="M135 170H178V56H206M178 132H206M178 208H206M178 170V284H206"
       />
-      <path
-        className="lab-hub"
-        d="M264 171L322 141L380 171V234L322 264L264 234Z"
-      />
-      <path
-        className="lab-hub-detail"
-        d="M280 176L322 198L364 176M322 198V244"
-      />
-      <text className="lab-svg-hub" x="322" y="205" textAnchor="middle">
+      <g className="lab-server">
+        <rect x="46" y="121" width="89" height="29" rx="3" />
+        <rect x="46" y="156" width="89" height="29" rx="3" />
+        <rect x="46" y="191" width="89" height="29" rx="3" />
+        <path d="M60 135H106M60 170H106M60 205H106" />
+        <circle cx="121" cy="135" r="2" />
+        <circle cx="121" cy="170" r="2" />
+        <circle cx="121" cy="205" r="2" />
+      </g>
+      <text className="lab-svg-label" x="92" y="260" textAnchor="middle">
         Proxmox
       </text>
-      <text className="lab-svg-small" x="322" y="225" textAnchor="middle">
-        LINUX
+      <text className="lab-svg-secondary" x="92" y="287" textAnchor="middle">
+        Linux
       </text>
-      <g transform="translate(322 77)">
-        <circle className="lab-operation-node" r="26" />
-        <path
-          className="lab-operation-icon"
-          d="M-10 -7H-2V1H-10ZM2 -7H10V1H2ZM-4 5H4V13H-4Z"
-        />
+      <g className="lab-capability-labels">
+        <circle className="lab-dot" cx="211" cy="56" r="4" />
+        <text className="lab-svg-label" x="229" y="65">
+          Docker Compose
+        </text>
+        <circle className="lab-dot" cx="211" cy="132" r="4" />
+        <text className="lab-svg-label" x="229" y="141">
+          Tailscale · Caddy
+        </text>
+        <circle className="lab-dot" cx="211" cy="208" r="4" />
+        <text className="lab-svg-label" x="229" y="217">
+          Metrics + logs
+        </text>
+        <circle className="lab-dot" cx="211" cy="284" r="4" />
+        <text className="lab-svg-label" x="229" y="293">
+          Restore checks
+        </text>
       </g>
-      <text className="lab-svg-label" x="365" y="78">
-        Docker Compose
-      </text>
-      <text className="lab-svg-small" x="365" y="98">
-        DELIVERY
-      </text>
-      <g transform="translate(497 203)">
-        <circle className="lab-operation-node" r="26" />
-        <path className="lab-operation-icon" d="M-9 -7L9 7M9 -7L-9 7" />
-        <circle className="lab-dot" cx="-9" cy="-7" r="3" />
-        <circle className="lab-dot" cx="9" cy="7" r="3" />
-        <circle className="lab-dot" cx="9" cy="-7" r="3" />
-        <circle className="lab-dot" cx="-9" cy="7" r="3" />
-      </g>
-      <text className="lab-svg-label" x="454" y="253">
-        Tailscale
-      </text>
-      <text className="lab-svg-small" x="454" y="274">
-        CADDY
-      </text>
-      <g transform="translate(322 329)">
-        <circle className="lab-operation-node" r="26" />
-        <path
-          className="lab-operation-icon"
-          d="M-10 3A11 11 0 1 0-3 -10M-10 -7V3H0"
-        />
-      </g>
-      <text className="lab-svg-label" x="365" y="328">
-        Restore validation
-      </text>
-      <text className="lab-svg-small" x="365" y="349">
-        RECOVERY
-      </text>
-      <g transform="translate(146 203)">
-        <circle className="lab-operation-node" r="26" />
-        <path className="lab-operation-icon" d="M-12 5H-7L-3 -8L3 9L7 -1H12" />
-      </g>
-      <text className="lab-svg-label" x="78" y="253">
-        Metrics + logs
-      </text>
-      <text className="lab-svg-small" x="78" y="274">
-        OBSERVABILITY
-      </text>
     </>
   )
 }
@@ -265,6 +182,7 @@ const drawings = {
   software: SoftwareDrawing,
   homelab: HomelabDrawing,
 }
+const controlIcons = { machine: Cpu, software: Workflow, homelab: Server }
 
 export default function LabExplorer({ compact = false }) {
   const [selectedView, setSelectedView] = useState('machine')
@@ -277,28 +195,25 @@ export default function LabExplorer({ compact = false }) {
       aria-label="Explore my infrastructure"
       data-view={selectedView}
     >
-      <div className="lab-explorer-topline">
-        <span className="lab-explorer-kicker">UNDER THE HOOD</span>
-        <span className="lab-explorer-note">My own infrastructure.</span>
-      </div>
       <div
         className="lab-explorer-controls"
         role="group"
         aria-label="Choose an infrastructure view"
       >
-        {Object.entries(views).map(([key, item]) => (
-          <button
-            type="button"
-            key={key}
-            aria-pressed={selectedView === key}
-            onClick={() => setSelectedView(key)}
-          >
-            <span className="lab-control-number" aria-hidden="true">
-              {item.number}
-            </span>
-            {item.label}
-          </button>
-        ))}
+        {Object.entries(views).map(([key, item]) => {
+          const Icon = controlIcons[key]
+          return (
+            <button
+              type="button"
+              key={key}
+              aria-pressed={selectedView === key}
+              onClick={() => setSelectedView(key)}
+            >
+              <Icon size={18} strokeWidth={1.7} aria-hidden="true" />
+              <span>{item.label}</span>
+            </button>
+          )
+        })}
       </div>
       <div className="lab-explorer-content">
         <div
@@ -306,26 +221,15 @@ export default function LabExplorer({ compact = false }) {
           aria-live="polite"
           aria-atomic="true"
         >
-          <div className="lab-view-category">
-            <span aria-hidden="true">{view.number}</span>
-            {view.category}
-          </div>
+          <p className="lab-view-category">{view.category}</p>
           <h2>{view.title}</h2>
           <p>{view.description}</p>
-          <dl className="lab-explorer-details">
-            {view.details.map(([label, value]) => (
-              <div key={label}>
-                <dt>{label}</dt>
-                <dd>{value}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
         <figure className="lab-explorer-figure">
           <svg
             key={selectedView}
             className="lab-explorer-drawing"
-            viewBox="0 0 640 400"
+            viewBox="0 0 480 330"
             role="img"
             aria-label={view.illustration}
           >
@@ -333,6 +237,14 @@ export default function LabExplorer({ compact = false }) {
           </svg>
           <figcaption>{view.caption}</figcaption>
         </figure>
+        <dl className="lab-explorer-details">
+          {view.details.map(([label, value]) => (
+            <div key={label}>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   )

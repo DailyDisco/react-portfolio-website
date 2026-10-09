@@ -23,7 +23,7 @@ export default function WorkCard({ study }) {
             {study.cardTitle || study.title}
             <ArrowUpRight size={21} strokeWidth={1.5} aria-hidden="true" />
           </h2>
-          <p>{study.summary}</p>
+          <p>{study.cardSummary || study.summary}</p>
           <p className="project-stack">{study.stack.slice(0, 4).join(' / ')}</p>
           <span className="case-link">
             Read case study <ArrowRight size={16} aria-hidden="true" />

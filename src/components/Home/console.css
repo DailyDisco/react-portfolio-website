@@ -1,41 +1,3 @@
-.site.site-home {
-  min-height: 100svh;
-  background-color: #173633;
-  background-image:
-    radial-gradient(ellipse at 50% 28%, #244940bf, #102f2dcc 80%),
-    url('../../assets/brand/workbench.webp');
-  background-size:
-    auto,
-    1024px 1024px;
-}
-.site-home .site-header {
-  background: transparent;
-  color: #f0f0e4;
-  border: 0;
-  min-height: 80px;
-  position: relative;
-  padding-block: 17px;
-}
-.site-home .brand-caption {
-  display: none;
-}
-.site-home .primary-navigation > a::after {
-  background: #e5e6d9;
-}
-.site-home .primary-navigation > .nav-contact {
-  border-color: #83978b;
-}
-.site-home .primary-navigation > .nav-contact:hover {
-  background: #e8ce67;
-  color: #173633;
-  border-color: #e8ce67;
-}
-.site-home .primary-navigation a:focus-visible,
-.site-home .menu-toggle:focus-visible,
-.site-home .brand:focus-visible,
-.console-outside-footer a:focus-visible {
-  outline-color: #e8ce67;
-}
 .site-home main {
   min-height: calc(100svh - 80px);
   display: flex;
@@ -45,27 +7,6 @@
   width: min(1320px, calc(100% - 80px));
   margin: 0 auto;
   padding: 18px 0 32px;
-}
-.diego-console {
-  --console-ink: #173633;
-  --console-paper: #e3e0cf;
-  --console-yellow: #ebcc61;
-  --console-line: #adb8a6;
-  background: linear-gradient(
-    125deg,
-    #eeebdc,
-    var(--console-paper) 55%,
-    #d7d8c7
-  );
-  color: var(--console-ink);
-  border-radius: 12px;
-  border: 1px solid #f1f0df;
-  position: relative;
-  box-shadow:
-    inset 0 1px 0 #fff9,
-    0 3px 0 #a5ae9e,
-    0 5px 0 #4f6b5e,
-    0 26px 48px #061c2866;
 }
 .console-screw {
   position: absolute;
@@ -477,13 +418,6 @@
   }
 }
 @media (max-width: 760px) {
-  .site-home .site-header {
-    min-height: 72px;
-    padding-block: 14px;
-  }
-  .site-home .primary-navigation.is-open {
-    background: #173633;
-  }
   .site-home main {
     display: block;
     min-height: 0;
