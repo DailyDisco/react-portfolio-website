@@ -9,7 +9,9 @@ const ProjectArchive = ({ title = 'More things I’ve built' }) => (
     <p>Earlier projects and experiments from my portfolio.</p>
 
     {projects.length === 0 ? (
-      <p className="status-panel">There are no archived projects to show yet.</p>
+      <p className="status-panel">
+        There are no archived projects to show yet.
+      </p>
     ) : (
       <div className="archive-grid">
         {projects.map((project) => {
@@ -34,9 +36,10 @@ const ProjectArchive = ({ title = 'More things I’ve built' }) => (
                   href={projectUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`View ${project.name} (opens in a new tab)`}
+                  aria-label={`${project.linkLabel || 'View project'}: ${project.name} (opens in a new tab)`}
                 >
-                  View {project.name} <span aria-hidden="true">↗</span>
+                  {project.linkLabel || 'View project'}{' '}
+                  <span aria-hidden="true">↗</span>
                 </a>
               ) : (
                 <p>Project link unavailable.</p>

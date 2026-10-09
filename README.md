@@ -15,7 +15,7 @@ Node 22 is pinned for local and Vercel builds. This checkout retains React 17 an
 
 All portfolio content and images live in the repository. There is no database, sign-in, or upload dashboard.
 
-- `src/data/projects.json`: the eight earlier projects exported from Firestore. Each record has an `id`, `name`, `description`, `url`, and `image`.
+- `src/data/projects.json`: the eight earlier projects exported from Firestore. Each record has an `id`, `name`, `description`, `url`, and `image`. Use optional `linkLabel: "View source"` when a project's public repository is the destination.
 - `src/data/caseStudies.js`: current engineering case studies, measured outcomes, and public source links.
 - `src/components/Home`, `About`, and `Infrastructure`: introduction, experience, and technical background.
 - `public/portfolio/`: project images. Set a record's `image` to a path such as `/portfolio/my-project/preview.jpg`, or `null` for a text-only entry.
@@ -24,7 +24,9 @@ All portfolio content and images live in the repository. There is no database, s
 
 Edit the relevant file, run checks, and deploy the new build. No runtime database request is needed to display projects. `/dashboard` redirects to `/portfolio` for old bookmarks; `/blog` remains an alias for the work page.
 
-The Firestore migration preserved all eight record IDs, names, descriptions, and project links. Firebase Storage URLs were removed. One ecommerce thumbnail was recovered from an existing bundled image; the other seven entries remain text-only because their original Storage images are unavailable. The old cloud project and its data were not deleted or changed.
+The Firestore migration preserved all eight record IDs, names, and descriptions. A subsequent link audit corrected the React/Go starter's destination and replaced two unavailable live sites with their public source repositories. Firebase Storage URLs were removed. One ecommerce thumbnail was recovered from an existing bundled image, and four screenshots were captured from the corresponding public project sites. The other three entries remain text-only. The old cloud project and its data were not deleted or changed.
+
+The homepage's `SignatureMark` has three selectable SVG treatments inspired by lettering, hardware, and music. `LabExplorer` presents the actual hardware and conceptual software and homelab diagrams. Both support keyboard and touch, and respect reduced-motion preferences. Case-study figures live in `ProjectFigure`; measured results include their context, and conceptual illustrations are labeled.
 
 Keep the mixed-reality client anonymous and avoid private repository links. Preserve scope notes that distinguish reporting implementation from completed production cutover, and development Terraform definitions from production deployment.
 
@@ -35,7 +37,7 @@ CI=true npm test -- --watchAll=false --runInBand
 CI=true npm run build
 ```
 
-Tests cover navigation and old-route redirects, archive rendering, failed images, safe external links, and contact submission behavior. Contact requests are mocked in automated checks; actual email delivery still needs an owner-controlled check. The existing EmailJS service and template remain separate from the removed Firebase integration.
+Tests cover navigation and old-route redirects, archive rendering, failed images, safe external links, infrastructure view selection, and contact submission behavior. Contact requests are mocked in automated checks; actual email delivery still needs an owner-controlled check. The existing EmailJS service and template remain separate from the removed Firebase integration.
 
 ## Deploy
 

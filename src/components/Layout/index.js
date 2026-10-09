@@ -15,6 +15,10 @@ export default function Layout() {
   const menuButton = useRef(null)
   const main = useRef(null)
   const previousPath = useRef(location.pathname)
+  const workActive =
+    location.pathname === '/portfolio' ||
+    location.pathname === '/blog' ||
+    location.pathname.startsWith('/work/')
   useEffect(() => {
     setMenuOpen(false)
     const study = getCaseStudy(location.pathname.split('/work/')[1])
@@ -73,7 +77,13 @@ export default function Layout() {
           className={`primary-navigation ${menuOpen ? 'is-open' : ''}`}
           aria-label="Main navigation"
         >
-          <NavLink to="/portfolio">Work</NavLink>
+          <Link
+            className={workActive ? 'active' : undefined}
+            aria-current={workActive ? 'location' : undefined}
+            to="/portfolio"
+          >
+            Work
+          </Link>
           <NavLink to="/infrastructure">Homelab</NavLink>
           <NavLink to="/about">About</NavLink>
           <a href={resumeUrl} target="_blank" rel="noreferrer">
@@ -83,6 +93,16 @@ export default function Layout() {
             Contact
           </NavLink>
         </nav>
+        <a
+          className="rail-social"
+          href="https://github.com/DailyDisco"
+          aria-label="Diego on GitHub"
+        >
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M8 7 3 12l5 5m8-10 5 5-5 5M14 4l-4 16" />
+          </svg>
+          GitHub
+        </a>
       </header>
       <main id="main-content" ref={main} tabIndex={-1}>
         <Suspense

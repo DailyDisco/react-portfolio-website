@@ -5,7 +5,7 @@ export const caseStudies = [
     category: 'Product engineering · Technical leadership',
     title: 'Emmut property management',
     summary:
-      'A property management platform for 1,000+ units, with automation that cut daily administrative work from three hours to one per employee.',
+      'I led architecture and delivery with a four-developer team on a platform for 1,000+ units. Workflow automation cut daily administrative work from three hours to one per employee.',
     outcome: '3 hours → 1 hour of daily admin work',
     role: 'Full Stack Engineer · DFW Software Consulting, through Lumara',
     period: 'March 2025 - Present',
@@ -96,7 +96,7 @@ export const caseStudies = [
     category: 'Backend engineering · Real-time systems',
     title: 'Confidential mixed reality platform',
     summary:
-      'Backend engineering for a confidential mixed reality platform, connecting Python services, PostgreSQL, AWS, and a Unity client.',
+      'I built shared state, authorized event streams, and recovery after disconnects for a confidential mixed reality platform, with executable API contract checks for its Unity client.',
     outcome: 'Resumable events with scoped access',
     role: 'Backend engineering lead · Lumara client engagement',
     period: 'Ongoing client work',

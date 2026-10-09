@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { caseStudies } from '../../data/caseStudies'
 import WorkCard from '../WorkCard'
+import SignatureMark from '../SignatureMark'
+import LabExplorer from '../LabExplorer'
 
 export default function Home() {
   return (
@@ -17,9 +19,9 @@ export default function Home() {
           </h1>
           <p className="hero-role">Full-stack engineer & technical lead</p>
           <p className="hero-description">
-            I build web applications and the systems behind them. These days,
-            that means property management software, cloud migrations, and
-            backend services through my company, Lumara.
+            I work across React and TypeScript, Go and Python, and the
+            infrastructure behind them. My recent projects include property
+            software for 1,000+ units and a production AWS-to-Railway migration.
           </p>
           <div className="actions">
             <Link className="button" to="/#selected-work">
@@ -37,16 +39,7 @@ export default function Home() {
             Dallas-Fort Worth · Open to senior and lead roles
           </p>
         </div>
-        <div className="personal-mark" aria-hidden="true">
-          <svg viewBox="0 0 360 450" fill="none">
-            <path
-              className="mark-shadow"
-              d="M75 55H165C280 55 322 124 322 225C322 326 280 395 165 395H75V55ZM143 121V329H168C226 329 252 298 252 225C252 152 226 121 168 121H143Z"
-            />
-            <path d="M65 45H155C270 45 312 114 312 215C312 316 270 385 155 385H65V45ZM133 111V319H158C216 319 242 288 242 215C242 142 216 111 158 111H133Z" />
-          </svg>
-          <span className="handwritten">Diego Espino</span>
-        </div>
+        <SignatureMark />
       </section>
       <section id="selected-work" className="selected-work page-shell">
         <div className="section-heading">
@@ -61,26 +54,24 @@ export default function Home() {
           ))}
         </div>
       </section>
-      <section className="home-lab page-shell">
-        <div>
-          <p className="handwritten">and at home...</p>
-          <h2>
-            Six GPUs.
-            <br />
-            Lots of tinkering.
-          </h2>
-        </div>
-        <div className="home-lab-description">
+      <section
+        className="home-lab page-shell"
+        aria-labelledby="home-lab-heading"
+      >
+        <header className="section-heading">
+          <div>
+            <p className="handwritten">and at home...</p>
+            <h2 id="home-lab-heading">Inside my homelab.</h2>
+          </div>
           <p>
-            I built a six-RTX-3090 inference server and run a Proxmox homelab.
-            Working on my own setup led to fixes merged into ExLlamaV3 and
-            TabbyAPI, including an 18% improvement in cold prompt processing on
-            my server.
+            Six GPUs, local models, and the debugging that led to two fixes
+            merged upstream.
           </p>
-          <Link className="text-link" to="/infrastructure">
-            The hardware and open-source work →
-          </Link>
-        </div>
+        </header>
+        <LabExplorer compact />
+        <Link className="text-link home-lab-link" to="/infrastructure">
+          Hardware, benchmarks, and pull requests →
+        </Link>
       </section>
       <section className="home-personal page-shell">
         <p>

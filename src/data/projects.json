@@ -4,35 +4,37 @@
     "name": "The Daily Disco",
     "description": "Social Media site for AI generated content and tutorials.",
     "url": "https://thedailydisco.vercel.app/",
-    "image": null
+    "image": "/portfolio/recovered/daily-disco.webp"
   },
   {
     "id": "5tmKT57E6BBCDXpcQGy9",
     "name": "Photography Portfolio",
     "description": "A website for photographers to promote their work and take payments / schedule sessions!",
-    "url": "https://photography-videography-portfolio-site-production.up.railway.app/",
-    "image": null
+    "url": "https://github.com/DailyDisco/photography-videography-portfolio-site",
+    "image": null,
+    "linkLabel": "View source"
   },
   {
     "id": "9PGArJDxwSBJft0GL5Yy",
     "name": "Electric Realm",
     "description": "Music Artist/Label Site",
     "url": "https://electric-realm.vercel.app/",
-    "image": null
+    "image": "/portfolio/recovered/electric-realm.webp"
   },
   {
     "id": "GlD8lzMdXZ61QbFy8Vls",
     "name": "React Golang Starter Kit",
     "description": "A template to speed run the React and Golang integration with a few extras",
-    "url": "https://linkedin-recommendation-writer-production.up.railway.app/",
-    "image": null
+    "url": "https://react-golang-starter-kit.vercel.app/",
+    "image": "/portfolio/recovered/react-go-starter.webp"
   },
   {
     "id": "VI8UFxnUbgd9PEM5vs4A",
     "name": "AI LinkedIn Recommendation Writer",
     "description": "Helps you write LinkedIn Recommendations using Github Repos and Profiles with support for commit and PR history",
-    "url": "https://linkedin-recommendation-writer-production.up.railway.app/",
-    "image": null
+    "url": "https://github.com/DailyDisco/linkedin-recommendation-writer",
+    "image": null,
+    "linkLabel": "View source"
   },
   {
     "id": "kqhHTfYHtqBWQT8BSPq3",
@@ -53,6 +55,6 @@
     "name": "Modern Restaurant Menu",
     "description": "A restaurant menu similar to previous client's menus.",
     "url": "https://restaurant-template-7lt3.vercel.app/",
-    "image": null
+    "image": "/portfolio/recovered/restaurant-menu.webp"
   }
 ]

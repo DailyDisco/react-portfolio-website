@@ -1,39 +1,5 @@
 import { Link } from 'react-router-dom'
-export function GpuRack() {
-  return (
-    <figure className="gpu-figure">
-      <div
-        className="gpu-rack"
-        aria-label="Diagram of six NVIDIA RTX 3090 graphics cards"
-        role="img"
-      >
-        <div className="rack-header">
-          <span className="mono">LOCAL INFERENCE / 6 × RTX 3090</span>
-          <span className="rack-lights" aria-hidden="true">
-            •••
-          </span>
-        </div>
-        {Array.from({ length: 6 }, (_, index) => (
-          <div className="gpu-unit" key={index}>
-            <span className="mono">GPU / 0{index + 1}</span>
-            <span className="gpu-vents" aria-hidden="true" />
-            <span>24 GB</span>
-            <span className="gpu-led" aria-hidden="true" />
-          </div>
-        ))}
-        <div className="rack-footer">
-          <strong>
-            144 <span>GB VRAM</span>
-          </strong>
-          <span className="mono">EXLLAMAV3 + TABBYAPI</span>
-        </div>
-      </div>
-      <figcaption>
-        System illustration · Six RTX 3090 GPUs with 24 GB each.
-      </figcaption>
-    </figure>
-  )
-}
+import LabExplorer from '../LabExplorer'
 export default function Infrastructure() {
   return (
     <div className="page-shell">
@@ -46,25 +12,12 @@ export default function Infrastructure() {
           that came from using them.
         </p>
       </header>
-      <section className="infrastructure-feature">
-        <GpuRack />
-        <div>
-          <p className="eyebrow">THE INFERENCE SERVER</p>
-          <h2>Six RTX 3090s for local inference</h2>
-          <p>
-            I built and operate a six-RTX-3090 inference server with 144 GB of
-            combined GPU memory. It serves local models to coding agents through
-            ExLlamaV3, TabbyAPI, and an OpenAI-compatible gateway.
-          </p>
-          <p>
-            Tuning the system led me into CPU all-reduce performance and Python
-            object lifetimes, and to two fixes merged upstream.
-          </p>
-          <Link className="text-link" to="/work/local-inference">
-            Read the engineering case study ↗
-          </Link>
-        </div>
-      </section>
+      <LabExplorer />
+      <p className="infrastructure-case-link">
+        <Link className="text-link" to="/work/local-inference">
+          Read the inference engineering case study →
+        </Link>
+      </p>
       <section className="section">
         <div className="section-heading">
           <div>

@@ -25,13 +25,13 @@ test('renders the complete local archive immediately with descriptive external l
   for (const card of cards) {
     const name = within(card).getByRole('heading').textContent
     const link = within(card).getByRole('link', {
-      name: `View ${name} (opens in a new tab)`,
+      name: `${projects.find((project) => project.name === name).linkLabel || 'View project'}: ${name} (opens in a new tab)`,
     })
     expect(link).toHaveAttribute('target', '_blank')
     expect(link).toHaveAttribute('rel', 'noopener noreferrer')
   }
   expect(screen.queryByRole('status')).not.toBeInTheDocument()
-  expect(screen.getAllByRole('img')).toHaveLength(1)
+  expect(screen.getAllByRole('img')).toHaveLength(5)
   expect(screen.getByAltText('Preview of E-Commerce Shop')).toHaveAttribute(
     'src',
     '/portfolio/three/ecommerceShop.jpg'
@@ -60,7 +60,9 @@ test('preserves a text-only card when its link is unsafe and rejects remote imag
   ).toBeInTheDocument()
   expect(within(card).queryByRole('link')).not.toBeInTheDocument()
   expect(within(card).queryByRole('img')).not.toBeInTheDocument()
-  expect(within(card).getByText('Project link unavailable.')).toBeInTheDocument()
+  expect(
+    within(card).getByText('Project link unavailable.')
+  ).toBeInTheDocument()
 })
 
 test('removes an image that fails to load while retaining the project and its link', () => {
@@ -79,10 +81,12 @@ test('removes an image that fails to load while retaining the project and its li
 
   expect(screen.queryByRole('img')).not.toBeInTheDocument()
   expect(screen.queryByText('Preview unavailable')).not.toBeInTheDocument()
-  expect(screen.getByRole('heading', { name: 'Example shop' })).toBeInTheDocument()
+  expect(
+    screen.getByRole('heading', { name: 'Example shop' })
+  ).toBeInTheDocument()
   expect(
     screen.getByRole('link', {
-      name: 'View Example shop (opens in a new tab)',
+      name: 'View project: Example shop (opens in a new tab)',
     })
   ).toHaveAttribute('href', 'https://example.com/shop')
 })
@@ -90,7 +94,9 @@ test('removes an image that fails to load while retaining the project and its li
 test('keeps a clear empty state if all archived projects are removed', () => {
   render(<ProjectArchive title="Earlier work" />)
 
-  expect(screen.getByRole('region', { name: 'Earlier work' })).toBeInTheDocument()
+  expect(
+    screen.getByRole('region', { name: 'Earlier work' })
+  ).toBeInTheDocument()
   expect(
     screen.getByText('There are no archived projects to show yet.')
   ).toBeInTheDocument()

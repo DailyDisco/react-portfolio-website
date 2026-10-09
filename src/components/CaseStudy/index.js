@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { caseStudies, getCaseStudy } from '../../data/caseStudies'
-import { WorkDiagram } from '../WorkCard'
+import ProjectFigure from '../ProjectFigure'
 import NotFound from '../NotFound'
 export default function CaseStudy() {
   const { slug } = useParams()
@@ -31,7 +31,7 @@ export default function CaseStudy() {
             ))}
           </ul>
         </div>
-        <WorkDiagram slug={slug} />
+        <ProjectFigure slug={slug} />
       </div>
       <div className="case-metrics">
         {study.highlights.map((item) => (
@@ -44,15 +44,19 @@ export default function CaseStudy() {
       <div className="case-narrative">
         <aside>
           <p className="eyebrow">PROJECT DETAILS</p>
-          <p>My contributions and the results.</p>
+          <nav className="case-contents" aria-label="On this page">
+            <a href="#context">Context</a>
+            <a href="#contributions">My contributions</a>
+            <a href="#results">Results</a>
+          </nav>
         </aside>
         <div>
           <section>
-            <h2>Context</h2>
+            <h2 id="context">Context</h2>
             <p>{study.challenge}</p>
           </section>
           <section>
-            <h2>My contributions</h2>
+            <h2 id="contributions">My contributions</h2>
             {study.approach.map((item, index) => (
               <div className="approach-item" key={item.title}>
                 <span className="mono">0{index + 1}</span>
@@ -64,7 +68,7 @@ export default function CaseStudy() {
             ))}
           </section>
           <section>
-            <h2>Results</h2>
+            <h2 id="results">Results</h2>
             <ul className="results-list">
               {study.results.map((result) => (
                 <li key={result}>{result}</li>
