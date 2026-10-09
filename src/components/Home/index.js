@@ -20,7 +20,7 @@ const projects = [
     name: 'Emmut',
     category: 'Property management',
     description:
-      'Led architecture and delivery with four developers. A platform for 1,000+ property units.',
+      'Led a four-developer team building a platform for 1,000+ units.',
   },
   {
     slug: 'workflow-migration',
@@ -28,8 +28,7 @@ const projects = [
     icon: Workflow,
     name: 'AWS → Railway',
     category: 'Craft Digital · via Lumara',
-    description:
-      'Migrated seven production lead-intake workflows from Kestra on AWS to n8n on Railway.',
+    description: 'Moved production lead intake from Kestra to n8n.',
   },
   {
     slug: 'local-inference',
@@ -37,8 +36,7 @@ const projects = [
     icon: Cpu,
     name: 'Local inference',
     category: 'GPU infrastructure · Open source',
-    description:
-      'Built a six-GPU inference server. Traced bottlenecks into ExLlamaV3 and TabbyAPI, with two fixes merged upstream.',
+    description: 'Two fixes merged into ExLlamaV3 and TabbyAPI.',
   },
 ]
 
@@ -48,13 +46,13 @@ function ProjectReadout({ selected }) {
       <div className="console-readout">
         <div className="console-digits">
           <span>
-            03<small>h</small>
+            3<small>h</small>
           </span>
           <span className="console-readout-arrow" aria-hidden="true">
             →
           </span>
           <span>
-            01<small>h</small>
+            1<small>h</small>
           </span>
         </div>
         <p>Daily admin work per employee. Measured.</p>
@@ -65,7 +63,7 @@ function ProjectReadout({ selected }) {
     return (
       <div className="console-readout">
         <div className="console-flow-readout">
-          <strong>07</strong>
+          <strong>7</strong>
           <svg viewBox="0 0 260 108" aria-hidden="true">
             {Array.from({ length: 7 }, (_, index) => (
               <path
@@ -114,34 +112,17 @@ export default function Home() {
         <span className="console-screw screw-bottom-right" aria-hidden="true" />
         <div className="console-body">
           <div className="console-identity">
-            <p className="console-kicker">
-              <span className="console-emblem" aria-hidden="true">
-                <svg viewBox="60 20 175 180" fill="currentColor">
-                  <path
-                    fillRule="evenodd"
-                    d="M75 28H125C182 28 211 60 211 110S182 192 125 192H75V28ZM110 63V157H126C158 157 175 141 175 110S158 63 126 63H110Z"
-                  />
-                </svg>
-              </span>
-              THE PERSONAL WORK OF DIEGO ESPINO
-            </p>
             <h1>
               digital diego<span className="console-period">.</span>
             </h1>
             <div className="console-object-bay">
               <SignalSculpture selected={selected} />
-              <span className="console-object-index" aria-hidden="true">
-                DD / 0{selected + 1}
-              </span>
             </div>
             <div className="console-role">
               <p>Full-stack engineer & technical lead.</p>
-              <span className="console-role-symbol" aria-hidden="true">
-                <ArrowUpRight size={28} strokeWidth={1.25} />
-              </span>
             </div>
             <p className="console-intro">
-              Web products, cloud systems, and a habit of taking things apart.
+              Software, cloud infrastructure, and hardware.
             </p>
             <div className="console-availability">
               <span aria-hidden="true" />
@@ -168,7 +149,6 @@ export default function Home() {
                   aria-pressed={index === selected}
                   onClick={() => setSelected(index)}
                 >
-                  <span className="console-selector-number">0{index + 1}</span>
                   <item.icon
                     className="console-selector-icon"
                     size={15}
@@ -217,8 +197,8 @@ export default function Home() {
               ))}
             </span>
             <span>
-              <span className="console-strip-label">OFF THE CLOCK</span>
-              <strong>6 × RTX 3090. One very personal homelab.</strong>
+              <span className="console-strip-label">HOMELAB</span>
+              <strong>Six GPUs. Built and run by me.</strong>
             </span>
             <span className="console-strip-arrow" aria-hidden="true">
               <ArrowUpRight size={19} strokeWidth={1.4} />
@@ -229,7 +209,7 @@ export default function Home() {
             href={`${process.env.PUBLIC_URL || ''}/resume/Diego_Espino_Resume.pdf`}
             download
           >
-            <span className="console-strip-label">THE ONE-PAGE VERSION</span>
+            <span className="console-strip-label">ONE-PAGE PDF</span>
             <strong>
               Download resume{' '}
               <Download size={16} strokeWidth={1.6} aria-hidden="true" />
@@ -249,7 +229,7 @@ export default function Home() {
             <Mail size={13} aria-hidden="true" /> Email
           </a>
         </div>
-        <Link to="/about">The person behind the projects ↗</Link>
+        <Link to="/about">About me ↗</Link>
       </div>
     </div>
   )

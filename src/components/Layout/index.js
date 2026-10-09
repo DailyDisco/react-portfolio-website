@@ -71,10 +71,7 @@ export default function Layout() {
               <path d="M220 144h8v46h-8z" fill="#b79936" />
             </svg>
           </span>
-          <span>
-            Diego Espino
-            <span className="brand-caption">SOFTWARE & SYSTEMS</span>
-          </span>
+          <span>Diego Espino</span>
         </Link>
         <button
           className="menu-toggle"

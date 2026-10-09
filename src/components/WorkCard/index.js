@@ -19,9 +19,8 @@ export default function WorkCard({ study }) {
           </figure>
         )}
         <div className="work-card-body">
-          <p className="project-context">{study.category}</p>
           <h2>
-            {study.title}
+            {study.cardTitle || study.title}
             <ArrowUpRight size={21} strokeWidth={1.5} aria-hidden="true" />
           </h2>
           <p>{study.summary}</p>

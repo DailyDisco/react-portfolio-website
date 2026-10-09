@@ -10,8 +10,7 @@ export default function Portfolio() {
         <p className="eyebrow">SELECTED WORK / 2025–2026</p>
         <h1>Selected projects</h1>
         <p>
-          A property platform. A cloud migration. A six-GPU inference server.
-          Three projects that show how I work.
+          Recent projects showing what I built, how it works, and the results.
         </p>
       </header>
       <div className="selected-work-grid">

@@ -11,13 +11,14 @@
   --surface: #e6e6de;
   --surface-raised: #dcded5;
   --ink: #102d35;
-  --muted: #586667;
+  --muted: #45595b;
   --line: #cbcec6;
   --gold: #806000;
   --accent: #e8cd6b;
   --teal: #335e62;
   --error: #a02925;
-  --font: 'Manrope', Arial, sans-serif;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --display-font: 'Manrope', Arial, sans-serif;
   --serif: var(--font);
   --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
 }
@@ -86,8 +87,8 @@ h1,
 h2,
 h3 {
   line-height: 1.12;
-  letter-spacing: -0.055em;
-  font-family: var(--font);
+  letter-spacing: -0.025em;
+  font-family: var(--display-font);
   font-weight: 500;
 }
 h1 {
@@ -98,7 +99,7 @@ h2 {
 }
 h3 {
   font-size: 1.35rem;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.015em;
 }
 p + p {
   margin-top: 1.2em;
@@ -120,9 +121,9 @@ main:focus {
 .mono,
 .eyebrow {
   font-family: var(--mono);
-  font-size: 0.66rem;
+  font-size: 0.78rem;
   font-weight: 400;
-  letter-spacing: 0.075em;
+  letter-spacing: 0.035em;
   line-height: 1.65;
 }
 .eyebrow {
@@ -199,7 +200,7 @@ main:focus {
   padding: 4px 0;
   margin-right: 12px;
   color: var(--muted);
-  font-size: 0.7rem;
+  font-size: 0.875rem;
 }
 .status-panel {
   padding: 24px;

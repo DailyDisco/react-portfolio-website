@@ -28,7 +28,7 @@
   display: flex;
   align-items: center;
   gap: 18px;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   line-height: 1.35;
   font-weight: 650;
 }
@@ -48,7 +48,7 @@
   display: block;
   font-family: var(--mono);
   font-weight: 400;
-  font-size: 0.5rem;
+  font-size: 0.875rem;
   letter-spacing: 0.09em;
   color: var(--muted);
   margin-top: 5px;
@@ -57,7 +57,7 @@
   display: flex;
   align-items: center;
   gap: 30px;
-  font-size: 0.76rem;
+  font-size: 0.875rem;
   font-weight: 500;
 }
 .primary-navigation > a {
@@ -129,13 +129,13 @@
 }
 .footer-bottom p {
   color: var(--muted);
-  font-size: 0.62rem;
+  font-size: 0.875rem;
   margin-top: 7px;
 }
 .footer-links {
   display: flex;
   gap: 25px;
-  font-size: 0.72rem;
+  font-size: 0.875rem;
 }
 .footer-links a:hover {
   text-decoration: underline;
@@ -143,7 +143,7 @@
 }
 .footer-bottom .footer-location {
   text-align: right;
-  font-size: 0.62rem;
+  font-size: 0.875rem;
   margin: 0;
 }
 .page-heading {
@@ -152,6 +152,8 @@
 }
 .page-heading h1 {
   max-width: 1050px;
+  font-size: clamp(2.4rem, 4.5vw, 4.25rem);
+  line-height: 1.15;
 }
 .page-heading > p:not(.eyebrow) {
   max-width: 710px;
@@ -165,7 +167,7 @@
 }
 .page-heading .back-link {
   margin-bottom: 35px;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
 }
 .work-grid {
   display: grid;
@@ -218,7 +220,7 @@
 }
 .project-stack {
   grid-column: 2;
-  font-size: 0.7rem;
+  font-size: 0.875rem;
   color: var(--muted);
 }
 .case-link {
@@ -226,7 +228,7 @@
   grid-column: 2;
   gap: 14px;
   align-items: center;
-  font-size: 0.74rem;
+  font-size: 0.875rem;
   margin-top: 8px;
 }
 .case-overview {
@@ -278,7 +280,7 @@
 }
 .case-overview .muted {
   margin-top: 12px;
-  font-size: 0.75rem !important;
+  font-size: 0.875rem !important;
 }
 .project-figure {
   --ink: #eeede7;
@@ -306,11 +308,11 @@
 .case-metrics strong {
   font-size: clamp(2.2rem, 3.5vw, 3.4rem);
   font-weight: 400;
-  letter-spacing: -0.065em;
+  letter-spacing: -0.025em;
   font-variant-numeric: tabular-nums;
 }
 .case-metrics span {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: var(--muted);
 }
 .case-narrative {
@@ -324,10 +326,13 @@
   position: sticky;
   top: 130px;
 }
+.case-narrative > div {
+  max-width: 68ch;
+}
 .case-contents {
   display: grid;
   gap: 17px;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
 }
 .case-contents a {
   color: var(--muted);
@@ -378,7 +383,7 @@
   left: 0;
 }
 .case-narrative .scope-note {
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   background: var(--surface);
   padding: 24px;
   border-left: 2px solid var(--teal);
@@ -388,7 +393,7 @@
   display: flex;
   flex-direction: column;
   gap: 18px;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
 }
 .next-case {
   padding: 30px 0 65px;
@@ -399,7 +404,7 @@
   justify-content: space-between;
   gap: 35px;
   font-size: clamp(1.7rem, 3vw, 2.7rem);
-  letter-spacing: -0.05em;
+  letter-spacing: -0.025em;
   line-height: 1.25;
 }
 .project-archive {
@@ -442,13 +447,13 @@
   line-height: 1.25;
 }
 .archive-card p {
-  font-size: 0.81rem;
+  font-size: 0.875rem;
   color: var(--muted);
   margin: 0;
 }
 .archive-card .text-link {
   align-self: flex-start;
-  font-size: 0.76rem;
+  font-size: 0.875rem;
   padding-top: 10px;
   margin-top: auto;
 }
@@ -461,7 +466,7 @@
 .infrastructure-case-link {
   text-align: right;
   margin-top: 24px;
-  font-size: 0.78rem;
+  font-size: 0.875rem;
 }
 .contribution-grid {
   display: grid;
@@ -476,7 +481,7 @@
   display: block;
   font-size: 4rem;
   font-weight: 400;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.025em;
   margin-bottom: 24px;
 }
 .contribution-number span {
@@ -497,7 +502,7 @@
 }
 .contribution-grid .text-link {
   margin-top: 27px;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
 }
 .homelab-section {
   display: grid;
@@ -559,7 +564,7 @@
   font-size: 1.2rem;
 }
 .experience-panel p:not(.eyebrow) {
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   color: var(--muted);
   margin-top: 11px;
 }
@@ -584,14 +589,14 @@
   margin-bottom: 15px;
 }
 .skill-groups p {
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: var(--muted);
 }
 .certification-line {
   border-top: 1px solid var(--line);
   padding-top: 24px;
   margin-top: 40px;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
 }
 .contact-grid {
   display: grid;
@@ -630,7 +635,7 @@
   gap: 10px;
 }
 .form-field label {
-  font-size: 0.78rem;
+  font-size: 0.875rem;
   color: var(--ink);
 }
 input,
@@ -703,7 +708,7 @@ textarea::placeholder {
     display: flex;
     align-items: center;
     gap: 22px;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     padding: 10px 0 10px 14px;
     border: 0;
     background: transparent;
@@ -780,7 +785,7 @@ textarea::placeholder {
     font-size: 2rem;
   }
   .case-metrics span {
-    font-size: 0.65rem;
+    font-size: 0.875rem;
   }
   .about-layout,
   .contact-grid {
@@ -796,7 +801,7 @@ textarea::placeholder {
   }
   .section-heading > p {
     max-width: 270px;
-    font-size: 0.85rem;
+    font-size: 0.875rem;
   }
   .contribution-grid {
     gap: 35px;
@@ -845,7 +850,7 @@ textarea::placeholder {
     font-size: 1.75rem;
   }
   .case-metrics span {
-    font-size: 0.62rem;
+    font-size: 0.875rem;
   }
   .case-narrative h2 {
     font-size: 1.95rem;
@@ -889,7 +894,7 @@ textarea::placeholder {
     font-size: 1rem;
   }
   .skill-groups p {
-    font-size: 0.8rem;
+    font-size: 0.875rem;
   }
   .field-row {
     grid-template-columns: 1fr;

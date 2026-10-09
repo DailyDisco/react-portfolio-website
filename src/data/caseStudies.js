@@ -4,13 +4,14 @@ export const caseStudies = [
     number: '01',
     category: 'Product engineering · Technical leadership',
     title: 'Emmut property management',
+    cardTitle: 'Emmut',
     visual: {
       src: '/work/emmut-maintenance-desktop.png',
       alt: 'Actual Emmut maintenance-worker management dialog rendered with synthetic demo workers.',
       caption: 'Actual Emmut components · synthetic demo data',
     },
     summary:
-      'I led architecture and delivery with a four-developer team on a platform for 1,000+ units. Workflow automation cut daily administrative work from three hours to one per employee.',
+      'I led architecture and delivery with a four-developer team. The platform manages 1,000+ property units and cut daily admin work from 3 hours to 1 per employee.',
     outcome: '3 hours → 1 hour of daily admin work',
     role: 'Full Stack Engineer · DFW Software Consulting, through Lumara',
     period: 'March 2025 - Present',
@@ -48,13 +49,14 @@ export const caseStudies = [
     number: '02',
     category: 'Cloud migration · Data engineering',
     title: 'AWS to Railway workflow migration',
+    cardTitle: 'AWS → Railway',
     visual: {
       src: '/work/migration-map.svg',
       alt: 'Architecture overview showing seven lead workflows moving from Kestra on AWS to n8n on Railway.',
       caption: 'Architecture overview',
     },
     summary:
-      'Migrated seven production lead-intake workflows from Kestra on AWS to n8n on Railway, then built the reporting and dashboard foundations around them.',
+      'I migrated seven production lead workflows from Kestra on AWS to n8n on Railway for Craft Digital. The new intake saves submissions before processing them.',
     outcome: '7 production lead workflows migrated',
     role: 'Full Stack Engineer · Craft Digital, through Lumara',
     period: 'July 2026 - Present',
@@ -149,13 +151,14 @@ export const caseStudies = [
     number: '04',
     category: 'GPU infrastructure · Open source',
     title: 'Local LLM inference and upstream fixes',
+    cardTitle: 'Local AI & open source',
     visual: {
       src: '/work/inference-benchmark.svg',
       alt: 'Six GPU plates alongside measured cold prompt throughput rising from 1,238 to 1,458 tokens per second.',
       caption: 'Six-GPU benchmark and upstream contribution',
     },
     summary:
-      'I built a six-GPU inference server and operate a Proxmox homelab. Debugging my inference setup led to two merged fixes in ExLlamaV3 and TabbyAPI.',
+      'I built a six-GPU server for local AI and contributed two merged fixes to ExLlamaV3 and TabbyAPI. One improved cold prompt processing by 18% in my benchmark.',
     outcome: '18% faster cold prompt processing in a six-GPU benchmark',
     role: 'Independent infrastructure owner · Open-source contributor',
     period: 'Ongoing · Upstream fixes merged October 2026',

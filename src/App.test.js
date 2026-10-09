@@ -95,15 +95,11 @@ test('selected work shows the three featured projects and preserves the confiden
   expect(
     await screen.findByRole('heading', { name: 'Selected projects' })
   ).toBeVisible()
-  expect(
-    screen.getByRole('heading', { name: 'Emmut property management' })
-  ).toBeVisible()
-  expect(
-    screen.getByRole('heading', { name: 'AWS to Railway workflow migration' })
-  ).toBeVisible()
+  expect(screen.getByRole('heading', { name: 'Emmut' })).toBeVisible()
+  expect(screen.getByRole('heading', { name: 'AWS → Railway' })).toBeVisible()
   expect(
     screen.getByRole('heading', {
-      name: 'Local LLM inference and upstream fixes',
+      name: 'Local AI & open source',
     })
   ).toBeVisible()
   expect(
