@@ -26,7 +26,7 @@ Edit the relevant file, run checks, and deploy the new build. No runtime databas
 
 The Firestore migration preserved all eight record IDs, names, and descriptions. A subsequent link audit corrected the React/Go starter's destination and replaced two unavailable live sites with their public source repositories. Firebase Storage URLs were removed. One ecommerce thumbnail was recovered from an existing bundled image, and four screenshots were captured from the corresponding public project sites. The other three entries remain text-only. The old cloud project and its data were not deleted or changed.
 
-The homepage's `SignatureMark` has three selectable SVG treatments inspired by lettering, hardware, and music. `LabExplorer` presents the actual hardware and conceptual software and homelab diagrams. Both support keyboard and touch, and respect reduced-motion preferences. Case-study figures live in `ProjectFigure`; measured results include their context, and conceptual illustrations are labeled.
+The homepage is a compact Digital Diego instrument panel. Native Product, Cloud, and Backend buttons switch between three project summaries and their case-study links. The homelab and resume have direct links below the readout. Its state change supports keyboard and touch, announces updated content, and respects reduced motion. `LabExplorer` remains on the infrastructure page. Case-study figures live in `ProjectFigure`; measured results include their context, and conceptual illustrations are labeled.
 
 Keep the mixed-reality client anonymous and avoid private repository links. Preserve scope notes that distinguish reporting implementation from completed production cutover, and development Terraform definitions from production deployment.
 
@@ -37,7 +37,7 @@ CI=true npm test -- --watchAll=false --runInBand
 CI=true npm run build
 ```
 
-Tests cover navigation and old-route redirects, archive rendering, failed images, safe external links, infrastructure view selection, and contact submission behavior. Contact requests are mocked in automated checks; actual email delivery still needs an owner-controlled check. The existing EmailJS service and template remain separate from the removed Firebase integration.
+Tests cover navigation and old-route redirects, archive rendering, failed images, safe external links, project and infrastructure selection, and contact submission behavior. Contact requests are mocked in automated checks; actual email delivery still needs an owner-controlled check. The existing EmailJS service and template remain separate from the removed Firebase integration.
 
 ## Deploy
 

@@ -47,7 +47,10 @@ export default function Layout() {
     }
   }
   return (
-    <div className="site" onKeyDown={closeOnEscape}>
+    <div
+      className={`site${location.pathname === '/' ? ' site-home' : ''}`}
+      onKeyDown={closeOnEscape}
+    >
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
@@ -58,7 +61,7 @@ export default function Layout() {
           </span>
           <span>
             Diego Espino
-            <span className="brand-caption">FULL STACK ENGINEER</span>
+            <span className="brand-caption">SOFTWARE & SYSTEMS</span>
           </span>
         </Link>
         <button
@@ -93,16 +96,6 @@ export default function Layout() {
             Contact
           </NavLink>
         </nav>
-        <a
-          className="rail-social"
-          href="https://github.com/DailyDisco"
-          aria-label="Diego on GitHub"
-        >
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M8 7 3 12l5 5m8-10 5 5-5 5M14 4l-4 16" />
-          </svg>
-          GitHub
-        </a>
       </header>
       <main id="main-content" ref={main} tabIndex={-1}>
         <Suspense
@@ -115,24 +108,30 @@ export default function Layout() {
           <Outlet />
         </Suspense>
       </main>
-      <footer className="site-footer">
-        <div>
-          <Link className="footer-name" to="/">
-            Diego Espino<span>.</span>
-          </Link>
-          <p>Engineer, music producer, hardware tinkerer.</p>
-        </div>
-        <div className="footer-links">
-          <a href="https://github.com/DailyDisco">GitHub ↗</a>
-          <a href="https://www.linkedin.com/in/developerdiego/">LinkedIn ↗</a>
-          <a href="mailto:diegoespinowork@gmail.com">Email ↗</a>
-        </div>
-        <p className="footer-location">
-          Dallas-Fort Worth, Texas
-          <br />
-          English & Spanish
-        </p>
-      </footer>
+      {location.pathname !== '/' && (
+        <footer className="site-footer">
+          <div className="footer-bottom">
+            <div>
+              <Link className="footer-name" to="/">
+                Diego Espino<span>.</span>
+              </Link>
+              <p>Engineer, music producer, hardware tinkerer.</p>
+            </div>
+            <div className="footer-links">
+              <a href="https://github.com/DailyDisco">GitHub ↗</a>
+              <a href="https://www.linkedin.com/in/developerdiego/">
+                LinkedIn ↗
+              </a>
+              <a href="mailto:diegoespinowork@gmail.com">Email ↗</a>
+            </div>
+            <p className="footer-location">
+              Dallas-Fort Worth, Texas
+              <br />
+              English & Spanish
+            </p>
+          </div>
+        </footer>
+      )}
     </div>
   )
 }
