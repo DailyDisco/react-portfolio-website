@@ -20,6 +20,32 @@ export default function CaseStudy() {
         <h1>{study.title}</h1>
         <p>{study.summary}</p>
       </header>
+      {slug === 'property-platform' && (
+        <section
+          className="case-product-proof"
+          aria-label="Emmut interface examples"
+        >
+          <div className="case-product-screens">
+            <img
+              src="/work/emmut-maintenance-desktop.png"
+              alt="Emmut maintenance worker management dialog on desktop, using synthetic demo workers."
+              width="2560"
+              height="1600"
+            />
+            <img
+              src="/work/emmut-maintenance-mobile.png"
+              alt="The same actual Emmut maintenance component as a mobile drawer with synthetic demo data."
+              width="780"
+              height="1688"
+              loading="lazy"
+            />
+          </div>
+          <p>
+            Emmut maintenance workflow. Actual application components rendered
+            with synthetic demo data.
+          </p>
+        </section>
+      )}
       <div className="case-overview">
         <div>
           <p className="eyebrow">MY ROLE</p>

@@ -8,7 +8,9 @@ const HistoryControls = () => {
   return (
     <>
       <output aria-label="Current path">{location.pathname}</output>
-      <button type="button" onClick={() => navigate(-1)}>Go back</button>
+      <button type="button" onClick={() => navigate(-1)}>
+        Go back
+      </button>
     </>
   )
 }
@@ -27,9 +29,9 @@ test('visitors can open a current case study and access the resume', async () =>
     'href',
     '/resume/Diego_Espino_Resume.pdf'
   )
-  const projectLink = screen.getAllByRole('link').find(
-    (link) => link.getAttribute('href') === '/work/property-platform'
-  )
+  const projectLink = screen
+    .getAllByRole('link')
+    .find((link) => link.getAttribute('href') === '/work/property-platform')
   expect(projectLink).toBeVisible()
   fireEvent.click(projectLink)
   expect(
@@ -82,4 +84,34 @@ test('old dashboard bookmarks redirect to portfolio without retaining dashboard 
   fireEvent.click(screen.getByRole('button', { name: 'Go back' }))
   expect(screen.getByRole('heading', { level: 1 })).toBeVisible()
   expect(screen.getByLabelText('Current path')).toHaveTextContent(/^\/$/)
+})
+
+test('selected work shows the three featured projects and preserves the confidential case without the old demo gallery', async () => {
+  render(
+    <MemoryRouter initialEntries={['/portfolio']}>
+      <App />
+    </MemoryRouter>
+  )
+  expect(
+    await screen.findByRole('heading', { name: 'Selected projects' })
+  ).toBeVisible()
+  expect(
+    screen.getByRole('heading', { name: 'Emmut property management' })
+  ).toBeVisible()
+  expect(
+    screen.getByRole('heading', { name: 'AWS to Railway workflow migration' })
+  ).toBeVisible()
+  expect(
+    screen.getByRole('heading', {
+      name: 'Local LLM inference and upstream fixes',
+    })
+  ).toBeVisible()
+  expect(
+    screen.getByRole('link', { name: /Engineering details/ })
+  ).toHaveAttribute('href', '/work/realtime-platform')
+  expect(screen.getByAltText(/Actual Emmut maintenance-worker/)).toBeVisible()
+  expect(
+    screen.queryByText('Testing MetaMask Connection')
+  ).not.toBeInTheDocument()
+  expect(screen.queryByText('More things I’ve built')).not.toBeInTheDocument()
 })

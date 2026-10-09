@@ -35,12 +35,12 @@ test('project controls update the evidence and destination while retaining keybo
 
   await user.tab()
   await user.keyboard(' ')
-  expect(selectors.getByRole('button', { name: /Backend/ })).toHaveFocus()
+  expect(selectors.getByRole('button', { name: /Systems/ })).toHaveFocus()
   expect(cloud).toHaveAttribute('aria-pressed', 'false')
   expect(
-    screen.getByText('Resumable event delivery. Conceptual view.')
+    screen.getByText('Faster cold prompt processing. Measured on six GPUs.')
   ).toBeVisible()
   expect(
-    screen.getByRole('link', { name: 'Open Mixed reality case study' })
-  ).toHaveAttribute('href', '/work/realtime-platform')
+    screen.getByRole('link', { name: 'Open Local inference case study' })
+  ).toHaveAttribute('href', '/work/local-inference')
 })

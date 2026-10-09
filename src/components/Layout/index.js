@@ -1,5 +1,6 @@
 import { Suspense, useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { getCaseStudy } from '../../data/caseStudies'
 const resumeUrl = `${process.env.PUBLIC_URL || ''}/resume/Diego_Espino_Resume.pdf`
 const titles = {
@@ -57,7 +58,18 @@ export default function Layout() {
       <header className="site-header">
         <Link className="brand" to="/" aria-label="Diego Espino home">
           <span className="brand-mark" aria-hidden="true">
-            de<span>.</span>
+            <svg
+              viewBox="60 20 175 180"
+              width="36"
+              height="38"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M75 28H125C182 28 211 60 211 110S182 192 125 192H75V28ZM110 63V157H126C158 157 175 141 175 110S158 63 126 63H110Z"
+              />
+              <path d="M220 144h8v46h-8z" fill="#b79936" />
+            </svg>
           </span>
           <span>
             Diego Espino
@@ -73,7 +85,11 @@ export default function Layout() {
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? 'Close' : 'Menu'}
-          <span aria-hidden="true">{menuOpen ? '−' : '+'}</span>
+          {menuOpen ? (
+            <X size={18} aria-hidden="true" />
+          ) : (
+            <Menu size={18} aria-hidden="true" />
+          )}
         </button>
         <nav
           id="primary-navigation"
@@ -90,7 +106,7 @@ export default function Layout() {
           <NavLink to="/infrastructure">Homelab</NavLink>
           <NavLink to="/about">About</NavLink>
           <a href={resumeUrl} target="_blank" rel="noreferrer">
-            Resume <span aria-hidden="true">↗</span>
+            Resume <ArrowUpRight size={13} aria-hidden="true" />
           </a>
           <NavLink className="nav-contact" to="/contact">
             Contact

@@ -1,0 +1,34 @@
+.signal-sculpture {
+  position: relative;
+  width: min(100%, 300px);
+  aspect-ratio: 15 / 11;
+  flex-shrink: 0;
+  isolation: isolate;
+  touch-action: pan-y;
+}
+
+.signal-sculpture__fallback,
+.signal-sculpture__canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.signal-sculpture__fallback {
+  opacity: 1;
+}
+
+.signal-sculpture__canvas {
+  opacity: 0;
+}
+
+.signal-sculpture[data-ready='true'] .signal-sculpture__fallback {
+  opacity: 0;
+}
+
+.signal-sculpture[data-ready='true'] .signal-sculpture__canvas {
+  opacity: 1;
+}

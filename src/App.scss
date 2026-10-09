@@ -38,6 +38,9 @@
   letter-spacing: -0.13em;
   font-weight: 650;
 }
+.brand-mark svg {
+  display: block;
+}
 .brand-mark > span {
   color: var(--gold);
 }
@@ -232,6 +235,39 @@
   gap: 80px;
   align-items: center;
   padding: 10px 0 60px;
+}
+.case-product-proof {
+  margin-bottom: 52px;
+}
+.case-product-screens {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 0.24fr;
+  align-items: center;
+  gap: 25px;
+  padding: 25px;
+  border: 1px solid var(--line);
+  background: #e3e0cf;
+}
+.case-product-screens img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+.case-product-proof > p {
+  font: 0.63rem/1.6 var(--mono);
+  color: var(--muted);
+  margin-top: 12px;
+}
+@media (max-width: 600px) {
+  .case-product-screens {
+    grid-template-columns: 1fr;
+    padding: 14px;
+  }
+  .case-product-screens img:last-child {
+    width: min(100%, 250px);
+    margin-inline: auto;
+  }
 }
 .case-overview > div:first-child {
   border-left: 1px solid var(--gold);

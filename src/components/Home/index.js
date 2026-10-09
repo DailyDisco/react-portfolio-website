@@ -1,11 +1,22 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import {
+  ArrowUpRight,
+  Cpu,
+  Download,
+  Mail,
+  PanelsTopLeft,
+  Workflow,
+} from 'lucide-react'
+import SignalSculpture from '../SignalSculpture'
+import useConsoleMotion from './useConsoleMotion'
 import './console.css'
 
 const projects = [
   {
     slug: 'property-platform',
     label: 'Product',
+    icon: PanelsTopLeft,
     name: 'Emmut',
     category: 'Property management',
     description:
@@ -14,18 +25,20 @@ const projects = [
   {
     slug: 'workflow-migration',
     label: 'Cloud',
+    icon: Workflow,
     name: 'AWS → Railway',
     category: 'Craft Digital · via Lumara',
     description:
       'Migrated seven production lead-intake workflows from Kestra on AWS to n8n on Railway.',
   },
   {
-    slug: 'realtime-platform',
-    label: 'Backend',
-    name: 'Mixed reality',
-    category: 'Confidential client',
+    slug: 'local-inference',
+    label: 'Systems',
+    icon: Cpu,
+    name: 'Local inference',
+    category: 'GPU infrastructure · Open source',
     description:
-      'Shared state, authorized event streams, and recovery after disconnects. Built for a Unity client.',
+      'Built a six-GPU inference server. Traced bottlenecks into ExLlamaV3 and TabbyAPI, with two fixes merged upstream.',
   },
 ]
 
@@ -68,30 +81,33 @@ function ProjectReadout({ selected }) {
   }
   return (
     <div className="console-readout">
-      <div className="console-event-readout">
-        <span>SSE</span>
-        <svg viewBox="0 0 250 100" aria-hidden="true">
-          <path className="console-event-line" d="M8 35H78M175 35H242" />
-          <path
-            className="console-event-recovery"
-            d="M78 35C105 35 91 78 126 78S150 35 175 35"
-          />
-          {[8, 43, 78, 175, 208, 242].map((x) => (
-            <circle key={x} cx={x} cy="35" r="4" />
+      <div className="console-inference-readout">
+        <span>
+          +18<small>%</small>
+        </span>
+        <span className="console-gpu-bank" aria-hidden="true">
+          {Array.from({ length: 6 }, (_, index) => (
+            <i key={index} />
           ))}
-        </svg>
+        </span>
       </div>
-      <p>Resumable event delivery. Conceptual view.</p>
+      <p>Faster cold prompt processing. Measured on six GPUs.</p>
     </div>
   )
 }
 
 export default function Home() {
   const [selected, setSelected] = useState(0)
+  const consoleRef = useRef(null)
+  useConsoleMotion(consoleRef, selected)
   const project = projects[selected]
   return (
     <div className="console-home">
-      <section className="diego-console" aria-label="Digital Diego portfolio">
+      <section
+        ref={consoleRef}
+        className="diego-console"
+        aria-label="Digital Diego portfolio"
+      >
         <span className="console-screw screw-top-left" aria-hidden="true" />
         <span className="console-screw screw-top-right" aria-hidden="true" />
         <span className="console-screw screw-bottom-left" aria-hidden="true" />
@@ -100,32 +116,32 @@ export default function Home() {
           <div className="console-identity">
             <p className="console-kicker">
               <span className="console-emblem" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-                <i />
+                <svg viewBox="60 20 175 180" fill="currentColor">
+                  <path
+                    fillRule="evenodd"
+                    d="M75 28H125C182 28 211 60 211 110S182 192 125 192H75V28ZM110 63V157H126C158 157 175 141 175 110S158 63 126 63H110Z"
+                  />
+                </svg>
               </span>
               THE PERSONAL WORK OF DIEGO ESPINO
             </p>
             <h1>
-              <span>digital</span>
-              <span>
-                diego<span className="console-period">.</span>
-              </span>
+              digital diego<span className="console-period">.</span>
             </h1>
+            <div className="console-object-bay">
+              <SignalSculpture selected={selected} />
+              <span className="console-object-index" aria-hidden="true">
+                DD / 0{selected + 1}
+              </span>
+            </div>
             <div className="console-role">
-              <p>
-                Full-stack engineer
-                <br />& technical lead.
-              </p>
+              <p>Full-stack engineer & technical lead.</p>
               <span className="console-role-symbol" aria-hidden="true">
-                ↗
+                <ArrowUpRight size={28} strokeWidth={1.25} />
               </span>
             </div>
             <p className="console-intro">
-              Web products, cloud systems,
-              <br />
-              and a habit of taking things apart.
+              Web products, cloud systems, and a habit of taking things apart.
             </p>
             <div className="console-availability">
               <span aria-hidden="true" />
@@ -137,7 +153,7 @@ export default function Home() {
             <div className="console-controls-header">
               <h2>Selected work</h2>
               <Link to="/portfolio">
-                All projects <span aria-hidden="true">↗</span>
+                All projects <ArrowUpRight size={13} aria-hidden="true" />
               </Link>
             </div>
             <div
@@ -153,6 +169,12 @@ export default function Home() {
                   onClick={() => setSelected(index)}
                 >
                   <span className="console-selector-number">0{index + 1}</span>
+                  <item.icon
+                    className="console-selector-icon"
+                    size={15}
+                    strokeWidth={1.6}
+                    aria-hidden="true"
+                  />
                   <span>{item.label}</span>
                   <span className="console-selector-lamp" aria-hidden="true" />
                 </button>
@@ -175,7 +197,12 @@ export default function Home() {
                     to={`/work/${project.slug}`}
                     aria-label={`Open ${project.name} case study`}
                   >
-                    Open case study <span aria-hidden="true">↗</span>
+                    Open case study{' '}
+                    <ArrowUpRight
+                      size={17}
+                      strokeWidth={1.5}
+                      aria-hidden="true"
+                    />
                   </Link>
                 </div>
               </div>
@@ -194,7 +221,7 @@ export default function Home() {
               <strong>6 × RTX 3090. One very personal homelab.</strong>
             </span>
             <span className="console-strip-arrow" aria-hidden="true">
-              ↗
+              <ArrowUpRight size={19} strokeWidth={1.4} />
             </span>
           </Link>
           <a
@@ -204,7 +231,8 @@ export default function Home() {
           >
             <span className="console-strip-label">THE ONE-PAGE VERSION</span>
             <strong>
-              Download resume <span aria-hidden="true">↓</span>
+              Download resume{' '}
+              <Download size={16} strokeWidth={1.6} aria-hidden="true" />
             </strong>
           </a>
         </div>
@@ -214,7 +242,12 @@ export default function Home() {
         <div>
           <a href="https://github.com/DailyDisco">GitHub ↗</a>
           <a href="https://www.linkedin.com/in/developerdiego/">LinkedIn ↗</a>
-          <a href="mailto:diegoespinowork@gmail.com">Email ↗</a>
+          <a
+            className="console-email-link"
+            href="mailto:diegoespinowork@gmail.com"
+          >
+            <Mail size={13} aria-hidden="true" /> Email
+          </a>
         </div>
         <Link to="/about">The person behind the projects ↗</Link>
       </div>

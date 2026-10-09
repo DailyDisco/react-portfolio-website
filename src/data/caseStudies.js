@@ -4,6 +4,11 @@ export const caseStudies = [
     number: '01',
     category: 'Product engineering · Technical leadership',
     title: 'Emmut property management',
+    visual: {
+      src: '/work/emmut-maintenance-desktop.png',
+      alt: 'Actual Emmut maintenance-worker management dialog rendered with synthetic demo workers.',
+      caption: 'Actual Emmut components · synthetic demo data',
+    },
     summary:
       'I led architecture and delivery with a four-developer team on a platform for 1,000+ units. Workflow automation cut daily administrative work from three hours to one per employee.',
     outcome: '3 hours → 1 hour of daily admin work',
@@ -43,6 +48,11 @@ export const caseStudies = [
     number: '02',
     category: 'Cloud migration · Data engineering',
     title: 'AWS to Railway workflow migration',
+    visual: {
+      src: '/work/migration-map.svg',
+      alt: 'Architecture overview showing seven lead workflows moving from Kestra on AWS to n8n on Railway.',
+      caption: 'Architecture overview',
+    },
     summary:
       'Migrated seven production lead-intake workflows from Kestra on AWS to n8n on Railway, then built the reporting and dashboard foundations around them.',
     outcome: '7 production lead workflows migrated',
@@ -96,7 +106,7 @@ export const caseStudies = [
     category: 'Backend engineering · Real-time systems',
     title: 'Confidential mixed reality platform',
     summary:
-      'I built shared state, authorized event streams, and recovery after disconnects for a confidential mixed reality platform, with executable API contract checks for its Unity client.',
+      'Shared state, resumable event delivery, and scoped permissions for a confidential platform and its Unity client.',
     outcome: 'Resumable events with scoped access',
     role: 'Backend engineering lead · Lumara client engagement',
     period: 'Ongoing client work',
@@ -115,19 +125,15 @@ export const caseStudies = [
       { value: 'OpenAPI', label: 'Unity contract checks' },
     ],
     challenge:
-      'A mixed reality platform needed dependable communication between its backend and Unity client. Shared state, reconnecting event streams, scoped permissions, and changing API contracts each introduced failure cases that needed to be handled across the application.',
+      'Keep a Unity client and its backend in sync through disconnects, shared-state changes, and API updates, while enforcing access boundaries.',
     approach: [
       {
-        title: 'Shared state and resumable streams',
-        body: 'I implemented Redis-backed shared state and resumable server-sent events, with bounded queues, backpressure, and channel authorization. Real Redis integration tests exercised the implementation and its failure handling.',
-      },
-      {
-        title: 'Permissions and account security',
-        body: 'I implemented scoped permissions for administrative modules and Cognito safeguards for login lockout, sensitive account changes, verified email changes, and audit events. These changes made access decisions and account transitions explicit.',
+        title: 'State, streams, and access',
+        body: 'I implemented Redis-backed state, resumable server-sent events, bounded queues, backpressure, and channel authorization. Integration tests exercised failure handling. Scoped permissions and Cognito safeguards cover sensitive account changes and audit events.',
       },
       {
         title: 'Client contracts and development infrastructure',
-        body: 'I built OpenAPI compatibility checks for Unity C# calls and data models. I also defined development ElastiCache infrastructure in Terraform using private subnets, application-scoped security groups, and SSM configuration.',
+        body: 'I built executable OpenAPI compatibility checks for Unity C# calls and models, plus Terraform definitions for development ElastiCache with private subnets and application-scoped security groups.',
       },
     ],
     results: [
@@ -143,6 +149,11 @@ export const caseStudies = [
     number: '04',
     category: 'GPU infrastructure · Open source',
     title: 'Local LLM inference and upstream fixes',
+    visual: {
+      src: '/work/inference-benchmark.svg',
+      alt: 'Six GPU plates alongside measured cold prompt throughput rising from 1,238 to 1,458 tokens per second.',
+      caption: 'Six-GPU benchmark and upstream contribution',
+    },
     summary:
       'I built a six-GPU inference server and operate a Proxmox homelab. Debugging my inference setup led to two merged fixes in ExLlamaV3 and TabbyAPI.',
     outcome: '18% faster cold prompt processing in a six-GPU benchmark',
@@ -199,3 +210,9 @@ export const caseStudies = [
 
 export const getCaseStudy = (slug) =>
   caseStudies.find((caseStudy) => caseStudy.slug === slug)
+
+export const featuredCaseStudies = [
+  'property-platform',
+  'workflow-migration',
+  'local-inference',
+].map(getCaseStudy)
