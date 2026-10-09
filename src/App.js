@@ -7,6 +7,7 @@ import './App.scss'
 import Portfolio from './components/Portfolio'
 import Blog from './components/Portfolio'
 import Dashboard from './components/Dashboard'
+import YouTubeVideosAndTwitchStreams from './components/YouTubeVideosAndTwitchStreams'
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route
+            path="/youtubeVideosAndTwitchStreams"
+            element={<YouTubeVideosAndTwitchStreams />}
+          />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
