@@ -1,5 +1,16 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "create-react-app",
-  "installCommand": "npm ci"
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/blog", "destination": "/portfolio", "permanent": true },
+    {
+      "source": "/youtubeVideosAndTwitchStreams",
+      "destination": "/about",
+      "permanent": true
+    },
+    { "source": "/dashboard", "destination": "/portfolio", "permanent": true }
+  ]
 }

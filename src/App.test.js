@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter, useLocation, useNavigate } from 'react-router-dom'
 import App from './App'
+import pageMetadata from './data/pageMetadata.json'
 
 const HistoryControls = () => {
   const location = useLocation()
@@ -14,6 +15,11 @@ const HistoryControls = () => {
     </>
   )
 }
+
+// Metadata has no accessible role; inspect its head elements directly.
+const getHeadElement = (selector) =>
+  // eslint-disable-next-line testing-library/no-node-access
+  document.querySelector(selector)
 
 beforeEach(() => {
   window.scrollTo = jest.fn()
@@ -69,21 +75,98 @@ test('unknown case studies show a useful recovery link', () => {
   ).toHaveAttribute('href', '/portfolio')
 })
 
-test('old dashboard bookmarks redirect to portfolio without retaining dashboard in history', async () => {
+test.each([
+  ['/dashboard', '/portfolio', 'What I’ve shipped.'],
+  ['/blog', '/portfolio', 'What I’ve shipped.'],
+  ['/youtubeVideosAndTwitchStreams', '/about', 'About me'],
+])(
+  'old %s bookmarks redirect without retaining the old URL in history',
+  async (source, destination, heading) => {
+    render(
+      <MemoryRouter initialEntries={['/', source]} initialIndex={1}>
+        <App />
+        <HistoryControls />
+      </MemoryRouter>
+    )
+    expect(
+      await screen.findByRole('heading', { level: 1, name: heading })
+    ).toBeInTheDocument()
+    expect(screen.getByLabelText('Current path')).toHaveTextContent(destination)
+
+    fireEvent.click(screen.getByRole('button', { name: 'Go back' }))
+    expect(screen.getByRole('heading', { level: 1 })).toBeVisible()
+    expect(screen.getByLabelText('Current path')).toHaveTextContent(/^\/$/)
+  }
+)
+
+test('SPA navigation synchronizes sharing metadata and clears canonical links on unknown routes', () => {
+  const knownPath = '/work/local-inference'
+  const page = pageMetadata.pages[knownPath]
   render(
-    <MemoryRouter initialEntries={['/', '/dashboard']} initialIndex={1}>
+    <MemoryRouter
+      initialEntries={['/about', '/missing', knownPath]}
+      initialIndex={2}
+    >
       <App />
       <HistoryControls />
     </MemoryRouter>
   )
-  expect(
-    await screen.findByRole('heading', { level: 1, name: 'What I’ve shipped.' })
-  ).toBeInTheDocument()
-  expect(screen.getByLabelText('Current path')).toHaveTextContent('/portfolio')
+  expect(document.title).toBe(page.title)
+  expect(getHeadElement('meta[name="description"]')).toHaveAttribute(
+    'content',
+    page.description
+  )
+  expect(getHeadElement('meta[property="og:title"]')).toHaveAttribute(
+    'content',
+    page.title
+  )
+  expect(getHeadElement('meta[property="og:description"]')).toHaveAttribute(
+    'content',
+    page.description
+  )
+  expect(getHeadElement('meta[property="og:url"]')).toHaveAttribute(
+    'content',
+    `${pageMetadata.siteUrl}${knownPath}`
+  )
+  expect(getHeadElement('meta[name="twitter:title"]')).toHaveAttribute(
+    'content',
+    page.title
+  )
+  expect(getHeadElement('meta[name="twitter:description"]')).toHaveAttribute(
+    'content',
+    page.description
+  )
+  expect(getHeadElement('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    `${pageMetadata.siteUrl}${knownPath}`
+  )
 
   fireEvent.click(screen.getByRole('button', { name: 'Go back' }))
-  expect(screen.getByRole('heading', { level: 1 })).toBeVisible()
-  expect(screen.getByLabelText('Current path')).toHaveTextContent(/^\/$/)
+  expect(document.title).toBe(pageMetadata.notFound.title)
+  expect(getHeadElement('meta[property="og:title"]')).toHaveAttribute(
+    'content',
+    pageMetadata.notFound.title
+  )
+  expect(getHeadElement('meta[property="og:url"]')).toHaveAttribute(
+    'content',
+    `${pageMetadata.siteUrl}/missing`
+  )
+  expect(getHeadElement('meta[name="robots"]')).toHaveAttribute(
+    'content',
+    'noindex, follow'
+  )
+  expect(getHeadElement('link[rel="canonical"]')).not.toBeInTheDocument()
+
+  fireEvent.click(screen.getByRole('button', { name: 'Go back' }))
+  expect(document.title).toBe(pageMetadata.pages['/about'].title)
+  expect(getHeadElement('meta[name="robots"]')).toHaveAttribute(
+    'content',
+    'index, follow'
+  )
+  expect(getHeadElement('link[rel="canonical"]')).toHaveAttribute(
+    'href',
+    `${pageMetadata.siteUrl}/about`
+  )
 })
 
 test('selected work shows the three featured projects and preserves the confidential case without the old demo gallery', async () => {

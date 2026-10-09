@@ -1,0 +1,48 @@
+{
+  "siteUrl": "https://www.digitaldiego.xyz",
+  "siteName": "Diego Espino",
+  "image": "/og-image.png",
+  "imageAlt": "Digital Diego: full-stack engineering, cloud, and infrastructure",
+  "pages": {
+    "/": {
+      "title": "Diego Espino | Full Stack Engineer & Technical Lead",
+      "description": "Diego Espino builds web products and the systems they run on. Explore full-stack engineering, cloud migrations, and a six-GPU homelab in Dallas-Fort Worth."
+    },
+    "/portfolio": {
+      "title": "Selected Work | Diego Espino",
+      "description": "Engineering case studies by Diego Espino: property management software, an AWS-to-Railway workflow migration, and measured improvements to local AI inference."
+    },
+    "/about": {
+      "title": "About Diego Espino",
+      "description": "Meet Diego Espino, a Dallas-Fort Worth full-stack engineer, technical lead, and Lumara founder. How he works with teams, builds systems, and makes music."
+    },
+    "/infrastructure": {
+      "title": "Infrastructure & Open Source | Diego Espino",
+      "description": "Inside Diego Espino's homelab: six RTX 3090s, Proxmox, self-hosted services, and merged ExLlamaV3 and TabbyAPI fixes informed by hands-on operation."
+    },
+    "/contact": {
+      "title": "Contact Diego Espino",
+      "description": "Contact Diego Espino about senior or lead full-stack engineering roles, web products, and cloud infrastructure. Based in Dallas-Fort Worth."
+    },
+    "/work/property-platform": {
+      "title": "Emmut property management | Diego Espino",
+      "description": "Leading a four-developer team on Emmut, a platform managing 1,000+ units. Measured automation reduced daily administrative work from three hours to one."
+    },
+    "/work/workflow-migration": {
+      "title": "AWS to Railway workflow migration | Diego Espino",
+      "description": "Migrating seven production lead workflows from Kestra on AWS to n8n on Railway for Craft Digital, with durable processing and recoverable failures."
+    },
+    "/work/realtime-platform": {
+      "title": "Confidential mixed reality platform | Diego Espino",
+      "description": "Backend engineering for a confidential mixed-reality platform: shared Redis state, resumable SSE streams, scoped permissions, and FastAPI integration."
+    },
+    "/work/local-inference": {
+      "title": "Local LLM inference and upstream fixes | Diego Espino",
+      "description": "Operating six RTX 3090s and contributing merged ExLlamaV3 and TabbyAPI fixes. Cold prompt processing improved 18% in a measured test; decode speed was unchanged."
+    }
+  },
+  "notFound": {
+    "title": "Page not found | Diego Espino",
+    "description": "This page is unavailable. Explore Diego Espino's selected engineering work, homelab, and contact information."
+  }
+}

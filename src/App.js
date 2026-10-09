@@ -10,7 +10,6 @@ import './App.scss'
 import './components/Layout/style.css'
 const Contact = lazy(() => import('./components/Contact'))
 const Portfolio = lazy(() => import('./components/Portfolio'))
-const Videos = lazy(() => import('./components/YouTubeVideosAndTwitchStreams'))
 export default function App() {
   return (
     <Routes>
@@ -25,8 +24,11 @@ export default function App() {
           path="dashboard"
           element={<Navigate to="/portfolio" replace />}
         />
-        <Route path="blog" element={<Portfolio />} />
-        <Route path="youtubeVideosAndTwitchStreams" element={<Videos />} />
+        <Route path="blog" element={<Navigate to="/portfolio" replace />} />
+        <Route
+          path="youtubeVideosAndTwitchStreams"
+          element={<Navigate to="/about" replace />}
+        />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

@@ -20,9 +20,10 @@ All portfolio content and images live in the repository. There is no database, s
 - `src/components/Home`, `About`, and `Infrastructure`: introduction, experience, and technical background.
 - `public/portfolio/`: project images. Set a record's `image` to a path such as `/portfolio/my-project/preview.jpg`, or `null` for a text-only entry.
 - `public/resume/`: current one-page and detailed resumes. The primary download uses the one-page PDF.
-- `public/index.html`, `og-image.png`, and `favicon.svg`: metadata and sharing assets.
+- `src/data/pageMetadata.json`: titles, descriptions, canonical URLs, and sharing metadata for the nine public pages. Keep its routes aligned with `public/sitemap.xml`.
+- `public/index.html`: development HTML shell and homepage metadata; `public/og-image.png` and `public/favicon.svg`: sharing assets.
 
-Edit the relevant file, run checks, and deploy the new build. No runtime database request is needed to display projects. `/dashboard` redirects to `/portfolio` for old bookmarks; `/blog` remains an alias for the work page.
+Edit the relevant file, run checks, and deploy the new build. No runtime database request is needed to display projects. `/dashboard` and `/blog` redirect to `/portfolio`; `/youtubeVideosAndTwitchStreams` redirects to `/about`. Vercel returns permanent redirects, and local client navigation replaces the old history entry.
 
 The Firestore migration preserved all eight record IDs, names, and descriptions. A subsequent link audit corrected the React/Go starter's destination and replaced two unavailable live sites with their public source repositories. Firebase Storage URLs were removed. One ecommerce thumbnail was recovered from an existing bundled image, and four screenshots were captured from the corresponding public project sites. The other three entries remain text-only. The old cloud project and its data were not deleted or changed.
 
@@ -45,7 +46,9 @@ Tests cover navigation and old-route redirects, archive rendering, failed images
 
 ## Deploy
 
-Vercel serves the static CRA build. `vercel.json` pins the framework preset and `npm ci`; the preset handles browser route fallbacks while serving static assets normally.
+Vercel serves the static CRA build. `npm run build` first compiles the app, then `scripts/build-page-metadata.cjs` writes a separate HTML head for every route in `pageMetadata.json`. For example, `/about` uses `build/about.html` and `/work/local-inference` uses `build/work/local-inference.html`. All pages load the same hashed CRA assets; page content still renders in React. `Layout` uses the same metadata manifest after client navigation. Unknown client routes receive a not-found title, `noindex, follow`, and no canonical link.
+
+`vercel.json` pins `npm ci`, `npm run build`, and the CRA preset. Vercel's [clean URL mapping](https://vercel.com/docs/project-configuration/vercel-json#cleanurls) serves these HTML files at extensionless URLs. The official [CRA preset](https://github.com/vercel/vercel/blob/main/packages/frameworks/src/frameworks.ts) checks the filesystem before falling back to `index.html`; no catch-all rewrite is added. A local production preview must resolve existing `.html` files before its SPA fallback to exercise the per-page heads. Unknown direct URLs retain the CRA fallback response until React applies not-found metadata; this is not server-side rendering or an HTTP 404 implementation.
 
 Review the preview's direct case-study URLs, the three featured projects, supporting case, image loading, contact form, and resume downloads. Confirm the intended project and domain before promoting. For rollback, promote the previous known-good deployment. The Firebase source remains available until the replacement has been accepted and its retirement is explicitly approved.
 

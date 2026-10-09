@@ -2,14 +2,55 @@ import { Suspense, useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 import SiteFooter from '../SiteFooter'
-import { getCaseStudy } from '../../data/caseStudies'
+import pageMetadata from '../../data/pageMetadata.json'
 const resumeUrl = `${process.env.PUBLIC_URL || ''}/resume/Diego_Espino_Resume.pdf`
-const titles = {
-  '/': 'Diego Espino | Full Stack Engineer & Technical Lead',
-  '/portfolio': 'Selected Work | Diego Espino',
-  '/infrastructure': 'Infrastructure & Open Source | Diego Espino',
-  '/about': 'About Diego Espino',
-  '/contact': 'Contact Diego Espino',
+
+function updateMeta(attribute, name, content) {
+  let element = document.head.querySelector(`meta[${attribute}="${name}"]`)
+  if (!element) {
+    element = document.createElement('meta')
+    element.setAttribute(attribute, name)
+    document.head.appendChild(element)
+  }
+  element.content = content
+}
+
+function updatePageMetadata(pathname) {
+  const path = pathname.replace(/\/+$/, '') || '/'
+  const page = pageMetadata.pages[path]
+  const { title, description } = page || pageMetadata.notFound
+  const url = `${pageMetadata.siteUrl}${path}`
+  const image = `${pageMetadata.siteUrl}${pageMetadata.image}`
+  document.title = title
+  updateMeta('name', 'description', description)
+  updateMeta('name', 'robots', page ? 'index, follow' : 'noindex, follow')
+  Object.entries({
+    'og:type': 'website',
+    'og:site_name': pageMetadata.siteName,
+    'og:title': title,
+    'og:description': description,
+    'og:url': url,
+    'og:image': image,
+    'og:image:alt': pageMetadata.imageAlt,
+  }).forEach(([name, content]) => updateMeta('property', name, content))
+  Object.entries({
+    'twitter:card': 'summary_large_image',
+    'twitter:title': title,
+    'twitter:description': description,
+    'twitter:image': image,
+    'twitter:image:alt': pageMetadata.imageAlt,
+  }).forEach(([name, content]) => updateMeta('name', name, content))
+  let canonical = document.head.querySelector('link[rel="canonical"]')
+  if (page) {
+    if (!canonical) {
+      canonical = document.createElement('link')
+      canonical.rel = 'canonical'
+      document.head.appendChild(canonical)
+    }
+    canonical.href = url
+  } else {
+    canonical?.remove()
+  }
 }
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -23,15 +64,7 @@ export default function Layout() {
     location.pathname.startsWith('/work/')
   useEffect(() => {
     setMenuOpen(false)
-    const study = getCaseStudy(location.pathname.split('/work/')[1])
-    document.title = study
-      ? `${study.title} | Diego Espino`
-      : titles[location.pathname] || 'Diego Espino | Full Stack Engineer'
-    const description = document.querySelector('meta[name="description"]')
-    if (description)
-      description.content =
-        study?.summary ||
-        'Full-stack engineer and technical lead building web products, cloud migrations, and GPU infrastructure. Based in Dallas-Fort Worth.'
+    updatePageMetadata(location.pathname)
     if (location.hash)
       requestAnimationFrame(() =>
         document.getElementById(location.hash.slice(1))?.scrollIntoView()
