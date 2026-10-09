@@ -1,105 +1,27 @@
-// to add more portfolio sections copy paste more sections to portfolio.json in the data folder
-
-import React, { useEffect, useState } from "react";
-import Loader from "react-loaders";
-import AnimatedLetters from "../AnimatedLetters";
-import "./index.scss";
-// import portfolioData from '../../data/portfolio.json';
-import { getDocs, collection } from 'firebase/firestore';
-import { db } from '../../firebase';
-
-
-const Portfolio = () => {
-    const [letterClass, setLetterClass] = useState('text-animate');
-    const [portfolio, setPortfolio] = useState([]);
-
-    // creates the hover effect for the word Portfolio
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setLetterClass('text-animate-hover');
-        }, 3000);
-
-        return () => {
-            clearTimeout(timer);
-        }
-    });
-
-    useEffect(() => {
-        getPortfolio();
-    }, []);
-
-    const getPortfolio = async () => {
-        const querySnapshot = await getDocs(collection(db, 'portfolio'));
-        setPortfolio(querySnapshot.docs.map((doc) => doc.data()));
-    }
-
-    const renderPortfolio = (portfolio) => {
-        return (
-            <div className="images-container">
-                {
-                    portfolio.map((port, idx) => {
-                        return (
-                            <div className="image-box" key={idx}>
-                                <img 
-                                src={port.image}
-                                className="portfolio-image"
-                                alt="portfolio" />
-                                <div className="content">
-                                    <p className="title">{port.name}</p>
-                                    <h4 className="description">{port.description}</h4>
-                                    <button
-                                        className="btn"
-                                        onClick={() => window.open(port.url)}
-                                    >View</button>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-
-            // <div className="images-container">
-            //     {   
-            //         // don't map with index when using real data
-            //         portfolio.map((port, idx) => {
-            //             return (
-            //                 <div className="image-box" key={idx}>
-            //                     <img 
-            //                     src={port.cover}
-            //                     className="portfolio-image"
-            //                     alt="portfolio" 
-            //                     />
-            //                     <div className="content">
-            //                         <p className="title">{port.title}</p>
-            //                         <h4 className="description">{port.description}</h4>
-            //                         <button 
-            //                         className="btn"
-            //                         onClick={() => window.open(port.url)}
-            //                         >View</button>
-            //                     </div>
-            //                 </div>
-            //             )
-            //         })
-            //     }
-            // </div>
-        )
-    }
-
-    return (
-        <>
-            <div className="container portfolio-page">
-                <h1 className="page-title">
-                    <AnimatedLetters
-                        letterClass={letterClass} 
-                        strArray={"Portfolio".split("")} // array of letters to animate
-                        idx={15} // delay for each letter, you can change this to any number
-                    />
-                </h1>
-                <div>{renderPortfolio(portfolio)}</div>
-            </div>
-            <Loader type="pacman" />
-        </>
-    );
+import { caseStudies } from '../../data/caseStudies'
+import WorkCard from '../WorkCard'
+import ProjectArchive from '../ProjectArchive'
+export default function Portfolio() {
+  return (
+    <div className="page-shell">
+      <header className="page-heading">
+        <p className="eyebrow">SELECTED WORK / 2025–2026</p>
+        <h1>
+          Products shipped.
+          <br />
+          <em>Systems understood.</em>
+        </h1>
+        <p>
+          Full-stack delivery and technical leadership, from property operations
+          and cloud migrations to real-time platforms and local inference.
+        </p>
+      </header>
+      <div className="work-grid">
+        {caseStudies.map((study) => (
+          <WorkCard key={study.slug} study={study} />
+        ))}
+      </div>
+      <ProjectArchive />
+    </div>
+  )
 }
-
-export default Portfolio;

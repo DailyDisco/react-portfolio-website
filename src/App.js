@@ -1,37 +1,31 @@
+import { lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from './components/Home'
 import About from './components/About'
-import Contact from './components/Contact'
 import Layout from './components/Layout'
+import CaseStudy from './components/CaseStudy'
+import Infrastructure from './components/Infrastructure'
+import NotFound from './components/NotFound'
 import './App.scss'
-import Portfolio from './components/Portfolio'
-import Blog from './components/Portfolio'
-import Dashboard from './components/Dashboard'
-import YouTubeVideosAndTwitchStreams from './components/YouTubeVideosAndTwitchStreams'
-
-function App() {
+const Contact = lazy(() => import('./components/Contact'))
+const Portfolio = lazy(() => import('./components/Portfolio'))
+const Dashboard = lazy(() => import('./components/Dashboard'))
+const Videos = lazy(() => import('./components/YouTubeVideosAndTwitchStreams'))
+export default function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route
-            path="/youtubeVideosAndTwitchStreams"
-            element={<YouTubeVideosAndTwitchStreams />}
-          />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
-        </Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="portfolio" element={<Portfolio />} />
+        <Route path="work/:slug" element={<CaseStudy />} />
+        <Route path="infrastructure" element={<Infrastructure />} />
+        <Route path="contact" element={<Contact />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="blog" element={<Portfolio />} />
+        <Route path="youtubeVideosAndTwitchStreams" element={<Videos />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   )
 }
-
-export default App
-
-// to do: add a page for projects with video examples that lead to the project site itself.
-// to do: add "SOCIALS" in the highlight yellow color and bold down the side of the nav bar near socials buttons to hightlight them.
-// to do: make the website responsive to mobile.

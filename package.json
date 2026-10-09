@@ -2,6 +2,7 @@
   "name": "react-portfolio-website",
   "version": "0.1.0",
   "private": true,
+  "engines": { "node": "22.x" },
   "dependencies": {
     "@emailjs/browser": "^3.4.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",

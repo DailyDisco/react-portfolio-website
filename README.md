@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Diego Espino's portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React portfolio focused on full-stack engineering, technical leadership, cloud migrations, and infrastructure. The public site is https://www.digitaldiego.xyz/.
 
-## Available Scripts
+## Run locally
 
-In the project directory, you can run:
+```sh
+npm ci
+npm start
+```
 
-### `npm start`
+The checked-in lockfile retains the existing React 17 / Create React App 5 stack. `.npmrc` enables legacy peer resolution because the preserved React Leaflet dependency declares React 18 peers. The refreshed interface does not import Leaflet. A framework or dependency migration is separate work.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Verify
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```sh
+CI=true npm test -- --watchAll=false --runInBand
+CI=true npm run build
+```
 
-### `npm test`
+Tests cover navigation, archive loading and failure states, safe project links, contact submission states, authentication state, and project uploads. Contact and write operations use mocks in tests. Public Firestore reads can be checked on `/portfolio` without signing in.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Content and data
 
-### `npm run build`
+- `src/data/caseStudies.js`: curated engineering case studies, outcomes, and public source links.
+- `src/components/Home`, `About`, and `Infrastructure`: positioning, experience, and technical background.
+- `public/resume/`: current one-page and detailed resumes. The main navigation uses the one-page PDF.
+- `public/og-image.png`, `favicon.svg`, and `index.html`: sharing image, icon, and metadata.
+- `/portfolio`: curated case studies followed by the existing Firebase project archive.
+- `/dashboard`: existing Google sign-in and project creation flow.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The Firebase project and existing `portfolio` collection are retained. Documents use `{ name, description, url, image }`. Images remain in the `portfolio/` Storage prefix with unique filenames for new uploads. No migration is required. Curated case studies are versioned in source; dashboard submissions go into the archive.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Firestore and Storage rules are managed outside this checkout. Server-side authorization must remain the authority for dashboard writes. The Google login UI is not an authorization boundary. No security-rule changes are included.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The contact form retains the existing EmailJS service and template. Automated verification intercepts requests rather than sending real messages. End-to-end email delivery and signed-in production writes require an owner check.
 
-### `npm run eject`
+Client case studies distinguish shipped results from implementation work. Keep the mixed-reality client anonymous and avoid private repository links. Preserve the reporting and Terraform scope notes when editing.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Deploy
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Vercel serves the CRA production build. `vercel.json` pins the existing framework preset and lockfile-based installation. The CRA preset handles browser route fallbacks while serving static assets normally.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Before release, review a Vercel preview for direct case-study URLs, Firebase archive loading, the contact form, and resume downloads. Confirm the intended Vercel project and production domain before promoting. For rollback, promote the previous known-good deployment; this update does not migrate data.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Preserved work
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The local branch includes checkpoint `7b51de7`, which preserves the previous day-vault workspace edits before this refresh. Legacy components and the video route remain in the repository.
