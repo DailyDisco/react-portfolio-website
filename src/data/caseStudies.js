@@ -157,14 +157,14 @@ export const caseStudies = [
     title: 'Local LLM inference and upstream fixes',
     cardTitle: 'Local AI & open source',
     cardSummary:
-      'Built a six-GPU inference server. Two fixes merged upstream; 18% faster cold prompt processing in my benchmark.',
+      'Two fixes merged upstream. Cold prompt processing improved 18% in my six-GPU benchmark.',
     visual: {
       src: '/work/inference-benchmark.svg',
       alt: 'Six GPU plates alongside measured cold prompt throughput rising from 1,238 to 1,458 tokens per second.',
       caption: 'Six-GPU benchmark · merged fixes',
     },
     summary:
-      'I built a six-GPU server for local AI and contributed two merged fixes to ExLlamaV3 and TabbyAPI. One improved cold prompt processing by 18% in my benchmark.',
+      'My local AI server now runs seven GPUs. Operating it led to two merged upstream fixes, including 18% faster cold prompt processing on the earlier six-GPU setup.',
     outcome: '18% faster cold prompt processing in a six-GPU benchmark',
     role: 'Independent infrastructure owner · Open-source contributor',
     period: 'Ongoing · Upstream fixes merged October 2026',
@@ -179,12 +179,12 @@ export const caseStudies = [
       'Tailscale',
     ],
     highlights: [
-      { value: '6 GPUs', label: 'NVIDIA RTX 3090 inference server' },
-      { value: '144 GB', label: 'combined GPU memory' },
+      { value: '7 GPUs', label: 'NVIDIA RTX 3090 inference server' },
+      { value: '168 GiB', label: 'combined GPU memory' },
       { value: '2', label: 'fixes merged upstream' },
     ],
     challenge:
-      'I run local inference for coding agents on six NVIDIA RTX 3090 GPUs. Operating the stack exposed both a CPU communication bottleneck during prompt processing and a cache-lifetime problem during error recovery. I traced both into the upstream projects.',
+      'My inference server for coding agents now has seven NVIDIA RTX 3090 GPUs. Before the expansion, operating the stack exposed both a CPU communication bottleneck during prompt processing and a cache-lifetime problem during error recovery. I traced both into the upstream projects.',
     approach: [
       {
         title: 'ExLlamaV3 CPU all-reduce performance',

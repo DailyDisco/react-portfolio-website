@@ -13,8 +13,8 @@ export default function Infrastructure() {
           <p className="eyebrow">HOMELAB & OPEN SOURCE</p>
           <h1>Under the hood.</h1>
           <p>
-            I built a six-GPU server for coding agents. Operating it led to
-            fixes merged into ExLlamaV3 and TabbyAPI.
+            I built a local inference server, now expanded to seven GPUs.
+            Operating it led to fixes merged into ExLlamaV3 and TabbyAPI.
           </p>
         </header>
         <LabExplorer />

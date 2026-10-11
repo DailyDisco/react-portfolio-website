@@ -73,6 +73,9 @@
   .lab-board:nth-of-type(6) {
     animation-delay: 175ms;
   }
+  .lab-board:nth-of-type(7) {
+    animation-delay: 210ms;
+  }
   .lab-request-path {
     stroke-dasharray: 900;
     animation: lab-request-enter 650ms ease-out both;

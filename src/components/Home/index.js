@@ -198,7 +198,7 @@ export default function Home() {
             </span>
             <span>
               <span className="console-strip-label">HOMELAB</span>
-              <strong>Six GPUs. Built and run by me.</strong>
+              <strong>Seven GPUs. Built and run by me.</strong>
             </span>
             <span className="console-strip-arrow" aria-hidden="true">
               <ArrowUpRight size={19} strokeWidth={1.4} />

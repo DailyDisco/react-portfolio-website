@@ -7,17 +7,17 @@ const views = {
     label: 'The machine',
     number: '01',
     category: 'Hardware',
-    title: 'Six GPUs. One local inference server.',
+    title: 'Seven GPUs. One local inference server.',
     description:
-      'I built and operate a six-RTX-3090 server for local models and coding agents.',
+      'I built and operate a seven-RTX-3090 server for local models and coding agents.',
     details: [
-      ['Hardware', '6 × NVIDIA RTX 3090'],
-      ['GPU memory', '24 GB each · 144 GB combined'],
+      ['Hardware', '7 × NVIDIA RTX 3090'],
+      ['GPU memory', '24 GiB each · 168 GiB combined'],
       ['Purpose', 'Local model inference'],
     ],
     illustration:
-      'Illustration of six RTX 3090 GPUs with 144 GB of combined memory',
-    caption: 'Hardware illustration · 6 GPUs × 24 GB',
+      'Illustration of seven RTX 3090 GPUs with 168 GiB of combined memory',
+    caption: 'Hardware illustration · 7 GPUs × 24 GiB',
   },
   software: {
     label: 'The software',
@@ -57,11 +57,11 @@ function MachineDrawing() {
   return (
     <>
       <path className="lab-guide" d="M38 286H438" />
-      {Array.from({ length: 6 }, (_, index) => (
+      {Array.from({ length: 7 }, (_, index) => (
         <g
           className="lab-board"
           key={index}
-          transform={`translate(${49 + index * 7} ${36 + index * 37})`}
+          transform={`translate(${49 + index * 6} ${36 + index * 31})`}
         >
           <path
             className="lab-board-edge"
@@ -77,7 +77,7 @@ function MachineDrawing() {
         </g>
       ))}
       <text className="lab-svg-total" x="334" y="109" textAnchor="middle">
-        144
+        168
       </text>
       <text
         className="lab-svg-label lab-svg-accent"
@@ -85,7 +85,7 @@ function MachineDrawing() {
         y="139"
         textAnchor="middle"
       >
-        GB
+        GiB
       </text>
       <path className="lab-trace lab-trace-accent" d="M335 159V228H309" />
       <circle className="lab-dot" cx="309" cy="228" r="4" />

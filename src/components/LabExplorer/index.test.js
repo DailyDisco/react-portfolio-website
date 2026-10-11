@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import LabExplorer from './index'
 
-test('starts with the six-GPU machine and its supported memory figures', () => {
+test('starts with the seven-GPU machine and its supported memory figures', () => {
   render(<LabExplorer />)
   expect(screen.getByRole('button', { name: 'The machine' })).toHaveAttribute(
     'aria-pressed',
@@ -16,10 +16,10 @@ test('starts with the six-GPU machine and its supported memory figures', () => {
     'aria-pressed',
     'false'
   )
-  expect(screen.getByText('6 × NVIDIA RTX 3090')).toBeVisible()
-  expect(screen.getByText('24 GB each · 144 GB combined')).toBeVisible()
+  expect(screen.getByText('7 × NVIDIA RTX 3090')).toBeVisible()
+  expect(screen.getByText('24 GiB each · 168 GiB combined')).toBeVisible()
   expect(
-    screen.getByRole('img', { name: /six RTX 3090 GPUs/ })
+    screen.getByRole('img', { name: /seven RTX 3090 GPUs/ })
   ).toBeInTheDocument()
 })
 
@@ -45,7 +45,7 @@ test('switching views changes both the schematic and engineering details', async
     screen.getByRole('img', { name: /Conceptual request path/ })
   ).toBeInTheDocument()
   expect(
-    screen.queryByRole('img', { name: /six RTX 3090 GPUs/ })
+    screen.queryByRole('img', { name: /seven RTX 3090 GPUs/ })
   ).not.toBeInTheDocument()
 
   await user.click(screen.getByRole('button', { name: 'The homelab' }))
@@ -90,6 +90,6 @@ test('keyboard users can select every view without focus being moved into the dr
     'true'
   )
   expect(
-    screen.getByRole('img', { name: /six RTX 3090 GPUs/ })
+    screen.getByRole('img', { name: /seven RTX 3090 GPUs/ })
   ).toBeInTheDocument()
 })

@@ -12,6 +12,8 @@ The public gallery contains three featured projects and one shorter supporting c
 
 `inference-benchmark.svg` illustrates the six-GPU hardware and the reported ExLlamaV3 cold-prompt benchmark: 1,238 to 1,458 tokens/second, approximately 18%. Decode speed was unchanged. It is an illustration, not a photograph of the physical server.
 
+The current server expanded to seven RTX 3090s on October 10, 2026. A live `nvidia-smi` inventory verified seven cards with 24,576 MiB each (168 GiB combined). The Homelab explorer depicts the current seven-card machine; the benchmark artwork and performance claims retain their original six-card scope. No seven-card performance result is claimed.
+
 ## Brand surface and sculpture
 
 The spruce workbench material in `src/assets/brand/workbench.webp` was generated on the owner's Windows RX 9070 XT using Qwen-Image-2.1, 1024 pixels, 25 steps, seed 20261009. Prompt enhancement was disabled. It is decorative artwork, never evidence of client work. The original PNG is retained in the task's local review files and the owner's image output directory. The web copy is compressed WebP.
