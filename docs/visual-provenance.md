@@ -22,6 +22,8 @@ The six-layer D sculpture is original Three.js geometry. Its three arrangements 
 
 ## Code, hardware, and bass music
 
-`public/brand/code-hardware-music.webp` is an original editorial still life generated with the owner's Qwen-Image-2.1 service on the Windows RX 9070 XT. It joins a graphite heatsink, cream musical keys, a circuit board, and an ochre cable. It illustrates the About page's personal section; it is not a photograph of the owner's equipment. The visible caption identifies it as an illustrated study.
+`public/brand/code-hardware-music.webp` is an original editorial still life generated with the owner's Qwen-Image-2.1 service on the Windows RX 9070 XT. It joins a graphite heatsink, cream musical keys, a circuit board, and an ochre cable. It illustrates the Home and About personal sections; it is not a photograph of the owner's equipment. The visible caption identifies it as an illustrated study.
+
+The homepage's seven-card SVG is a schematic of the current GPU count, not a photograph or a new performance measurement. Its hardware caption and combined-memory label preserve that distinction.
 
 Generation: 1024 × 1024, 32 steps, seed 20261010, prompt enhancement off. Qwen returned HTTP 200. The full prompt is preserved in `docs/story-art-prompt.txt`. Original: `/home/day/Pictures/QwenImage/qwen-ab31990011ac4dad.png`; Windows filename: `Qwen_Agents_00014_.png`. The unmodified original is also retained in the local review workspace. The web asset is a quality-86 WebP conversion.

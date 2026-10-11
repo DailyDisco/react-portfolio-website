@@ -8,7 +8,9 @@ The homepage establishes the visual language: a cream instrument case on a fores
 - `SiteFooter` provides the same footer on every page.
 - `PageSurface` wraps inner pages and owns their entrance and scroll motion.
 - A `segmented-page` contains separate `page-panel` sections. Use the green gap between them as a clear content break.
-- The homepage keeps its compact console layout and interactive Three.js mark.
+- The homepage opens with the compact console and interactive Three.js mark, then tells the complete hiring story through four scrolling chapters.
+- `HomeStory` presents Results → Delivery → Systems → About with proof, role context, and contact actions directly on Home. Detailed pages provide optional depth.
+- `HomeJourney` is a sticky four-stop guide. Native fragment links focus each chapter and clear the guide; the active stop follows scrolling in either direction.
 
 Keep the first desktop panel a complete composition. Put secondary evidence, personal context, and longer explanations into subsequent panels. Allow natural scrolling on small screens; do not clip content or force viewport-height sections.
 
@@ -34,8 +36,10 @@ Motion should acknowledge an action or introduce content, then settle. Use short
 
 Respect reduced motion both at initial load and when the preference changes. Content must stay available when animation APIs are missing, after route changes, and when a keyboard user focuses a link in a section awaiting reveal.
 
+Homepage chapters use one short entrance when they first enter view. Their content starts visible and remains visible without IntersectionObserver or Web Animations. Focus, reduced-motion changes, and route disposal cancel the entrance and restore the original styles. Scroll progress uses observation rather than a continuous animation loop.
+
 ## Visitor journey
 
 Lead with shipped outcomes, continue into the systems and infrastructure behind the work, introduce the engineer and collaborator, then offer a clear contact action. `NextChapter` supplies one contextual onward link without restricting the main navigation. Featured cases follow Product → Cloud → Systems; the confidential supporting case returns to the work gallery. Keep story copy short and grounded in demonstrated work.
 
-The About still life connects engineering and music. Project proof remains actual screenshots, architecture illustrations, and measured benchmarks. Artwork must never imply a photograph of client systems or personal hardware.
+The Home and About still life connects engineering and music. Project proof remains actual screenshots, architecture illustrations, and measured benchmarks. Artwork must never imply a photograph of client systems or personal hardware. The current machine has seven RTX 3090s and 168 GiB combined memory; the reported 18% improvement retains its earlier six-GPU benchmark scope.

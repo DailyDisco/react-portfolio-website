@@ -1,7 +1,6 @@
 .site-home main {
   min-height: calc(100svh - 80px);
-  display: flex;
-  align-items: center;
+  display: block;
 }
 .console-home {
   width: min(1320px, calc(100% - 80px));
