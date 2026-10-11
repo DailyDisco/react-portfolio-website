@@ -17,7 +17,7 @@ All portfolio content and images live in the repository. There is no database, s
 
 - `src/data/projects.json`: the eight earlier projects exported from Firestore, retained as a source archive. They are no longer shown in the public gallery.
 - `src/data/caseStudies.js`: current engineering case studies, measured outcomes, visuals, and public source links. `featuredCaseStudies` selects Emmut, the Craft Digital migration, and local inference. The confidential mixed-reality engagement is a shorter supporting case.
-- `src/components/Home` and `HomeStory`: the opening instrument, four-chapter hiring story, and chapter navigation. `About` and `Infrastructure` provide additional personal and technical context.
+- `src/components/Home`: the compact instrument panel and project selector. `About` and `Infrastructure` provide personal and technical context; `Portfolio` and `CaseStudy` hold the project evidence.
 - `public/portfolio/`: project images. Set a record's `image` to a path such as `/portfolio/my-project/preview.jpg`, or `null` for a text-only entry.
 - `public/resume/`: current one-page and detailed resumes. The primary download uses the one-page PDF.
 - `src/data/pageMetadata.json`: titles, descriptions, canonical URLs, and sharing metadata for the nine public pages. Keep its routes aligned with `public/sitemap.xml`.
@@ -29,13 +29,15 @@ The Firestore migration preserved all eight record IDs, names, and descriptions.
 
 Body copy uses the native system sans-serif for legibility; Manrope is reserved for the wordmark and headings. Project summaries are concise, primary text is larger, and secondary captions use normal reading text rather than dense micro-labels.
 
-The homepage opens with a compact Digital Diego instrument panel. Native Product, Cloud, and Systems buttons switch between three project summaries and their case-study links. The homelab and resume have direct links below the readout. Its state change supports keyboard and touch, announces updated content, and respects reduced motion.
+The homepage is a compact Digital Diego instrument panel: a rounded ivory chassis, ink-blue backdrop and displays, coral controls, and an interactive D sculpture. Native Product, Cloud, and Systems buttons switch between three project summaries and their case-study links. The homelab and resume have direct links below the readout, followed by the shared footer. Selection supports keyboard and touch, announces updated content, and respects reduced motion. Shared colors and corner radii live in `src/index.css`; see `docs/design-system.md` for their component roles.
 
-Below the opening instrument, `HomeStory` tells the full hiring story through Results, Delivery, Systems, and About. It includes measured outcomes, leadership, cloud migration, current infrastructure, upstream fixes, working style, experience, credentials, personal context, and direct hiring actions. These essentials remain available without operating the project selectors or opening another page. `HomeJourney` provides a sticky four-stop guide with native fragment links and an active stop that follows scrolling in either direction. Chapters begin visible; their once-only entrances settle on keyboard focus, reduced-motion changes, and route disposal. Missing observer or animation APIs retain visible content and native navigation.
+Inner pages use separate rounded panels for the main content and supporting detail. `PageSurface` supplies finite entrances and once-only section reveals; native navigation and contextual `NextChapter` links connect the pages. `HomeStory`, `Home/HomeJourney.js`, and their styles remain in source as a prior iteration, but are not mounted by the current homepage.
 
 `LabExplorer` remains on the infrastructure page. Case-study figures live in `ProjectFigure`; measured results include their context, and conceptual illustrations are labeled. The current seven-GPU server and 168 GiB combined memory are separate from the earlier six-GPU performance benchmark.
 
-`SignalSculpture` builds the six-layer D monogram in Three.js. Its scene loads when visible, renders only during interaction or settling, pauses offscreen, and disposes its GPU resources on navigation. A static SVG remains available when WebGL fails, including context loss. Project selections change the assembly's arrangement. Motion's vanilla JavaScript API supplies physical button springs and screen transitions; it avoids the newer React bindings and preserves the existing React 17 runtime. Reduced-motion preferences apply immediately to both effects.
+`SignalSculpture` builds a six-layer D monogram in Three.js with rounded inset faces, beveled metal rims, connecting rods, and procedural studio lighting. Product, Cloud, and Systems select compact, expanded, and fanned arrangements; fine-pointer movement tilts the assembly and moves its key light. The six design layers do not represent the server's current GPU count. The scene loads on visibility, renders on demand with bounded settling, pauses offscreen or in a hidden tab, and disposes its GPU resources on navigation. An SVG fallback remains available when required APIs or WebGL are unavailable, including context loss.
+
+Motion's vanilla JavaScript API animates the console keys, readout, workflow paths, GPU bars, and inner-page entrances without newer React bindings. Both motion hooks cancel animations and restore inline styles on disposal; keyboard focus settles containing entrances. Missing required browser APIs leave content visible. Reduced-motion changes stop current effects immediately; the sculpture snaps to its selected arrangement. See `docs/design-system.md` for timings and fallback behavior. Static image provenance is recorded in `docs/visual-provenance.md`.
 
 Keep the mixed-reality client anonymous and avoid private repository links. Preserve scope notes that distinguish reporting implementation from completed production cutover, and development Terraform definitions from production deployment.
 
@@ -46,7 +48,7 @@ CI=true npm test -- --watchAll=false --runInBand
 CI=true npm run build
 ```
 
-Tests cover the complete homepage hiring story and native chapter destinations, navigation and old-route redirects, archive rendering, failed images, safe external links, project and infrastructure selection, and contact submission behavior. Browser review should also check chapter progress while scrolling in both directions, sticky-guide clearance, focus, live reduced-motion preferences, missing animation APIs, and route cleanup. Contact requests are mocked in automated checks; actual email delivery still needs an owner-controlled check. The existing EmailJS service and template remain separate from the removed Firebase integration.
+Tests cover compact-homepage evidence and destinations, keyboard project selection, navigation and old-route redirects, metadata updates, the preserved archive component, failed images, safe external links, infrastructure selection, and contact submission behavior. Browser review should also check first-viewport composition, panel reveals, keyboard focus, live reduced-motion preferences, missing animation APIs, WebGL fallback and context loss, and route cleanup. Contact requests are mocked in automated checks; actual email delivery still needs an owner-controlled check. The existing EmailJS service and template remain separate from the removed Firebase integration.
 
 ## Deploy
 
@@ -59,3 +61,5 @@ Review the preview's direct case-study URLs, the three featured projects, suppor
 ## Preserved work
 
 Checkpoint `7b51de7` preserves the previous day-vault workspace edits. Commit `736deff` preserves the first refresh before the personal design revision and Firebase removal. The original remote checkout remains untouched.
+
+The unmounted `HomeStory` and `HomeJourney` sources preserve the longer scrolling-homepage iteration. They are historical references, not part of the active interface or its verification scope.

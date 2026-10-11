@@ -2,7 +2,6 @@ import SiteFooter from '../SiteFooter'
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  ArrowDown,
   ArrowUpRight,
   Cpu,
   Download,
@@ -11,8 +10,6 @@ import {
 } from 'lucide-react'
 import SignalSculpture from '../SignalSculpture'
 import useConsoleMotion from './useConsoleMotion'
-import HomeJourney from './HomeJourney'
-import HomeStory from '../HomeStory'
 import './console.css'
 
 const projects = [
@@ -100,11 +97,10 @@ function ProjectReadout({ selected }) {
 export default function Home() {
   const [selected, setSelected] = useState(0)
   const consoleRef = useRef(null)
-  const storyRef = useRef(null)
   useConsoleMotion(consoleRef, selected)
   const project = projects[selected]
   return (
-    <div className="console-home" ref={storyRef}>
+    <div className="console-home">
       <section
         ref={consoleRef}
         className="diego-console"
@@ -126,8 +122,7 @@ export default function Home() {
               <p>Full-stack engineer & technical lead.</p>
             </div>
             <p className="console-intro">
-              I lead teams and stay hands-on with the product, the code, and
-              the infrastructure.
+              I build web products and the systems they run on.
             </p>
             <div className="console-availability">
               <span aria-hidden="true" />
@@ -222,12 +217,6 @@ export default function Home() {
           </a>
         </div>
       </section>
-      <a className="home-story-entry" href="#home-results">
-        Here’s what I bring to a team.
-        <ArrowDown size={24} strokeWidth={1.6} aria-hidden="true" />
-      </a>
-      <HomeJourney storyRef={storyRef} />
-      <HomeStory />
       <SiteFooter />
     </div>
   )

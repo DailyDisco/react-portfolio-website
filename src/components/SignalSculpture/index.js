@@ -2,7 +2,28 @@ import { useEffect, useRef, useState } from 'react'
 import './style.css'
 
 const fallbackShape =
-  'M75 28H125C182 28 211 60 211 110S182 192 125 192H75V28ZM110 63V157H126C158 157 175 141 175 110S158 63 126 63H110Z'
+  'M84 28H125C182 28 211 60 211 110S182 192 125 192H84Q75 192 75 183V37Q75 28 84 28ZM115 63Q110 63 110 68V152Q110 157 115 157H126C158 157 175 141 175 110S158 63 126 63H115Z'
+
+function readPalette(element) {
+  const styles = window.getComputedStyle(element)
+  return Object.fromEntries(
+    Object.entries({
+      ink: '#172b45',
+      paper: '#f5f0e7',
+      accent: '#f49b82',
+      display: '#203753',
+      edge: '#a5b4c4',
+      light: '#f7f2e9',
+      'display-muted': '#c9d8e8',
+    }).map(([name, fallback]) => {
+      const variable = name === 'light' ? 'display-ink' : name
+      return [
+        name,
+        styles.getPropertyValue(`--brand-${variable}`).trim() || fallback,
+      ]
+    })
+  )
+}
 
 export default function SignalSculpture({ selected = 0, className = '' }) {
   const stage = useRef(null)
@@ -57,6 +78,7 @@ export default function SignalSculpture({ selected = 0, className = '' }) {
           selected: latestSelection.current,
           reducedMotion: motion.matches,
           active: visible && !document.hidden,
+          palette: readPalette(element),
           onReady: () => {
             if (!cancelled) setReady(true)
           },
@@ -65,9 +87,12 @@ export default function SignalSculpture({ selected = 0, className = '' }) {
           },
         })
         resize()
-      } catch {
+      } catch (error) {
         unavailable = true
         if (!cancelled) setReady(false)
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('The 3D monogram is using its static fallback.', error)
+        }
       } finally {
         loading = false
       }
@@ -142,6 +167,7 @@ export default function SignalSculpture({ selected = 0, className = '' }) {
       data-ready={ready ? 'true' : 'false'}
       data-renderer={ready ? 'webgl' : 'fallback'}
       data-motion={reducedMotion ? 'reduced' : 'interactive'}
+      data-pose={['product', 'cloud', 'systems'][selected] || 'product'}
       aria-hidden="true"
     >
       <svg
@@ -155,7 +181,7 @@ export default function SignalSculpture({ selected = 0, className = '' }) {
           cy="198"
           rx="77"
           ry="10"
-          fill="#173633"
+          fill="var(--brand-ink, #172b45)"
           opacity="0.08"
         />
         <g transform="translate(2 -2) rotate(-8 150 110) skewY(6)">
@@ -163,16 +189,34 @@ export default function SignalSculpture({ selected = 0, className = '' }) {
             <path
               key={level}
               d={fallbackShape}
-              transform={`translate(${level * 6} ${level * -2.5})`}
-              fill={level === 0 ? '#dcd8c2' : '#263d36'}
+              transform={
+                selected === 2
+                  ? `translate(${level * 4} ${level * -1.8}) rotate(${level * -3.4} 90 177)`
+                  : `translate(${level * (selected === 1 ? 8.5 : 4.5)} ${level * -2})`
+              }
+              className={
+                level === 0
+                  ? 'signal-sculpture__face'
+                  : level === 2
+                    ? 'signal-sculpture__accent'
+                    : 'signal-sculpture__plate'
+              }
               fillRule="evenodd"
-              stroke={level === 0 ? '#a78a42' : '#87917a'}
+              stroke="var(--brand-edge, #a5b4c4)"
               strokeWidth="1.25"
             />
           ))}
-          <circle cx="90" cy="42" r="2.2" fill="#7b6a43" />
-          <circle cx="90" cy="177" r="2.2" fill="#7b6a43" />
-          <path d="M86 107h9M86 111h9M86 115h9" stroke="#44594a" />
+          <circle cx="90" cy="42" r="2.4" fill="var(--brand-accent, #f49b82)" />
+          <circle
+            cx="90"
+            cy="177"
+            r="2.4"
+            fill="var(--brand-accent, #f49b82)"
+          />
+          <path
+            d="M86 107h9M86 111h9M86 115h9"
+            stroke="var(--brand-ink, #172b45)"
+          />
         </g>
       </svg>
       <canvas ref={canvas} className="signal-sculpture__canvas" />

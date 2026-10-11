@@ -3,6 +3,7 @@
   left: 20px;
   top: -100px;
   padding: 12px 22px;
+  border-radius: var(--radius-control);
   background: var(--ink);
   color: var(--paper);
   z-index: 30;
@@ -81,6 +82,7 @@
 .primary-navigation > .nav-contact {
   padding: 11px 20px;
   border: 1px solid var(--line);
+  border-radius: var(--radius-control);
 }
 .primary-navigation > .nav-contact::after {
   display: none;
@@ -248,13 +250,14 @@
   gap: 25px;
   padding: 25px;
   border: 1px solid var(--line);
-  background: #e3e0cf;
+  border-radius: var(--radius-card);
+  background: var(--brand-paper);
 }
 .case-product-screens img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 5px;
+  border-radius: var(--radius-image);
 }
 .case-product-proof > p {
   font: 0.63rem/1.6 var(--mono);
@@ -283,9 +286,9 @@
   font-size: 0.875rem !important;
 }
 .project-figure {
-  --ink: #eeede7;
-  --muted: #b9c6c2;
-  --gold: #e8cd6b;
+  --ink: var(--brand-paper);
+  --muted: var(--brand-display-muted);
+  --gold: var(--brand-accent);
 }
 .case-metrics {
   display: grid;
@@ -434,6 +437,7 @@
   height: 190px;
   width: 100%;
   object-fit: cover;
+  border-radius: var(--radius-image);
 }
 .archive-placeholder {
   display: grid;
@@ -447,7 +451,7 @@
   line-height: 1.25;
 }
 .archive-card p {
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: var(--muted);
   margin: 0;
 }
@@ -636,8 +640,8 @@ input,
 textarea {
   width: 100%;
   background: transparent;
-  border: 1px solid #929f99;
-  border-radius: 0;
+  border: 1px solid var(--brand-hardware);
+  border-radius: var(--radius-input);
   padding: 14px 16px;
   color: var(--ink);
   font-size: 0.95rem;
@@ -903,11 +907,11 @@ textarea::placeholder {
 }
 
 .site-header {
-  --ink: #e7e8dc;
-  --muted: #b5c6b8;
-  --gold: #e8ce67;
-  --line: #526b63;
-  --paper: #173633;
+  --ink: var(--brand-display-ink);
+  --muted: var(--brand-display-muted);
+  --gold: var(--brand-accent);
+  --line: var(--brand-display-line);
+  --paper: var(--brand-ink);
   background: var(--paper);
   color: var(--ink);
 }

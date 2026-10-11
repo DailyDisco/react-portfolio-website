@@ -2,6 +2,7 @@ import {
   ACESFilmicToneMapping,
   BoxGeometry,
   CanvasTexture,
+  Color,
   CylinderGeometry,
   DirectionalLight,
   ExtrudeGeometry,
@@ -21,38 +22,45 @@ import {
   Shape,
   SRGBColorSpace,
   TorusGeometry,
+  Vector3,
   WebGLRenderer,
 } from 'three'
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js'
 
-function monogramShape() {
+function monogramShape(inset = 0) {
   const shape = new Shape()
-  shape.moveTo(-0.99, -1.29)
-  shape.lineTo(-0.99, 1.29)
-  shape.quadraticCurveTo(-0.99, 1.35, -0.93, 1.35)
-  shape.lineTo(-0.02, 1.35)
-  shape.bezierCurveTo(0.85, 1.35, 1.22, 0.82, 1.22, 0)
-  shape.bezierCurveTo(1.22, -0.82, 0.85, -1.35, -0.02, -1.35)
-  shape.lineTo(-0.93, -1.35)
-  shape.quadraticCurveTo(-0.99, -1.35, -0.99, -1.29)
+  const left = -0.99 + inset
+  const top = 1.35 - inset
+  const right = 1.22 - inset
+  shape.moveTo(left, -top + 0.15)
+  shape.lineTo(left, top - 0.15)
+  shape.quadraticCurveTo(left, top, left + 0.15, top)
+  shape.lineTo(-0.02, top)
+  shape.bezierCurveTo(0.85 - inset, top, right, 0.82, right, 0)
+  shape.bezierCurveTo(right, -0.82, 0.85 - inset, -top, -0.02, -top)
+  shape.lineTo(left + 0.15, -top)
+  shape.quadraticCurveTo(left, -top, left, -top + 0.15)
 
   const cutout = new Path()
-  cutout.moveTo(-0.43, -0.77)
-  cutout.lineTo(-0.04, -0.77)
-  cutout.bezierCurveTo(0.42, -0.77, 0.65, -0.49, 0.65, 0)
-  cutout.bezierCurveTo(0.65, 0.49, 0.42, 0.77, -0.04, 0.77)
-  cutout.lineTo(-0.43, 0.77)
-  cutout.quadraticCurveTo(-0.46, 0.77, -0.46, 0.74)
-  cutout.lineTo(-0.46, -0.74)
-  cutout.quadraticCurveTo(-0.46, -0.77, -0.43, -0.77)
+  const innerLeft = -0.46 - inset
+  const innerTop = 0.77 + inset
+  const innerRight = 0.65 + inset
+  cutout.moveTo(innerLeft + 0.07, -innerTop)
+  cutout.lineTo(-0.04, -innerTop)
+  cutout.bezierCurveTo(0.42, -innerTop, innerRight, -0.49, innerRight, 0)
+  cutout.bezierCurveTo(innerRight, 0.49, 0.42, innerTop, -0.04, innerTop)
+  cutout.lineTo(innerLeft + 0.07, innerTop)
+  cutout.quadraticCurveTo(innerLeft, innerTop, innerLeft, innerTop - 0.07)
+  cutout.lineTo(innerLeft, -innerTop + 0.07)
+  cutout.quadraticCurveTo(innerLeft, -innerTop, innerLeft + 0.07, -innerTop)
   shape.holes.push(cutout)
   return shape
 }
 
 const arrangements = [
-  { separation: 0.19, x: -0.2, y: -0.48, z: -0.12 },
-  { separation: 0.38, x: -0.13, y: -0.72, z: -0.04 },
-  { separation: 0.27, x: -0.28, y: 0.32, z: 0.1 },
+  { separation: 0.235, x: -0.23, y: -0.58, z: -0.1, fan: 0, step: 0 },
+  { separation: 0.43, x: -0.16, y: -0.72, z: -0.04, fan: 0, step: 0 },
+  { separation: 0.3, x: -0.29, y: 0.38, z: 0.02, fan: 0.078, step: 0.052 },
 ]
 
 export function createSignalScene(canvas, options = {}) {
@@ -78,10 +86,20 @@ function buildSignalScene(renderer, canvas, options) {
   renderer.setClearColor(0x000000, 0)
   renderer.outputColorSpace = SRGBColorSpace
   renderer.toneMapping = ACESFilmicToneMapping
-  renderer.toneMappingExposure = 1
+  renderer.toneMappingExposure = 0.9
   renderer.shadowMap.enabled = true
   renderer.shadowMap.type = PCFSoftShadowMap
 
+  const palette = {
+    ink: '#172b45',
+    paper: '#f5f0e7',
+    accent: '#f49b82',
+    display: '#203753',
+    edge: '#a5b4c4',
+    light: '#f7f2e9',
+    'display-muted': '#c9d8e8',
+    ...options.palette,
+  }
   const scene = new Scene()
   const camera = new OrthographicCamera(-2.5, 2.5, 1.8, -1.8, 0.1, 30)
   camera.position.set(0, 0.8, 8)
@@ -95,33 +113,34 @@ function buildSignalScene(renderer, canvas, options) {
   environmentGenerator.dispose()
 
   const cream = new MeshPhysicalMaterial({
-    color: 0xb4ae95,
-    roughness: 0.48,
-    metalness: 0.1,
-    clearcoat: 0.15,
-    clearcoatRoughness: 0.4,
+    color: new Color(palette.paper).multiplyScalar(0.72),
+    roughness: 0.38,
+    metalness: 0.14,
+    clearcoat: 0.3,
+    clearcoatRoughness: 0.3,
     envMapIntensity: 0.5,
   })
   const graphite = new MeshStandardMaterial({
-    color: 0x1c302e,
-    metalness: 0.72,
-    roughness: 0.34,
-    envMapIntensity: 0.8,
-  })
-  const graphiteEdge = new MeshStandardMaterial({
-    color: 0x35453f,
-    metalness: 0.8,
-    roughness: 0.24,
-  })
-  const ochre = new MeshStandardMaterial({
-    color: 0xb89843,
-    metalness: 0.7,
+    color: palette.display,
+    metalness: 0.65,
     roughness: 0.29,
     envMapIntensity: 0.8,
   })
+  const graphiteEdge = new MeshStandardMaterial({
+    color: palette.edge,
+    metalness: 0.82,
+    roughness: 0.25,
+    envMapIntensity: 0.65,
+  })
+  const accent = new MeshStandardMaterial({
+    color: palette.accent,
+    metalness: 0.28,
+    roughness: 0.38,
+    envMapIntensity: 0.65,
+  })
   const recess = new MeshStandardMaterial({
-    color: 0x253732,
-    metalness: 0.4,
+    color: palette.ink,
+    metalness: 0.3,
     roughness: 0.6,
   })
 
@@ -129,26 +148,60 @@ function buildSignalScene(renderer, canvas, options) {
   assembly.position.set(-0.04, 0.08, 0)
   scene.add(assembly)
   const plateGeometry = new ExtrudeGeometry(monogramShape(), {
-    depth: 0.075,
+    depth: 0.11,
     bevelEnabled: true,
-    bevelThickness: 0.024,
-    bevelSize: 0.024,
-    bevelSegments: 4,
-    curveSegments: 40,
+    bevelThickness: 0.036,
+    bevelSize: 0.036,
+    bevelSegments: 5,
+    curveSegments: 48,
     steps: 1,
   })
-  plateGeometry.translate(0, 0, -0.0375)
+  plateGeometry.translate(0, 0, -0.055)
 
   const plates = Array.from({ length: 6 }, (_, index) => {
-    const face =
-      index === 0 || index === 5 ? cream : index === 2 ? ochre : graphite
-    const edge = index === 5 ? ochre : graphiteEdge
-    const plate = new Mesh(plateGeometry, [face, edge])
+    const face = index === 2 ? accent : graphite
+    const plate = new Mesh(plateGeometry, [face, graphiteEdge])
     plate.castShadow = true
     plate.receiveShadow = true
     assembly.add(plate)
     return plate
   })
+
+  // A smaller rounded face leaves a real metal lip around both contours.
+  const faceGeometry = new ExtrudeGeometry(monogramShape(0.055), {
+    depth: 0.016,
+    bevelEnabled: true,
+    bevelThickness: 0.013,
+    bevelSize: 0.015,
+    bevelSegments: 4,
+    curveSegments: 48,
+    steps: 1,
+  })
+  for (const index of [0, 5]) {
+    const face = new Mesh(faceGeometry, cream)
+    face.position.z = index === 5 ? 0.071 : -0.071
+    face.rotation.y = index === 5 ? 0 : Math.PI
+    // Mirroring the back face preserves the D outline when it turns away.
+    if (index === 0) face.scale.x = -1
+    face.castShadow = true
+    face.receiveShadow = true
+    plates[index].add(face)
+  }
+
+  const connectorGeometry = new CylinderGeometry(0.038, 0.038, 1, 20)
+  connectorGeometry.rotateX(Math.PI / 2)
+  const connectors = Array.from({ length: 5 }, (_, index) =>
+    [-1.105, 1.105].map((vertical) => {
+      const connector = new Mesh(connectorGeometry, graphiteEdge)
+      connector.castShadow = true
+      assembly.add(connector)
+      return { mesh: connector, index, vertical }
+    })
+  ).flat()
+  const connectorStart = new Vector3()
+  const connectorEnd = new Vector3()
+  const connectorDirection = new Vector3()
+  const connectorAxis = new Vector3(0, 0, 1)
 
   const details = new Group()
   plates[5].add(details)
@@ -157,22 +210,22 @@ function buildSignalScene(renderer, canvas, options) {
   const collarGeometry = new TorusGeometry(0.052, 0.007, 8, 32)
   const slotGeometry = new BoxGeometry(0.043, 0.009, 0.002)
   for (const vertical of [-1.105, 1.105]) {
-    const collar = new Mesh(collarGeometry, ochre)
-    collar.position.set(-0.731, vertical, 0.07)
+    const collar = new Mesh(collarGeometry, accent)
+    collar.position.set(-0.731, vertical, 0.119)
     details.add(collar)
     const fastener = new Mesh(fastenerGeometry, graphiteEdge)
-    fastener.position.set(-0.731, vertical, 0.07)
+    fastener.position.set(-0.731, vertical, 0.119)
     fastener.castShadow = true
     details.add(fastener)
     const slot = new Mesh(slotGeometry, recess)
-    slot.position.set(-0.731, vertical, 0.079)
+    slot.position.set(-0.731, vertical, 0.128)
     slot.rotation.z = -0.5
     details.add(slot)
   }
   const grooveGeometry = new BoxGeometry(0.14, 0.012, 0.003)
   for (let index = 0; index < 3; index += 1) {
     const groove = new Mesh(grooveGeometry, graphite)
-    groove.position.set(-0.73, 0.07 - index * 0.055, 0.063)
+    groove.position.set(-0.73, 0.07 - index * 0.055, 0.103)
     details.add(groove)
   }
 
@@ -188,9 +241,9 @@ function buildSignalScene(renderer, canvas, options) {
     64,
     62
   )
-  shadowGradient.addColorStop(0, 'rgba(17, 37, 30, 0.25)')
-  shadowGradient.addColorStop(0.35, 'rgba(17, 37, 30, 0.14)')
-  shadowGradient.addColorStop(1, 'rgba(17, 37, 30, 0)')
+  shadowGradient.addColorStop(0, 'rgba(14, 29, 50, 0.23)')
+  shadowGradient.addColorStop(0.35, 'rgba(14, 29, 50, 0.12)')
+  shadowGradient.addColorStop(1, 'rgba(14, 29, 50, 0)')
   shadowContext.fillStyle = shadowGradient
   shadowContext.fillRect(0, 0, 128, 128)
   const contactTexture = new CanvasTexture(shadowCanvas)
@@ -208,7 +261,7 @@ function buildSignalScene(renderer, canvas, options) {
   contactShadow.position.set(0.12, -1.52, 0)
   scene.add(contactShadow)
 
-  const keyLight = new DirectionalLight(0xfff5d9, 2.4)
+  const keyLight = new DirectionalLight(palette.light, 2.1)
   keyLight.position.set(-3, 5, 6)
   keyLight.castShadow = true
   keyLight.shadow.mapSize.set(2048, 2048)
@@ -222,13 +275,13 @@ function buildSignalScene(renderer, canvas, options) {
   keyLight.shadow.bias = -0.0003
   keyLight.shadow.radius = 3
   scene.add(keyLight)
-  const rimLight = new DirectionalLight(0xf2dba2, 2.4)
+  const rimLight = new DirectionalLight(palette['display-muted'], 2.4)
   rimLight.position.set(4, 1.5, -3)
   scene.add(rimLight)
-  const fillLight = new DirectionalLight(0xd2e4df, 1.1)
+  const fillLight = new DirectionalLight(palette.paper, 0.85)
   fillLight.position.set(2, 0.2, 5)
   scene.add(fillLight)
-  scene.add(new HemisphereLight(0xfff7e4, 0x334a43, 1.4))
+  scene.add(new HemisphereLight(palette.light, palette.ink, 1.1))
 
   let selection = MathUtils.clamp(options.selected || 0, 0, 2)
   let reducedMotion = Boolean(options.reducedMotion)
@@ -240,28 +293,65 @@ function buildSignalScene(renderer, canvas, options) {
   let lastTime = 0
   let firstRender = true
   let pointer = { x: 0, y: 0 }
-  let separation = arrangements[selection].separation
-  const rotation = { ...arrangements[selection] }
+  const pose = {
+    ...arrangements[selection],
+    pointerX: 0,
+    pointerY: 0,
+  }
+  const velocity = Object.fromEntries(Object.keys(pose).map((key) => [key, 0]))
 
   function targets() {
     const arrangement = arrangements[selection]
     return {
-      separation: arrangement.separation,
-      x: arrangement.x + (reducedMotion ? 0 : pointer.y * 0.12),
-      y: arrangement.y + (reducedMotion ? 0 : pointer.x * 0.15),
-      z: arrangement.z,
+      ...arrangement,
+      x: arrangement.x + (reducedMotion ? 0 : pointer.y * 0.13),
+      y: arrangement.y + (reducedMotion ? 0 : pointer.x * 0.18),
+      pointerX: reducedMotion ? 0 : pointer.x,
+      pointerY: reducedMotion ? 0 : pointer.y,
     }
   }
 
-  function applyPose(target, interpolation) {
-    separation = MathUtils.lerp(separation, target.separation, interpolation)
-    rotation.x = MathUtils.lerp(rotation.x, target.x, interpolation)
-    rotation.y = MathUtils.lerp(rotation.y, target.y, interpolation)
-    rotation.z = MathUtils.lerp(rotation.z, target.z, interpolation)
-    assembly.rotation.set(rotation.x, rotation.y, rotation.z)
-    plates.forEach((plate, index) => {
-      plate.position.z = (index - 2.5) * separation
+  function applyPose(target, elapsed, finish) {
+    const seconds = Math.min(elapsed, 32) / 1000
+    Object.keys(pose).forEach((key) => {
+      if (finish) {
+        pose[key] = target[key]
+        velocity[key] = 0
+      } else {
+        velocity[key] += (target[key] - pose[key]) * 280 * seconds
+        velocity[key] *= Math.exp(-22 * seconds)
+        pose[key] += velocity[key] * seconds
+      }
     })
+    assembly.rotation.set(pose.x, pose.y, pose.z)
+    plates.forEach((plate, index) => {
+      const depth = index - 2.5
+      plate.position.set(
+        depth * (pose.step + pose.pointerX * 0.009),
+        depth * (pose.step * 0.4 - pose.pointerY * 0.006),
+        depth * pose.separation
+      )
+      plate.rotation.z = depth * pose.fan
+    })
+    connectors.forEach(({ mesh, index, vertical }) => {
+      connectorStart
+        .set(-0.731, vertical, 0)
+        .applyEuler(plates[index].rotation)
+        .add(plates[index].position)
+      connectorEnd
+        .set(-0.731, vertical, 0)
+        .applyEuler(plates[index + 1].rotation)
+        .add(plates[index + 1].position)
+      connectorDirection.subVectors(connectorEnd, connectorStart)
+      mesh.scale.z = connectorDirection.length()
+      mesh.position.copy(connectorStart).add(connectorEnd).multiplyScalar(0.5)
+      mesh.quaternion.setFromUnitVectors(
+        connectorAxis,
+        connectorDirection.normalize()
+      )
+    })
+    keyLight.position.set(-3 + pose.pointerX * 1.4, 5 - pose.pointerY * 0.6, 6)
+    contactShadow.scale.x = 1 + (pose.separation - 0.235) * 0.5
   }
 
   function renderFrame(time) {
@@ -271,7 +361,7 @@ function buildSignalScene(renderer, canvas, options) {
     const finish = reducedMotion || time >= deadline
     const elapsed = lastTime ? Math.min(time - lastTime, 40) : 16
     lastTime = time
-    applyPose(target, finish ? 1 : 1 - Math.exp(-elapsed / 80))
+    applyPose(target, elapsed, finish)
     renderer.render(scene, camera)
     if (firstRender) {
       firstRender = false
@@ -313,7 +403,7 @@ function buildSignalScene(renderer, canvas, options) {
   return {
     resize(width, height) {
       if (disposed || width <= 0 || height <= 0) return
-      const halfHeight = 1.91
+      const halfHeight = 2.03
       const aspect = width / height
       camera.left = -halfHeight * aspect
       camera.right = halfHeight * aspect
@@ -331,7 +421,7 @@ function buildSignalScene(renderer, canvas, options) {
       )
       if (selection === nextSelection) return
       selection = nextSelection
-      requestRender(680)
+      requestRender(780)
     },
     setPointer(horizontal, vertical) {
       if (reducedMotion || !active) return
@@ -339,7 +429,7 @@ function buildSignalScene(renderer, canvas, options) {
         x: MathUtils.clamp(horizontal, -1, 1),
         y: MathUtils.clamp(vertical, -1, 1),
       }
-      requestRender(300)
+      requestRender(420)
     },
     setActive(value) {
       active = value

@@ -3,60 +3,60 @@
   <desc id="description">Architecture overview of a September 2026 migration. Seven parallel routes connect the previous AWS and Kestra platform to Railway and n8n.</desc>
   <defs>
     <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#ebe8d9"/>
-      <stop offset="1" stop-color="#dcdcc9"/>
+      <stop stop-color="#faf7f1"/>
+      <stop offset="1" stop-color="#e5dfd3"/>
     </linearGradient>
     <pattern id="registration" width="32" height="32" patternUnits="userSpaceOnUse">
-      <circle cx="1" cy="1" r="0.65" fill="#173633" opacity="0.13"/>
+      <circle cx="1" cy="1" r="0.65" fill="#172b45" opacity="0.13"/>
     </pattern>
   </defs>
-  <path fill="url(#paper)" d="M0 0h1000v625H0z"/>
-  <path fill="url(#registration)" d="M0 0h1000v625H0z"/>
-  <g fill="#173633" font-family="Arial, Helvetica, sans-serif">
+  <rect fill="url(#paper)" width="1000" height="625" rx="20"/>
+  <rect fill="url(#registration)" width="1000" height="625" rx="20"/>
+  <g fill="#172b45" font-family="Arial, Helvetica, sans-serif">
     <g font-family="monospace" font-size="14" letter-spacing="1.5">
       <text x="65" y="55">ARCHITECTURE OVERVIEW</text>
       <text x="936" y="55" text-anchor="end">WORKFLOW MIGRATION</text>
     </g>
-    <path d="M65 78H935" stroke="#173633" stroke-opacity="0.22"/>
-    <g font-family="monospace" font-size="13" letter-spacing="1.5" fill="#52675b">
+    <path d="M65 78H935" stroke="#172b45" stroke-opacity="0.22"/>
+    <g font-family="monospace" font-size="13" letter-spacing="1.5" fill="#4d5b6e">
       <text x="65" y="119">BEFORE</text>
       <text x="717" y="119">AFTER</text>
     </g>
     <text x="61" y="171" font-size="53" font-weight="600" letter-spacing="-2.5">AWS</text>
     <text x="714" y="171" font-size="53" font-weight="600" letter-spacing="-2.5">Railway</text>
-    <text x="65" y="207" font-size="22" fill="#52675b">Kestra</text>
-    <text x="717" y="207" font-size="22" fill="#52675b">n8n</text>
+    <text x="65" y="207" font-size="22" fill="#4d5b6e">Kestra</text>
+    <text x="717" y="207" font-size="22" fill="#4d5b6e">n8n</text>
   </g>
-  <g fill="none" stroke="#315548" stroke-width="1.6">
+  <g fill="none" stroke="#4d5b6e" stroke-width="1.6">
     <path d="M127 282H261C323 282 326 246 389 246H581C648 246 650 282 717 282H872"/>
     <path d="M127 301H264C326 301 329 271 392 271H584C650 271 653 301 720 301H872"/>
     <path d="M127 320H267C330 320 332 296 395 296H587C653 296 656 320 723 320H872"/>
-    <path d="M127 339H270C333 339 335 321 398 321H590C656 321 659 339 726 339H872" stroke="#9b791e" stroke-width="3.2"/>
+    <path d="M127 339H270C333 339 335 321 398 321H590C656 321 659 339 726 339H872" stroke="#8d3d2d" stroke-width="3.2"/>
     <path d="M127 358H273C336 358 338 346 401 346H593C659 346 662 358 729 358H872"/>
     <path d="M127 377H276C339 377 341 371 404 371H596C662 371 665 377 732 377H872"/>
     <path d="M127 396H279C342 396 344 396 407 396H599C665 396 668 396 735 396H872"/>
   </g>
-  <g fill="#e3e0cf" stroke="#315548" stroke-width="1.4">
+  <g fill="#f5f0e7" stroke="#4d5b6e" stroke-width="1.4">
     <circle cx="123" cy="282" r="4"/><circle cx="123" cy="301" r="4"/>
-    <circle cx="123" cy="320" r="4"/><circle cx="123" cy="339" r="4" stroke="#9b791e"/>
+    <circle cx="123" cy="320" r="4"/><circle cx="123" cy="339" r="4" stroke="#8d3d2d"/>
     <circle cx="123" cy="358" r="4"/><circle cx="123" cy="377" r="4"/>
     <circle cx="123" cy="396" r="4"/>
   </g>
-  <g fill="#315548">
+  <g fill="#4d5b6e">
     <circle cx="876" cy="282" r="3.5"/><circle cx="876" cy="301" r="3.5"/>
-    <circle cx="876" cy="320" r="3.5"/><circle cx="876" cy="339" r="4" fill="#9b791e"/>
+    <circle cx="876" cy="320" r="3.5"/><circle cx="876" cy="339" r="4" fill="#8d3d2d"/>
     <circle cx="876" cy="358" r="3.5"/><circle cx="876" cy="377" r="3.5"/>
     <circle cx="876" cy="396" r="3.5"/>
   </g>
-  <path d="m841 332 8 7-8 7" fill="none" stroke="#9b791e" stroke-width="2"/>
-  <path d="M96 267v144M902 267v144" stroke="#52675b" stroke-width="1" stroke-opacity="0.24"/>
-  <g fill="#173633" font-family="Arial, Helvetica, sans-serif">
+  <path d="m841 332 8 7-8 7" fill="none" stroke="#8d3d2d" stroke-width="2"/>
+  <path d="M96 267v144M902 267v144" stroke="#4d5b6e" stroke-width="1" stroke-opacity="0.24"/>
+  <g fill="#172b45" font-family="Arial, Helvetica, sans-serif">
     <text x="63" y="529" font-size="112" font-weight="500" letter-spacing="-5">7</text>
     <text x="159" y="486" font-size="26" font-weight="500" letter-spacing="-0.6">production workflows</text>
-    <text x="160" y="519" font-size="17" fill="#52675b">Kestra on AWS → n8n on Railway</text>
+    <text x="160" y="519" font-size="17" fill="#4d5b6e">Kestra on AWS → n8n on Railway</text>
   </g>
-  <path d="M65 556H935" stroke="#173633" stroke-opacity="0.22"/>
-  <g fill="#52675b" font-family="monospace" font-size="13" letter-spacing="0.8">
+  <path d="M65 556H935" stroke="#172b45" stroke-opacity="0.22"/>
+  <g fill="#4d5b6e" font-family="monospace" font-size="13" letter-spacing="0.8">
     <text x="65" y="590">PRODUCTION CUTOVER</text>
     <text x="935" y="590" text-anchor="end">SEPTEMBER 2026</text>
   </g>

@@ -29,7 +29,9 @@ export default function useConsoleMotion(rootRef, selected) {
 
     const preference = view.matchMedia('(prefers-reduced-motion: reduce)')
     const buttons = Array.from(
-      root.querySelectorAll('.console-selectors button')
+      root.querySelectorAll(
+        '.console-selectors button, .console-lab-link, .console-resume-link'
+      )
     )
     const states = new Map(
       buttons.map((button) => [
@@ -48,6 +50,38 @@ export default function useConsoleMotion(rootRef, selected) {
     let screenAnimation = null
     let screenStyles = null
     let disposed = false
+    const detailAnimations = new Map()
+    const entranceAnimations = new Map()
+
+    const clearAnimation = (animations, element) => {
+      const animation = animations.get(element)
+      if (!animation) return
+      animations.delete(element)
+      animation.controls.cancel()
+      Object.entries(animation.styles).forEach(([property, value]) => {
+        element.style[property] = value
+      })
+    }
+
+    const animateElement = (animations, element, keyframes, options) => {
+      if (!element || disposed || preference.matches) return
+      clearAnimation(animations, element)
+      const styles = Object.fromEntries(
+        Object.keys(keyframes).map((property) => [
+          property,
+          element.style[property],
+        ])
+      )
+      const animation = {
+        styles,
+        controls: animate(element, keyframes, options),
+      }
+      animations.set(element, animation)
+      animation.controls.then(() => {
+        if (animations.get(element) === animation)
+          clearAnimation(animations, element)
+      })
+    }
 
     const listen = (element, event, handler) => {
       element.addEventListener(event, handler)
@@ -84,6 +118,9 @@ export default function useConsoleMotion(rootRef, selected) {
     }
 
     const resetScreen = () => {
+      Array.from(detailAnimations.keys()).forEach((element) =>
+        clearAnimation(detailAnimations, element)
+      )
       screenAnimation?.cancel()
       screenAnimation = null
       if (screen && screenStyles) {
@@ -107,13 +144,67 @@ export default function useConsoleMotion(rootRef, selected) {
         screen,
         {
           opacity: [0.65, 1],
-          transform: ['translateY(4px)', 'translateY(0px)'],
+          transform: [
+            'translateY(10px) scale(0.98)',
+            'translateY(0px) scale(1)',
+          ],
         },
         {
-          duration: 0.3,
-          transform: { type: spring, duration: 0.34, bounce: 0.08 },
-          opacity: { duration: 0.18, ease: 'easeOut' },
+          duration: 0.46,
+          transform: { type: spring, duration: 0.5, bounce: 0.12 },
+          opacity: { duration: 0.28, ease: 'easeOut' },
         }
+      )
+
+      screen
+        .querySelectorAll('.console-gpu-bank i')
+        .forEach((element, index) => {
+          animateElement(
+            detailAnimations,
+            element,
+            {
+              opacity: [0.35, 1],
+              transform: [
+                'translateY(8px) scaleY(0.7)',
+                'translateY(0px) scaleY(1)',
+              ],
+            },
+            {
+              duration: 0.46,
+              delay: 0.06 + index * 0.045,
+              ease: [0.22, 1, 0.36, 1],
+            }
+          )
+        })
+      screen
+        .querySelectorAll('.console-flow-readout path')
+        .forEach((element, index) => {
+          if (typeof element.getTotalLength !== 'function') return
+          const length = element.getTotalLength()
+          const previousDash = element.style.strokeDasharray
+          element.style.strokeDasharray = `${length}`
+          animateElement(
+            detailAnimations,
+            element,
+            { strokeDashoffset: [`${length}`, '0'] },
+            { duration: 0.52, delay: index * 0.035, ease: [0.22, 1, 0.36, 1] }
+          )
+          const animation = detailAnimations.get(element)
+          if (animation) animation.styles.strokeDasharray = previousDash
+        })
+      const result = screen.querySelector(
+        '.console-digits > span:last-child, .console-flow-readout strong, .console-inference-readout > span:first-child'
+      )
+      animateElement(
+        detailAnimations,
+        result,
+        {
+          transform: [
+            'translateY(6px) scale(0.94)',
+            'translateY(0px) scale(1)',
+          ],
+        },
+        { type: spring, duration: 0.55, bounce: 0.13, delay: 0.04 }
       )
     }
 
@@ -176,10 +267,20 @@ export default function useConsoleMotion(rootRef, selected) {
     listen(view, 'pointerup', releaseButtons)
     listen(view, 'pointercancel', releaseButtons)
     listen(view, 'blur', clearInteraction)
+    listen(root, 'focusin', (event) => {
+      if (screen?.contains(event.target)) resetScreen()
+      Array.from(entranceAnimations.keys()).forEach((element) => {
+        if (element.contains(event.target))
+          clearAnimation(entranceAnimations, element)
+      })
+    })
 
     const updatePreference = () => {
       clearInteraction()
       resetScreen()
+      Array.from(entranceAnimations.keys()).forEach((element) =>
+        clearAnimation(entranceAnimations, element)
+      )
     }
 
     if (typeof preference.addEventListener === 'function') {
@@ -194,12 +295,31 @@ export default function useConsoleMotion(rootRef, selected) {
       revealScreen()
     }
 
+    root
+      .querySelectorAll(
+        '.console-identity h1, .console-role, .console-intro, .console-controls-header, .console-bottom-strip'
+      )
+      .forEach((element, index) => {
+        animateElement(
+          entranceAnimations,
+          element,
+          {
+            opacity: [0.8, 1],
+            transform: ['translateY(12px)', 'translateY(0px)'],
+          },
+          { duration: 0.58, delay: index * 0.04, ease: [0.22, 1, 0.36, 1] }
+        )
+      })
+
     return () => {
       disposed = true
       refreshRef.current = null
       removeListeners.forEach((remove) => remove())
       states.forEach((state, button) => resetButton(button, state))
       resetScreen()
+      Array.from(entranceAnimations.keys()).forEach((element) =>
+        clearAnimation(entranceAnimations, element)
+      )
     }
   }, [rootRef])
 

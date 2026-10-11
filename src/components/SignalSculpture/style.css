@@ -21,6 +21,18 @@
   opacity: 1;
 }
 
+.signal-sculpture__face {
+  fill: var(--brand-paper, #f5f0e7);
+}
+
+.signal-sculpture__plate {
+  fill: var(--brand-display, #203753);
+}
+
+.signal-sculpture__accent {
+  fill: var(--brand-accent, #f49b82);
+}
+
 .signal-sculpture__canvas {
   opacity: 0;
 }

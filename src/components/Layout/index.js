@@ -102,7 +102,7 @@ export default function Layout() {
                 fillRule="evenodd"
                 d="M75 28H125C182 28 211 60 211 110S182 192 125 192H75V28ZM110 63V157H126C158 157 175 141 175 110S158 63 126 63H110Z"
               />
-              <path d="M220 144h8v46h-8z" fill="#b79936" />
+              <path d="M220 144h8v46h-8z" fill="var(--brand-accent)" />
             </svg>
           </span>
           <span>Diego Espino</span>

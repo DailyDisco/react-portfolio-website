@@ -1,9 +1,9 @@
 .lab-explorer {
-  --lab-ink: #f2f5e6;
-  --lab-muted: #c3d4b7;
-  --lab-accent: #ebcc61;
-  --lab-line: #64816a;
-  color: #173633;
+  --lab-ink: var(--brand-display-ink);
+  --lab-muted: var(--brand-display-muted);
+  --lab-accent: var(--brand-accent);
+  --lab-line: var(--brand-display-line);
+  color: var(--brand-ink);
   padding: 0;
   background: transparent;
   border: 0;
@@ -23,11 +23,11 @@
   gap: 10px;
   min-height: 52px;
   padding: 10px 14px;
-  border: 1px solid #9faa98;
+  border: 1px solid var(--brand-edge);
   border-bottom-width: 3px;
-  border-radius: 5px;
-  color: #173633;
-  background: #d6d9c8;
+  border-radius: var(--radius-control);
+  color: var(--brand-ink);
+  background: var(--brand-surface);
   font: inherit;
   font-size: 0.9375rem;
   font-weight: 550;
@@ -38,11 +38,11 @@
   flex-shrink: 0;
 }
 .lab-explorer-controls button:hover {
-  background: #ececdf;
+  background: var(--brand-surface-raised);
 }
 .lab-explorer-controls button[aria-pressed='true'] {
   background: var(--lab-accent);
-  border-color: #a49242;
+  border-color: var(--brand-accent-edge);
   transform: translateY(1px);
 }
 
@@ -98,7 +98,7 @@
   }
 }
 .lab-explorer-controls button:focus-visible {
-  outline: 3px solid #173633;
+  outline: 3px solid var(--brand-ink);
   outline-offset: 3px;
 }
 .lab-explorer-content {
@@ -108,10 +108,10 @@
   gap: 18px 28px;
   padding: 24px;
   color: var(--lab-ink);
-  background: #193e36;
-  border: 5px solid #bdc4ac;
-  border-radius: 6px;
-  box-shadow: inset 0 2px 7px #0a241b55;
+  background: var(--brand-display);
+  border: 5px solid var(--brand-edge);
+  border-radius: var(--radius-display);
+  box-shadow: inset 0 2px 7px rgba(var(--brand-shadow-rgb), 0.33);
 }
 .lab-explorer-copy {
   min-width: 0;
@@ -145,17 +145,17 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
   padding-top: 18px;
-  border-top: 1px solid #64816a;
+  border-top: 1px solid var(--brand-display-line);
   margin: 0;
 }
 .lab-explorer-details > div {
-  border-left: 2px solid #64816a;
+  border-left: 2px solid var(--brand-display-line);
   padding-left: 12px;
 }
 .lab-explorer-details dt {
   margin-bottom: 2px;
   color: var(--lab-muted);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.5;
 }
 .lab-explorer-details dd {
@@ -181,7 +181,7 @@
   max-width: 340px;
   margin: 0 auto;
   color: var(--lab-muted);
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   text-align: center;
 }
@@ -219,11 +219,11 @@
 .lab-arrow,
 .lab-operation-icon {
   fill: none;
-  stroke: #a8bf92;
+  stroke: var(--brand-diagram);
   stroke-width: 1.6;
 }
 .lab-guide {
-  stroke: #57765d;
+  stroke: var(--brand-display-line);
 }
 .lab-trace-accent,
 .lab-request-path,
@@ -236,24 +236,24 @@
   fill: var(--lab-accent);
 }
 .lab-board-edge {
-  fill: #3b5946;
-  stroke: #adc394;
+  fill: var(--brand-display-raised);
+  stroke: var(--brand-diagram);
   stroke-width: 1;
 }
 .lab-board-face {
-  fill: #244535;
-  stroke: #789567;
+  fill: var(--brand-display-raised);
+  stroke: var(--brand-diagram-muted);
   stroke-width: 1;
 }
 .lab-board-line {
-  stroke: #7d996c;
+  stroke: var(--brand-diagram-muted);
   stroke-width: 1;
 }
 .lab-board-chip {
   fill: var(--lab-accent);
 }
 .lab-board-circuit {
-  stroke: #aec093;
+  stroke: var(--brand-diagram);
   stroke-width: 1;
 }
 .lab-gateway {
@@ -261,7 +261,7 @@
 }
 .lab-operation-node,
 .lab-engine-core {
-  fill: #254a3c;
+  fill: var(--brand-display-raised);
   stroke: var(--lab-accent);
   stroke-width: 1.6;
 }
@@ -269,12 +269,12 @@
   stroke-width: 2;
 }
 .lab-server rect {
-  fill: #2d5140;
-  stroke: #a8bf92;
+  fill: var(--brand-display-raised);
+  stroke: var(--brand-diagram);
   stroke-width: 1.4;
 }
 .lab-server path {
-  stroke: #91ad7b;
+  stroke: var(--brand-diagram-muted);
   stroke-width: 1.4;
 }
 .lab-server circle {
@@ -328,7 +328,7 @@
     flex-direction: column;
     gap: 6px;
     padding: 9px 4px;
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
     line-height: 1.25;
   }
   .lab-explorer-content {
@@ -348,7 +348,7 @@
     margin-left: -10px;
   }
   .lab-explorer-figure figcaption {
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
   }
 }
 @media (prefers-reduced-motion: reduce) {

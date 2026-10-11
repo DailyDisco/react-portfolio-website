@@ -5,12 +5,12 @@
   gap: 32px;
   margin-top: 26px;
   padding: 22px 4px 8px;
-  color: #f2f5e6;
+  color: var(--brand-display-ink);
 }
 .next-chapter-label {
   display: block;
   margin-bottom: 7px;
-  color: #c3d4b7;
+  color: var(--brand-display-muted);
   font-size: 0.875rem;
 }
 .next-chapter-title {
@@ -20,7 +20,7 @@
 }
 .next-chapter p {
   max-width: 43ch;
-  color: #c3d4b7;
+  color: var(--brand-display-muted);
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -29,21 +29,21 @@
   place-items: center;
   width: 52px;
   height: 52px;
-  border: 1px solid #83978b;
+  border: 1px solid var(--brand-hardware);
   border-bottom-width: 3px;
-  border-radius: 5px;
-  color: #173633;
-  background: #ebcc61;
+  border-radius: var(--radius-control);
+  color: var(--brand-ink);
+  background: var(--brand-accent);
   transition:
     background 180ms ease,
     translate 180ms ease;
 }
 .next-chapter:hover .next-chapter-arrow {
-  background: #f3d77a;
+  background: var(--brand-accent-hover);
   translate: 3px 0;
 }
 .next-chapter:focus-visible {
-  outline-color: #ebcc61;
+  outline-color: var(--brand-accent);
 }
 @media (max-width: 760px) {
   .next-chapter {

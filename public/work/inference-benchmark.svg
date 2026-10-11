@@ -3,57 +3,57 @@
   <desc id="description">Measured on six RTX 3090 GPUs: cold prompt throughput increased from 1,238 to 1,458 tokens per second after a merged ExLlamaV3 fix. Decode speed was unchanged. The six stacked plates are an artistic representation of the hardware.</desc>
   <defs>
     <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#1c4039"/>
-      <stop offset="1" stop-color="#122e2b"/>
+      <stop stop-color="#203753"/>
+      <stop offset="1" stop-color="#0e1d32"/>
     </linearGradient>
     <linearGradient id="plate-top" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#6b7a65"/>
-      <stop offset="0.28" stop-color="#465f50"/>
-      <stop offset="1" stop-color="#253e35"/>
+      <stop stop-color="#788b9f"/>
+      <stop offset="0.28" stop-color="#4d6682"/>
+      <stop offset="1" stop-color="#203753"/>
     </linearGradient>
     <linearGradient id="plate-front" x1="0" y1="0" x2="0" y2="1">
-      <stop stop-color="#4f6150"/>
-      <stop offset="0.3" stop-color="#294338"/>
-      <stop offset="1" stop-color="#142e29"/>
+      <stop stop-color="#566f89"/>
+      <stop offset="0.3" stop-color="#304b68"/>
+      <stop offset="1" stop-color="#172b45"/>
     </linearGradient>
     <linearGradient id="plate-side" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#2c483b"/>
-      <stop offset="1" stop-color="#102621"/>
+      <stop stop-color="#304b68"/>
+      <stop offset="1" stop-color="#0e1d32"/>
     </linearGradient>
     <linearGradient id="plate-edge" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#d1c592"/>
-      <stop offset="0.5" stop-color="#6a7659"/>
-      <stop offset="1" stop-color="#a3925f"/>
+      <stop stop-color="#e8c4b7"/>
+      <stop offset="0.5" stop-color="#809bb5"/>
+      <stop offset="1" stop-color="#b77967"/>
     </linearGradient>
     <radialGradient id="ground">
-      <stop stop-color="#061b17" stop-opacity="0.8"/>
-      <stop offset="1" stop-color="#061b17" stop-opacity="0"/>
+      <stop stop-color="#061020" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#061020" stop-opacity="0"/>
     </radialGradient>
     <filter id="plate-shadow" x="-20%" y="-35%" width="150%" height="190%">
-      <feDropShadow dx="3" dy="7" stdDeviation="4" flood-color="#081d17" flood-opacity="0.5"/>
+      <feDropShadow dx="3" dy="7" stdDeviation="4" flood-color="#061020" flood-opacity="0.5"/>
     </filter>
     <g id="plate">
       <path d="M-130-55-36 7V21L-128-40Q-130-41-130-44Z" fill="url(#plate-side)"/>
       <path d="M-36 7 164-48V-36Q164-34 161-33L-33 21Q-36 22-36 18Z" fill="url(#plate-front)"/>
       <path d="M-127-57 67-110Q70-111 73-109L162-51Q166-48 162-47L-33 8Q-36 9-39 7L-129-52Q-132-55-127-57Z" fill="url(#plate-top)" stroke="url(#plate-edge)" stroke-width="0.9"/>
-      <path d="M-34 8 160-46" stroke="#d4c68f" stroke-opacity="0.4" stroke-width="1.1"/>
-      <path d="M-32 17 153-34" stroke="#8b986d" stroke-opacity="0.22" stroke-width="0.7"/>
+      <path d="M-34 8 160-46" stroke="#f49b82" stroke-opacity="0.4" stroke-width="1.1"/>
+      <path d="M-32 17 153-34" stroke="#aec8e0" stroke-opacity="0.22" stroke-width="0.7"/>
       <g transform="matrix(1 -.275 .94 .61 -117 -54)">
-        <rect width="182" height="87" rx="2" fill="none" stroke="#a1ad8d" stroke-opacity="0.2"/>
-        <path d="M8 8v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70" stroke="#152e26" stroke-width="1.5"/>
-        <path d="M9 8v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70" stroke="#7d9071" stroke-opacity="0.5" stroke-width="0.45"/>
-        <rect x="111" y="21" width="43" height="43" rx="1.7" fill="#1c362d" stroke="#acaa7c" stroke-opacity="0.8" stroke-width="1.2"/>
-        <rect x="116" y="26" width="33" height="33" fill="#425d4b" stroke="#9eaa80" stroke-opacity="0.5" stroke-width="0.7"/>
-        <path d="M96 13h24l6 6h19l7-7h19v21h-13M96 74h24l6-7h19l7 7h19V54h-13M97 33h10m-10 10h10m-10 10h10" fill="none" stroke="#bcc08b" stroke-opacity="0.4" stroke-width="0.6"/>
+        <rect width="182" height="87" rx="2" fill="none" stroke="#aec8e0" stroke-opacity="0.2"/>
+        <path d="M8 8v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70" stroke="#172b45" stroke-width="1.5"/>
+        <path d="M9 8v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70m5-70v70" stroke="#809bb5" stroke-opacity="0.5" stroke-width="0.45"/>
+        <rect x="111" y="21" width="43" height="43" rx="1.7" fill="#172b45" stroke="#f49b82" stroke-opacity="0.8" stroke-width="1.2"/>
+        <rect x="116" y="26" width="33" height="33" fill="#304b68" stroke="#aec8e0" stroke-opacity="0.5" stroke-width="0.7"/>
+        <path d="M96 13h24l6 6h19l7-7h19v21h-13M96 74h24l6-7h19l7 7h19V54h-13M97 33h10m-10 10h10m-10 10h10" fill="none" stroke="#c9d8e8" stroke-opacity="0.4" stroke-width="0.6"/>
       </g>
     </g>
   </defs>
-  <path fill="url(#background)" d="M0 0h1000v625H0z"/>
-  <g fill="#c3ccb0" font-family="monospace" font-size="14" letter-spacing="1.5">
+  <rect fill="url(#background)" width="1000" height="625" rx="20"/>
+  <g fill="#c9d8e8" font-family="monospace" font-size="14" letter-spacing="1.5">
     <text x="65" y="55">MEASURED / LOCAL INFERENCE</text>
     <text x="936" y="55" text-anchor="end">EXLLAMAV3</text>
   </g>
-  <path d="M65 78H935" stroke="#bfcaab" stroke-opacity="0.25"/>
+  <path d="M65 78H935" stroke="#c9d8e8" stroke-opacity="0.25"/>
   <ellipse cx="234" cy="467" rx="199" ry="31" fill="url(#ground)"/>
   <g transform="translate(213 247)" filter="url(#plate-shadow)">
     <use href="#plate" transform="translate(15 150)"/>
@@ -64,18 +64,18 @@
     <use href="#plate"/>
   </g>
   <g font-family="Arial, Helvetica, sans-serif">
-    <text x="487" y="148" fill="#c3ccb0" font-family="monospace" font-size="14" letter-spacing="1.1">COLD PROMPT PROCESSING</text>
-    <text x="483" y="220" fill="#b4c1a3" font-size="57" font-weight="400" letter-spacing="-2.5">1,238</text>
-    <path d="M660 198h34m-11-10 11 10-11 10" fill="none" stroke="#a4b189" stroke-width="1.5"/>
-    <text x="715" y="220" fill="#eee9ce" font-size="57" font-weight="500" letter-spacing="-2.5">1,458</text>
-    <text x="897" y="218" fill="#c3ccb0" font-size="14">tok/s</text>
-    <path d="M489 250H935" stroke="#bfcaab" stroke-opacity="0.25"/>
-    <text x="478" y="389" fill="#e8cb62" font-size="127" font-weight="400" letter-spacing="-6">+18<tspan font-size="81" letter-spacing="-2">%</tspan></text>
-    <text x="489" y="427" fill="#eee9ce" font-size="22" letter-spacing="-0.4">cold prompt throughput</text>
-    <text x="489" y="474" fill="#b4c1a3" font-size="17">Decode speed unchanged.</text>
+    <text x="487" y="148" fill="#c9d8e8" font-family="monospace" font-size="14" letter-spacing="1.1">COLD PROMPT PROCESSING</text>
+    <text x="483" y="220" fill="#c9d8e8" font-size="57" font-weight="400" letter-spacing="-2.5">1,238</text>
+    <path d="M660 198h34m-11-10 11 10-11 10" fill="none" stroke="#aec8e0" stroke-width="1.5"/>
+    <text x="715" y="220" fill="#f7f2e9" font-size="57" font-weight="500" letter-spacing="-2.5">1,458</text>
+    <text x="897" y="218" fill="#c9d8e8" font-size="14">tok/s</text>
+    <path d="M489 250H935" stroke="#c9d8e8" stroke-opacity="0.25"/>
+    <text x="478" y="389" fill="#f49b82" font-size="127" font-weight="400" letter-spacing="-6">+18<tspan font-size="81" letter-spacing="-2">%</tspan></text>
+    <text x="489" y="427" fill="#f7f2e9" font-size="22" letter-spacing="-0.4">cold prompt throughput</text>
+    <text x="489" y="474" fill="#c9d8e8" font-size="17">Decode speed unchanged.</text>
   </g>
-  <path d="M65 556H935" stroke="#bfcaab" stroke-opacity="0.25"/>
-  <g fill="#c3ccb0" font-family="monospace" font-size="13" letter-spacing="0.5">
+  <path d="M65 556H935" stroke="#c9d8e8" stroke-opacity="0.25"/>
+  <g fill="#c9d8e8" font-family="monospace" font-size="13" letter-spacing="0.5">
     <text x="65" y="590">MEASURED ON SIX RTX 3090s</text>
     <text x="935" y="590" text-anchor="end">MERGED UPSTREAM FIX</text>
   </g>
