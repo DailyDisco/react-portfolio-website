@@ -203,7 +203,13 @@ export default function usePageMotion(rootRef) {
     }
 
     const clearPointerPress = () => {
+      const control =
+        pointerPress?.control || getControl(root.ownerDocument.activeElement)
       pointerPress = null
+      if (control) {
+        const element = getControlElement(control)
+        if (element) clearAnimation(element)
+      }
     }
 
     let removePreferenceListener
