@@ -17,7 +17,7 @@ All portfolio content and images live in the repository. There is no database, s
 
 - `src/data/projects.json`: the eight earlier projects exported from Firestore, retained as a source archive. They are no longer shown in the public gallery.
 - `src/data/caseStudies.js`: current engineering case studies, measured outcomes, visuals, and public source links. `featuredCaseStudies` selects Emmut, the Craft Digital migration, and local inference. The confidential mixed-reality engagement is a shorter supporting case.
-- `src/components/Home`, `About`, and `Infrastructure`: introduction, experience, and technical background.
+- `src/components/Home` and `HomeStory`: the opening instrument, four-chapter hiring story, and chapter navigation. `About` and `Infrastructure` provide additional personal and technical context.
 - `public/portfolio/`: project images. Set a record's `image` to a path such as `/portfolio/my-project/preview.jpg`, or `null` for a text-only entry.
 - `public/resume/`: current one-page and detailed resumes. The primary download uses the one-page PDF.
 - `src/data/pageMetadata.json`: titles, descriptions, canonical URLs, and sharing metadata for the nine public pages. Keep its routes aligned with `public/sitemap.xml`.
@@ -29,7 +29,11 @@ The Firestore migration preserved all eight record IDs, names, and descriptions.
 
 Body copy uses the native system sans-serif for legibility; Manrope is reserved for the wordmark and headings. Project summaries are concise, primary text is larger, and secondary captions use normal reading text rather than dense micro-labels.
 
-The homepage is a compact Digital Diego instrument panel. Native Product, Cloud, and Systems buttons switch between three project summaries and their case-study links. The homelab and resume have direct links below the readout. Its state change supports keyboard and touch, announces updated content, and respects reduced motion. `LabExplorer` remains on the infrastructure page. Case-study figures live in `ProjectFigure`; measured results include their context, and conceptual illustrations are labeled.
+The homepage opens with a compact Digital Diego instrument panel. Native Product, Cloud, and Systems buttons switch between three project summaries and their case-study links. The homelab and resume have direct links below the readout. Its state change supports keyboard and touch, announces updated content, and respects reduced motion.
+
+Below the opening instrument, `HomeStory` tells the full hiring story through Results, Delivery, Systems, and About. It includes measured outcomes, leadership, cloud migration, current infrastructure, upstream fixes, working style, experience, credentials, personal context, and direct hiring actions. These essentials remain available without operating the project selectors or opening another page. `HomeJourney` provides a sticky four-stop guide with native fragment links and an active stop that follows scrolling in either direction. Chapters begin visible; their once-only entrances settle on keyboard focus, reduced-motion changes, and route disposal. Missing observer or animation APIs retain visible content and native navigation.
+
+`LabExplorer` remains on the infrastructure page. Case-study figures live in `ProjectFigure`; measured results include their context, and conceptual illustrations are labeled. The current seven-GPU server and 168 GiB combined memory are separate from the earlier six-GPU performance benchmark.
 
 `SignalSculpture` builds the six-layer D monogram in Three.js. Its scene loads when visible, renders only during interaction or settling, pauses offscreen, and disposes its GPU resources on navigation. A static SVG remains available when WebGL fails, including context loss. Project selections change the assembly's arrangement. Motion's vanilla JavaScript API supplies physical button springs and screen transitions; it avoids the newer React bindings and preserves the existing React 17 runtime. Reduced-motion preferences apply immediately to both effects.
 
@@ -42,7 +46,7 @@ CI=true npm test -- --watchAll=false --runInBand
 CI=true npm run build
 ```
 
-Tests cover navigation and old-route redirects, archive rendering, failed images, safe external links, project and infrastructure selection, and contact submission behavior. Contact requests are mocked in automated checks; actual email delivery still needs an owner-controlled check. The existing EmailJS service and template remain separate from the removed Firebase integration.
+Tests cover the complete homepage hiring story and native chapter destinations, navigation and old-route redirects, archive rendering, failed images, safe external links, project and infrastructure selection, and contact submission behavior. Browser review should also check chapter progress while scrolling in both directions, sticky-guide clearance, focus, live reduced-motion preferences, missing animation APIs, and route cleanup. Contact requests are mocked in automated checks; actual email delivery still needs an owner-controlled check. The existing EmailJS service and template remain separate from the removed Firebase integration.
 
 ## Deploy
 
