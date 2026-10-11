@@ -45,7 +45,7 @@ test('project controls update the evidence and destination while retaining keybo
   ).toHaveAttribute('href', '/work/local-inference')
 })
 
-test('the compact homepage keeps hiring evidence, deeper work, and contact actions immediately available', () => {
+test('the homepage keeps hiring evidence, deeper work, and contact actions immediately available', () => {
   render(
     <MemoryRouter>
       <Home />
@@ -93,4 +93,34 @@ test('the compact homepage keeps hiring evidence, deeper work, and contact actio
     'href',
     '/about'
   )
+})
+
+test('visitors can pause the mascot and still navigate all project evidence', async () => {
+  const user = userEvent.setup()
+  render(
+    <MemoryRouter>
+      <Home />
+    </MemoryRouter>
+  )
+  const pause = screen.getByRole('button', { name: /Pause animation/ })
+  await user.click(pause)
+  expect(pause).toHaveAttribute('aria-pressed', 'true')
+  expect(screen.getByRole('button', { name: /Resume animation/ })).toHaveFocus()
+  await user.click(screen.getByRole('button', { name: /Systems/ }))
+  expect(
+    screen.getByRole('link', { name: 'Open Local inference case study' })
+  ).toHaveAttribute('href', '/work/local-inference')
+  expect(
+    screen.getByRole('link', { name: /Saved per employee/ })
+  ).toHaveAttribute('href', '/work/property-platform')
+  expect(
+    screen.getByRole('link', { name: /Production workflows migrated/ })
+  ).toHaveAttribute('href', '/work/workflow-migration')
+  expect(
+    screen.getByRole('link', { name: /Fixes merged upstream/ })
+  ).toHaveAttribute('href', '/work/local-inference')
+  await user.click(screen.getByRole('button', { name: /Resume animation/ }))
+  expect(
+    screen.getByRole('button', { name: /Pause animation/ })
+  ).toHaveAttribute('aria-pressed', 'false')
 })

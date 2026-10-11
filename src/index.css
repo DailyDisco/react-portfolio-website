@@ -6,43 +6,47 @@
 }
 :root {
   color-scheme: light;
-  --brand-paper: #f5f0e7;
-  --brand-paper-highlight: #faf7f1;
-  --brand-paper-shade: #e5dfd3;
-  --brand-surface: #e8e2d8;
-  --brand-surface-raised: #f7f2e9;
-  --brand-ink: #172b45;
-  --brand-muted: #4d5b6e;
-  --brand-edge: #a5b4c4;
-  --brand-hardware: #788b9f;
-  --brand-backdrop: #0e1d32;
-  --brand-backdrop-rgb: 14, 29, 50;
-  --brand-backdrop-lit-rgb: 26, 48, 76;
-  --brand-accent: #f49b82;
-  --brand-accent-hover: #ffb299;
-  --brand-accent-ink: #8d3d2d;
-  --brand-accent-edge: #9b5141;
-  --brand-display: #203753;
-  --brand-display-raised: #304b68;
-  --brand-display-ink: #f7f2e9;
-  --brand-display-muted: #c9d8e8;
-  --brand-display-muted-rgb: 201, 216, 232;
-  --brand-display-line: #69809a;
-  --brand-diagram: #aec8e0;
-  --brand-diagram-muted: #809bb5;
-  --brand-status-surface: #e2eaf2;
-  --brand-status-edge: #839bb3;
-  --brand-error: #8d3d2d;
+  --brand-paper: #f3f2ed;
+  --brand-paper-highlight: #fffef8;
+  --brand-paper-shade: #e6e7df;
+  --brand-surface: #e6e7df;
+  --brand-surface-raised: #fafaf6;
+  --brand-ink: #171a19;
+  --brand-ink-rgb: 23, 26, 25;
+  --brand-muted: #535b52;
+  --brand-edge: #c5c9bd;
+  --brand-hardware: #6f776b;
+  --brand-backdrop: #f3f2ed;
+  --brand-backdrop-rgb: 243, 242, 237;
+  --brand-backdrop-lit-rgb: 250, 250, 246;
+  --brand-accent: #364bff;
+  --brand-accent-rgb: 54, 75, 255;
+  --brand-on-accent: #ffffff;
+  --brand-signal: #d8f36a;
+  --brand-accent-hover: #2537d7;
+  --brand-accent-ink: #364bff;
+  --brand-accent-edge: #364bff;
+  --brand-display: #171a19;
+  --brand-display-raised: #29312c;
+  --brand-display-ink: #f3f2ed;
+  --brand-display-muted: #c9cec5;
+  --brand-display-muted-rgb: 201, 206, 197;
+  --brand-display-line: #596357;
+  --brand-diagram: #d8f36a;
+  --brand-diagram-muted: #aab3a0;
+  --brand-status-surface: #e6edce;
+  --brand-status-edge: #7c895c;
+  --brand-error: #922f30;
   --brand-error-surface: #f5dfd7;
-  --brand-error-edge: #b77967;
-  --brand-shadow-rgb: 6, 16, 32;
+  --brand-error-edge: #b35e51;
+  --brand-shadow-rgb: 23, 26, 25;
   --brand-highlight-rgb: 255, 255, 255;
-  --radius-surface: 30px;
-  --radius-display: 20px;
-  --radius-card: 22px;
-  --radius-control: 14px;
+  --radius-surface: 32px;
+  --radius-display: 24px;
+  --radius-card: 24px;
+  --radius-control: 999px;
   --radius-input: 12px;
-  --radius-image: 12px;
+  --radius-image: 20px;
   --paper: var(--brand-paper);
   --background: var(--paper);
   --surface: var(--brand-surface);
@@ -106,7 +110,7 @@ textarea:focus-visible,
   outline-offset: 6px;
 }
 ::selection {
-  background: var(--accent);
+  background: var(--brand-signal);
   color: var(--brand-ink);
 }
 img {
@@ -124,9 +128,9 @@ h1,
 h2,
 h3 {
   line-height: 1.12;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.045em;
   font-family: var(--display-font);
-  font-weight: 500;
+  font-weight: 650;
 }
 h1 {
   font-size: clamp(3rem, 6.5vw, 6rem);
@@ -202,10 +206,10 @@ main:focus {
   gap: 28px;
   min-height: 52px;
   padding: 14px 23px;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--brand-accent);
   border-radius: var(--radius-control);
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--brand-accent);
+  color: var(--brand-on-accent);
   font-size: 1rem;
   font-weight: 600;
   transition:
@@ -213,7 +217,7 @@ main:focus {
     transform 180ms ease;
 }
 .button:hover {
-  background: var(--brand-display);
+  background: var(--brand-accent-hover);
   transform: translateY(-2px);
 }
 .button-secondary {
@@ -233,9 +237,10 @@ main:focus {
   list-style: none;
 }
 .tag-list li {
-  border-bottom: 1px solid var(--line);
-  padding: 4px 0;
-  margin-right: 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 12px;
+  margin-right: 0;
   color: var(--muted);
   font-size: 0.875rem;
 }

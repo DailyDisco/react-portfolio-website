@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { animate } from 'motion/mini'
 
+const pressDuration = 0.34
+
 export default function usePageMotion(rootRef) {
   useEffect(() => {
     const root = rootRef.current
@@ -29,6 +31,15 @@ export default function usePageMotion(rootRef) {
     let disposed = false
     let motionAllowed = true
     let pointerPress = null
+    let pointerReleaseTimeout = null
+
+    const clearPointerGuard = () => {
+      if (pointerReleaseTimeout !== null) {
+        view.clearTimeout(pointerReleaseTimeout)
+        pointerReleaseTimeout = null
+      }
+      pointerPress = null
+    }
 
     const clearAnimation = (element) => {
       const animation = animations.get(element)
@@ -57,15 +68,15 @@ export default function usePageMotion(rootRef) {
 
     const enter = (
       element,
-      { distance, scale = 1, delay = 0, duration = 0.48 }
+      { distance, scale = 1, rotation = 0, delay = 0, duration = 0.48 }
     ) => {
       runAnimation(
         element,
         {
           opacity: [0.86, 1],
           transform: [
-            `translateY(${distance}px) scale(${scale})`,
-            'translateY(0px) scale(1)',
+            `translateY(${distance}px) rotate(${rotation}deg) scale(${scale})`,
+            'translateY(0px) rotate(0deg) scale(1)',
           ],
         },
         { duration, delay, ease: [0.16, 1, 0.3, 1] }
@@ -88,24 +99,25 @@ export default function usePageMotion(rootRef) {
       clearAnimation(element)
       const currentTransform = view.getComputedStyle(element).transform
       const baseline = currentTransform === 'none' ? '' : currentTransform
+      const isArrow = control.classList.contains('next-chapter')
       runAnimation(
         element,
         {
           transform: pressed
             ? [
                 `${baseline} scale(1)`,
-                `${baseline} scale(0.955)`,
-                `${baseline} scale(1.015)`,
+                `${baseline} translateX(${isArrow ? 7 : 0}px) scale(0.955)`,
+                `${baseline} translateX(${isArrow ? -2 : 0}px) scale(1.015)`,
                 `${baseline} scale(1)`,
               ]
             : [
                 `${baseline} scale(1)`,
-                `${baseline} scale(1.035)`,
+                `${baseline} translateX(${isArrow ? 5 : 0}px) scale(1.035)`,
                 `${baseline} scale(1)`,
               ],
         },
         {
-          duration: pressed ? 0.34 : 0.42,
+          duration: pressed ? pressDuration : 0.42,
           ease: [0.22, 1, 0.36, 1],
         }
       )
@@ -128,8 +140,9 @@ export default function usePageMotion(rootRef) {
         .slice(0, 6)
         .forEach((element, index) => {
           enter(element, {
-            distance: 12,
-            scale: 0.992,
+            distance: 10,
+            scale: 0.975,
+            rotation: index % 2 ? 1.8 : -1.8,
             delay: 0.1 + Math.min(index * 0.06, 0.24),
           })
         })
@@ -137,7 +150,7 @@ export default function usePageMotion(rootRef) {
 
     const revealAll = () => {
       motionAllowed = false
-      pointerPress = null
+      clearPointerGuard()
       observer?.disconnect()
       panels.forEach((panel) => revealed.add(panel))
       Array.from(animations.keys()).forEach(clearAnimation)
@@ -182,10 +195,19 @@ export default function usePageMotion(rootRef) {
       const control = getControl(event.target)
       if (!control || control.contains(event.relatedTarget)) return
       if (
+        event.pointerType === 'touch' &&
+        !event.relatedTarget &&
+        pointerPress?.control === control &&
+        pointerPress.pointerId === event.pointerId &&
+        pointerPress.released
+      ) {
+        return
+      }
+      if (
         pointerPress?.control === control &&
         pointerPress.pointerId === event.pointerId
       ) {
-        pointerPress = null
+        clearPointerGuard()
       }
       const element = getControlElement(control)
       if (element) clearAnimation(element)
@@ -194,18 +216,42 @@ export default function usePageMotion(rootRef) {
     const onPointerDown = (event) => {
       if (event.button !== 0 || event.isPrimary === false) return
       const control = getControl(event.target)
-      pointerPress = control ? { control, pointerId: event.pointerId } : null
+      clearPointerGuard()
+      pointerPress = control
+        ? { control, pointerId: event.pointerId, released: false }
+        : null
       if (control) animateControl(control, true)
     }
 
     const onPointerEnd = (event) => {
-      if (pointerPress?.pointerId === event.pointerId) pointerPress = null
+      if (pointerPress?.pointerId !== event.pointerId) return
+      if (event.type === 'pointercancel') {
+        const element = getControlElement(pointerPress.control)
+        clearPointerGuard()
+        if (element) clearAnimation(element)
+        return
+      }
+      pointerPress.released = true
+      // Touch emits an automatic out before its compatibility focus and click.
+      pointerReleaseTimeout = view.setTimeout(
+        clearPointerGuard,
+        pressDuration * 1000
+      )
+    }
+
+    const onClick = (event) => {
+      if (
+        pointerPress?.released &&
+        pointerPress.control === getControl(event.target)
+      ) {
+        clearPointerGuard()
+      }
     }
 
     const clearPointerPress = () => {
       const control =
         pointerPress?.control || getControl(root.ownerDocument.activeElement)
-      pointerPress = null
+      clearPointerGuard()
       if (control) {
         const element = getControlElement(control)
         if (element) clearAnimation(element)
@@ -229,6 +275,7 @@ export default function usePageMotion(rootRef) {
     root.addEventListener('pointerover', onPointerOver)
     root.addEventListener('pointerout', onPointerOut)
     root.addEventListener('pointerdown', onPointerDown)
+    root.addEventListener('click', onClick)
     view.addEventListener('pointerup', onPointerEnd)
     view.addEventListener('pointercancel', onPointerEnd)
     view.addEventListener('keydown', clearPointerPress)
@@ -257,6 +304,7 @@ export default function usePageMotion(rootRef) {
       root.removeEventListener('pointerover', onPointerOver)
       root.removeEventListener('pointerout', onPointerOut)
       root.removeEventListener('pointerdown', onPointerDown)
+      root.removeEventListener('click', onClick)
       view.removeEventListener('pointerup', onPointerEnd)
       view.removeEventListener('pointercancel', onPointerEnd)
       view.removeEventListener('keydown', clearPointerPress)

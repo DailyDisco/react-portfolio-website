@@ -4,8 +4,7 @@
   position: relative;
   isolation: isolate;
   min-width: 0;
-  border: 5px solid var(--brand-edge);
-  box-shadow: inset 0 2px 7px rgba(var(--brand-shadow-rgb), 0.33);
+  border: 0;
   background: var(--brand-display);
   border-radius: var(--radius-display);
 }
@@ -71,8 +70,8 @@
 .comparison-track > div {
   position: absolute;
   height: 100%;
-  background: var(--brand-diagram);
-  border-radius: 6px;
+  background: var(--brand-display-muted);
+  border-radius: 999px;
 }
 .comparison-bars > div:last-child .comparison-track > div {
   background: var(--gold);

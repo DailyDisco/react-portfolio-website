@@ -288,7 +288,7 @@
 .project-figure {
   --ink: var(--brand-paper);
   --muted: var(--brand-display-muted);
-  --gold: var(--brand-accent);
+  --gold: var(--brand-signal);
 }
 .case-metrics {
   display: grid;
@@ -907,11 +907,11 @@ textarea::placeholder {
 }
 
 .site-header {
-  --ink: var(--brand-display-ink);
-  --muted: var(--brand-display-muted);
+  --ink: var(--brand-ink);
+  --muted: var(--brand-muted);
   --gold: var(--brand-accent);
-  --line: var(--brand-display-line);
-  --paper: var(--brand-ink);
+  --line: var(--brand-edge);
+  --paper: var(--brand-paper);
   background: var(--paper);
   color: var(--ink);
 }

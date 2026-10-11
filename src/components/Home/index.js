@@ -1,222 +1,245 @@
-import SiteFooter from '../SiteFooter'
 import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
+  ArrowDownRight,
+  ArrowRight,
   ArrowUpRight,
   Cpu,
   Download,
+  Hand,
   PanelsTopLeft,
+  Pause,
+  Play,
   Workflow,
 } from 'lucide-react'
-import SignalSculpture from '../SignalSculpture'
-import useConsoleMotion from './useConsoleMotion'
+import { getCaseStudy } from '../../data/caseStudies'
+import DiscoCompanion from '../DiscoCompanion'
+import SiteFooter from '../SiteFooter'
+import useHomeMotion from './useHomeMotion'
 import './console.css'
 
 const projects = [
   {
     slug: 'property-platform',
     label: 'Product',
+    scene: 'Building useful things.',
     icon: PanelsTopLeft,
     name: 'Emmut',
-    category: 'Property management',
+    category: 'Product engineering / DFW through Lumara',
     description:
       'Led a four-developer team building a platform for 1,000+ units.',
+    metric: '3h → 1h',
+    metricCaption: 'Daily admin work per employee. Measured.',
   },
   {
     slug: 'workflow-migration',
     label: 'Cloud',
+    scene: 'Keeping work moving.',
     icon: Workflow,
     name: 'AWS → Railway',
-    category: 'Craft Digital · via Lumara',
+    category: 'Cloud & data / Craft Digital through Lumara',
     description: 'Moved production lead intake from Kestra to n8n.',
+    metric: '7 workflows',
+    metricCaption: 'Production workflows. Cut over September 2026.',
   },
   {
     slug: 'local-inference',
     label: 'Systems',
+    scene: 'Going below the surface.',
     icon: Cpu,
     name: 'Local inference',
-    category: 'GPU infrastructure · Open source',
+    category: 'Infrastructure & open source / Built at home',
     description: 'Two fixes merged into ExLlamaV3 and TabbyAPI.',
+    metric: '+18%',
+    metricCaption: 'Faster cold prompt processing. Measured on six GPUs.',
   },
 ]
 
-function ProjectReadout({ selected }) {
-  if (selected === 0) {
-    return (
-      <div className="console-readout">
-        <div className="console-digits">
-          <span>
-            3<small>h</small>
-          </span>
-          <span className="console-readout-arrow" aria-hidden="true">
-            →
-          </span>
-          <span>
-            1<small>h</small>
-          </span>
-        </div>
-        <p>Daily admin work per employee. Measured.</p>
-      </div>
-    )
-  }
-  if (selected === 1) {
-    return (
-      <div className="console-readout">
-        <div className="console-flow-readout">
-          <strong>7</strong>
-          <svg viewBox="0 0 260 108" aria-hidden="true">
-            {Array.from({ length: 7 }, (_, index) => (
-              <path
-                key={index}
-                d={`M 4 ${10 + index * 14} H 52 C 100 ${10 + index * 14}, 112 ${20 + index * 11}, 162 ${20 + index * 11} H 251`}
-              />
-            ))}
-          </svg>
-        </div>
-        <p>Production workflows. Cut over September 2026.</p>
-      </div>
-    )
-  }
-  return (
-    <div className="console-readout">
-      <div className="console-inference-readout">
-        <span>
-          +18<small>%</small>
-        </span>
-        <span className="console-gpu-bank" aria-hidden="true">
-          {Array.from({ length: 6 }, (_, index) => (
-            <i key={index} />
-          ))}
-        </span>
-      </div>
-      <p>Faster cold prompt processing. Measured on six GPUs.</p>
-    </div>
-  )
-}
-
 export default function Home() {
   const [selected, setSelected] = useState(0)
-  const consoleRef = useRef(null)
-  useConsoleMotion(consoleRef, selected)
+  const [greeting, setGreeting] = useState(0)
+  const [motionPaused, setMotionPaused] = useState(false)
+  const root = useRef(null)
+  useHomeMotion(root, selected)
   const project = projects[selected]
+  const study = getCaseStudy(project.slug)
+
   return (
-    <div className="console-home">
-      <section
-        ref={consoleRef}
-        className="diego-console"
-        aria-label="Digital Diego portfolio"
-      >
-        <span className="console-screw screw-top-left" aria-hidden="true" />
-        <span className="console-screw screw-top-right" aria-hidden="true" />
-        <span className="console-screw screw-bottom-left" aria-hidden="true" />
-        <span className="console-screw screw-bottom-right" aria-hidden="true" />
-        <div className="console-body">
-          <div className="console-identity">
-            <h1>
-              digital diego<span className="console-period">.</span>
-            </h1>
-            <div className="console-object-bay">
-              <SignalSculpture selected={selected} />
-            </div>
-            <div className="console-role">
-              <p>Full-stack engineer & technical lead.</p>
-            </div>
-            <p className="console-intro">
-              I build web products and the systems they run on.
-            </p>
-            <div className="console-availability">
-              <span aria-hidden="true" />
-              Open to senior & lead roles
-              <span className="console-location">DALLAS, TX</span>
-            </div>
+    <div
+      className="orbit-home"
+      ref={root}
+      role="region"
+      aria-label="Digital Diego portfolio"
+    >
+      <section className="home-hero" aria-label="Introduction">
+        <div className="home-intro">
+          <p className="home-eyebrow">Product. Cloud. Infrastructure.</p>
+          <h1>
+            Hi, I’m <span className="home-name">Diego.</span>
+          </h1>
+          <p className="home-role">Full-stack engineer & technical lead.</p>
+          <p className="home-description">
+            I build web products, lead teams, and run the systems behind them.
+            React and TypeScript to cloud infrastructure and local AI.
+          </p>
+          <div className="home-actions">
+            <Link className="button" to="/portfolio">
+              View selected work <ArrowUpRight size={19} aria-hidden="true" />
+            </Link>
+            <Link className="button button-secondary" to="/contact">
+              Let’s talk <ArrowRight size={19} aria-hidden="true" />
+            </Link>
           </div>
-          <div className="console-projects">
-            <div className="console-controls-header">
-              <h2>Selected work</h2>
-              <Link to="/portfolio">
-                All projects <ArrowUpRight size={13} aria-hidden="true" />
-              </Link>
-            </div>
-            <div
-              className="console-selectors"
-              role="group"
-              aria-label="Choose a project"
-            >
-              {projects.map((item, index) => (
-                <button
-                  key={item.slug}
-                  type="button"
-                  aria-pressed={index === selected}
-                  onClick={() => setSelected(index)}
-                >
-                  <item.icon
-                    className="console-selector-icon"
-                    size={15}
-                    strokeWidth={1.6}
-                    aria-hidden="true"
-                  />
-                  <span>{item.label}</span>
-                  <span className="console-selector-lamp" aria-hidden="true" />
-                </button>
-              ))}
-            </div>
-            <div
-              className="console-screen"
-              aria-live="polite"
-              aria-atomic="true"
-            >
-              <div className="console-screen-content" key={project.slug}>
-                <p className="console-screen-kicker">{project.category}</p>
-                <h3>{project.name}</h3>
-                <ProjectReadout selected={selected} />
-                <p className="console-project-description">
-                  {project.description}
-                </p>
-                <div className="console-project-bottom">
-                  <Link
-                    to={`/work/${project.slug}`}
-                    aria-label={`Open ${project.name} case study`}
-                  >
-                    Open case study{' '}
-                    <ArrowUpRight
-                      size={17}
-                      strokeWidth={1.5}
-                      aria-hidden="true"
-                    />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          <p className="home-availability">
+            <span className="home-status-dot" aria-hidden="true" />
+            Open to senior & lead roles
+            <span className="home-location">Dallas, TX</span>
+          </p>
         </div>
-        <div className="console-bottom-strip">
-          <Link className="console-lab-link" to="/infrastructure">
-            <span className="console-vent" aria-hidden="true">
-              {Array.from({ length: 11 }, (_, index) => (
-                <i key={index} />
-              ))}
-            </span>
+        <div className="home-playground">
+          <div className="home-stage-top">
             <span>
-              <span className="console-strip-label">HOMELAB</span>
-              <strong>Seven GPUs. Built and run by me.</strong>
+              Meet Disco <ArrowDownRight size={18} aria-hidden="true" />
             </span>
-            <span className="console-strip-arrow" aria-hidden="true">
-              <ArrowUpRight size={19} strokeWidth={1.4} />
-            </span>
-          </Link>
-          <a
-            className="console-resume-link"
-            href={`${process.env.PUBLIC_URL || ''}/resume/Diego_Espino_Resume.pdf`}
-            download
+            <span className="home-stage-note">Code. Hardware. Bass music.</span>
+          </div>
+          <div className="home-mascot-stage">
+            <DiscoCompanion
+              selected={selected}
+              greeting={greeting}
+              motionPaused={motionPaused}
+            />
+          </div>
+          <div className="home-stage-bottom">
+            <button
+              className="home-replay"
+              type="button"
+              onClick={() => setGreeting((value) => value + 1)}
+              aria-label="Say hello to Disco"
+            >
+              <Hand size={17} aria-hidden="true" /> Say hello
+            </button>
+            <button
+              className="home-motion-toggle"
+              type="button"
+              aria-pressed={motionPaused}
+              onClick={() => setMotionPaused((value) => !value)}
+            >
+              {motionPaused ? (
+                <Play size={16} aria-hidden="true" />
+              ) : (
+                <Pause size={16} aria-hidden="true" />
+              )}
+              {motionPaused ? 'Resume animation' : 'Pause animation'}
+            </button>
+          </div>
+          <div
+            className="home-scenes"
+            role="group"
+            aria-label="Choose a project"
           >
-            <span className="console-strip-label">ONE-PAGE PDF</span>
-            <strong>
-              Download resume{' '}
-              <Download size={16} strokeWidth={1.6} aria-hidden="true" />
-            </strong>
-          </a>
+            {projects.map((item, index) => (
+              <button
+                key={item.slug}
+                type="button"
+                aria-pressed={index === selected}
+                onClick={() => setSelected(index)}
+              >
+                <item.icon size={17} strokeWidth={1.6} aria-hidden="true" />
+                <span>{item.label}</span>
+              </button>
+            ))}
+          </div>
+          <p className="home-scene-caption" aria-live="polite">
+            {project.scene}
+          </p>
         </div>
       </section>
+      <div className="home-proof-strip" aria-label="Results from my work">
+        <Link to="/work/property-platform">
+          <strong>2h</strong>
+          <span>Saved per employee, every day.</span>
+          <ArrowUpRight size={18} aria-hidden="true" />
+        </Link>
+        <Link to="/work/workflow-migration">
+          <strong>7</strong>
+          <span>Production workflows migrated.</span>
+          <ArrowUpRight size={18} aria-hidden="true" />
+        </Link>
+        <Link to="/work/local-inference">
+          <strong>2</strong>
+          <span>Fixes merged upstream.</span>
+          <ArrowUpRight size={18} aria-hidden="true" />
+        </Link>
+      </div>
+      <section className="home-workbench" aria-labelledby="home-work-title">
+        <div className="home-work-heading">
+          <h2 id="home-work-title">A few things I’ve shipped.</h2>
+          <Link to="/portfolio">
+            All projects <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
+        <div
+          className="home-project-content"
+          key={project.slug}
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <div className="home-project-copy">
+            <div className="home-project-top">
+              <p>{project.category}</p>
+              <h3>{project.name}</h3>
+            </div>
+            <p className="home-project-summary">{project.description}</p>
+            <div className="home-project-metric">
+              <strong>{project.metric}</strong>
+              <p>{project.metricCaption}</p>
+            </div>
+            <div className="home-project-bottom">
+              <Link
+                to={`/work/${project.slug}`}
+                aria-label={`Open ${project.name} case study`}
+              >
+                Read case study <ArrowUpRight size={19} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+          <figure className="home-project-visual" data-project={project.slug}>
+            <div className="home-project-picture">
+              <img
+                src={study.visual.src}
+                alt={study.visual.alt}
+                loading="lazy"
+                width="1280"
+                height="800"
+              />
+            </div>
+            <figcaption>{study.visual.caption}</figcaption>
+          </figure>
+        </div>
+      </section>
+      <div className="home-links">
+        <Link className="home-lab-link" to="/infrastructure">
+          <Cpu size={22} aria-hidden="true" />
+          <span>
+            <small>Built at home</small>
+            <strong>Seven GPUs. Built and run by me.</strong>
+          </span>
+          <ArrowUpRight size={21} aria-hidden="true" />
+        </Link>
+        <a
+          className="home-resume-link"
+          href={`${process.env.PUBLIC_URL || ''}/resume/Diego_Espino_Resume.pdf`}
+          download
+        >
+          <Download size={22} aria-hidden="true" />
+          <span>
+            <small>One-page PDF</small>
+            <strong>Download resume</strong>
+          </span>
+          <ArrowUpRight size={21} aria-hidden="true" />
+        </a>
+      </div>
       <SiteFooter />
     </div>
   )

@@ -1,42 +1,42 @@
 .selected-work-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: 32px;
 }
 .selected-work-grid .work-card,
 .selected-work-grid .work-card:last-child {
-  border: 4px solid var(--brand-edge);
-  border-radius: var(--radius-card);
-  background: var(--brand-display);
-  color: var(--brand-display-ink);
   min-width: 0;
-  box-shadow: inset 0 2px 7px rgba(var(--brand-shadow-rgb), 0.33);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--brand-ink);
+  box-shadow: none;
 }
 .selected-work-grid .work-card-link {
-  padding: 0;
-  height: 100%;
   display: flex;
+  height: 100%;
   flex-direction: column;
-  border-radius: calc(var(--radius-card) - 4px);
+  padding: 0;
+  border-radius: var(--radius-image);
 }
 .work-card-visual {
   margin: 0;
-  padding: 8px 8px 0;
+  padding: 0;
   overflow: hidden;
 }
 .work-card-picture {
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 1.65 / 1;
   overflow: hidden;
-  border: 1px solid var(--brand-display-line);
+  border: 1px solid var(--brand-edge);
   border-radius: var(--radius-image);
-  background: var(--brand-paper);
+  background: var(--brand-surface);
 }
 .work-card-visual img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: top;
+  object-position: center;
 }
 .work-card-visual[data-project='property-platform'] img {
   max-width: none;
@@ -49,81 +49,91 @@
   background: var(--brand-display);
 }
 .work-card-visual figcaption {
-  font: 0.875rem/1.5 var(--font);
-  color: var(--brand-display-muted);
-  margin: 9px 10px 0;
+  margin: 11px 0 0;
   min-height: 1.5em;
+  color: var(--brand-muted);
+  font: 0.875rem/1.5 var(--font);
 }
 .selected-work-grid .work-card-body {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 12px;
-  padding: 16px 20px 20px;
+  gap: 15px;
+  padding: 22px 0 0;
 }
 .selected-work-grid h2 {
-  font-size: clamp(1.35rem, 2.1vw, 1.85rem);
-  line-height: 1.3;
-  letter-spacing: -0.025em;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 15px;
+  font-size: clamp(1.55rem, 2.25vw, 2.2rem);
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.05em;
 }
 .selected-work-grid h2 svg {
   flex-shrink: 0;
-  margin-top: 3px;
+  margin-top: 5px;
+  color: var(--brand-accent);
+}
+.selected-work-grid .project-context {
+  font: 500 0.875rem/1.5 var(--font);
+  color: var(--brand-muted);
 }
 .selected-work-grid
   .work-card-body
   > p:not(.project-context):not(.project-stack) {
+  color: var(--brand-muted);
   font-size: 1rem;
-  line-height: 1.65;
-  color: var(--brand-display-ink);
+  line-height: 1.7;
 }
 .selected-work-grid .project-stack {
+  margin-top: auto;
+  color: var(--brand-muted);
   font-size: 0.875rem;
   line-height: 1.7;
-  margin-top: auto;
-  color: var(--brand-display-muted);
 }
 .selected-work-grid .case-link {
-  margin-top: 4px;
-  padding: 11px 13px;
-  border: 1px solid var(--brand-accent-edge);
-  border-bottom-width: 3px;
-  border-radius: var(--radius-control);
-  background: var(--brand-accent);
-  color: var(--brand-ink);
   justify-content: space-between;
-  font-size: 0.9375rem;
+  margin-top: 4px;
+  padding: 13px 0;
+  border: 0;
+  border-top: 1px solid var(--brand-edge);
+  border-radius: 0;
+  background: transparent;
+  color: var(--brand-accent);
+  font-size: 1rem;
+  font-weight: 550;
 }
 .selected-work-grid .work-card-link:hover h2 {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+  color: var(--brand-accent);
+}
+.selected-work-grid .work-card-link:focus-visible {
+  outline-color: var(--brand-accent);
+  outline-offset: 8px;
 }
 .supporting-project {
   display: flex;
-  gap: 25px;
   align-items: center;
-  padding: 23px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-  background: var(--brand-surface);
+  gap: 30px;
+  border-radius: 0;
+  background: transparent;
 }
 .supporting-project > svg {
   flex-shrink: 0;
+  color: var(--brand-accent);
 }
 .supporting-project h2 {
-  margin-block: 6px;
-  font-size: 1.2rem;
-  letter-spacing: -0.025em;
+  margin-block: 8px;
+  font-size: 1.45rem;
+  font-weight: 650;
+  letter-spacing: -0.035em;
 }
 .supporting-project > div > p:last-child {
+  max-width: 65ch;
+  color: var(--brand-muted);
   font-size: 1rem;
   line-height: 1.7;
-  color: var(--muted);
 }
 .supporting-project .eyebrow {
   margin: 0;
@@ -133,44 +143,43 @@
   display: flex;
   align-items: center;
   gap: 18px;
+  min-height: 44px;
   margin-left: auto;
+  color: var(--brand-accent);
   white-space: nowrap;
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 .supporting-project > a:hover {
   text-decoration: underline;
-  text-underline-offset: 4px;
+  text-underline-offset: 5px;
 }
 @media (max-width: 1000px) {
   .selected-work-grid {
-    gap: 20px;
+    gap: 22px;
   }
   .selected-work-grid h2 {
-    font-size: 1.35rem;
-  }
-  .selected-work-grid h2 svg {
-    width: 16px;
+    font-size: 1.5rem;
   }
 }
 @media (max-width: 760px) {
   .selected-work-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
   }
-  .work-card-visual {
-    margin-bottom: 0;
+  .work-card-picture {
+    aspect-ratio: 1.85 / 1;
   }
   .selected-work-grid h2 {
-    font-size: 1.65rem;
+    font-size: 1.9rem;
   }
   .selected-work-grid .work-card-body {
-    gap: 11px;
+    padding-top: 18px;
+    gap: 13px;
   }
   .supporting-project {
     flex-wrap: wrap;
     align-items: flex-start;
-    gap: 16px;
-    padding: 20px;
+    gap: 18px;
   }
   .supporting-project > div {
     flex: 1;
@@ -181,25 +190,13 @@
     justify-content: space-between;
   }
 }
-
-.selected-work-grid .work-card-link:focus-visible {
-  outline-color: var(--brand-accent-ink);
-  outline-offset: 7px;
-}
-.selected-work-grid .work-card-link:hover .case-link {
-  background: var(--brand-accent-hover);
-}
-
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .selected-work-grid .work-card {
-    transition:
-      translate 220ms ease,
-      box-shadow 220ms ease;
+    transition: translate 220ms ease;
   }
   .selected-work-grid .work-card:hover,
   .selected-work-grid .work-card:focus-within {
-    translate: 0 -4px;
-    box-shadow: 0 9px 16px rgba(var(--brand-shadow-rgb), 0.15);
+    translate: 0 -3px;
   }
   .work-card-visual img {
     transition: scale 350ms ease;

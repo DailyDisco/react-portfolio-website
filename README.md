@@ -17,7 +17,7 @@ All portfolio content and images live in the repository. There is no database, s
 
 - `src/data/projects.json`: the eight earlier projects exported from Firestore, retained as a source archive. They are no longer shown in the public gallery.
 - `src/data/caseStudies.js`: current engineering case studies, measured outcomes, visuals, and public source links. `featuredCaseStudies` selects Emmut, the Craft Digital migration, and local inference. The confidential mixed-reality engagement is a shorter supporting case.
-- `src/components/Home`: the compact instrument panel and project selector. `About` and `Infrastructure` provide personal and technical context; `Portfolio` and `CaseStudy` hold the project evidence.
+- `src/components/Home`: the personal studio homepage and project selector. `About` and `Infrastructure` provide personal and technical context; `Portfolio` and `CaseStudy` hold the project evidence.
 - `public/portfolio/`: project images. Set a record's `image` to a path such as `/portfolio/my-project/preview.jpg`, or `null` for a text-only entry.
 - `public/resume/`: current one-page and detailed resumes. The primary download uses the one-page PDF.
 - `src/data/pageMetadata.json`: titles, descriptions, canonical URLs, and sharing metadata for the nine public pages. Keep its routes aligned with `public/sitemap.xml`.
@@ -29,15 +29,13 @@ The Firestore migration preserved all eight record IDs, names, and descriptions.
 
 Body copy uses the native system sans-serif for legibility; Manrope is reserved for the wordmark and headings. Project summaries are concise, primary text is larger, and secondary captions use normal reading text rather than dense micro-labels.
 
-The homepage is a compact Digital Diego instrument panel: a rounded ivory chassis, ink-blue backdrop and displays, coral controls, and an interactive D sculpture. Native Product, Cloud, and Systems buttons switch between three project summaries and their case-study links. The homelab and resume have direct links below the readout, followed by the shared footer. Selection supports keyboard and touch, announces updated content, and respects reduced motion. Shared colors and corner radii live in `src/index.css`; see `docs/design-system.md` for their component roles.
+The homepage introduces Diego beside Disco, an original expressive robot built in Three.js. The open chalk layout uses cobalt actions, citron accents, bold type, and hairline section seams. Three permanent result links remain visible; native Product, Cloud, and Systems controls switch the robot’s tools, selected project summary, real or labeled conceptual visual, and case-study destination. Direct homelab, resume, contact, and social links complete the page.
 
-Inner pages use separate rounded panels for the main content and supporting detail. `PageSurface` supplies finite entrances and once-only section reveals; native navigation and contextual `NextChapter` links connect the pages. `HomeStory`, `Home/HomeJourney.js`, and their styles remain in source as a prior iteration, but are not mounted by the current homepage.
+The same palette, rounded controls, and publication spacing carry into Work, Homelab, About, Contact, and case studies. `PageSurface` provides finite entrances and once-only section reveals; `NextChapter` connects related pages. `LabExplorer` preserves the current seven-GPU server and 168 GiB combined memory separately from the earlier six-GPU performance benchmark.
 
-`LabExplorer` remains on the infrastructure page. Case-study figures live in `ProjectFigure`; measured results include their context, and conceptual illustrations are labeled. The current seven-GPU server and 168 GiB combined memory are separate from the earlier six-GPU performance benchmark.
+`DiscoCompanion` loads its procedural Three.js scene on visibility. Fine-pointer movement guides Disco’s head and eyes, Say hello triggers a wave, and the three project modes introduce different tools. A visible pause control stops optional breathing, blinking, and floating motion. Reduced motion uses static poses. Hidden/offscreen states stop rendering; route cleanup disposes GPU resources. The matching SVG mark and fallback remain available without WebGL, including context loss.
 
-`SignalSculpture` builds a six-layer D monogram in Three.js with rounded inset faces, beveled metal rims, connecting rods, and procedural studio lighting. Product, Cloud, and Systems select compact, expanded, and fanned arrangements; fine-pointer movement tilts the assembly and moves its key light. The six design layers do not represent the server's current GPU count. The scene loads on visibility, renders on demand with bounded settling, pauses offscreen or in a hidden tab, and disposes its GPU resources on navigation. An SVG fallback remains available when required APIs or WebGL are unavailable, including context loss.
-
-Motion's vanilla JavaScript API animates the console keys, readout, workflow paths, GPU bars, and inner-page entrances without newer React bindings. Both motion hooks cancel animations and restore inline styles on disposal; keyboard focus settles containing entrances. Missing required browser APIs leave content visible. Reduced-motion changes stop current effects immediately; the sculpture snaps to its selected arrangement. See `docs/design-system.md` for timings and fallback behavior. Static image provenance is recorded in `docs/visual-provenance.md`.
+Motion’s vanilla JavaScript API supplies staged hero entrances, spring control feedback, title and metric changes, restrained card turns, and directional arrows without newer React bindings. Both hooks restore inline styles and cancel effects on disposal; keyboard focus settles containing entrances. Missing APIs leave visible native navigation. See `docs/design-system.md` for behavior and `docs/visual-provenance.md` for artwork provenance.
 
 Keep the mixed-reality client anonymous and avoid private repository links. Preserve scope notes that distinguish reporting implementation from completed production cutover, and development Terraform definitions from production deployment.
 
@@ -48,7 +46,7 @@ CI=true npm test -- --watchAll=false --runInBand
 CI=true npm run build
 ```
 
-Tests cover compact-homepage evidence and destinations, keyboard project selection, navigation and old-route redirects, metadata updates, the preserved archive component, failed images, safe external links, infrastructure selection, and contact submission behavior. Browser review should also check first-viewport composition, panel reveals, keyboard focus, live reduced-motion preferences, missing animation APIs, WebGL fallback and context loss, and route cleanup. Contact requests are mocked in automated checks; actual email delivery still needs an owner-controlled check. The existing EmailJS service and template remain separate from the removed Firebase integration.
+Tests cover homepage evidence and destinations, the mascot pause control, keyboard project selection, navigation and old-route redirects, metadata updates, the preserved archive component, failed images, safe external links, infrastructure selection, and contact submission behavior. Browser review should also check first-viewport composition, panel reveals, keyboard focus, live reduced-motion preferences, missing animation APIs, WebGL fallback and context loss, and route cleanup. Contact requests are mocked in automated checks; actual email delivery still needs an owner-controlled check. The existing EmailJS service and template remain separate from the removed Firebase integration.
 
 ## Deploy
 
@@ -62,4 +60,4 @@ Review the preview's direct case-study URLs, the three featured projects, suppor
 
 Checkpoint `7b51de7` preserves the previous day-vault workspace edits. Commit `736deff` preserves the first refresh before the personal design revision and Firebase removal. The original remote checkout remains untouched.
 
-The unmounted `HomeStory` and `HomeJourney` sources preserve the longer scrolling-homepage iteration. They are historical references, not part of the active interface or its verification scope.
+The unmounted `SignalSculpture`, `useConsoleMotion`, `HomeStory`, and `HomeJourney` sources preserve earlier instrument and scrolling iterations. They are historical references outside the active interface and its verification scope. Commit `acfbd17` preserves the last rounded instrument iteration before Disco.

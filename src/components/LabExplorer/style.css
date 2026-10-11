@@ -1,7 +1,7 @@
 .lab-explorer {
   --lab-ink: var(--brand-display-ink);
   --lab-muted: var(--brand-display-muted);
-  --lab-accent: var(--brand-accent);
+  --lab-accent: var(--brand-signal);
   --lab-line: var(--brand-display-line);
   color: var(--brand-ink);
   padding: 0;
@@ -24,7 +24,6 @@
   min-height: 52px;
   padding: 10px 14px;
   border: 1px solid var(--brand-edge);
-  border-bottom-width: 3px;
   border-radius: var(--radius-control);
   color: var(--brand-ink);
   background: var(--brand-surface);
@@ -41,9 +40,9 @@
   background: var(--brand-surface-raised);
 }
 .lab-explorer-controls button[aria-pressed='true'] {
-  background: var(--lab-accent);
-  border-color: var(--brand-accent-edge);
-  transform: translateY(1px);
+  background: var(--brand-accent);
+  border-color: var(--brand-accent);
+  color: var(--brand-on-accent);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -106,12 +105,11 @@
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   align-items: center;
   gap: 18px 28px;
-  padding: 24px;
+  padding: 32px;
   color: var(--lab-ink);
   background: var(--brand-display);
-  border: 5px solid var(--brand-edge);
+  border: 0;
   border-radius: var(--radius-display);
-  box-shadow: inset 0 2px 7px rgba(var(--brand-shadow-rgb), 0.33);
 }
 .lab-explorer-copy {
   min-width: 0;
@@ -334,7 +332,6 @@
   .lab-explorer-content {
     padding: 21px 17px;
     gap: 12px;
-    border-width: 3px;
   }
   .lab-explorer-details {
     grid-template-columns: 1fr;

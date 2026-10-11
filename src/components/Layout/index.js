@@ -2,6 +2,7 @@ import { Suspense, useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 import SiteFooter from '../SiteFooter'
+import DiscoMark from '../DiscoMark'
 import pageMetadata from '../../data/pageMetadata.json'
 const resumeUrl = `${process.env.PUBLIC_URL || ''}/resume/Diego_Espino_Resume.pdf`
 
@@ -92,18 +93,7 @@ export default function Layout() {
       <header className="site-header">
         <Link className="brand" to="/" aria-label="Diego Espino home">
           <span className="brand-mark" aria-hidden="true">
-            <svg
-              viewBox="60 20 175 180"
-              width="36"
-              height="38"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M75 28H125C182 28 211 60 211 110S182 192 125 192H75V28ZM110 63V157H126C158 157 175 141 175 110S158 63 126 63H110Z"
-              />
-              <path d="M220 144h8v46h-8z" fill="var(--brand-accent)" />
-            </svg>
+            <DiscoMark width="38" height="38" />
           </span>
           <span>Diego Espino</span>
         </Link>

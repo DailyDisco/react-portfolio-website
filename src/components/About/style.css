@@ -1,14 +1,14 @@
 .about-page .about-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr);
-  gap: 30px;
+  gap: 64px;
   align-items: start;
 }
 
 .about-page .about-story h2 {
-  font-family: var(--font);
-  font-size: clamp(1.35rem, 2vw, 1.65rem);
-  font-weight: 600;
+  font-family: var(--display-font);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 650;
   line-height: 1.35;
   margin-bottom: 16px;
 }
@@ -39,11 +39,11 @@
   display: grid;
   grid-template-columns: 22px minmax(0, 1fr);
   gap: 15px;
-  padding: 20px;
-  border: 1px solid var(--brand-edge);
-  border-radius: var(--radius-card);
-  background: var(--brand-surface-raised);
-  box-shadow: inset 0 1px 0 rgba(var(--brand-highlight-rgb), 0.6);
+  padding: 22px 0;
+  border: 0;
+  border-top: 1px solid var(--brand-edge);
+  border-radius: 0;
+  background: transparent;
 }
 
 .about-page .about-personal-note > svg {
@@ -96,12 +96,12 @@
 }
 
 .about-page .experience-panel {
-  padding: 18px 22px;
-  border: 5px solid var(--brand-edge);
-  border-radius: var(--radius-display);
-  background: var(--brand-display);
-  color: var(--brand-display-ink);
-  box-shadow: inset 0 2px 6px rgba(var(--brand-shadow-rgb), 0.33);
+  padding: 0 0 0 32px;
+  border: 0;
+  border-left: 1px solid var(--brand-edge);
+  border-radius: 0;
+  background: transparent;
+  color: var(--brand-ink);
 }
 
 .about-page .experience-panel > h2 {
@@ -115,7 +115,7 @@
 
 .about-page .experience-panel > div {
   padding: 14px 0;
-  border-bottom: 1px solid var(--brand-display-line);
+  border-bottom: 1px solid var(--brand-edge);
 }
 
 .about-page .experience-panel > div:last-child {
@@ -124,7 +124,7 @@
 }
 
 .about-page .experience-panel h3 {
-  color: var(--brand-display-ink);
+  color: var(--brand-ink);
   font-family: var(--font);
   font-size: 1.1rem;
   font-weight: 600;
@@ -132,14 +132,14 @@
 }
 
 .about-page .experience-panel p:not(.eyebrow) {
-  color: var(--brand-display-muted);
+  color: var(--brand-muted);
   font-size: 1rem;
   line-height: 1.6;
   margin-top: 5px;
 }
 
 .about-page .experience-panel span {
-  color: var(--brand-display-muted);
+  color: var(--brand-muted);
   font-family: var(--font);
   font-size: 0.875rem;
   line-height: 1.6;
@@ -166,11 +166,10 @@
 }
 
 .about-page .skill-groups > div {
-  padding: 16px;
-  border: 1px solid var(--brand-edge);
-  border-radius: var(--radius-card);
-  background: var(--brand-surface-raised);
-  box-shadow: inset 0 1px 0 rgba(var(--brand-highlight-rgb), 0.5);
+  padding: 4px 20px 4px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .about-page .skill-groups h3 {
@@ -200,6 +199,12 @@
     gap: 30px;
   }
 
+  .about-page .experience-panel {
+    padding: 24px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--brand-edge);
+  }
+
   .about-page .about-story > p {
     max-width: none;
   }
@@ -210,11 +215,6 @@
 }
 
 @media (max-width: 540px) {
-  .about-page .experience-panel {
-    padding: 20px;
-    border-width: 4px;
-  }
-
   .about-page .about-personal-notes {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -222,7 +222,7 @@
   .about-page .about-personal-note {
     grid-template-columns: minmax(0, 1fr);
     gap: 9px;
-    padding: 17px;
+    padding: 20px 0;
   }
 
   .about-page .about-personal-note > svg {
@@ -234,7 +234,7 @@
   }
 
   .about-page .skill-groups > div {
-    padding: 18px;
+    padding: 0;
   }
 
   .about-page .about-story .actions {
@@ -259,11 +259,11 @@
 }
 .about-page .about-study {
   margin: 0;
-  padding: 8px;
-  border: 4px solid var(--brand-edge);
-  border-radius: var(--radius-display);
-  background: var(--brand-display);
-  color: var(--brand-display-muted);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--brand-muted);
 }
 .about-study img {
   width: 100%;
@@ -271,7 +271,7 @@
   border-radius: var(--radius-image);
 }
 .about-study figcaption {
-  padding: 12px 10px 5px;
+  padding: 12px 0 0;
   font-size: 0.875rem;
   line-height: 1.5;
 }
@@ -281,7 +281,7 @@
   margin: 0;
 }
 .about-page .about-secondary-title {
-  font: 550 clamp(1.5rem, 2.6vw, 2.3rem) / 1.3 var(--display-font);
+  font: 650 clamp(1.7rem, 3vw, 2.7rem) / 1.3 var(--display-font);
   margin-bottom: 26px;
 }
 @media (max-width: 760px) {

@@ -2,7 +2,7 @@
   margin-bottom: 25px;
 }
 .case-study .page-heading h1 {
-  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-size: clamp(2.6rem, 4.8vw, 4.5rem);
 }
 .case-study .case-overview {
   gap: 40px;
@@ -29,11 +29,10 @@
 .case-study .case-metrics {
   color: var(--brand-diagram);
   background: var(--brand-display);
-  border: 5px solid var(--brand-edge);
+  border: 0;
   border-radius: var(--radius-display);
-  box-shadow: inset 0 2px 7px rgba(var(--brand-shadow-rgb), 0.33);
-  padding: 24px;
-  gap: 24px;
+  padding: 30px;
+  gap: 30px;
 }
 .case-study .case-metrics > div {
   padding-left: 24px;
@@ -64,19 +63,20 @@
   gap: 9px;
 }
 .case-study .case-contents a {
-  padding: 10px 12px;
-  border: 1px solid var(--line);
-  border-bottom-width: 3px;
-  border-radius: var(--radius-control);
-  background: var(--brand-surface);
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
   color: var(--ink);
 }
 .case-study .case-contents a:hover {
-  background: var(--brand-accent);
+  color: var(--brand-accent);
   text-decoration: none;
 }
 .case-study .case-narrative h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
+  font-weight: 650;
   margin-bottom: 20px;
 }
 .case-study .case-narrative p {
