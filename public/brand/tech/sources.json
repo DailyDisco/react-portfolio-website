@@ -1,0 +1,254 @@
+{
+  "deviconCommit": "7330accdbc47e2dc0c19789a48533c4a3c50fe58",
+  "simpleIconsCommit": "dc7b10662a0a2cfdfc9305e2a2b06c023c30724a",
+  "assets": [
+    {
+      "file": "amazonwebservices.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+      "sha256": "5b4d8371d79a5c0d3a27ea4e929f772e68d47f7d267496bf9211d5f60fcf8084",
+      "bytes": 3743
+    },
+    {
+      "file": "caddy.svg",
+      "collection": "Simple Icons",
+      "license": "CC0-1.0",
+      "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/dc7b10662a0a2cfdfc9305e2a2b06c023c30724a/icons/caddy.svg",
+      "sha256": "3ce50619d72dd473413d0b774f8956691b36f7224f3850a08e23b4da1f69f3ff",
+      "bytes": 2460
+    },
+    {
+      "file": "cloudflare.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/cloudflare/cloudflare-original.svg",
+      "sha256": "6bb87edf9d3759ab11efb064a4cbe25271d4761539aa4928e68bcaf795839c63",
+      "bytes": 1175
+    },
+    {
+      "file": "cplusplus.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/cplusplus/cplusplus-original.svg",
+      "sha256": "7ff8253551235e3a6b002a7c2bd6e3190d85113a64fcb40f2254473caeb025d4",
+      "bytes": 1143
+    },
+    {
+      "file": "csharp.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/csharp/csharp-original.svg",
+      "sha256": "7093478d0888e22a224b6fa832da6c9ffd14c433de8bd14aab0c1cb50925f3ee",
+      "bytes": 851
+    },
+    {
+      "file": "docker.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/docker/docker-original.svg",
+      "sha256": "3fd830ea69431ed7a0b8d068cd5b34ad3f00a1a78195d50f13ff56713f2462e1",
+      "bytes": 4452
+    },
+    {
+      "file": "fastapi.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/fastapi/fastapi-original.svg",
+      "sha256": "7ef41f6a363b00ff595e6d0b933c025c92cbfae29dc1df24b2f6eb8b476ee486",
+      "bytes": 3065
+    },
+    {
+      "file": "github.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/github/github-original.svg",
+      "sha256": "45262793de6292206a895ed63593cdb1eaed82074173f7f4b5bdb3e427ca805a",
+      "bytes": 1866
+    },
+    {
+      "file": "githubactions.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/githubactions/githubactions-original.svg",
+      "sha256": "3a2524052ccf301d1a239f20cfef98d655e060c51cc29c5e94c867913899a47e",
+      "bytes": 2854
+    },
+    {
+      "file": "go.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/go/go-original.svg",
+      "sha256": "2d4558b96d3ec71d0d922a62668cb2ea5a5d83ed7d4caf6b0479b3266f795a2f",
+      "bytes": 8965
+    },
+    {
+      "file": "grafana.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/grafana/grafana-original.svg",
+      "sha256": "2dec200d4e56521bec8dd463173c623b33b8c97e6159cac9b3ed00b6bff0f6ad",
+      "bytes": 4958
+    },
+    {
+      "file": "linux.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/linux/linux-plain.svg",
+      "sha256": "f262932ac85eed81a79b47184b52210c83d6edb09408f50245ef285435f86f8b",
+      "bytes": 2824
+    },
+    {
+      "file": "n8n.svg",
+      "collection": "Simple Icons",
+      "license": "CC0-1.0",
+      "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/dc7b10662a0a2cfdfc9305e2a2b06c023c30724a/icons/n8n.svg",
+      "sha256": "f5a606188c78bf134fe7d85ae3d1310f6f4b7beafcd1d2fbdef2af02c92240a8",
+      "bytes": 1573
+    },
+    {
+      "file": "nextjs.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/nextjs/nextjs-original.svg",
+      "sha256": "d9435c4ede7133b376c0173a80226bb3856729366707cd96e9a66e39448d0288",
+      "bytes": 749
+    },
+    {
+      "file": "nodejs.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/nodejs/nodejs-original.svg",
+      "sha256": "3218687c5ea24a4d4c0a33dc5c287da38c33a72dcfe9382469d7ce4e0bf661fb",
+      "bytes": 1806
+    },
+    {
+      "file": "nvidia.svg",
+      "collection": "Simple Icons",
+      "license": "CC0-1.0",
+      "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/dc7b10662a0a2cfdfc9305e2a2b06c023c30724a/icons/nvidia.svg",
+      "sha256": "b0e4cfc12712c840d4d630c9a717200fbd09aeeadbd3faeac13bda2e2ed050b0",
+      "bytes": 881
+    },
+    {
+      "file": "playwright.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/playwright/playwright-original.svg",
+      "sha256": "c829ee41780a2c9748b9aeeeec530dc9ceeade68687e252ff7f044c16a8c384b",
+      "bytes": 3760
+    },
+    {
+      "file": "postgresql.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/postgresql/postgresql-original.svg",
+      "sha256": "f220a436258ed014c512ba4f9c0de6b9e5c2c4b55331a0a29f8c7a1a12c36443",
+      "bytes": 9178
+    },
+    {
+      "file": "prisma.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/prisma/prisma-original.svg",
+      "sha256": "0d7625558f360303e7c090d746407569b37bb340d5e358ef0d22d918bad298b0",
+      "bytes": 474
+    },
+    {
+      "file": "prometheus.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/prometheus/prometheus-original.svg",
+      "sha256": "cae70cfcf9a8b88de32ab1035819d0c7c9a2b278048112f8c9f99dae42b5b657",
+      "bytes": 1223
+    },
+    {
+      "file": "proxmox.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/proxmox/proxmox-original.svg",
+      "sha256": "949f4afc9bd7e166602e1d99bd667335d1db01bdbdd864152c082cd10d3b9695",
+      "bytes": 3092
+    },
+    {
+      "file": "pytest.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/pytest/pytest-original.svg",
+      "sha256": "e3073e7f520866f93a40e76b633efc29715539150423178cdb2e33f7077e4be1",
+      "bytes": 689
+    },
+    {
+      "file": "python.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/python/python-original.svg",
+      "sha256": "71493b4a732f0532b3a03a7a95da3ee11a65766367c8303b901ffbe7bf91a3a2",
+      "bytes": 2300
+    },
+    {
+      "file": "railway.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/railway/railway-original.svg",
+      "sha256": "98fc02b94571aaf910d2d9d4e9f4c3ac4c94b9f16c54ea90d584a106d39b4827",
+      "bytes": 995
+    },
+    {
+      "file": "react.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/react/react-original.svg",
+      "sha256": "5825b649c8c04dec13ecf01d0182401bd0ec71789d2fa06224866d882cd1515f",
+      "bytes": 2387
+    },
+    {
+      "file": "redis.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/redis/redis-original.svg",
+      "sha256": "4707378b190878f36f7e6e1c01fa3ee7e7884c76101809d191dddd943a2e6bdb",
+      "bytes": 1728
+    },
+    {
+      "file": "tailscale.svg",
+      "collection": "Simple Icons",
+      "license": "CC0-1.0",
+      "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/dc7b10662a0a2cfdfc9305e2a2b06c023c30724a/icons/tailscale.svg",
+      "sha256": "80ecdde08c2a4cddaa64447fcbfafab81326864671cd33b7fc3d40c4c8661dfc",
+      "bytes": 630
+    },
+    {
+      "file": "terraform.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/terraform/terraform-original.svg",
+      "sha256": "0be6427291ae47f057b75f9010dffd6f58a40f0c83c43606ff68851cef1621dc",
+      "bytes": 376
+    },
+    {
+      "file": "typescript.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/typescript/typescript-original.svg",
+      "sha256": "c9191199f4049920c2fc19035b8a6664f37f4689fcd9e8434e786097e78863f0",
+      "bytes": 943
+    },
+    {
+      "file": "unity.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/unity/unity-original.svg",
+      "sha256": "92f5736155fc1d6a4829b6b5798e0821f56ba7b61d2999c0fca6840cc1f7b6af",
+      "bytes": 879
+    },
+    {
+      "file": "vitest.svg",
+      "collection": "Devicon",
+      "license": "MIT",
+      "source": "https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/vitest/vitest-original.svg",
+      "sha256": "f8dbcabd9d6be373fcc6afe31632e22c674cb20a93e977c22809030bd58df7fb",
+      "bytes": 973
+    }
+  ]
+}

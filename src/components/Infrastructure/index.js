@@ -1,8 +1,17 @@
 import PageSurface from '../PageSurface'
 import NextChapter from '../NextChapter'
-import { ArrowRight, ArrowUpRight, GitPullRequest } from 'lucide-react'
+import {
+  Activity,
+  ArrowRight,
+  ArrowUpRight,
+  Boxes,
+  Cpu,
+  GitPullRequest,
+  Network,
+} from 'lucide-react'
 import { Link } from 'react-router-dom'
 import LabExplorer from '../LabExplorer'
+import TechStack, { TechIcon } from '../TechStack'
 import './style.css'
 
 export default function Infrastructure() {
@@ -46,7 +55,9 @@ export default function Infrastructure() {
               </span>
               <span>cold prompt throughput</span>
             </div>
-            <p className="eyebrow">EXLLAMAV3 · C++</p>
+            <p className="eyebrow contribution-technology">
+              <TechIcon name="C++" /> EXLLAMAV3 · C++
+            </p>
             <h3>Faster cold prompts</h3>
             <p>
               Multithreaded AVX2 CPU all-reduce raised throughput from 1,238 to
@@ -70,7 +81,9 @@ export default function Infrastructure() {
               <ArrowRight size={27} />
               <span>Replace</span>
             </div>
-            <p className="eyebrow">TABBYAPI · PYTHON</p>
+            <p className="eyebrow contribution-technology">
+              <TechIcon name="Python" /> TABBYAPI · PYTHON
+            </p>
             <h3>Safer generator recovery</h3>
             <p>
               Release the old generator before allocating its replacement to
@@ -103,19 +116,44 @@ export default function Infrastructure() {
         </div>
         <dl className="system-list">
           <div>
-            <dt>Compute</dt>
-            <dd>Proxmox · Linux · GPU workloads</dd>
+            <dt>
+              <Cpu size={17} aria-hidden="true" /> Compute
+            </dt>
+            <dd>
+              <TechStack
+                items={['Proxmox', 'Linux']}
+                label="Compute technologies"
+              />
+              <span className="system-detail">GPU workloads</span>
+            </dd>
           </div>
           <div>
-            <dt>Delivery</dt>
-            <dd>Docker Compose · Automated provisioning</dd>
+            <dt>
+              <Boxes size={17} aria-hidden="true" /> Delivery
+            </dt>
+            <dd>
+              <TechStack
+                items={['Docker Compose']}
+                label="Delivery technologies"
+              />
+              <span className="system-detail">Automated provisioning</span>
+            </dd>
           </div>
           <div>
-            <dt>Networking</dt>
-            <dd>Tailscale · Caddy · Cloudflare Tunnels</dd>
+            <dt>
+              <Network size={17} aria-hidden="true" /> Networking
+            </dt>
+            <dd>
+              <TechStack
+                items={['Tailscale', 'Caddy', 'Cloudflare Tunnels']}
+                label="Networking technologies"
+              />
+            </dd>
           </div>
           <div>
-            <dt>Operations</dt>
+            <dt>
+              <Activity size={17} aria-hidden="true" /> Operations
+            </dt>
             <dd>Metrics · Logs · Backup and restore validation</dd>
           </div>
         </dl>

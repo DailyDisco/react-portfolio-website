@@ -95,17 +95,30 @@ test('the homepage keeps hiring evidence, deeper work, and contact actions immed
   )
 })
 
-test('visitors can pause the mascot and still navigate all project evidence', async () => {
+test('visitors can open and pause the optional companion while navigating project evidence', async () => {
   const user = userEvent.setup()
   render(
     <MemoryRouter>
       <Home />
     </MemoryRouter>
   )
-  const pause = screen.getByRole('button', { name: /Pause animation/ })
+  expect(
+    screen.queryByRole('button', { name: 'Pause' })
+  ).not.toBeInTheDocument()
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  const opener = screen.getByRole('button', {
+    name: 'Psst… Meet the coding companion',
+  })
+  expect(opener).toHaveAttribute('aria-expanded', 'false')
+  await user.click(opener)
+  const companion = within(
+    screen.getByRole('dialog', { name: 'A little coding companion' })
+  )
+  expect(opener).toHaveAttribute('aria-expanded', 'true')
+  const pause = companion.getByRole('button', { name: 'Pause' })
   await user.click(pause)
   expect(pause).toHaveAttribute('aria-pressed', 'true')
-  expect(screen.getByRole('button', { name: /Resume animation/ })).toHaveFocus()
+  expect(companion.getByRole('button', { name: 'Resume' })).toHaveFocus()
   await user.click(screen.getByRole('button', { name: /Systems/ }))
   expect(
     screen.getByRole('link', { name: 'Open Local inference case study' })
@@ -119,8 +132,17 @@ test('visitors can pause the mascot and still navigate all project evidence', as
   expect(
     screen.getByRole('link', { name: /Fixes merged upstream/ })
   ).toHaveAttribute('href', '/work/local-inference')
-  await user.click(screen.getByRole('button', { name: /Resume animation/ }))
-  expect(
-    screen.getByRole('button', { name: /Pause animation/ })
-  ).toHaveAttribute('aria-pressed', 'false')
+  expect(companion.getByRole('button', { name: 'Resume' })).toHaveAttribute(
+    'aria-pressed',
+    'true'
+  )
+  await user.click(companion.getByRole('button', { name: 'Resume' }))
+  expect(companion.getByRole('button', { name: 'Pause' })).toHaveAttribute(
+    'aria-pressed',
+    'false'
+  )
+  await user.keyboard('{Escape}')
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  expect(opener).toHaveAttribute('aria-expanded', 'false')
+  expect(opener).toHaveFocus()
 })

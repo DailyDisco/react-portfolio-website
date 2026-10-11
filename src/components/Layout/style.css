@@ -17,8 +17,16 @@
   font-weight: 700;
 }
 .site .primary-navigation {
-  gap: 30px;
+  gap: 26px;
   font-size: 0.9375rem;
+}
+.primary-navigation > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.primary-navigation > a > svg {
+  flex-shrink: 0;
 }
 .primary-navigation > a::after {
   background: var(--brand-accent);
@@ -152,6 +160,7 @@
   display: inline-flex;
   align-items: center;
   color: var(--brand-ink);
+  gap: 8px;
 }
 .console-email-link {
   gap: 7px;

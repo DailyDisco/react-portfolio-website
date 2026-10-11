@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import DiscoMark from '../DiscoMark'
+import RobotMark from '../RobotMark'
 import './style.css'
 
 const paletteDefaults = {
@@ -24,89 +24,92 @@ function readPalette(element) {
 function StaticCompanion({ selected }) {
   return (
     <svg
-      className="disco-companion__fallback"
+      className="robot-companion__fallback"
       viewBox="0 0 560 480"
       fill="none"
       focusable="false"
     >
       <ellipse
         cx="281"
-        cy="414"
-        rx="133"
-        ry="15"
+        cy="401"
+        rx="115"
+        ry="14"
         fill="var(--brand-ink, #171a19)"
         opacity="0.08"
       />
       <path
-        d="M340 310C388 300 395 361 366 365L353 348"
+        d="M325 309C373 294 379 356 351 355L341 340"
         stroke="var(--brand-accent, #364bff)"
-        strokeWidth="13"
+        strokeWidth="10"
         strokeLinecap="round"
       />
       <rect
-        x="345"
-        y="335"
-        width="18"
-        height="26"
+        x="334"
+        y="331"
+        width="16"
+        height="23"
         rx="6"
-        fill="var(--brand-signal, #d8f36a)"
-        transform="rotate(-25 354 348)"
+        fill="var(--robot-shell, #eaf0c3)"
+        transform="rotate(-25 342 342)"
       />
       <ellipse
-        cx="239"
-        cy="394"
-        rx="38"
-        ry="21"
-        fill="var(--brand-ink, #171a19)"
+        cx="249"
+        cy="385"
+        rx="28"
+        ry="18"
+        fill="var(--robot-shell, #eaf0c3)"
       />
       <ellipse
-        cx="324"
-        cy="394"
-        rx="38"
-        ry="21"
-        fill="var(--brand-ink, #171a19)"
+        cx="313"
+        cy="385"
+        rx="28"
+        ry="18"
+        fill="var(--robot-shell, #eaf0c3)"
       />
       <rect
-        x="213"
-        y="249"
-        width="137"
-        height="143"
-        rx="65"
+        x="228"
+        y="272"
+        width="106"
+        height="113"
+        rx="52"
         fill="var(--brand-accent, #364bff)"
       />
       <path
-        d="M216 283C188 288 183 323 195 342"
-        stroke="var(--brand-ink, #171a19)"
-        strokeWidth="26"
+        d="M231 307C209 311 207 326 214 339"
+        stroke="var(--brand-accent, #364bff)"
+        strokeWidth="24"
         strokeLinecap="round"
       />
+      <circle cx="214" cy="339" r="17" fill="var(--robot-shell, #eaf0c3)" />
       <path
         d={
           selected === 0
-            ? 'M347 285C380 279 382 257 374 246'
-            : 'M347 282C371 292 378 316 366 340'
+            ? 'M330 306C354 305 359 290 356 278'
+            : 'M330 306C352 310 357 326 350 337'
         }
-        stroke="var(--brand-ink, #171a19)"
-        strokeWidth="26"
+        stroke="var(--brand-accent, #364bff)"
+        strokeWidth="24"
         strokeLinecap="round"
       />
-      <circle cx="281" cy="330" r="35" fill="var(--brand-ink, #171a19)" />
       <circle
-        cx="281"
-        cy="330"
-        r="23"
-        stroke="var(--brand-edge, #c5c9bd)"
-        strokeWidth="1.5"
+        cx={selected === 0 ? 356 : 350}
+        cy={selected === 0 ? 278 : 337}
+        r="17"
+        fill="var(--robot-shell, #eaf0c3)"
       />
-      <circle
-        cx="281"
-        cy="330"
-        r="15"
-        stroke="var(--brand-edge, #c5c9bd)"
-        strokeWidth="1"
+      <rect
+        x="262"
+        y="322"
+        width="38"
+        height="27"
+        rx="10"
+        fill="var(--brand-paper, #f3f2ed)"
       />
-      <circle cx="281" cy="330" r="8" fill="var(--brand-signal, #d8f36a)" />
-      <DiscoMark x="172" y="64" width="218" height="218" />
+      <path
+        d="M281 342c-2-3-11-7-8-12 2-4 6-3 8 0 2-3 6-4 8 0 3 5-6 9-8 12Z"
+        fill="var(--brand-accent, #364bff)"
+      />
+      <RobotMark x="159" y="54" width="244" height="244" />
       <g
         stroke="var(--brand-ink, #171a19)"
         strokeWidth="3"
@@ -211,7 +214,7 @@ function StaticCompanion({ selected }) {
   )
 }
 
-export default function DiscoCompanion({
+export default function RobotCompanion({
   selected = 0,
   greeting = 0,
   motionPaused = false,
@@ -278,7 +281,7 @@ export default function DiscoCompanion({
         unavailable = true
         if (!cancelled) setReady(false)
         if (process.env.NODE_ENV === 'development')
-          console.warn('Disco is using its static illustration.', error)
+          console.warn('The robot is using its static illustration.', error)
       } finally {
         loading = false
       }
@@ -350,7 +353,7 @@ export default function DiscoCompanion({
   return (
     <div
       ref={stage}
-      className={`disco-companion ${className}`.trim()}
+      className={`robot-companion ${className}`.trim()}
       aria-hidden="true"
       data-ready={ready ? 'true' : 'false'}
       data-renderer={ready ? 'webgl' : 'fallback'}
@@ -360,7 +363,7 @@ export default function DiscoCompanion({
       data-pose={['product', 'cloud', 'systems'][selected] || 'product'}
     >
       <StaticCompanion selected={selected} />
-      <canvas ref={canvas} className="disco-companion__canvas" />
+      <canvas ref={canvas} className="robot-companion__canvas" />
     </div>
   )
 }

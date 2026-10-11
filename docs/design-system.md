@@ -1,12 +1,13 @@
 # Digital Diego interface
 
-The active interface is a personal engineering studio on an open chalk page. Cobalt actions, citron accents, generous type, hairline seams, and Disco, an original robot mascot, connect the pages. Keep the work and its evidence easy to read.
+The active interface is a work-led engineering portfolio on an open chalk page. Cobalt actions, citron accents, generous type, hairline seams, static technology logos, and a friendly robot-head mark connect the pages. Project imagery and evidence lead Home; the small robot companion is an optional Easter egg.
 
 ## Shared structure
 
 - `src/index.css` owns semantic `--brand-*` colors, radius tokens, and type defaults. Legacy aliases map to these tokens.
 - `Layout/style.css` owns navigation, page headings, shared controls, and the footer. The robot head is the shared brand mark.
-- Home contains an introduction, the robot stage, native Product/Cloud/Systems controls, three permanent result links, one selected project with a real or labeled conceptual visual, and direct homelab and resume links.
+- Home contains an introduction beside a selected-project cover, native Product/Cloud/Systems controls, three permanent result links, a detailed selected-project readout, and direct homelab and resume links. The cover caption includes the small Psst companion opener.
+- `study.cover` supplies the rounded wide Home/gallery image, with `study.visual` as its fallback. Detailed component captures, architecture diagrams, and benchmarks remain in the selected readout and case studies.
 - `PageSurface` wraps inner pages. Main and supporting sections use open publication spacing and hairline seams. Dark technical diagrams provide occasional contrast.
 - `NextChapter` provides contextual onward navigation; the main navigation and footer remain consistent across routes.
 
@@ -14,7 +15,7 @@ Allow natural document flow on small screens. Do not force content into viewport
 
 ## Type, color, and shape
 
-Use Manrope for major headings and the wordmark, system sans-serif for body copy, and monospace sparingly for short technical labels. Body copy stays at 16px or larger. Lucide icons accompany visible text labels.
+Use Manrope for major headings and the wordmark, system sans-serif for body copy, and monospace sparingly for short technical labels. Body copy stays at 16px or larger. Lucide icons accompany visible text labels. `TechStack` and `TechIcon` use locally bundled technology SVGs, with Lucide fallbacks for unnamed or unavailable marks. Logos are decorative, and technology names remain readable. Icons stay static.
 
 | Role                    | Token                 | Color     |
 | ----------------------- | --------------------- | --------- |
@@ -34,26 +35,29 @@ Radius tokens are 32px for a supporting surface, 24px for cards and data panels,
 
 ## Motion
 
-The React 17 app uses `spring` from `motion` and `animate` from `motion/mini`. Native links, buttons, scrolling, focus, and form semantics remain intact.
+The React 17 app uses Motion's vanilla `animate` API from `motion/mini`. Native links, buttons, scrolling, focus, and form semantics remain intact.
 
-`Home/useHomeMotion.js` supplies staged hero entrances, finite spring feedback on project/mascot controls, separate title and metric transitions on project selection, and once-only workbench and lower-link reveals. Transform entrances last roughly 540–640ms; control pulses last 420–480ms. Small rotations and perspective give the surfaces character. Content is visible before observers or animation APIs run.
+`Home/useHomeMotion.js` supplies a single 300ms introduction entrance, once-only 6px section entrances, a 180ms project crossfade, and small 180–200ms control feedback. There are no separate title or metric effects, rotations, perspective tilts, or staggered cards.
 
-`PageSurface/usePageMotion.js` supplies finite panel and heading entrances, staggered evidence cards with subtle alternating rotation, once-only later-section reveals, button feedback, and directional onward-arrow feedback.
-
+`PageSurface/usePageMotion.js` uses the same 300ms, 6px panel entrance and restrained control feedback. Headings, evidence cards, and icons stay together with their containing section.
 Both hooks cancel animations and restore original inline styles on cleanup. Keyboard focus settles containing entrances; the current pointer press retains its feedback. Initial reduced motion suppresses effects. Enabling reduced motion clears current effects and disables the DOM effects for the rest of that mount. Missing APIs leave visible, functional content.
 
-## Disco
+## Robot companion
 
-`DiscoCompanion` lazily loads a procedural Three.js scene when its stage becomes visible. Disco has a citron head, charcoal visor, cobalt headphone pods and body, a star antenna, speaker belly, and cable backpack. Its head supplies the matching SVG navigation mark and favicon. No downloaded model or image texture is needed.
+`RobotPocket` is closed initially. The small Psst opener beside the work-cover caption opens an anchored, nonmodal panel; it is an optional local Easter egg with no chat or customer-support behavior. The panel adjusts to available viewport space and stays associated with its opener. Close or Escape dismisses it and returns focus. It does not trap focus or block native page navigation.
 
-Product shows small application windows, Cloud shows linked cloud nodes, and Systems shows a chip stack and circuit ring. The modes also change Disco's pose. A fine pointer guides the head and eyes. Say hello triggers a finite wave; ordinary optional motion includes breathing, blinking, and floating props.
+`RobotCompanion` mounts only while the pocket is open and lazily loads its procedural Three.js scene when the stage becomes visible. The robot has an oversized softly beveled pale citron head, large dark oval eyes with highlights, a little smile, rosy cheeks, a star antenna, petite matte body, rounded limbs, and a small heart status panel. Its head supplies the matching SVG navigation mark and favicon. No downloaded model or image texture is needed.
 
-A visible pause control stops the robot's animation and pointer response. Project selection remains functional while paused and immediately renders the selected static pose. Reduced motion also uses static poses. Offscreen and hidden-tab states stop rendering. Drawing is capped at 30fps while optional motion runs; pixel ratio is capped at 1.5 and shadow maps at 1024 pixels. Static paused/reduced scenes request a frame only when state or size changes.
+Product shows small application windows, Cloud shows linked cloud nodes, and Systems shows a chip stack and circuit ring. The modes also change the robot's pose. A fine pointer guides the head and eyes. Say hello triggers a finite wave; ordinary optional motion includes breathing, blinking, and floating props.
 
-The matching SVG appears before the scene loads, when observers or WebGL are unavailable, and during context loss. Context restoration renders the scene again. Route cleanup releases listeners, geometry, materials, shadow texture, procedural environment, shadows, and renderer resources.
+The panel's Pause control stops the robot's animation and pointer response. Project selection remains functional while paused and immediately renders the selected static pose. Reduced motion also uses static poses. Offscreen and hidden-tab states stop rendering. Drawing is capped at 30fps while optional motion runs; pixel ratio is capped at 1.5 and shadow maps at 1024 pixels. Static paused/reduced scenes request a frame only when state or size changes.
+
+The matching SVG appears before the scene loads, when observers or WebGL are unavailable, and during context loss. Context restoration renders the scene again. Closing the pocket or leaving the route releases listeners, geometry, materials, shadow texture, procedural environment, shadows, and renderer resources.
 
 ## Content and evidence
 
 All three result links remain on Home independently of the selected project. Detailed case studies provide leadership, delivery, and implementation context. Keep the mixed-reality client anonymous.
 
-Project visuals are actual component captures with synthetic data, labeled architecture illustrations, and scoped benchmarks. The current server has seven RTX 3090s and 168 GiB combined memory. The 18% improvement retains its earlier six-GPU benchmark scope. Neither Disco nor its props represent a hardware inventory.
+Emmut's cover composes actual desktop/mobile components rendered with synthetic data. The migration and inference covers are labeled conceptual illustrations. Their decorative object counts are not architecture, inventory, or performance evidence. The original component captures, migration map, and scoped benchmark remain in detailed project views; keep their captions and provenance intact when changing a cover.
+
+The current server has seven RTX 3090s and 168 GiB combined memory. The 18% improvement retains its earlier six-GPU benchmark scope. Neither the robot nor its props represent a hardware inventory. Earlier artwork and design iterations remain documented in `visual-provenance.md` and the preserved unmounted sources.

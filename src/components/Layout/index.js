@@ -1,8 +1,16 @@
 import { Suspense, useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
-import { ArrowUpRight, Menu, X } from 'lucide-react'
+import {
+  BriefcaseBusiness,
+  Cpu,
+  FileDown,
+  Mail,
+  Menu,
+  UserRound,
+  X,
+} from 'lucide-react'
 import SiteFooter from '../SiteFooter'
-import DiscoMark from '../DiscoMark'
+import RobotMark from '../RobotMark'
 import pageMetadata from '../../data/pageMetadata.json'
 const resumeUrl = `${process.env.PUBLIC_URL || ''}/resume/Diego_Espino_Resume.pdf`
 
@@ -93,7 +101,7 @@ export default function Layout() {
       <header className="site-header">
         <Link className="brand" to="/" aria-label="Diego Espino home">
           <span className="brand-mark" aria-hidden="true">
-            <DiscoMark width="38" height="38" />
+            <RobotMark width="38" height="38" />
           </span>
           <span>Diego Espino</span>
         </Link>
@@ -122,15 +130,19 @@ export default function Layout() {
             aria-current={workActive ? 'location' : undefined}
             to="/portfolio"
           >
-            Work
+            <BriefcaseBusiness size={17} aria-hidden="true" /> Work
           </Link>
-          <NavLink to="/infrastructure">Homelab</NavLink>
-          <NavLink to="/about">About</NavLink>
+          <NavLink to="/infrastructure">
+            <Cpu size={17} aria-hidden="true" /> Homelab
+          </NavLink>
+          <NavLink to="/about">
+            <UserRound size={17} aria-hidden="true" /> About
+          </NavLink>
           <a href={resumeUrl} target="_blank" rel="noreferrer">
-            Resume <ArrowUpRight size={13} aria-hidden="true" />
+            <FileDown size={17} aria-hidden="true" /> Resume
           </a>
           <NavLink className="nav-contact" to="/contact">
-            Contact
+            <Mail size={17} aria-hidden="true" /> Contact
           </NavLink>
         </nav>
       </header>

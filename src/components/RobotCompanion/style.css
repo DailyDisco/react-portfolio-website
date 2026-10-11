@@ -1,0 +1,36 @@
+.robot-companion {
+  --robot-shell: color-mix(
+    in srgb,
+    var(--brand-signal, #d8f36a) 32%,
+    var(--brand-paper, #f3f2ed)
+  );
+  position: relative;
+  width: 100%;
+  aspect-ratio: 7 / 6;
+  min-width: 0;
+  isolation: isolate;
+  touch-action: pan-y;
+}
+
+.robot-companion__fallback,
+.robot-companion__canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.robot-companion__fallback {
+  opacity: 1;
+}
+.robot-companion__canvas {
+  opacity: 0;
+}
+.robot-companion[data-ready='true'] .robot-companion__fallback {
+  opacity: 0;
+}
+.robot-companion[data-ready='true'] .robot-companion__canvas {
+  opacity: 1;
+}

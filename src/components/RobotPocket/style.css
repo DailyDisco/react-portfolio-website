@@ -1,0 +1,145 @@
+.robot-pocket-anchor {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.robot-pocket__opener {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 6px 12px 6px 9px;
+  border: 1px solid var(--brand-edge, #c5c9bd);
+  border-radius: 999px;
+  background: var(--brand-paper, #f3f2ed);
+  color: var(--brand-ink, #171a19);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.robot-pocket__opener svg {
+  flex: 0 0 24px;
+}
+
+.robot-pocket {
+  position: absolute;
+  z-index: 20;
+  right: var(--robot-pocket-right, 0px);
+  bottom: calc(100% + 10px);
+  box-sizing: border-box;
+  width: min(300px, calc(100vw - 32px));
+  max-height: min(var(--robot-pocket-space, 380px), calc(100vh - 32px));
+  max-height: min(var(--robot-pocket-space, 380px), calc(100dvh - 32px));
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 12px 16px 16px;
+  border: 1px solid var(--brand-edge, #c5c9bd);
+  border-radius: 24px;
+  background: var(--brand-paper, #f3f2ed);
+  color: var(--brand-ink, #171a19);
+  box-shadow:
+    0 14px 48px rgb(23 26 25 / 14%),
+    0 2px 8px rgb(23 26 25 / 5%);
+}
+
+.robot-pocket__header {
+  position: sticky;
+  z-index: 1;
+  top: -12px;
+  background: var(--brand-paper, #f3f2ed);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.robot-pocket__header p {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.robot-pocket__close {
+  display: grid;
+  flex: 0 0 44px;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.robot-pocket__stage {
+  position: relative;
+  height: 250px;
+  margin: 4px 0 12px;
+  border-radius: 44% 48% 40% 46%;
+  background: color-mix(in srgb, var(--brand-signal, #d8f36a) 38%, transparent);
+}
+
+.robot-pocket__stage .robot-companion {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.robot-pocket__actions {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.robot-pocket__actions button {
+  display: inline-flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 8px 9px;
+  border: 1px solid var(--brand-edge, #c5c9bd);
+  border-radius: 14px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.robot-pocket__actions button:first-child {
+  border-color: var(--brand-accent, #364bff);
+  background: var(--brand-accent, #364bff);
+  color: var(--brand-on-accent, #fff);
+}
+
+.robot-pocket__opener:focus-visible,
+.robot-pocket button:focus-visible {
+  outline: 3px solid var(--brand-accent, #364bff);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .robot-pocket__opener:hover,
+  .robot-pocket__close:hover,
+  .robot-pocket__actions button:last-child:hover {
+    background: var(--brand-surface, #e6e7df);
+  }
+
+  .robot-pocket__actions button:first-child:hover {
+    filter: brightness(0.93);
+  }
+}

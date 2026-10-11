@@ -188,7 +188,11 @@ test('selected work shows the three featured projects and preserves the confiden
   expect(
     screen.getByRole('link', { name: /Engineering details/ })
   ).toHaveAttribute('href', '/work/realtime-platform')
-  expect(screen.getByAltText(/Actual Emmut maintenance-worker/)).toBeVisible()
+  expect(
+    screen.getByAltText(
+      'Emmut maintenance worker management on desktop and mobile, using synthetic demo data.'
+    )
+  ).toBeVisible()
   expect(
     screen.queryByText('Testing MetaMask Connection')
   ).not.toBeInTheDocument()

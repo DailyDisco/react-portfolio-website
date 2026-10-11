@@ -15,6 +15,9 @@
 .case-study .case-overview > div:first-child > p:not(.eyebrow) {
   font-size: 1rem;
 }
+.case-study .case-stack {
+  margin-top: 22px;
+}
 .case-study .case-product-proof {
   margin-bottom: 32px;
 }

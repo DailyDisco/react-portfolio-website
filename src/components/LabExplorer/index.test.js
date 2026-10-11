@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import LabExplorer from './index'
 
@@ -49,8 +49,18 @@ test('switching views changes both the schematic and engineering details', async
   ).not.toBeInTheDocument()
 
   await user.click(screen.getByRole('button', { name: 'The homelab' }))
-  expect(screen.getByText('Proxmox · Linux · Docker Compose')).toBeVisible()
-  expect(screen.getByText('Tailscale · Caddy', { selector: 'dd' })).toBeVisible()
+  const compute = screen.getByRole('list', {
+    name: 'Compute & delivery technologies',
+  })
+  for (const technology of ['Proxmox', 'Linux', 'Docker Compose']) {
+    expect(within(compute).getByText(technology)).toBeVisible()
+  }
+  const networking = screen.getByRole('list', {
+    name: 'Networking technologies',
+  })
+  for (const technology of ['Tailscale', 'Caddy']) {
+    expect(within(networking).getByText(technology)).toBeVisible()
+  }
   expect(
     screen.getByText('Metrics, logs, backup and restore validation')
   ).toBeVisible()

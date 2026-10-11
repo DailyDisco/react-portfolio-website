@@ -94,6 +94,11 @@
 .infrastructure-page .contribution-grid .eyebrow {
   margin-bottom: 9px;
 }
+.infrastructure-page .contribution-technology {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
 .infrastructure-page .contribution-grid h3 {
   font-size: 1.3rem;
   line-height: 1.3;
@@ -138,15 +143,23 @@
   border-bottom: 0;
 }
 .infrastructure-page .system-list dt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: var(--brand-muted);
   font: 500 0.875rem/1.5 var(--font);
   text-transform: none;
   letter-spacing: 0;
 }
 .infrastructure-page .system-list dd {
-  margin-top: 4px;
+  margin-top: 9px;
   font-size: 1rem;
   line-height: 1.6;
+}
+.infrastructure-page .system-detail {
+  display: block;
+  margin-top: 6px;
+  color: var(--brand-muted);
 }
 @media (max-width: 900px) {
   .infrastructure-page .contribution-grid {

@@ -162,6 +162,22 @@
   font-size: 0.9375rem;
   line-height: 1.5;
 }
+.lab-explorer-details .tech-stack {
+  gap: 10px 16px;
+  padding-top: 4px;
+}
+.lab-detail-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding-top: 4px;
+}
+.lab-explorer-details .tech-icon {
+  background: var(--brand-paper);
+  border-radius: 3px;
+  outline: 3px solid var(--brand-paper);
+  color: var(--brand-ink);
+}
 .lab-explorer-figure {
   min-width: 0;
   margin: 0;

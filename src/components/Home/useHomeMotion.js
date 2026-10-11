@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'react'
-import { spring } from 'motion'
 import { animate } from 'motion/mini'
 
-const settleSpring = { type: spring, duration: 0.54, bounce: 0.16 }
-const pressDuration = 0.42
+const settleTransition = { duration: 0.3, ease: 'easeOut' }
+const pressDuration = 0.2
 const controlSelector = '.home-scenes button, .home-replay, .home-motion-toggle'
 
 export default function useHomeMotion(rootRef, selected) {
@@ -99,11 +98,11 @@ export default function useHomeMotion(rootRef, selected) {
         control,
         {
           transform: [
-            `${baseline} translateY(${pressed ? 2 : -2}px) rotate(${pressed ? 0.7 : -0.7}deg) scale(${pressed ? 0.955 : 1.025})`,
-            `${baseline} translateY(0px) rotate(0deg) scale(1)`,
+            `${baseline} scale(${pressed ? 0.985 : 1.01})`,
+            `${baseline} scale(1)`,
           ],
         },
-        { type: spring, duration: pressed ? pressDuration : 0.48, bounce: 0.25 },
+        { duration: pressed ? pressDuration : 0.18, ease: 'easeOut' },
         'control'
       )
     }
@@ -117,36 +116,8 @@ export default function useHomeMotion(rootRef, selected) {
 
       animateElement(
         project,
-        {
-          opacity: [0.84, 1],
-          transform: [
-            'perspective(900px) rotateX(4deg) translateY(8px) scale(0.985)',
-            'perspective(900px) rotateX(0deg) translateY(0px) scale(1)',
-          ],
-        },
-        {
-          transform: settleSpring,
-          opacity: { duration: 0.24, ease: 'easeOut' },
-        },
-        'project'
-      )
-      animateElement(
-        project.querySelector('h2, h3'),
-        {
-          transform: [
-            'translateX(12px) rotate(-0.8deg)',
-            'translateX(0px) rotate(0deg)',
-          ],
-        },
-        { ...settleSpring, delay: 0.035 },
-        'project'
-      )
-      animateElement(
-        project.querySelector('.home-project-metric'),
-        {
-          transform: ['rotate(3deg) scale(0.9)', 'rotate(0deg) scale(1)'],
-        },
-        { type: spring, duration: 0.62, bounce: 0.22, delay: 0.07 },
+        { opacity: [0.92, 1] },
+        { duration: 0.18, ease: 'easeOut' },
         'project'
       )
     }
@@ -156,35 +127,14 @@ export default function useHomeMotion(rootRef, selected) {
       revealed.add(section)
       observer?.unobserve(section)
       if (section.contains(root.ownerDocument.activeElement)) return
-      const isLinks = section.classList.contains('home-links')
       animateElement(
         section,
         {
-          transform: isLinks
-            ? ['translateX(18px)', 'translateX(0px)']
-            : [
-                'perspective(1100px) rotateX(3deg) rotate(-1deg) scale(0.98)',
-                'perspective(1100px) rotateX(0deg) rotate(0deg) scale(1)',
-              ],
+          opacity: [0.92, 1],
+          transform: ['translateY(6px)', 'translateY(0px)'],
         },
-        { ...settleSpring, duration: 0.64 }
+        settleTransition
       )
-      if (isLinks) {
-        Array.from(section.querySelectorAll('a'))
-          .slice(0, 4)
-          .forEach((element, index) => {
-            animateElement(
-              element,
-              {
-                transform: [
-                  `translateY(8px) rotate(${index % 2 ? 2 : -2}deg) scale(0.97)`,
-                  'translateY(0px) rotate(0deg) scale(1)',
-                ],
-              },
-              { ...settleSpring, delay: index * 0.05 }
-            )
-          })
-      }
     }
 
     const settleAll = () => {
@@ -301,29 +251,16 @@ export default function useHomeMotion(rootRef, selected) {
       removeListeners.push(() => preference.removeListener(onPreferenceChange))
     }
 
-    const heroSteps = [
-      ['.home-intro h1', 'translateX(-16px) rotate(-1.4deg) scale(0.98)', 0],
-      ['.home-role', 'translateX(12px)', 0.055],
-      ['.home-description', null, 0.1],
-      ['.home-actions', 'translateY(8px) rotate(1.5deg) scaleX(0.95)', 0.14],
-      ['.home-stage-top', 'translateX(16px)', 0.09],
-      ['.home-scenes', 'rotate(-1deg) scaleY(0.92)', 0.17],
-      ['.home-proof-strip', 'translateX(-18px)', 0.23],
-    ]
+    const intro = root.querySelector('.home-intro')
     if (!root.contains(root.ownerDocument.activeElement)) {
-      heroSteps.forEach(([selector, transform, delay]) => {
-        animateElement(
-          root.querySelector(selector),
-          {
-            opacity: [0.84, 1],
-            ...(transform ? { transform: [transform, 'none'] } : {}),
-          },
-          {
-            transform: { ...settleSpring, duration: 0.64, delay },
-            opacity: { duration: 0.3, ease: 'easeOut', delay },
-          }
-        )
-      })
+      animateElement(
+        intro,
+        {
+          opacity: [0.92, 1],
+          transform: ['translateY(6px)', 'translateY(0px)'],
+        },
+        settleTransition
+      )
     }
 
     if (typeof view.IntersectionObserver === 'function') {

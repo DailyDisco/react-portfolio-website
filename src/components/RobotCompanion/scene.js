@@ -4,9 +4,7 @@ import {
   CanvasTexture,
   CapsuleGeometry,
   CatmullRomCurve3,
-  CircleGeometry,
   Color,
-  CylinderGeometry,
   DirectionalLight,
   ExtrudeGeometry,
   Group,
@@ -30,6 +28,7 @@ import {
   WebGLRenderer,
 } from 'three'
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js'
+import { mergeVertices } from 'three/addons/utils/BufferGeometryUtils.js'
 
 const palettes = {
   paper: '#f3f2ed',
@@ -141,18 +140,18 @@ function buildScene(renderer, canvas, options) {
   generator.dispose()
   const materials = {
     citron: new MeshPhysicalMaterial({
-      color: new Color(palette.signal).multiplyScalar(0.78),
-      roughness: 0.62,
+      color: new Color(palette.signal).lerp(new Color(palette.paper), 0.68),
+      roughness: 0.78,
       metalness: 0.02,
-      clearcoat: 0.14,
+      clearcoat: 0.04,
       clearcoatRoughness: 0.55,
       envMapIntensity: 0.45,
     }),
     cobalt: new MeshPhysicalMaterial({
       color: new Color(palette.accent).multiplyScalar(0.58),
-      roughness: 0.55,
-      metalness: 0.04,
-      clearcoat: 0.12,
+      roughness: 0.82,
+      metalness: 0,
+      clearcoat: 0.04,
       clearcoatRoughness: 0.5,
       envMapIntensity: 0.3,
     }),
@@ -162,11 +161,11 @@ function buildScene(renderer, canvas, options) {
       metalness: 0.08,
       envMapIntensity: 0.5,
     }),
-    visor: new MeshPhysicalMaterial({
+    eye: new MeshPhysicalMaterial({
       color: new Color(palette.ink).multiplyScalar(0.45),
-      roughness: 0.26,
+      roughness: 0.36,
       metalness: 0.1,
-      clearcoat: 0.5,
+      clearcoat: 0.22,
       clearcoatRoughness: 0.2,
       envMapIntensity: 0.23,
     }),
@@ -182,11 +181,16 @@ function buildScene(renderer, canvas, options) {
       metalness: 0.28,
       envMapIntensity: 0.5,
     }),
-    eyes: new MeshBasicMaterial({ color: palette.paper }),
+    highlights: new MeshBasicMaterial({ color: palette.paper }),
+    blush: new MeshStandardMaterial({
+      color: '#e5a2a2',
+      roughness: 0.85,
+      metalness: 0,
+      envMapIntensity: 0.25,
+    }),
   }
   const sphere = new SphereGeometry(1, 48, 32)
   const smallSphere = new SphereGeometry(1, 24, 16)
-  const disc = new CircleGeometry(1, 48)
   const mesh = (
     geometry,
     material,
@@ -208,50 +212,29 @@ function buildScene(renderer, canvas, options) {
     sphere,
     materials.cobalt,
     character,
-    [0, -0.44, 0],
-    [0.68, 0.74, 0.5]
+    [0, -0.51, 0],
+    [0.51, 0.53, 0.37]
   )
+  mesh(sphere, materials.chalk, character, [0, -0.055, 0], [0.19, 0.15, 0.18])
   const head = new Group()
-  head.position.set(0, 0.66, 0.035)
+  head.position.set(0, 0.61, 0.035)
   character.add(head)
-  mesh(sphere, materials.citron, head, [0, 0, 0], [1.02, 0.72, 0.64])
-  mesh(sphere, materials.visor, head, [0, -0.035, 0.535], [0.84, 0.325, 0.245])
-
-  for (const side of [-1, 1]) {
-    mesh(
-      sphere,
-      materials.charcoal,
-      head,
-      [side * 0.96, -0.035, -0.01],
-      [0.18, 0.39, 0.33]
-    )
-    mesh(
-      sphere,
-      materials.cobalt,
-      head,
-      [side * 1.07, -0.035, -0.015],
-      [0.15, 0.34, 0.3]
-    )
-    mesh(
-      sphere,
-      materials.citron,
-      head,
-      [side * 1.16, -0.035, 0.015],
-      [0.025, 0.14, 0.14]
-    )
-  }
-  const headband = [
-    [-1.02, 0.05, -0.11],
-    [-0.78, 0.65, -0.18],
-    [0, 0.81, -0.21],
-    [0.78, 0.65, -0.18],
-    [1.02, 0.05, -0.11],
-  ].map((point) => new Vector3(...point))
-  mesh(
-    new TubeGeometry(new CatmullRomCurve3(headband), 32, 0.057, 8, false),
-    materials.charcoal,
-    head
-  )
+  const headGeometry = new ExtrudeGeometry(roundedRectangle(1.62, 1.08, 0.35), {
+    depth: 0.66,
+    bevelEnabled: true,
+    bevelSegments: 7,
+    bevelSize: 0.17,
+    bevelThickness: 0.17,
+    curveSegments: 18,
+    steps: 1,
+  })
+  headGeometry.translate(0, 0, -0.33)
+  headGeometry.deleteAttribute('normal')
+  headGeometry.deleteAttribute('uv')
+  const smoothHeadGeometry = mergeVertices(headGeometry)
+  smoothHeadGeometry.computeVertexNormals()
+  headGeometry.dispose()
+  mesh(smoothHeadGeometry, materials.citron, head)
   const antenna = new Group()
   antenna.position.set(-0.32, 0.61, -0.04)
   head.add(antenna)
@@ -266,72 +249,107 @@ function buildScene(renderer, canvas, options) {
     antenna
   )
   const star = mesh(starGeometry(), materials.cobalt, antenna, [-0.06, 0.5, 0])
-  const eyeGeometry = new CapsuleGeometry(0.046, 0.17, 5, 16)
-  const eyes = [-1, 1].map((side) =>
+  const eyes = [-1, 1].map((side) => {
+    const eye = new Group()
+    eye.position.set(side * 0.32, 0.045, 0.515)
+    head.add(eye)
+    mesh(sphere, materials.eye, eye, [0, 0, 0], [0.16, 0.22, 0.05])
     mesh(
-      eyeGeometry,
-      materials.eyes,
-      head,
-      [side * 0.265, -0.035, 0.789],
-      [1, 1, 0.5]
+      smallSphere,
+      materials.highlights,
+      eye,
+      [-0.043, 0.077, 0.047],
+      [0.043, 0.048, 0.011]
     )
+    mesh(
+      smallSphere,
+      materials.highlights,
+      eye,
+      [0.047, -0.073, 0.048],
+      [0.017, 0.019, 0.006]
+    )
+    mesh(
+      sphere,
+      materials.blush,
+      head,
+      [side * 0.57, -0.215, 0.515],
+      [0.115, 0.061, 0.019]
+    )
+    return eye
+  })
+  const smilePoints = [
+    [-0.12, -0.205, 0.535],
+    [-0.06, -0.258, 0.537],
+    [0, -0.27, 0.539],
+    [0.06, -0.258, 0.537],
+    [0.12, -0.205, 0.535],
+  ].map((point) => new Vector3(...point))
+  mesh(
+    new TubeGeometry(new CatmullRomCurve3(smilePoints), 24, 0.018, 8, false),
+    materials.charcoal,
+    head
   )
   const feet = [-1, 1].map((side) =>
     mesh(
       sphere,
-      materials.charcoal,
+      materials.citron,
       character,
-      [side * 0.37, -1.17, 0.17],
-      [0.29, 0.18, 0.42]
+      [side * 0.285, -1.04, 0.14],
+      [0.245, 0.17, 0.31]
     )
   )
-  const armGeometry = new CapsuleGeometry(0.115, 0.27, 5, 16)
+  const armGeometry = new CapsuleGeometry(0.12, 0.14, 5, 16)
   const arms = [-1, 1].map((side) => {
     const arm = new Group()
-    arm.position.set(side * 0.61, -0.19, 0.04)
+    arm.position.set(side * 0.48, -0.28, 0.03)
     character.add(arm)
-    mesh(armGeometry, materials.charcoal, arm, [0, -0.2, 0])
+    mesh(armGeometry, materials.cobalt, arm, [0, -0.12, 0])
     mesh(
       smallSphere,
       materials.citron,
       arm,
-      [0, -0.43, 0.02],
-      [0.15, 0.15, 0.14]
+      [0, -0.285, 0.045],
+      [0.16, 0.16, 0.15]
     )
     return arm
   })
 
-  const record = new Group()
-  record.position.set(0, -0.47, 0.475)
-  character.add(record)
-  mesh(sphere, materials.charcoal, record, [0, 0, 0], [0.295, 0.295, 0.055])
-  for (const radius of [0.17, 0.205, 0.24]) {
-    const groove = mesh(
-      new TorusGeometry(radius, 0.004, 6, 48),
-      materials.slate,
-      record,
-      [0, 0, 0.052]
-    )
-    groove.castShadow = false
-  }
-  mesh(disc, materials.citron, record, [0, 0, 0.059], [0.077, 0.077, 1])
-  mesh(disc, materials.charcoal, record, [0, 0, 0.061], [0.017, 0.017, 1])
+  const status = new Group()
+  status.position.set(0, -0.51, 0.35)
+  character.add(status)
+  mesh(roundedPanel(0.35, 0.25, 0.09, 0.02), materials.chalk, status)
+  const heartShape = new Shape()
+  heartShape.moveTo(0, -0.067)
+  heartShape.bezierCurveTo(-0.02, -0.04, -0.095, 0.001, -0.064, 0.055)
+  heartShape.bezierCurveTo(-0.045, 0.085, -0.009, 0.07, 0, 0.044)
+  heartShape.bezierCurveTo(0.009, 0.07, 0.045, 0.085, 0.064, 0.055)
+  heartShape.bezierCurveTo(0.095, 0.001, 0.02, -0.04, 0, -0.067)
+  const heartGeometry = new ExtrudeGeometry(heartShape, {
+    depth: 0.009,
+    bevelEnabled: true,
+    bevelSize: 0.005,
+    bevelThickness: 0.005,
+    bevelSegments: 2,
+    curveSegments: 10,
+    steps: 1,
+  })
+  mesh(heartGeometry, materials.cobalt, status, [0, -0.008, 0.032])
 
   mesh(
-    roundedPanel(0.45, 0.63, 0.12, 0.22),
+    roundedPanel(0.33, 0.4, 0.12, 0.16),
     materials.charcoal,
     character,
-    [0, -0.42, -0.5]
+    [0, -0.42, -0.35]
   )
   const cable = new Group()
-  cable.position.set(0.43, -0.42, -0.35)
+  cable.position.set(0.31, -0.41, -0.26)
   character.add(cable)
   const cablePoints = [
     [0, 0, 0],
-    [0.48, -0.04, 0.03],
-    [0.67, -0.3, 0.09],
-    [0.53, -0.57, 0.18],
-    [0.34, -0.43, 0.29],
+    [0.4, -0.04, 0.03],
+    [0.53, -0.25, 0.09],
+    [0.43, -0.43, 0.18],
+    [0.27, -0.34, 0.24],
   ].map((point) => new Vector3(...point))
   mesh(
     new TubeGeometry(new CatmullRomCurve3(cablePoints), 32, 0.048, 8, false),
@@ -517,11 +535,7 @@ function buildScene(renderer, canvas, options) {
       [0.057, 0.057, 0.057]
     )
   }
-  mesh(
-    new CylinderGeometry(0.105, 0.105, 0.07, 24),
-    materials.charcoal,
-    circuitRing
-  ).rotation.x = Math.PI / 2
+  mesh(roundedPanel(0.2, 0.2, 0.035, 0.06), materials.charcoal, circuitRing)
   floatObject(circuitRing, 3, 0.025)
 
   const shadowCanvas = document.createElement('canvas')
@@ -545,7 +559,7 @@ function buildScene(renderer, canvas, options) {
     })
   )
   shadow.rotation.x = -Math.PI / 2
-  shadow.position.set(0.12, -1.4, 0)
+  shadow.position.set(0.12, -1.24, 0)
   scene.add(shadow)
   const key = new DirectionalLight(0xfffaf2, 1.8)
   key.position.set(-3, 5, 6)
@@ -606,7 +620,7 @@ function buildScene(renderer, canvas, options) {
       moving ? Math.sin(phase * 0.7) * 0.012 : 0
     )
     character.position.y = moving ? Math.sin(phase * 1.75) * 0.025 : 0
-    body.scale.y = 0.74 * (1 + (moving ? Math.sin(phase * 1.75) * 0.009 : 0))
+    body.scale.y = 0.53 * (1 + (moving ? Math.sin(phase * 1.75) * 0.009 : 0))
     head.rotation.set(
       gaze.y * 0.1 + selectionPulse * 0.065,
       gaze.x * 0.19,

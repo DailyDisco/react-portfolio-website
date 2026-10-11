@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Cpu, Server, Workflow } from 'lucide-react'
+import TechStack, { TechIcon } from '../TechStack'
 import './style.css'
 
 const views = {
@@ -11,7 +12,7 @@ const views = {
     description:
       'I built and operate a seven-RTX-3090 server for local models and coding agents.',
     details: [
-      ['Hardware', '7 × NVIDIA RTX 3090'],
+      ['Hardware', '7 × NVIDIA RTX 3090', 'NVIDIA'],
       ['GPU memory', '24 GiB each · 168 GiB combined'],
       ['Purpose', 'Local model inference'],
     ],
@@ -27,9 +28,9 @@ const views = {
     description:
       'An OpenAI-compatible gateway connects coding agents to local models served by TabbyAPI and ExLlamaV3.',
     details: [
-      ['Interface', 'OpenAI-compatible gateway'],
-      ['Serving', 'TabbyAPI'],
-      ['Inference', 'ExLlamaV3'],
+      ['Interface', 'OpenAI-compatible gateway', 'OpenAI-compatible gateway'],
+      ['Serving', 'TabbyAPI', 'TabbyAPI'],
+      ['Inference', 'ExLlamaV3', 'ExLlamaV3'],
     ],
     illustration:
       'Conceptual request path from a coding agent through a gateway and TabbyAPI to ExLlamaV3',
@@ -43,8 +44,8 @@ const views = {
     description:
       'My homelab is where I work through provisioning, networking, observability, and recovery for self-hosted services.',
     details: [
-      ['Compute & delivery', 'Proxmox · Linux · Docker Compose'],
-      ['Networking', 'Tailscale · Caddy'],
+      ['Compute & delivery', ['Proxmox', 'Linux', 'Docker Compose']],
+      ['Networking', ['Tailscale', 'Caddy']],
       ['Operations', 'Metrics, logs, backup and restore validation'],
     ],
     illustration:
@@ -238,10 +239,23 @@ export default function LabExplorer({ compact = false }) {
           <figcaption>{view.caption}</figcaption>
         </figure>
         <dl className="lab-explorer-details">
-          {view.details.map(([label, value]) => (
+          {view.details.map(([label, value, iconName]) => (
             <div key={label}>
               <dt>{label}</dt>
-              <dd>{value}</dd>
+              <dd className={iconName ? 'lab-detail-with-icon' : undefined}>
+                {Array.isArray(value) ? (
+                  <TechStack
+                    items={value}
+                    label={`${label} technologies`}
+                    compact
+                  />
+                ) : (
+                  <>
+                    {iconName && <TechIcon name={iconName} size={18} />}
+                    {value}
+                  </>
+                )}
+              </dd>
             </div>
           ))}
         </dl>

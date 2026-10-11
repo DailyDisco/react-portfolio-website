@@ -1,7 +1,8 @@
 import PageSurface from '../PageSurface'
 import NextChapter from '../NextChapter'
-import { ArrowDown, ArrowUpRight, Cpu, Music2 } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Cpu, Languages } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import TechStack, { TechIcon } from '../TechStack'
 import './style.css'
 
 export default function About() {
@@ -72,75 +73,97 @@ export default function About() {
       </section>
       <section
         className="page-panel about-secondary-panel"
-        aria-labelledby="about-off-clock-heading"
+        aria-labelledby="about-engineering-heading"
       >
-        <h2 id="about-off-clock-heading" className="about-secondary-title">
-          Off the clock, still building.
+        <h2 id="about-engineering-heading" className="about-secondary-title">
+          Built, operated, understood.
         </h2>
-        <div className="about-off-clock-layout">
-          <figure className="about-study">
-            <img
-              src="/brand/code-hardware-music.webp"
-              alt="An illustrated still life connecting piano keys, a computer heatsink, and a circuit board with an ochre cable."
-              width="1024"
-              height="1024"
-              loading="lazy"
-            />
-            <figcaption>
-              Code, hardware, and bass music. An illustrated study.
-            </figcaption>
-          </figure>
-          <div className="about-personal-notes">
-            <section className="about-personal-note">
-              <Cpu size={21} strokeWidth={1.6} aria-hidden="true" />
-              <div>
-                <h3>Built at home</h3>
-                <p>
-                  I run a multi-GPU inference server and Proxmox homelab.
-                  Debugging that setup led to fixes merged into ExLlamaV3 and
-                  TabbyAPI.
-                </p>
-                <Link to="/infrastructure">
-                  Inside the homelab
-                  <ArrowUpRight size={17} aria-hidden="true" />
-                </Link>
-              </div>
-            </section>
-            <section className="about-personal-note">
-              <Music2 size={21} strokeWidth={1.6} aria-hidden="true" />
-              <div>
-                <h3>Away from the terminal</h3>
-                <p>
-                  I produce bass music in Ableton, learn piano, and build things
-                  with hardware. I speak English and Spanish.
-                </p>
-              </div>
-            </section>
-          </div>
+        <div className="about-personal-notes">
+          <section className="about-personal-note">
+            <Cpu size={21} strokeWidth={1.6} aria-hidden="true" />
+            <div>
+              <h3>Built at home</h3>
+              <p>
+                I run a multi-GPU inference server and Proxmox homelab.
+                Debugging that setup led to fixes merged into ExLlamaV3 and
+                TabbyAPI.
+              </p>
+              <Link to="/infrastructure">
+                Inside the homelab
+                <ArrowUpRight size={17} aria-hidden="true" />
+              </Link>
+            </div>
+          </section>
+          <section className="about-personal-note">
+            <Languages size={21} strokeWidth={1.6} aria-hidden="true" />
+            <div>
+              <h3>Working together</h3>
+              <p>
+                Based in Dallas-Fort Worth, I work in English and Spanish with
+                clients and engineering teams.
+              </p>
+            </div>
+          </section>
         </div>
         <section className="section skills-section">
           <h2>Tools I work with</h2>
           <div className="skill-groups">
             <div>
               <h3>Product & APIs</h3>
-              <p>TypeScript, React, Next.js, Node.js, Go, Python, FastAPI</p>
+              <TechStack
+                items={[
+                  'TypeScript',
+                  'React',
+                  'Next.js',
+                  'Node.js',
+                  'Go',
+                  'Python',
+                  'FastAPI',
+                ]}
+                label="Product and API technologies"
+              />
             </div>
             <div>
               <h3>Data & workflows</h3>
-              <p>PostgreSQL, Prisma, Redis, dbt, n8n</p>
+              <TechStack
+                items={['PostgreSQL', 'Prisma', 'Redis', 'dbt', 'n8n']}
+                label="Data and workflow technologies"
+              />
             </div>
             <div>
               <h3>Cloud & delivery</h3>
-              <p>AWS, Railway, Terraform, Docker, GitHub Actions, Linux</p>
+              <TechStack
+                items={[
+                  'AWS',
+                  'Railway',
+                  'Terraform',
+                  'Docker',
+                  'GitHub Actions',
+                  'Linux',
+                ]}
+                label="Cloud and delivery technologies"
+              />
             </div>
             <div>
               <h3>Quality & operations</h3>
-              <p>Playwright, pytest, Vitest, Prometheus, Grafana</p>
+              <TechStack
+                items={[
+                  'Playwright',
+                  'pytest',
+                  'Vitest',
+                  'Prometheus',
+                  'Grafana',
+                ]}
+                label="Quality and operations technologies"
+              />
             </div>
           </div>
           <p className="certification-line">
-            AWS Certified Developer – Associate · AWS Certified Cloud
-            Practitioner
+            <TechIcon name="AWS" size={24} />
+            <span>
+              AWS Certified Developer – Associate · AWS Certified Cloud
+              Practitioner
+            </span>
           </p>
         </section>
       </section>

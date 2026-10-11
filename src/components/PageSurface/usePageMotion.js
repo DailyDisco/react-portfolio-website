@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { animate } from 'motion/mini'
 
-const pressDuration = 0.34
+const pressDuration = 0.2
 
 export default function usePageMotion(rootRef) {
   useEffect(() => {
@@ -66,20 +66,14 @@ export default function usePageMotion(rootRef) {
       })
     }
 
-    const enter = (
-      element,
-      { distance, scale = 1, rotation = 0, delay = 0, duration = 0.48 }
-    ) => {
+    const enter = (element) => {
       runAnimation(
         element,
         {
-          opacity: [0.86, 1],
-          transform: [
-            `translateY(${distance}px) rotate(${rotation}deg) scale(${scale})`,
-            'translateY(0px) rotate(0deg) scale(1)',
-          ],
+          opacity: [0.92, 1],
+          transform: ['translateY(6px)', 'translateY(0px)'],
         },
-        { duration, delay, ease: [0.16, 1, 0.3, 1] }
+        { duration: 0.3, ease: 'easeOut' }
       )
     }
 
@@ -103,23 +97,12 @@ export default function usePageMotion(rootRef) {
       runAnimation(
         element,
         {
-          transform: pressed
-            ? [
-                `${baseline} scale(1)`,
-                `${baseline} translateX(${isArrow ? 7 : 0}px) scale(0.955)`,
-                `${baseline} translateX(${isArrow ? -2 : 0}px) scale(1.015)`,
-                `${baseline} scale(1)`,
-              ]
-            : [
-                `${baseline} scale(1)`,
-                `${baseline} translateX(${isArrow ? 5 : 0}px) scale(1.035)`,
-                `${baseline} scale(1)`,
-              ],
+          transform: [
+            `${baseline} translateX(${isArrow ? 2 : 0}px) scale(${isArrow ? 1 : pressed ? 0.985 : 1.01})`,
+            `${baseline} scale(1)`,
+          ],
         },
-        {
-          duration: pressed ? pressDuration : 0.42,
-          ease: [0.22, 1, 0.36, 1],
-        }
+        { duration: pressed ? pressDuration : 0.18, ease: 'easeOut' }
       )
     }
 
@@ -129,23 +112,7 @@ export default function usePageMotion(rootRef) {
       observer?.unobserve(panel)
       if (panel.contains(root.ownerDocument.activeElement)) return
 
-      enter(panel, { distance: 18, scale: 0.985, duration: 0.58 })
-      const heading = panel.querySelector('.page-heading')
-      if (heading) enter(heading, { distance: 12, delay: 0.06 })
-      Array.from(
-        panel.querySelectorAll(
-          '.work-card, .experience-panel, .project-figure, .lab-explorer, .contact-details, .contact-form, .about-study'
-        )
-      )
-        .slice(0, 6)
-        .forEach((element, index) => {
-          enter(element, {
-            distance: 10,
-            scale: 0.975,
-            rotation: index % 2 ? 1.8 : -1.8,
-            delay: 0.1 + Math.min(index * 0.06, 0.24),
-          })
-        })
+      enter(panel)
     }
 
     const revealAll = () => {

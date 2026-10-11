@@ -3,6 +3,7 @@ import NextChapter from '../NextChapter'
 import { Link, useParams } from 'react-router-dom'
 import { getCaseStudy } from '../../data/caseStudies'
 import ProjectFigure from '../ProjectFigure'
+import TechStack from '../TechStack'
 import NotFound from '../NotFound'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import './style.css'
@@ -84,11 +85,7 @@ export default function CaseStudy() {
             <p className="eyebrow">MY ROLE</p>
             <p>{study.role}</p>
             <p className="muted">{study.period}</p>
-            <ul className="tag-list">
-              {study.stack.map((tag) => (
-                <li key={tag}>{tag}</li>
-              ))}
-            </ul>
+            <TechStack items={study.stack} className="case-stack" />
           </div>
           <ProjectFigure slug={slug} />
         </div>

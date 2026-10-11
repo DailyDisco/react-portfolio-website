@@ -4,6 +4,11 @@ export const caseStudies = [
     number: '01',
     category: 'Product engineering · Technical leadership',
     title: 'Emmut property management',
+    cover: {
+      src: '/work/emmut-cover-desktop-mobile.webp',
+      alt: 'Emmut maintenance worker management on desktop and mobile, using synthetic demo data.',
+      caption: 'Actual Emmut components · synthetic demo data',
+    },
     cardTitle: 'Emmut',
     cardSummary:
       'Property management for 1,000+ units. Led four developers; reduced daily admin work from 3 hours to 1 per employee.',
@@ -51,6 +56,11 @@ export const caseStudies = [
     number: '02',
     category: 'Cloud migration · Data engineering',
     title: 'AWS to Railway workflow migration',
+    cover: {
+      src: '/work/migration-concept.webp',
+      alt: 'Conceptual illustration of graphite and cream compute modules connected by cobalt routing lines.',
+      caption: 'Workflow migration · conceptual illustration',
+    },
     cardTitle: 'AWS → Railway',
     cardSummary:
       'Moved seven production lead workflows from AWS/Kestra to Railway/n8n, with durable intake and safer retries.',
@@ -155,6 +165,11 @@ export const caseStudies = [
     number: '04',
     category: 'GPU infrastructure · Open source',
     title: 'Local LLM inference and upstream fixes',
+    cover: {
+      src: '/work/inference-concept.webp',
+      alt: 'Conceptual stacked compute boards with graphite cooling fins and a cobalt processor.',
+      caption: 'Local compute · conceptual illustration',
+    },
     cardTitle: 'Local AI & open source',
     cardSummary:
       'Two fixes merged upstream. Cold prompt processing improved 18% in my six-GPU benchmark.',

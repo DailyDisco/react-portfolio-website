@@ -5,16 +5,15 @@ import {
   ArrowRight,
   ArrowUpRight,
   Cpu,
+  MapPin,
   Download,
-  Hand,
   PanelsTopLeft,
-  Pause,
-  Play,
   Workflow,
 } from 'lucide-react'
 import { getCaseStudy } from '../../data/caseStudies'
-import DiscoCompanion from '../DiscoCompanion'
+import RobotPocket from '../RobotPocket'
 import SiteFooter from '../SiteFooter'
+import TechStack from '../TechStack'
 import useHomeMotion from './useHomeMotion'
 import './console.css'
 
@@ -22,7 +21,6 @@ const projects = [
   {
     slug: 'property-platform',
     label: 'Product',
-    scene: 'Building useful things.',
     icon: PanelsTopLeft,
     name: 'Emmut',
     category: 'Product engineering / DFW through Lumara',
@@ -34,7 +32,6 @@ const projects = [
   {
     slug: 'workflow-migration',
     label: 'Cloud',
-    scene: 'Keeping work moving.',
     icon: Workflow,
     name: 'AWS → Railway',
     category: 'Cloud & data / Craft Digital through Lumara',
@@ -45,7 +42,6 @@ const projects = [
   {
     slug: 'local-inference',
     label: 'Systems',
-    scene: 'Going below the surface.',
     icon: Cpu,
     name: 'Local inference',
     category: 'Infrastructure & open source / Built at home',
@@ -57,12 +53,11 @@ const projects = [
 
 export default function Home() {
   const [selected, setSelected] = useState(0)
-  const [greeting, setGreeting] = useState(0)
-  const [motionPaused, setMotionPaused] = useState(false)
   const root = useRef(null)
   useHomeMotion(root, selected)
   const project = projects[selected]
   const study = getCaseStudy(project.slug)
+  const cover = study.cover || study.visual
 
   return (
     <div
@@ -80,8 +75,13 @@ export default function Home() {
           <p className="home-role">Full-stack engineer & technical lead.</p>
           <p className="home-description">
             I build web products, lead teams, and run the systems behind them.
-            React and TypeScript to cloud infrastructure and local AI.
           </p>
+          <TechStack
+            items={['React', 'TypeScript', 'Go', 'Python', 'AWS']}
+            label="Core technologies"
+            className="home-tech-stack"
+            compact
+          />
           <div className="home-actions">
             <Link className="button" to="/portfolio">
               View selected work <ArrowUpRight size={19} aria-hidden="true" />
@@ -93,46 +93,42 @@ export default function Home() {
           <p className="home-availability">
             <span className="home-status-dot" aria-hidden="true" />
             Open to senior & lead roles
-            <span className="home-location">Dallas, TX</span>
+            <span className="home-location">
+              <MapPin size={14} aria-hidden="true" /> Dallas, TX
+            </span>
           </p>
         </div>
-        <div className="home-playground">
+        <div
+          className="home-playground"
+          role="region"
+          aria-label="Selected work preview"
+        >
           <div className="home-stage-top">
             <span>
-              Meet Disco <ArrowDownRight size={18} aria-hidden="true" />
+              Selected work <ArrowDownRight size={18} aria-hidden="true" />
             </span>
-            <span className="home-stage-note">Code. Hardware. Bass music.</span>
+            <span className="home-stage-note">{project.name}</span>
           </div>
-          <div className="home-mascot-stage">
-            <DiscoCompanion
-              selected={selected}
-              greeting={greeting}
-              motionPaused={motionPaused}
-            />
-          </div>
-          <div className="home-stage-bottom">
-            <button
-              className="home-replay"
-              type="button"
-              onClick={() => setGreeting((value) => value + 1)}
-              aria-label="Say hello to Disco"
+          <figure className="home-cover" data-cover={Boolean(study.cover)}>
+            <Link
+              className="home-cover-picture"
+              to={`/work/${project.slug}`}
+              aria-label={`Preview ${project.name} case study`}
             >
-              <Hand size={17} aria-hidden="true" /> Say hello
-            </button>
-            <button
-              className="home-motion-toggle"
-              type="button"
-              aria-pressed={motionPaused}
-              onClick={() => setMotionPaused((value) => !value)}
-            >
-              {motionPaused ? (
-                <Play size={16} aria-hidden="true" />
-              ) : (
-                <Pause size={16} aria-hidden="true" />
-              )}
-              {motionPaused ? 'Resume animation' : 'Pause animation'}
-            </button>
-          </div>
+              <img
+                key={project.slug}
+                src={cover.src}
+                alt={cover.alt}
+                width="1280"
+                height="800"
+                decoding="async"
+              />
+            </Link>
+            <figcaption>
+              <span>{cover.caption}</span>
+              <RobotPocket selected={selected} />
+            </figcaption>
+          </figure>
           <div
             className="home-scenes"
             role="group"
@@ -150,9 +146,6 @@ export default function Home() {
               </button>
             ))}
           </div>
-          <p className="home-scene-caption" aria-live="polite">
-            {project.scene}
-          </p>
         </div>
       </section>
       <div className="home-proof-strip" aria-label="Results from my work">
@@ -191,6 +184,12 @@ export default function Home() {
               <h3>{project.name}</h3>
             </div>
             <p className="home-project-summary">{project.description}</p>
+            <TechStack
+              items={study.stack.slice(0, 5)}
+              label={`${project.name} technologies`}
+              className="home-project-stack"
+              compact
+            />
             <div className="home-project-metric">
               <strong>{project.metric}</strong>
               <p>{project.metricCaption}</p>
