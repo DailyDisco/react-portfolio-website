@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Cpu, Play, RotateCcw, Server, Workflow } from 'lucide-react'
 import TechStack, { TechIcon } from '../TechStack'
+import ServerExplorer from '../ServerExplorer'
 import './style.css'
 
 const views = {
@@ -18,7 +19,7 @@ const views = {
     ],
     illustration:
       'Illustration of seven RTX 3090 GPUs with 168 GiB of combined memory',
-    caption: 'Hardware illustration · 7 GPUs × 24 GiB',
+    caption: 'Schematic illustration · 7 GPUs × 24 GiB',
   },
   software: {
     label: 'The software',
@@ -314,15 +315,30 @@ export default function LabExplorer({ compact = false }) {
           <p>{view.description}</p>
         </div>
         <figure className="lab-explorer-figure">
-          <svg
-            key={selectedView}
-            className="lab-explorer-drawing"
-            viewBox="0 0 480 330"
-            role="img"
-            aria-label={view.illustration}
-          >
-            <Drawing trace={trace} onTraceComplete={completeTrace} />
-          </svg>
+          {selectedView === 'machine' ? (
+            <ServerExplorer
+              fallback={
+                <svg
+                  className="lab-explorer-drawing"
+                  viewBox="0 0 480 330"
+                  role="img"
+                  aria-label={view.illustration}
+                >
+                  <MachineDrawing />
+                </svg>
+              }
+            />
+          ) : (
+            <svg
+              key={selectedView}
+              className="lab-explorer-drawing"
+              viewBox="0 0 480 330"
+              role="img"
+              aria-label={view.illustration}
+            >
+              <Drawing trace={trace} onTraceComplete={completeTrace} />
+            </svg>
+          )}
           <figcaption>{view.caption}</figcaption>
           {selectedView === 'software' && (
             <div className="lab-request-controls">

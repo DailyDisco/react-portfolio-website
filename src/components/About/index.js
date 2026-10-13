@@ -19,7 +19,18 @@ export default function About() {
         </header>
         <div className="about-layout">
           <section className="about-story">
-            <h2>Hands-on, even when I’m leading.</h2>
+            <div className="about-story-intro">
+              <div className="about-portrait">
+                <img
+                  src="/about/diego-espino.jpg"
+                  alt="Diego Espino outdoors at sunset."
+                  width="800"
+                  height="800"
+                  decoding="async"
+                />
+              </div>
+              <h2>Hands-on, even when I’m leading.</h2>
+            </div>
             <p>
               I run Lumara Technologies and contract with DFW Software
               Consulting and Craft Digital. My work spans Emmut’s property

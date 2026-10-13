@@ -114,17 +114,29 @@ test('a case without a brief keeps its role, outcome, conceptual diagram, and se
   expect(screen.getByText('Conceptual view')).toBeVisible()
 
   const contents = screen.getByRole('navigation', { name: 'On this page' })
-  for (const [name, anchor] of [
-    ['Context', 'context'],
-    ['My contributions', 'contributions'],
-    ['Results', 'results'],
+  for (const [name, anchor, target] of [
+    ['Overview', 'overview', brief],
+    [
+      'Contributions',
+      'contributions',
+      screen.getByRole('heading', { name: 'My contributions' }),
+    ],
+    ['Results', 'results', screen.getByRole('heading', { name: 'Results' })],
   ]) {
     expect(within(contents).getByRole('link', { name })).toHaveAttribute(
       'href',
       `#${anchor}`
     )
-    expect(screen.getByRole('heading', { name })).toHaveAttribute('id', anchor)
+    expect(target).toHaveAttribute('tabindex', '-1')
+    fireEvent.click(within(contents).getByRole('link', { name }))
+    expect(target).toHaveFocus()
   }
+  expect(
+    screen.getAllByRole('navigation', { name: 'On this page' })
+  ).toHaveLength(1)
+  expect(
+    contents.compareDocumentPosition(brief) & Node.DOCUMENT_POSITION_FOLLOWING
+  ).toBeTruthy()
 })
 
 test('the hiring CTA opens contact while the resume and next case remain available', () => {

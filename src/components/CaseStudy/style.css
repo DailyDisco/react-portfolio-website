@@ -4,6 +4,46 @@
 .case-study .page-heading h1 {
   font-size: clamp(2.6rem, 4.8vw, 4.5rem);
 }
+.case-study > .page-heading {
+  margin-bottom: 20px;
+}
+.case-study .case-section-nav {
+  position: sticky;
+  z-index: 20;
+  top: var(--case-nav-top, 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 24px;
+  padding: 4px;
+  border: 1px solid var(--brand-edge);
+  border-radius: 999px;
+  background: var(--brand-paper);
+  box-shadow: 0 3px 14px rgb(23 26 25 / 6%);
+}
+.case-study .case-section-nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: var(--brand-ink);
+  font: 550 0.9375rem / 1.4 var(--font);
+}
+.case-study .case-section-nav a:hover {
+  color: var(--brand-accent-ink);
+  background: var(--brand-surface);
+}
+.case-study #overview,
+.case-study #context,
+.case-study #contributions,
+.case-study #results {
+  scroll-margin-top: var(--case-anchor-margin, 12px);
+}
 .case-study .case-brief {
   margin-bottom: 32px;
   padding: 28px;
@@ -67,6 +107,18 @@
   border-radius: var(--radius-card);
   border: 1px solid var(--brand-edge);
 }
+.case-study .case-product-screens .project-image-trigger img {
+  width: 100%;
+  height: auto;
+  max-height: 440px;
+  object-fit: contain;
+}
+.case-study .case-product-screens .project-image-trigger:last-child {
+  align-self: center;
+}
+.case-study .case-product-screens .project-image-trigger:last-child > span {
+  justify-content: center;
+}
 .case-study .case-product-proof > p {
   font: 0.875rem/1.6 var(--font);
 }
@@ -109,26 +161,10 @@
 }
 .case-study .case-narrative {
   padding-block: 48px;
-  gap: 48px;
-  grid-template-columns: minmax(180px, 0.65fr) minmax(0, 2fr);
+  display: block;
 }
-.case-study .case-narrative aside {
-  top: 32px;
-}
-.case-study .case-contents {
-  gap: 9px;
-}
-.case-study .case-contents a {
-  padding: 10px 0;
-  border: 0;
-  border-bottom: 1px solid var(--line);
-  border-radius: 0;
-  background: transparent;
-  color: var(--ink);
-}
-.case-study .case-contents a:hover {
-  color: var(--brand-accent);
-  text-decoration: none;
+.case-study .case-narrative > div {
+  margin-inline: auto;
 }
 .case-study .case-narrative h2 {
   font-size: 2rem;
@@ -233,6 +269,19 @@
   }
 }
 @media (max-width: 480px) {
+  .case-study .case-section-nav {
+    width: 100%;
+    gap: 0;
+  }
+  .case-study .case-section-nav a {
+    flex: 1;
+    min-width: 0;
+    padding-inline: 7px;
+    font-size: 0.875rem;
+  }
+  .case-study .case-product-screens .project-image-trigger img {
+    max-height: 340px;
+  }
   .case-study .case-brief {
     padding: 20px;
   }
