@@ -5,8 +5,10 @@ import { getCaseStudy } from '../../data/caseStudies'
 import ProjectFigure from '../ProjectFigure'
 import TechStack from '../TechStack'
 import NotFound from '../NotFound'
-import { ArrowLeft, ArrowUpRight } from 'lucide-react'
+import { ArrowLeft, ArrowUpRight, Download } from 'lucide-react'
 import './style.css'
+
+const resumeUrl = `${process.env.PUBLIC_URL || ''}/resume/Diego_Espino_Resume.pdf`
 
 const nextChapters = {
   'property-platform': {
@@ -32,6 +34,11 @@ export default function CaseStudy() {
   const { slug } = useParams()
   const study = getCaseStudy(slug)
   if (!study) return <NotFound />
+  const briefItems = [
+    ['Ownership', study.brief?.ownership],
+    ['Engineering decision', study.brief?.decision],
+    ['Verification', study.brief?.verification],
+  ].filter(([, description]) => description)
   const nextChapter = nextChapters[slug] || {
     to: '/portfolio',
     title: 'Explore selected work',
@@ -54,6 +61,32 @@ export default function CaseStudy() {
           <h1>{study.title}</h1>
           <p>{study.summary}</p>
         </header>
+        <section className="case-brief" aria-label="Project brief">
+          <dl className="case-brief-facts">
+            <div>
+              <dt>My role</dt>
+              <dd>
+                {study.role}
+                <span className="case-brief-period">{study.period}</span>
+              </dd>
+            </div>
+            <div className="case-brief-outcome">
+              <dt>Outcome</dt>
+              <dd>{study.outcome}</dd>
+            </div>
+          </dl>
+          {briefItems.length > 0 && (
+            <dl className="case-brief-details">
+              {briefItems.map(([label, description]) => (
+                <div key={label}>
+                  <dt>{label}</dt>
+                  <dd>{description}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+          <TechStack items={study.stack} className="case-stack" />
+        </section>
         {slug === 'property-platform' && (
           <section
             className="case-product-proof"
@@ -80,23 +113,19 @@ export default function CaseStudy() {
             </p>
           </section>
         )}
-        <div className="case-overview">
-          <div>
-            <p className="eyebrow">MY ROLE</p>
-            <p>{study.role}</p>
-            <p className="muted">{study.period}</p>
-            <TechStack items={study.stack} className="case-stack" />
-          </div>
-          <ProjectFigure slug={slug} />
-        </div>
-        <div className="case-metrics">
-          {study.highlights.map((item) => (
-            <div key={item.value}>
-              <strong>{item.value}</strong>
-              <span>{item.label}</span>
+        {slug !== 'property-platform' && (
+          <div className="case-visual-evidence">
+            <ProjectFigure slug={slug} />
+            <div className="case-metrics" aria-label="Project highlights">
+              {study.highlights.map((item) => (
+                <div key={item.value}>
+                  <strong>{item.value}</strong>
+                  <span>{item.label}</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        )}
       </section>
       <div className="page-panel case-narrative">
         <aside>
@@ -153,6 +182,22 @@ export default function CaseStudy() {
           )}
         </div>
       </div>
+      <section className="page-panel case-hiring" aria-label="Hiring contact">
+        <div>
+          <p className="eyebrow">WORK WITH ME</p>
+          <h2>Have a senior or lead role in mind?</h2>
+        </div>
+        <div className="case-hiring-actions">
+          <Link className="button" to="/contact">
+            Discuss a senior/lead role
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
+          <a className="text-link" href={resumeUrl} download>
+            Download one-page resume
+            <Download size={17} aria-hidden="true" />
+          </a>
+        </div>
+      </section>
       <NextChapter {...nextChapter} />
     </PageSurface>
   )

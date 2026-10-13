@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { act, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import LabExplorer from './index'
 
@@ -39,8 +39,10 @@ test('switching views changes both the schematic and engineering details', async
   expect(
     screen.getByText('OpenAI-compatible gateway', { selector: 'dd' })
   ).toBeVisible()
-  expect(screen.getByText('TabbyAPI', { selector: 'dd' })).toBeVisible()
-  expect(screen.getByText('ExLlamaV3', { selector: 'dd' })).toBeVisible()
+  expect(screen.getByText('Maya', { selector: 'dd' })).toBeVisible()
+  expect(
+    screen.getByText('TabbyAPI + ExLlamaV3', { selector: 'dd' })
+  ).toBeVisible()
   expect(
     screen.getByRole('img', { name: /Conceptual request path/ })
   ).toBeInTheDocument()
@@ -102,4 +104,89 @@ test('keyboard users can select every view without focus being moved into the dr
   expect(
     screen.getByRole('img', { name: /seven RTX 3090 GPUs/ })
   ).toBeInTheDocument()
+})
+
+test('the request trace starts on demand, can replay, and resets when changing views', async () => {
+  const user = userEvent.setup()
+  render(<LabExplorer />)
+  expect(
+    screen.queryByRole('button', { name: 'Trace a request' })
+  ).not.toBeInTheDocument()
+
+  await user.click(screen.getByRole('button', { name: 'The software' }))
+  expect(screen.getByRole('status')).toHaveTextContent(
+    'Coding agent → gateway → model server → local GPUs.'
+  )
+  expect(screen.getByRole('status')).not.toHaveTextContent('Tracing')
+
+  await user.click(screen.getByRole('button', { name: 'Trace a request' }))
+  expect(screen.getByRole('status')).toHaveTextContent(
+    'Tracing the conceptual request path.'
+  )
+  await user.click(screen.getByRole('button', { name: 'Replay request trace' }))
+  expect(screen.getByRole('status')).toHaveTextContent('Tracing')
+
+  await user.click(screen.getByRole('button', { name: 'The machine' }))
+  expect(screen.queryByRole('status')).not.toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: 'The software' }))
+  expect(screen.getByRole('button', { name: 'Trace a request' })).toBeVisible()
+  expect(screen.getByRole('status')).not.toHaveTextContent('Tracing')
+  expect(screen.getByRole('status')).not.toHaveTextContent('Trace complete')
+})
+
+test('reduced-motion visitors get the complete request explanation immediately', async () => {
+  const originalMatchMedia = window.matchMedia
+  window.matchMedia = jest.fn(() => ({
+    matches: true,
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+  }))
+  try {
+    const user = userEvent.setup()
+    render(<LabExplorer />)
+    await user.click(screen.getByRole('button', { name: 'The software' }))
+    await user.click(screen.getByRole('button', { name: 'Trace a request' }))
+
+    expect(screen.getByRole('status')).toHaveTextContent('Trace complete.')
+    expect(screen.getByRole('status')).toHaveTextContent(
+      'Coding agent → gateway → model server → local GPUs.'
+    )
+    expect(
+      screen.getByRole('img', { name: /Maya is the default backend/ })
+    ).toBeVisible()
+    await user.click(
+      screen.getByRole('button', { name: 'Replay request trace' })
+    )
+    expect(screen.getByRole('status')).toHaveTextContent('Trace complete.')
+  } finally {
+    window.matchMedia = originalMatchMedia
+  }
+})
+
+test('enabling reduced motion during a trace completes it without waiting for an animation', async () => {
+  const originalMatchMedia = window.matchMedia
+  let preferenceListener
+  const preference = {
+    matches: false,
+    addEventListener: jest.fn((event, listener) => {
+      preferenceListener = listener
+    }),
+    removeEventListener: jest.fn(),
+  }
+  window.matchMedia = jest.fn(() => preference)
+  try {
+    const user = userEvent.setup()
+    render(<LabExplorer />)
+    await user.click(screen.getByRole('button', { name: 'The software' }))
+    await user.click(screen.getByRole('button', { name: 'Trace a request' }))
+    expect(screen.getByRole('status')).toHaveTextContent('Tracing')
+
+    act(() => {
+      preference.matches = true
+      preferenceListener()
+    })
+    expect(screen.getByRole('status')).toHaveTextContent('Trace complete.')
+  } finally {
+    window.matchMedia = originalMatchMedia
+  }
 })

@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import Home from './index'
 
-test('project controls update the evidence and destination while retaining keyboard focus', async () => {
+test('project controls update the nearby cover and destination while keeping all work visible', async () => {
   const user = userEvent.setup()
   render(
     <MemoryRouter>
@@ -13,10 +13,21 @@ test('project controls update the evidence and destination while retaining keybo
   const selectors = within(
     screen.getByRole('group', { name: 'Choose a project' })
   )
+  const preview = within(
+    screen.getByRole('region', { name: 'Selected work preview' })
+  )
+  const work = screen.getByRole('region', {
+    name: 'A few things I’ve shipped.',
+  })
+  const workCopy = work.textContent
   const product = selectors.getByRole('button', { name: /Product/ })
   expect(product).toHaveAttribute('aria-pressed', 'true')
+  expect(preview.getByRole('img')).toHaveAttribute(
+    'src',
+    '/work/emmut-cover-desktop-mobile.webp'
+  )
   expect(
-    screen.getByRole('link', { name: 'Open Emmut case study' })
+    preview.getByRole('link', { name: 'View selected Emmut case study' })
   ).toHaveAttribute('href', '/work/property-platform')
 
   product.focus()
@@ -27,22 +38,38 @@ test('project controls update the evidence and destination while retaining keybo
   expect(cloud).toHaveAttribute('aria-pressed', 'true')
   expect(product).toHaveAttribute('aria-pressed', 'false')
   expect(
-    screen.getByText('Production workflows. Cut over September 2026.')
+    preview.getByText('Production workflows. Cut over September 2026.')
   ).toBeVisible()
+  const cloudCover = preview.getByRole('img').getAttribute('src')
+  expect(cloudCover).not.toBe('/work/emmut-cover-desktop-mobile.webp')
   expect(
-    screen.getByRole('link', { name: 'Open AWS → Railway case study' })
+    preview.getByRole('link', {
+      name: 'View selected AWS → Railway case study',
+    })
   ).toHaveAttribute('href', '/work/workflow-migration')
+  expect(work.textContent).toBe(workCopy)
 
   await user.tab()
   await user.keyboard(' ')
   expect(selectors.getByRole('button', { name: /Systems/ })).toHaveFocus()
   expect(cloud).toHaveAttribute('aria-pressed', 'false')
   expect(
-    screen.getByText('Faster cold prompt processing. Measured on six GPUs.')
+    preview.getByText(
+      'Historical six-GPU cold prompt benchmark. Decode unchanged.'
+    )
   ).toBeVisible()
+  expect(preview.getByRole('img').getAttribute('src')).not.toBe(cloudCover)
   expect(
-    screen.getByRole('link', { name: 'Open Local inference case study' })
+    preview.getByRole('link', {
+      name: 'View selected Local inference case study',
+    })
   ).toHaveAttribute('href', '/work/local-inference')
+  expect(work.textContent).toBe(workCopy)
+  for (const name of ['Emmut', 'AWS → Railway', 'Local inference']) {
+    expect(
+      within(work).getByRole('link', { name: `Open ${name} case study` })
+    ).toBeVisible()
+  }
 })
 
 test('the homepage keeps hiring evidence, deeper work, and contact actions immediately available', () => {
@@ -65,14 +92,36 @@ test('the homepage keeps hiring evidence, deeper work, and contact actions immed
     within(portfolio).getByText(/four-developer team.*1,000\+ units/)
   ).toBeVisible()
   expect(
-    within(portfolio).getByText('Daily admin work per employee. Measured.')
+    within(
+      screen.getByRole('region', { name: 'A few things I’ve shipped.' })
+    ).getByText('Daily admin work per employee. Measured.')
   ).toBeVisible()
+  expect(
+    within(screen.getByRole('region', { name: 'Introduction' })).getByRole(
+      'link',
+      { name: /3h → 1h.*Measured at Emmut/ }
+    )
+  ).toHaveAttribute('href', '/work/property-platform')
+  for (const [name, slug] of [
+    ['Emmut', 'property-platform'],
+    ['AWS → Railway', 'workflow-migration'],
+    ['Local inference', 'local-inference'],
+  ]) {
+    expect(
+      within(portfolio).getByRole('link', {
+        name: `Open ${name} case study`,
+      })
+    ).toHaveAttribute('href', `/work/${slug}`)
+  }
   expect(
     within(portfolio).getByRole('link', { name: /All projects/ })
   ).toHaveAttribute('href', '/portfolio')
   expect(
     within(portfolio).getByRole('link', { name: /Seven GPUs/ })
   ).toHaveAttribute('href', '/infrastructure')
+  expect(
+    within(portfolio).getByRole('link', { name: /Hermes, agents & MCP/ })
+  ).toHaveAttribute('href', '/infrastructure#agents')
   expect(
     within(portfolio).getByRole('link', { name: /Download resume/ })
   ).toHaveAttribute('href', '/resume/Diego_Espino_Resume.pdf')
@@ -121,7 +170,11 @@ test('visitors can open and pause the optional companion while navigating projec
   expect(companion.getByRole('button', { name: 'Resume' })).toHaveFocus()
   await user.click(screen.getByRole('button', { name: /Systems/ }))
   expect(
-    screen.getByRole('link', { name: 'Open Local inference case study' })
+    within(
+      screen.getByRole('region', { name: 'Selected work preview' })
+    ).getByRole('link', {
+      name: 'View selected Local inference case study',
+    })
   ).toHaveAttribute('href', '/work/local-inference')
   expect(
     screen.getByRole('link', { name: /Saved per employee/ })

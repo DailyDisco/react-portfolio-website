@@ -75,10 +75,6 @@
   .lab-board:nth-of-type(7) {
     animation-delay: 210ms;
   }
-  .lab-request-path {
-    stroke-dasharray: 900;
-    animation: lab-request-enter 650ms ease-out both;
-  }
 }
 @keyframes lab-board-power {
   from {
@@ -86,14 +82,6 @@
   }
   to {
     opacity: 1;
-  }
-}
-@keyframes lab-request-enter {
-  from {
-    stroke-dashoffset: 900;
-  }
-  to {
-    stroke-dashoffset: 0;
   }
 }
 .lab-explorer-controls button:focus-visible {
@@ -240,7 +228,6 @@
   stroke: var(--brand-display-line);
 }
 .lab-trace-accent,
-.lab-request-path,
 .lab-arrow {
   stroke: var(--lab-accent);
   stroke-width: 2;
@@ -281,6 +268,101 @@
 }
 .lab-operation-icon {
   stroke-width: 2;
+}
+.lab-request-path {
+  stroke: var(--brand-diagram-muted);
+}
+.lab-request-progress,
+.lab-request-node {
+  fill: none;
+  stroke: var(--lab-accent);
+}
+.lab-request-progress {
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+.lab-request-node {
+  stroke-width: 2;
+  opacity: 0.8;
+}
+.lab-request-controls {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+.lab-trace-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid var(--lab-accent);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--lab-accent);
+  font: 600 0.875rem/1.5 var(--font);
+  cursor: pointer;
+}
+.lab-trace-button:hover {
+  color: var(--brand-display);
+  background: var(--lab-accent);
+}
+.lab-trace-button:focus-visible {
+  outline: 3px solid var(--lab-accent);
+  outline-offset: 4px;
+}
+.lab-explorer .lab-trace-status {
+  max-width: 360px;
+  margin: 0;
+  color: var(--lab-muted);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  text-align: center;
+}
+.lab-trace-status > span {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--lab-ink);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .lab-request-trace:not(.is-complete) .lab-request-progress {
+    animation: lab-request-progress 2400ms linear both;
+  }
+  .lab-request-trace:not(.is-complete) .lab-request-node {
+    animation: lab-request-arrive 550ms ease-out both;
+  }
+  .lab-request-trace:not(.is-complete) .lab-request-gateway {
+    animation-delay: 700ms;
+  }
+  .lab-request-trace:not(.is-complete) .lab-request-server {
+    animation-delay: 1550ms;
+  }
+  .lab-request-trace:not(.is-complete) .lab-request-gpus {
+    animation-delay: 2250ms;
+  }
+}
+@keyframes lab-request-progress {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes lab-request-arrive {
+  from {
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.8;
+  }
 }
 .lab-server rect {
   fill: var(--brand-display-raised);

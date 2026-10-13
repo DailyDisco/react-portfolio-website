@@ -1,4 +1,13 @@
-import { Code2, Cpu, Database, Network, Server, Workflow } from 'lucide-react'
+import {
+  Bot,
+  Code2,
+  Cpu,
+  Database,
+  Network,
+  Plug,
+  Server,
+  Workflow,
+} from 'lucide-react'
 import './style.css'
 
 const icons = {
@@ -43,6 +52,9 @@ const icons = {
 }
 
 const fallbackIcons = {
+  hermes: Bot,
+  mcp: Plug,
+  maya: Cpu,
   dbt: Workflow,
   kestra: Workflow,
   exllamav3: Cpu,

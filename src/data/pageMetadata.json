@@ -14,11 +14,11 @@
     },
     "/about": {
       "title": "About Diego Espino",
-      "description": "Meet Diego Espino, a Dallas-Fort Worth full-stack engineer, technical lead, and Lumara founder. How he leads teams, builds products, and operates his own infrastructure."
+      "description": "Meet Diego Espino, a Dallas-Fort Worth full-stack engineer, technical lead, and Lumara founder. Products, cloud infrastructure, agent environments, and MCP integrations."
     },
     "/infrastructure": {
       "title": "Infrastructure & Open Source | Diego Espino",
-      "description": "Inside Diego Espino's homelab: seven RTX 3090s, Proxmox, self-hosted services, and merged ExLlamaV3 and TabbyAPI fixes informed by hands-on operation."
+      "description": "Inside Diego Espino's homelab: seven RTX 3090s, Hermes agent setups, MCP integrations, and merged ExLlamaV3 and TabbyAPI fixes."
     },
     "/contact": {
       "title": "Contact Diego Espino",

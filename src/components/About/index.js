@@ -1,6 +1,6 @@
 import PageSurface from '../PageSurface'
 import NextChapter from '../NextChapter'
-import { ArrowDown, ArrowUpRight, Cpu, Languages } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Bot, Cpu, Languages } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import TechStack, { TechIcon } from '../TechStack'
 import './style.css'
@@ -30,6 +30,10 @@ export default function About() {
               I’ve led architecture and delivery with teams of four and five
               developers. I stay hands-on with frontends, APIs, databases, and
               tests, and build systems I can explain and debug.
+            </p>
+            <p className="about-location">
+              <Languages size={18} aria-hidden="true" />
+              Dallas-Fort Worth · English & Spanish
             </p>
             <div className="actions">
               <Link className="button" to="/contact">
@@ -95,13 +99,18 @@ export default function About() {
             </div>
           </section>
           <section className="about-personal-note">
-            <Languages size={21} strokeWidth={1.6} aria-hidden="true" />
+            <Bot size={21} strokeWidth={1.6} aria-hidden="true" />
             <div>
-              <h3>Working together</h3>
+              <h3>Agents with a working environment</h3>
               <p>
-                Based in Dallas-Fort Worth, I work in English and Spanish with
-                clients and engineering teams.
+                I configure Hermes and other agent environments, connect MCP
+                tools, and set up local inference. I test the complete workflow,
+                including tool access and recovery.
               </p>
+              <Link to="/infrastructure#agents">
+                Agent setups & MCP
+                <ArrowUpRight size={17} aria-hidden="true" />
+              </Link>
             </div>
           </section>
         </div>

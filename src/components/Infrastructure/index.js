@@ -5,9 +5,13 @@ import {
   ArrowRight,
   ArrowUpRight,
   Boxes,
+  Bot,
+  Check,
   Cpu,
   GitPullRequest,
+  Laptop,
   Network,
+  Plug,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import LabExplorer from '../LabExplorer'
@@ -19,7 +23,7 @@ export default function Infrastructure() {
     <PageSurface className="page-shell infrastructure-page segmented-page">
       <section className="page-panel page-panel-primary">
         <header className="page-heading">
-          <p className="eyebrow">HOMELAB & OPEN SOURCE</p>
+          <p className="eyebrow">HOMELAB, AGENTS & OPEN SOURCE</p>
           <h1>Under the hood.</h1>
           <p>
             I built a local inference server, now expanded to seven GPUs.
@@ -99,6 +103,63 @@ export default function Infrastructure() {
             </a>
           </article>
         </div>
+      </section>
+      <section
+        id="agents"
+        tabIndex={-1}
+        className="page-panel agent-systems"
+        aria-labelledby="agent-systems-heading"
+      >
+        <div className="agent-systems-intro">
+          <div>
+            <p className="eyebrow">AGENT ENVIRONMENTS & INTEGRATIONS</p>
+            <h2 id="agent-systems-heading">Give the agent the right tools.</h2>
+          </div>
+          <p>
+            I set up Hermes, connect agents to local models and MCP servers, and
+            verify that the tools work in a real session.
+          </p>
+        </div>
+        <div className="agent-capabilities">
+          <article>
+            <Bot size={24} strokeWidth={1.6} aria-hidden="true" />
+            <h3>Hermes & agent setup</h3>
+            <p>
+              Profiles, model routing, and tool access for development and
+              operations, with local inference where the workflow calls for it.
+            </p>
+          </article>
+          <article>
+            <Plug size={24} strokeWidth={1.6} aria-hidden="true" />
+            <h3>MCP integrations</h3>
+            <p>
+              Connect tools through Model Context Protocol, check their input
+              schemas, and test actual calls. Build read-only connectors with
+              explicit access boundaries.
+            </p>
+          </article>
+          <article>
+            <Laptop size={24} strokeWidth={1.6} aria-hidden="true" />
+            <h3>Consistent across machines</h3>
+            <p>
+              Shared workflows across macOS, Linux, and Windows. Backed-up
+              configuration changes keep credentials and runtime settings local
+              to each machine.
+            </p>
+          </article>
+        </div>
+        <div className="agent-verification">
+          <Check size={20} aria-hidden="true" />
+          <p>
+            <strong>One working example:</strong> connected REA’s analysis tools
+            to Hermes over MCP and ran JavaScript analysis against a disposable
+            test fixture.
+          </p>
+        </div>
+        <Link className="text-link" to="/contact">
+          Talk about agent infrastructure
+          <ArrowRight size={18} aria-hidden="true" />
+        </Link>
       </section>
       <section
         className="page-panel homelab-section"

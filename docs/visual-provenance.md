@@ -47,3 +47,13 @@ Generation: 1024 × 1024, 32 steps, seed 20261010, prompt enhancement off. Qwen 
 ## Technology logos
 
 `public/brand/tech` contains 31 locally bundled SVG marks from pinned Devicon and Simple Icons revisions. The source manifest records source URLs, revisions, and SHA-256 hashes. MIT and CC0 license files are included. `TechStack` retains readable text next to each decorative logo and uses Lucide fallbacks for names without a vetted asset. No external icon service or runtime icon font is used.
+
+## Agent environments and request-path diagram
+
+The Homelab software explorer is a conceptual request path, not a live service-health display. It shows a coding agent, an OpenAI-compatible gateway, a model server, and local GPUs. The serving description reflects the October 12, 2026 configuration: Maya as the default, with TabbyAPI/ExLlamaV3 as an alternate. Historical ExLlamaV3 benchmark claims retain their six-GPU scope.
+
+The request trace is a finite, visitor-triggered SVG/CSS animation. It can be replayed and resets when changing views. Reduced-motion users receive the completed static path. It performs no inference request.
+
+The Hermes/MCP section describes configuration and integration work. The REA example is based on the October 11, 2026 verified CLI and Hermes MCP JavaScript analysis against a disposable fixture. It is a record of completed work, not a fresh service-health assertion. No private connector records, credentials, internal addresses, or client names are included.
+
+Real portrait and server photography remain pending. Current conceptual covers and hardware illustrations retain their explicit labels.

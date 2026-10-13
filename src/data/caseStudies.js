@@ -22,6 +22,14 @@ export const caseStudies = [
     outcome: '3 hours → 1 hour of daily admin work',
     role: 'Full Stack Engineer · DFW Software Consulting, through Lumara',
     period: 'March 2025 - Present',
+    brief: {
+      ownership:
+        'Led architecture, schema design, and releases with a four-developer team for a platform managing 1,000+ property units.',
+      decision:
+        'Use durable PostgreSQL jobs, idempotent requests, and bounded retries so building-alert emails can recover from interrupted workers.',
+      verification:
+        'Exercised interrupted and concurrent workers against real PostgreSQL and SMTP. Measured daily administrative work fell from three hours to one per employee.',
+    },
     stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Docker'],
     highlights: [
       { value: '1,000+', label: 'property units managed' },
@@ -74,6 +82,14 @@ export const caseStudies = [
     outcome: '7 production lead workflows migrated',
     role: 'Full Stack Engineer · Craft Digital, through Lumara',
     period: 'July 2026 - Present',
+    brief: {
+      ownership:
+        'Migrated seven production lead workflows for Craft Digital, with responsibility for intake durability, cutover checks, and reporting pipelines.',
+      decision:
+        'Persist submissions before acknowledging them; publish reporting snapshots atomically so readers do not see partial or mixed generations.',
+      verification:
+        'Checked production routes and the workflow cutover. Built reporting recovery, reconciliation, and rollback checks; full AWS retirement remains a separate milestone.',
+    },
     stack: [
       'Python',
       'n8n',
@@ -126,6 +142,14 @@ export const caseStudies = [
     outcome: 'Resumable events with scoped access',
     role: 'Backend engineering lead · Lumara client engagement',
     period: 'Ongoing client work',
+    brief: {
+      ownership:
+        'Led backend work spanning shared state, real-time event delivery, scoped permissions, and compatibility with the Unity client.',
+      decision:
+        'Use resumable streams and bounded queues with channel authorization, so reconnects and slow consumers have explicit handling.',
+      verification:
+        'Exercised failure handling with integration tests and executable OpenAPI compatibility checks. Terraform work covers development infrastructure definitions.',
+    },
     stack: [
       'Python',
       'FastAPI',
@@ -183,6 +207,14 @@ export const caseStudies = [
     outcome: '18% faster cold prompt processing in a six-GPU benchmark',
     role: 'Independent infrastructure owner · Open-source contributor',
     period: 'Ongoing · Upstream fixes merged October 2026',
+    brief: {
+      ownership:
+        'Built and operate a seven-GPU inference server; traced performance and recovery problems into ExLlamaV3 and TabbyAPI.',
+      decision:
+        'Parallelize CPU all-reduce with AVX2, and release an old generator before allocating its replacement to avoid overlapping host caches.',
+      verification:
+        'Measured 1,238 → 1,458 cold-prompt tokens/second on six GPUs, with unchanged decode speed. Both fixes merged; generator release has regression coverage.',
+    },
     stack: [
       'C++',
       'Python',

@@ -47,7 +47,8 @@ const projects = [
     category: 'Infrastructure & open source / Built at home',
     description: 'Two fixes merged into ExLlamaV3 and TabbyAPI.',
     metric: '+18%',
-    metricCaption: 'Faster cold prompt processing. Measured on six GPUs.',
+    metricCaption:
+      'Historical six-GPU cold prompt benchmark. Decode unchanged.',
   },
 ]
 
@@ -90,6 +91,11 @@ export default function Home() {
               Let’s talk <ArrowRight size={19} aria-hidden="true" />
             </Link>
           </div>
+          <Link className="home-intro-result" to="/work/property-platform">
+            <strong>3h → 1h</strong>
+            <span>Daily admin work per employee. Measured at Emmut.</span>
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
           <p className="home-availability">
             <span className="home-status-dot" aria-hidden="true" />
             Open to senior & lead roles
@@ -139,6 +145,7 @@ export default function Home() {
                 key={item.slug}
                 type="button"
                 aria-pressed={index === selected}
+                aria-controls="home-preview-readout"
                 onClick={() => setSelected(index)}
               >
                 <item.icon size={17} strokeWidth={1.6} aria-hidden="true" />
@@ -146,22 +153,39 @@ export default function Home() {
               </button>
             ))}
           </div>
+          <div
+            id="home-preview-readout"
+            className="home-project-content"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <div className="home-preview-result">
+              <strong>{project.metric}</strong>
+              <p>{project.metricCaption}</p>
+            </div>
+            <Link
+              to={`/work/${project.slug}`}
+              aria-label={`View selected ${project.name} case study`}
+            >
+              {project.name} <ArrowUpRight size={18} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
       </section>
       <div className="home-proof-strip" aria-label="Results from my work">
         <Link to="/work/property-platform">
           <strong>2h</strong>
-          <span>Saved per employee, every day.</span>
+          <span>Emmut · Saved per employee, every day.</span>
           <ArrowUpRight size={18} aria-hidden="true" />
         </Link>
         <Link to="/work/workflow-migration">
           <strong>7</strong>
-          <span>Production workflows migrated.</span>
+          <span>AWS → Railway · Production workflows migrated.</span>
           <ArrowUpRight size={18} aria-hidden="true" />
         </Link>
         <Link to="/work/local-inference">
           <strong>2</strong>
-          <span>Fixes merged upstream.</span>
+          <span>Local inference · Fixes merged upstream.</span>
           <ArrowUpRight size={18} aria-hidden="true" />
         </Link>
       </div>
@@ -172,49 +196,28 @@ export default function Home() {
             All projects <ArrowUpRight size={18} aria-hidden="true" />
           </Link>
         </div>
-        <div
-          className="home-project-content"
-          key={project.slug}
-          aria-live="polite"
-          aria-atomic="true"
-        >
-          <div className="home-project-copy">
-            <div className="home-project-top">
-              <p>{project.category}</p>
-              <h3>{project.name}</h3>
-            </div>
-            <p className="home-project-summary">{project.description}</p>
-            <TechStack
-              items={study.stack.slice(0, 5)}
-              label={`${project.name} technologies`}
-              className="home-project-stack"
-              compact
-            />
-            <div className="home-project-metric">
-              <strong>{project.metric}</strong>
-              <p>{project.metricCaption}</p>
-            </div>
-            <div className="home-project-bottom">
-              <Link
-                to={`/work/${project.slug}`}
-                aria-label={`Open ${project.name} case study`}
-              >
-                Read case study <ArrowUpRight size={19} aria-hidden="true" />
-              </Link>
-            </div>
-          </div>
-          <figure className="home-project-visual" data-project={project.slug}>
-            <div className="home-project-picture">
-              <img
-                src={study.visual.src}
-                alt={study.visual.alt}
-                loading="lazy"
-                width="1280"
-                height="800"
-              />
-            </div>
-            <figcaption>{study.visual.caption}</figcaption>
-          </figure>
+        <div className="home-work-grid">
+          {projects.map((item) => (
+            <article
+              className="home-work-summary"
+              key={item.slug}
+              aria-labelledby={`home-${item.slug}-title`}
+            >
+              <p className="home-summary-owner">{item.category}</p>
+              <h3 id={`home-${item.slug}-title`}>
+                <Link
+                  to={`/work/${item.slug}`}
+                  aria-label={`Open ${item.name} case study`}
+                >
+                  {item.name}
+                  <ArrowUpRight size={19} aria-hidden="true" />
+                </Link>
+              </h3>
+              <p className="home-summary-description">{item.description}</p>
+              <p className="home-summary-result">{item.metric}</p>
+              <p className="home-summary-scope">{item.metricCaption}</p>
+            </article>
+          ))}
         </div>
       </section>
       <div className="home-links">
@@ -223,6 +226,14 @@ export default function Home() {
           <span>
             <small>Built at home</small>
             <strong>Seven GPUs. Built and run by me.</strong>
+          </span>
+          <ArrowUpRight size={21} aria-hidden="true" />
+        </Link>
+        <Link className="home-agent-link" to="/infrastructure#agents">
+          <Workflow size={22} aria-hidden="true" />
+          <span>
+            <small>Agent environments, connected tools & local inference</small>
+            <strong>Hermes, agents & MCP</strong>
           </span>
           <ArrowUpRight size={21} aria-hidden="true" />
         </Link>

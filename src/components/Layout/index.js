@@ -75,9 +75,11 @@ export default function Layout() {
     setMenuOpen(false)
     updatePageMetadata(location.pathname)
     if (location.hash)
-      requestAnimationFrame(() =>
-        document.getElementById(location.hash.slice(1))?.scrollIntoView()
-      )
+      requestAnimationFrame(() => {
+        const target = document.getElementById(location.hash.slice(1))
+        target?.scrollIntoView()
+        target?.focus({ preventScroll: true })
+      })
     else if (previousPath.current !== location.pathname) {
       window.scrollTo(0, 0)
       main.current?.focus({ preventScroll: true })

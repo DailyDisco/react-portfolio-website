@@ -245,3 +245,14 @@
     padding-block: 12px;
   }
 }
+
+.about-page .about-story .about-location {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.9375rem;
+}
+.about-page .about-location svg {
+  flex-shrink: 0;
+  color: var(--brand-accent-ink);
+}

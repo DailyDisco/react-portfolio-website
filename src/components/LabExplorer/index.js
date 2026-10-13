@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Cpu, Server, Workflow } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { Cpu, Play, RotateCcw, Server, Workflow } from 'lucide-react'
 import TechStack, { TechIcon } from '../TechStack'
 import './style.css'
 
@@ -26,14 +26,14 @@ const views = {
     category: 'Inference stack',
     title: 'From a coding agent to local compute.',
     description:
-      'An OpenAI-compatible gateway connects coding agents to local models served by TabbyAPI and ExLlamaV3.',
+      'An OpenAI-compatible gateway routes coding-agent requests to local model servers. Maya is my current default; TabbyAPI with ExLlamaV3 remains an alternate.',
     details: [
       ['Interface', 'OpenAI-compatible gateway', 'OpenAI-compatible gateway'],
-      ['Serving', 'TabbyAPI', 'TabbyAPI'],
-      ['Inference', 'ExLlamaV3', 'ExLlamaV3'],
+      ['Default backend', 'Maya'],
+      ['Alternate backend', 'TabbyAPI + ExLlamaV3', 'ExLlamaV3'],
     ],
     illustration:
-      'Conceptual request path from a coding agent through a gateway and TabbyAPI to ExLlamaV3',
+      'Conceptual request path: coding agent, OpenAI-compatible gateway, model server, then local GPUs. Maya is the default backend; TabbyAPI with ExLlamaV3 is an alternate.',
     caption: 'Conceptual request path · Local model serving',
   },
   homelab: {
@@ -94,13 +94,12 @@ function MachineDrawing() {
   )
 }
 
-function SoftwareDrawing() {
+const requestPath = 'M137 83H341Q377 83 377 119V206Q377 238 343 238H140'
+
+function SoftwareDrawing({ trace, onTraceComplete }) {
   return (
     <>
-      <path
-        className="lab-request-path"
-        d="M137 83H341Q377 83 377 119V206Q377 238 343 238H140"
-      />
+      <path className="lab-request-path" d={requestPath} />
       <path
         className="lab-arrow"
         d="M238 76L248 83L238 90M257 231L247 238L257 245"
@@ -118,6 +117,44 @@ function SoftwareDrawing() {
         d="M95 216H120L133 238L120 260H95L82 238Z"
       />
       <path className="lab-operation-icon" d="M98 233H118M98 242H118" />
+      {trace.run > 0 && (
+        <g
+          key={trace.run}
+          className={`lab-request-trace${trace.status === 'complete' ? ' is-complete' : ''}`}
+          aria-hidden="true"
+        >
+          <path
+            className="lab-request-progress"
+            d={requestPath}
+            pathLength="1"
+          />
+          <circle
+            className="lab-request-node lab-request-agent"
+            cx="116"
+            cy="83"
+            r="32"
+          />
+          <circle
+            className="lab-request-node lab-request-gateway"
+            cx="341"
+            cy="83"
+            r="30"
+          />
+          <circle
+            className="lab-request-node lab-request-server"
+            cx="343"
+            cy="238"
+            r="32"
+          />
+          <circle
+            className="lab-request-node lab-request-gpus"
+            cx="109"
+            cy="238"
+            r="35"
+            onAnimationEnd={() => onTraceComplete(trace.run)}
+          />
+        </g>
+      )}
       <text className="lab-svg-label" x="116" y="142" textAnchor="middle">
         Coding agent
       </text>
@@ -125,10 +162,10 @@ function SoftwareDrawing() {
         Gateway
       </text>
       <text className="lab-svg-label" x="343" y="296" textAnchor="middle">
-        TabbyAPI
+        Model server
       </text>
       <text className="lab-svg-label" x="109" y="296" textAnchor="middle">
-        ExLlamaV3
+        Local GPUs
       </text>
     </>
   )
@@ -187,8 +224,58 @@ const controlIcons = { machine: Cpu, software: Workflow, homelab: Server }
 
 export default function LabExplorer({ compact = false }) {
   const [selectedView, setSelectedView] = useState('machine')
+  const [trace, setTrace] = useState({ run: 0, status: 'idle' })
+  const [reducedMotion, setReducedMotion] = useState(
+    () =>
+      typeof window !== 'undefined' &&
+      typeof window.matchMedia === 'function' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
   const view = views[selectedView]
   const Drawing = drawings[selectedView]
+
+  useEffect(() => {
+    if (typeof window.matchMedia !== 'function') return undefined
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
+    function updatePreference() {
+      setReducedMotion(preference.matches)
+      if (preference.matches) {
+        setTrace((current) =>
+          current.status === 'playing'
+            ? { ...current, status: 'complete' }
+            : current
+        )
+      }
+    }
+    if (typeof preference.addEventListener === 'function') {
+      preference.addEventListener('change', updatePreference)
+      return () => preference.removeEventListener('change', updatePreference)
+    }
+    if (typeof preference.addListener === 'function') {
+      preference.addListener(updatePreference)
+      return () => preference.removeListener(updatePreference)
+    }
+    return undefined
+  }, [])
+
+  function selectView(nextView) {
+    if (nextView === selectedView) return
+    setSelectedView(nextView)
+    setTrace({ run: 0, status: 'idle' })
+  }
+
+  function traceRequest() {
+    setTrace((current) => ({
+      run: current.run + 1,
+      status: reducedMotion ? 'complete' : 'playing',
+    }))
+  }
+
+  function completeTrace(run) {
+    setTrace((current) =>
+      current.run === run ? { ...current, status: 'complete' } : current
+    )
+  }
 
   return (
     <section
@@ -208,7 +295,7 @@ export default function LabExplorer({ compact = false }) {
               type="button"
               key={key}
               aria-pressed={selectedView === key}
-              onClick={() => setSelectedView(key)}
+              onClick={() => selectView(key)}
             >
               <Icon size={18} strokeWidth={1.7} aria-hidden="true" />
               <span>{item.label}</span>
@@ -234,9 +321,35 @@ export default function LabExplorer({ compact = false }) {
             role="img"
             aria-label={view.illustration}
           >
-            <Drawing />
+            <Drawing trace={trace} onTraceComplete={completeTrace} />
           </svg>
           <figcaption>{view.caption}</figcaption>
+          {selectedView === 'software' && (
+            <div className="lab-request-controls">
+              <button
+                type="button"
+                className="lab-trace-button"
+                onClick={traceRequest}
+              >
+                {trace.run > 0 ? (
+                  <RotateCcw size={16} aria-hidden="true" />
+                ) : (
+                  <Play size={16} aria-hidden="true" />
+                )}
+                {trace.run > 0 ? 'Replay request trace' : 'Trace a request'}
+              </button>
+              <p className="lab-trace-status" role="status" aria-atomic="true">
+                <span>
+                  {trace.status === 'playing'
+                    ? 'Tracing the conceptual request path.'
+                    : trace.status === 'complete'
+                      ? 'Trace complete.'
+                      : 'Request path'}
+                </span>
+                Coding agent → gateway → model server → local GPUs.
+              </p>
+            </div>
+          )}
         </figure>
         <dl className="lab-explorer-details">
           {view.details.map(([label, value, iconName]) => (
