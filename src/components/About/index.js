@@ -31,6 +31,11 @@ export default function About() {
               developers. I stay hands-on with frontends, APIs, databases, and
               tests, and build systems I can explain and debug.
             </p>
+            <p>
+              At Lumara, I also built a Go and React client workspace with
+              tenant-scoped collaboration and delivery approvals that reject
+              stale decisions.
+            </p>
             <p className="about-location">
               <Languages size={18} aria-hidden="true" />
               Dallas-Fort Worth · English & Spanish

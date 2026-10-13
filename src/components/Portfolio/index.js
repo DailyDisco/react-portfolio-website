@@ -14,7 +14,15 @@ export default function Portfolio() {
           <h1>What I’ve shipped.</h1>
           <p>
             Products people use, production workflows, and the infrastructure
-            behind them.
+            behind them. For code you can inspect, see my{' '}
+            <a
+              className="text-link"
+              href="https://github.com/DailyDisco/react-golang-starter-kit"
+            >
+              React & Go starter <ArrowUpRight size={17} aria-hidden="true" />
+            </a>{' '}
+            with tenant authorization, Stripe billing, and PostgreSQL-backed
+            jobs.
           </p>
         </header>
         <div className="selected-work-grid">
@@ -32,8 +40,8 @@ export default function Portfolio() {
           <p className="eyebrow">ALSO BUILT / CONFIDENTIAL CLIENT</p>
           <h2>Real-time systems for mixed reality.</h2>
           <p>
-            Shared state, resumable event streams, and scoped access for a Unity
-            client.
+            Shared state, resumable event streams, semantic search, and scoped
+            access, with executable contract checks for the Unity client.
           </p>
         </div>
         <Link to="/work/realtime-platform">

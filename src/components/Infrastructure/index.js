@@ -103,6 +103,36 @@ export default function Infrastructure() {
             </a>
           </article>
         </div>
+        <div className="infrastructure-case-link">
+          <p>
+            <strong>Under upstream review</strong> · Open as of October 13, 2026
+          </p>
+          <p>
+            <a
+              className="text-link"
+              href="https://github.com/mw00/project-maya/pull/138"
+            >
+              Maya: prompt pipelining #138
+              <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+            {' · '}
+            <a
+              className="text-link"
+              href="https://github.com/mw00/project-maya/pull/144"
+            >
+              Maya: resumable reads #144
+              <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+            {' · '}
+            <a
+              className="text-link"
+              href="https://github.com/NousResearch/hermes-agent/pull/136021"
+            >
+              Hermes: bounded cleanup #136021
+              <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+          </p>
+        </div>
       </section>
       <section
         id="agents"
@@ -142,9 +172,9 @@ export default function Infrastructure() {
             <Laptop size={24} strokeWidth={1.6} aria-hidden="true" />
             <h3>Consistent across machines</h3>
             <p>
-              Shared workflows across macOS, Linux, and Windows. Backed-up
-              configuration changes keep credentials and runtime settings local
-              to each machine.
+              Automated agent setup across eight Linux, macOS, and Windows
+              machines. Preserve credentials and custom configuration, with
+              backups and rollback for configuration changes.
             </p>
           </article>
         </div>
@@ -156,10 +186,19 @@ export default function Infrastructure() {
             test fixture.
           </p>
         </div>
-        <Link className="text-link" to="/contact">
-          Talk about agent infrastructure
-          <ArrowRight size={18} aria-hidden="true" />
-        </Link>
+        <div className="actions">
+          <a
+            className="text-link"
+            href="https://github.com/DailyDisco/claude-code-setup"
+          >
+            Inspect my development workflows and build/test hooks
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </a>
+          <Link className="text-link" to="/contact">
+            Talk about agent infrastructure
+            <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
       </section>
       <section
         className="page-panel homelab-section"

@@ -51,6 +51,10 @@ export const caseStudies = [
         title: 'Durable email delivery',
         body: 'I rebuilt building-alert email delivery around durable PostgreSQL jobs, idempotent requests, and bounded retries. I tested interrupted and concurrent workers against real PostgreSQL and SMTP to check how delivery behaved when execution failed or overlapped.',
       },
+      {
+        title: 'Checks that exercise the real database',
+        body: 'I found that the integration-test command was skipping its database suites. I restored tests against disposable PostgreSQL and made missing setup fail explicitly. Batching Git reads also reduced a repository-wide hook scan from 9.8 seconds to 0.2 seconds without removing validation gates.',
+      },
     ],
     results: [
       'Replaced legacy software with a platform managing 1,000+ property units.',
@@ -117,11 +121,11 @@ export const caseStudies = [
       },
       {
         title: 'Reporting pipelines and atomic publication',
-        body: 'I engineered Python and dbt pipelines for 27 franchise tenants plus corporate. Frozen source snapshots, lossless financial-data transport, and atomic PostgreSQL publication with rollback made the publication boundary explicit.',
+        body: 'I engineered Python and dbt pipelines for 27 franchise tenants plus corporate. Validation runs before the exclusive-lock phase, so existing reports remain readable during those checks. Publication preserves the previous generation on failure, supports rollback, and measures actual reader-blocking time.',
       },
       {
         title: 'Tenant-scoped dashboard readers',
-        body: 'I built Next.js and PostgreSQL readers with tenant-scoped access, consistent snapshots, and publication checks. Those checks prevent audience exports from combining incomplete data or different reporting generations.',
+        body: 'I bound tenant-scoped Next.js dashboard drilldowns and freshness indicators to their underlying data generation. This keeps a drilldown consistent with the report it came from and prevents rolled-back data from appearing newly updated. Publication checks also reject incomplete or mixed-generation audience exports.',
       },
     ],
     results: [
@@ -138,7 +142,7 @@ export const caseStudies = [
     category: 'Backend engineering · Real-time systems',
     title: 'Confidential mixed reality platform',
     summary:
-      'Shared state, resumable event delivery, and scoped permissions for a confidential platform and its Unity client.',
+      'Shared state, resumable events, search, and API compatibility for a confidential platform and its Unity client.',
     outcome: 'Resumable events with scoped access',
     role: 'Backend engineering lead · Lumara client engagement',
     period: 'Ongoing client work',
@@ -148,7 +152,7 @@ export const caseStudies = [
       decision:
         'Use resumable streams and bounded queues with channel authorization, so reconnects and slow consumers have explicit handling.',
       verification:
-        'Exercised failure handling with integration tests and executable OpenAPI compatibility checks. Terraform work covers development infrastructure definitions.',
+        'Exercised failure handling with integration tests and added a CI gate comparing generated OpenAPI contracts with Unity C# calls and models.',
     },
     stack: [
       'Python',
@@ -172,14 +176,19 @@ export const caseStudies = [
         body: 'I implemented Redis-backed state, resumable server-sent events, bounded queues, backpressure, and channel authorization. Integration tests exercised failure handling. Scoped permissions and Cognito safeguards cover sensitive account changes and audit events.',
       },
       {
-        title: 'Client contracts and development infrastructure',
-        body: 'I built executable OpenAPI compatibility checks for Unity C# calls and models, plus Terraform definitions for development ElastiCache with private subnets and application-scoped security groups.',
+        title: 'Search with explicit failure handling',
+        body: 'I built image-driven search with validated model outputs and fallbacks for malformed responses, then connected semantic retrieval to query-aware recommendations. These changes are in the backend service; client rollout is a separate step.',
+      },
+      {
+        title: 'Keeping client and API changes compatible',
+        body: 'I added a CI gate that generates the current OpenAPI contract and compares it with Unity C# call sites and models. This catches drift between repositories before integration. I also defined development ElastiCache infrastructure in Terraform with private subnets and application-scoped security groups.',
       },
     ],
     results: [
       'Merged shared-state and resumable-stream implementations with integration coverage.',
       'Added scoped authorization and account-security safeguards.',
-      'Built executable client/API contract checks and development infrastructure definitions.',
+      'Merged image-driven search and semantic retrieval changes in the backend service.',
+      'Added a client/API compatibility gate to CI.',
     ],
     links: [],
     note: 'Client details are confidential. The Terraform work covers infrastructure definitions for the development environment.',
@@ -218,6 +227,7 @@ export const caseStudies = [
     stack: [
       'C++',
       'Python',
+      'Project Maya',
       'ExLlamaV3',
       'TabbyAPI',
       'Linux',
@@ -245,9 +255,17 @@ export const caseStudies = [
         title: 'Homelab provisioning and operations',
         body: 'Alongside inference, I operate Proxmox virtual machines and a dozen self-hosted services with Linux, Docker Compose, Caddy, and Cloudflare Tunnels. Provisioning includes Tailscale-only administration, metrics, and logs from first boot.',
       },
+      {
+        title: 'Prompt pipelining in Project Maya · open PR',
+        body: 'I proposed overlapping prompt processing across GPU stages in CUDA/C++. In my seven-RTX-3090 benchmark, a 2K-token agent tool turn fell from 6.04 seconds to 4.07 seconds. Longer prompts did not show equivalent gains. The proposal remains under upstream review as of October 13, 2026.',
+      },
+      {
+        title: 'Fair scheduling in Project Maya · open PR',
+        body: 'A second proposal lets a long prompt read yield to a waiting request, preserving completed work so it can resume. My benchmark showed the trade-off: the short request waited less, while the long read took longer. This is a choice about responsiveness under contention; the PR remains open as of October 13, 2026.',
+      },
     ],
     results: [
-      'Both fixes were merged into their upstream projects.',
+      'ExLlamaV3 and TabbyAPI fixes were merged upstream.',
       'Measured an 18% cold prompt throughput improvement on the six-GPU setup.',
       'Added regression coverage for the generator-release ordering fix.',
     ],
@@ -259,6 +277,14 @@ export const caseStudies = [
       {
         label: 'TabbyAPI recovery fix',
         url: 'https://github.com/theroyallab/tabbyAPI/pull/493',
+      },
+      {
+        label: 'Maya prompt pipelining · open PR #138',
+        url: 'https://github.com/mw00/project-maya/pull/138',
+      },
+      {
+        label: 'Maya scheduling · open PR #144',
+        url: 'https://github.com/mw00/project-maya/pull/144',
       },
     ],
   },

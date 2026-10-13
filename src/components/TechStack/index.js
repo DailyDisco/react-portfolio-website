@@ -55,6 +55,7 @@ const fallbackIcons = {
   hermes: Bot,
   mcp: Plug,
   maya: Cpu,
+  'project maya': Cpu,
   dbt: Workflow,
   kestra: Workflow,
   exllamav3: Cpu,
