@@ -23,9 +23,7 @@ const projects = [
     label: 'Product',
     icon: PanelsTopLeft,
     name: 'Emmut',
-    category: 'Product engineering / DFW through Lumara',
-    description:
-      'Led a four-developer team building a platform for 1,000+ units.',
+    description: 'Led a four-developer team · 1,000+ units.',
     metric: '3h → 1h',
     metricCaption: 'Daily admin work per employee. Measured.',
   },
@@ -34,21 +32,18 @@ const projects = [
     label: 'Cloud',
     icon: Workflow,
     name: 'AWS → Railway',
-    category: 'Cloud & data / Craft Digital through Lumara',
-    description: 'Moved production lead intake from Kestra to n8n.',
+    description: 'Moved lead intake from Kestra to n8n.',
     metric: '7 workflows',
-    metricCaption: 'Production workflows. Cut over September 2026.',
+    metricCaption: 'Production cutover September 2026.',
   },
   {
     slug: 'local-inference',
     label: 'Systems',
     icon: Cpu,
     name: 'Local inference',
-    category: 'Infrastructure & open source / Built at home',
-    description: 'Two fixes merged into ExLlamaV3 and TabbyAPI.',
-    metric: '+18%',
-    metricCaption:
-      'Historical six-GPU cold prompt benchmark. Decode unchanged.',
+    description: 'ExLlamaV3 & TabbyAPI.',
+    metric: '2 merged fixes',
+    metricCaption: 'Historical six-GPU cold prompts: +18%; decode unchanged.',
   },
 ]
 
@@ -91,11 +86,6 @@ export default function Home() {
               Let’s talk <ArrowRight size={19} aria-hidden="true" />
             </Link>
           </div>
-          <Link className="home-intro-result" to="/work/property-platform">
-            <strong>3h → 1h</strong>
-            <span>Daily admin work per employee. Measured at Emmut.</span>
-            <ArrowUpRight size={18} aria-hidden="true" />
-          </Link>
           <p className="home-availability">
             <span className="home-status-dot" aria-hidden="true" />
             Open to senior & lead roles
@@ -104,6 +94,40 @@ export default function Home() {
             </span>
           </p>
         </div>
+        <section className="home-workbench" aria-labelledby="home-work-title">
+          <div className="home-work-heading">
+            <h2 id="home-work-title">A few things I’ve shipped.</h2>
+            <Link to="/portfolio">
+              All projects <ArrowUpRight size={17} aria-hidden="true" />
+            </Link>
+          </div>
+          <div className="home-work-grid">
+            {projects.map((item) => (
+              <article
+                className="home-work-summary"
+                key={item.slug}
+                aria-labelledby={`home-${item.slug}-title`}
+              >
+                <h3 id={`home-${item.slug}-title`}>
+                  <Link
+                    to={`/work/${item.slug}`}
+                    aria-label={`Open ${item.name} case study`}
+                  >
+                    {item.name}
+                    <ArrowUpRight size={17} aria-hidden="true" />
+                  </Link>
+                </h3>
+                <p className="home-summary-result">{item.metric}</p>
+                <p className="home-summary-description">
+                  {item.description}{' '}
+                  <span className="home-summary-scope">
+                    {item.metricCaption}
+                  </span>
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
         <div
           className="home-playground"
           role="region"
@@ -159,65 +183,14 @@ export default function Home() {
             aria-live="polite"
             aria-atomic="true"
           >
-            <div className="home-preview-result">
-              <strong>{project.metric}</strong>
-              <p>{project.metricCaption}</p>
-            </div>
             <Link
               to={`/work/${project.slug}`}
               aria-label={`View selected ${project.name} case study`}
             >
-              {project.name} <ArrowUpRight size={18} aria-hidden="true" />
+              Explore {project.name}{' '}
+              <ArrowUpRight size={18} aria-hidden="true" />
             </Link>
           </div>
-        </div>
-      </section>
-      <div className="home-proof-strip" aria-label="Results from my work">
-        <Link to="/work/property-platform">
-          <strong>2h</strong>
-          <span>Emmut · Saved per employee, every day.</span>
-          <ArrowUpRight size={18} aria-hidden="true" />
-        </Link>
-        <Link to="/work/workflow-migration">
-          <strong>7</strong>
-          <span>AWS → Railway · Production workflows migrated.</span>
-          <ArrowUpRight size={18} aria-hidden="true" />
-        </Link>
-        <Link to="/work/local-inference">
-          <strong>2</strong>
-          <span>Local inference · Fixes merged upstream.</span>
-          <ArrowUpRight size={18} aria-hidden="true" />
-        </Link>
-      </div>
-      <section className="home-workbench" aria-labelledby="home-work-title">
-        <div className="home-work-heading">
-          <h2 id="home-work-title">A few things I’ve shipped.</h2>
-          <Link to="/portfolio">
-            All projects <ArrowUpRight size={18} aria-hidden="true" />
-          </Link>
-        </div>
-        <div className="home-work-grid">
-          {projects.map((item) => (
-            <article
-              className="home-work-summary"
-              key={item.slug}
-              aria-labelledby={`home-${item.slug}-title`}
-            >
-              <p className="home-summary-owner">{item.category}</p>
-              <h3 id={`home-${item.slug}-title`}>
-                <Link
-                  to={`/work/${item.slug}`}
-                  aria-label={`Open ${item.name} case study`}
-                >
-                  {item.name}
-                  <ArrowUpRight size={19} aria-hidden="true" />
-                </Link>
-              </h3>
-              <p className="home-summary-description">{item.description}</p>
-              <p className="home-summary-result">{item.metric}</p>
-              <p className="home-summary-scope">{item.metricCaption}</p>
-            </article>
-          ))}
         </div>
       </section>
       <div className="home-links">

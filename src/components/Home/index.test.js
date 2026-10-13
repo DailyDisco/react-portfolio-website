@@ -37,9 +37,6 @@ test('project controls update the nearby cover and destination while keeping all
   expect(cloud).toHaveFocus()
   expect(cloud).toHaveAttribute('aria-pressed', 'true')
   expect(product).toHaveAttribute('aria-pressed', 'false')
-  expect(
-    preview.getByText('Production workflows. Cut over September 2026.')
-  ).toBeVisible()
   const cloudCover = preview.getByRole('img').getAttribute('src')
   expect(cloudCover).not.toBe('/work/emmut-cover-desktop-mobile.webp')
   expect(
@@ -53,11 +50,6 @@ test('project controls update the nearby cover and destination while keeping all
   await user.keyboard(' ')
   expect(selectors.getByRole('button', { name: /Systems/ })).toHaveFocus()
   expect(cloud).toHaveAttribute('aria-pressed', 'false')
-  expect(
-    preview.getByText(
-      'Historical six-GPU cold prompt benchmark. Decode unchanged.'
-    )
-  ).toBeVisible()
   expect(preview.getByRole('img').getAttribute('src')).not.toBe(cloudCover)
   expect(
     preview.getByRole('link', {
@@ -96,12 +88,15 @@ test('the homepage keeps hiring evidence, deeper work, and contact actions immed
       screen.getByRole('region', { name: 'A few things I’ve shipped.' })
     ).getByText('Daily admin work per employee. Measured.')
   ).toBeVisible()
+  for (const metric of ['3h → 1h', '7 workflows', '2 merged fixes']) {
+    expect(within(portfolio).getAllByText(metric)).toHaveLength(1)
+    expect(within(portfolio).getByText(metric)).toBeVisible()
+  }
   expect(
-    within(screen.getByRole('region', { name: 'Introduction' })).getByRole(
-      'link',
-      { name: /3h → 1h.*Measured at Emmut/ }
+    within(portfolio).getAllByText(
+      'Historical six-GPU cold prompts: +18%; decode unchanged.'
     )
-  ).toHaveAttribute('href', '/work/property-platform')
+  ).toHaveLength(1)
   for (const [name, slug] of [
     ['Emmut', 'property-platform'],
     ['AWS → Railway', 'workflow-migration'],
@@ -177,13 +172,13 @@ test('visitors can open and pause the optional companion while navigating projec
     })
   ).toHaveAttribute('href', '/work/local-inference')
   expect(
-    screen.getByRole('link', { name: /Saved per employee/ })
+    screen.getByRole('link', { name: 'Open Emmut case study' })
   ).toHaveAttribute('href', '/work/property-platform')
   expect(
-    screen.getByRole('link', { name: /Production workflows migrated/ })
+    screen.getByRole('link', { name: 'Open AWS → Railway case study' })
   ).toHaveAttribute('href', '/work/workflow-migration')
   expect(
-    screen.getByRole('link', { name: /Fixes merged upstream/ })
+    screen.getByRole('link', { name: 'Open Local inference case study' })
   ).toHaveAttribute('href', '/work/local-inference')
   expect(companion.getByRole('button', { name: 'Resume' })).toHaveAttribute(
     'aria-pressed',
