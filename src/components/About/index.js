@@ -25,6 +25,22 @@ const recommendations = [
       'He’s someone you can trust to take a task, run with it, and deliver real value to the team.',
   },
   {
+    author: 'Hector Oropesa',
+    relationship: 'Teammate, DFW Consulting',
+    date: '2026-03-29',
+    dateLabel: 'March 2026',
+    quote:
+      'He understands systems end to end and can move between frontend, backend, and infrastructure without missing a beat.',
+  },
+  {
+    author: 'Belle Duran',
+    relationship: 'Direct manager, Smart Gym project',
+    date: '2025-09-02',
+    dateLabel: 'September 2025',
+    quote:
+      'What sets Diego apart is his ability to translate complex business requirements into intuitive user interfaces.',
+  },
+  {
     author: 'Naomi Carrigan',
     relationship: 'Mentor, Commit Your Code cohort',
     date: '2025-08-19',

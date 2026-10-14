@@ -21,7 +21,7 @@ All portfolio content and images live in the repository. There is no database, s
 - `public/work/`: current covers, component captures, and technical diagrams. Captions distinguish actual components with synthetic demo data from conceptual illustrations. Preserve the detailed evidence when editing a cover.
 - `public/portfolio/`: images for the preserved earlier project archive. Historical records use local `image` paths or `null` for text-only entries.
 - `public/resume/`: current one-page and detailed resumes. The primary download uses the one-page PDF.
-- `public/about/diego-espino.jpg`: Diego's LinkedIn portrait, displayed with a CSS crop on About. The same page includes two attributed excerpts from his received LinkedIn recommendations, with a link to the full recommendations.
+- `public/about/diego-espino.jpg`: Diego's LinkedIn portrait, displayed with a CSS crop on About. The same page includes four attributed excerpts from his received LinkedIn recommendations, with a link to the full recommendations.
 - `src/data/pageMetadata.json`: titles, descriptions, canonical URLs, and sharing metadata for the nine public pages. Keep its routes aligned with `public/sitemap.xml`.
 - `public/index.html`: development HTML shell and homepage metadata; `public/og-image.png` and `public/favicon.svg`: sharing assets.
 
