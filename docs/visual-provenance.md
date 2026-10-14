@@ -14,7 +14,17 @@ The public gallery contains three featured projects and one shorter supporting c
 
 Both public SVG illustrations were recolored to the current chalk, ink, cobalt, and citron palette. Their structure, evidence labels, and benchmark scope were preserved.
 
-The current server expanded to seven RTX 3090s on October 10, 2026. A live `nvidia-smi` inventory verified seven cards with 24,576 MiB each (168 GiB combined). The Homelab explorer depicts the current seven-card machine; the benchmark artwork and performance claims retain their original six-card scope. No seven-card performance result is claimed.
+The current server expanded to seven RTX 3090s on October 10, 2026. A live `nvidia-smi` inventory verified seven cards with 24,576 MiB each (168 GiB combined). The Homelab explorer depicts the current seven-card machine. The ExLlamaV3 benchmark artwork and its 18% cold-prompt improvement retain their original six-card scope.
+
+The local-inference case separately reports a Project Maya seven-RTX-3090 benchmark: a 2K-token agent tool turn fell from 6.04 seconds to 4.07 seconds with proposed prompt pipelining. Longer prompts did not show equivalent gains. A separate scheduling proposal reduced a short request's wait while increasing the long read's duration. Both proposals are labeled open as of October 13, 2026 in `src/data/caseStudies.js`; these measurements are distinct from the two merged ExLlamaV3 and TabbyAPI fixes.
+
+## Interactive server schematic
+
+`ServerExplorer` is an optional procedural Three.js schematic reached through Explore 3D in the Homelab machine view. Its seven GPU cards represent the current card count and 168 GiB combined memory. The chassis, component spacing, and airflow arrangement are conceptual, not a scale replica of the physical server. Rotation, an open-chassis view, and GPU, memory, and airflow notes let visitors examine the illustration. The original SVG remains the initial view and WebGL fallback. No server photograph is used; the owner chose to finish with the illustration for now.
+
+## Portrait
+
+`public/about/diego-espino.jpg` is the owner's 800 × 800 LinkedIn profile photograph, obtained from the profile he selected and authorized for the portfolio. It shows Diego outdoors at sunset and includes the LinkedIn frame in the source image. About uses a CSS crop for its portrait presentation. The image has not been AI-generated or retouched. The signed image-download URL is not stored in the repository.
 
 ## New cover compositions
 
@@ -56,4 +66,4 @@ The request trace is a finite, visitor-triggered SVG/CSS animation. It can be re
 
 The Hermes/MCP section describes configuration and integration work. The REA example is based on the October 11, 2026 verified CLI and Hermes MCP JavaScript analysis against a disposable fixture. It is a record of completed work, not a fresh service-health assertion. No private connector records, credentials, internal addresses, or client names are included.
 
-Real portrait and server photography remain pending. Current conceptual covers and hardware illustrations retain their explicit labels.
+The portrait is in use on About. Server photography is deferred; current conceptual covers and hardware illustrations retain their explicit labels.
