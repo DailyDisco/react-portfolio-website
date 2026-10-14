@@ -1,9 +1,38 @@
 import PageSurface from '../PageSurface'
 import NextChapter from '../NextChapter'
-import { ArrowDown, ArrowUpRight, Bot, Cpu, Languages } from 'lucide-react'
+import {
+  ArrowDown,
+  ArrowUpRight,
+  Bot,
+  Cpu,
+  Languages,
+  Quote,
+} from 'lucide-react'
 import { Link } from 'react-router-dom'
 import TechStack, { TechIcon } from '../TechStack'
 import './style.css'
+
+const recommendationsUrl =
+  'https://www.linkedin.com/in/developerdiego/details/recommendations/'
+
+const recommendations = [
+  {
+    author: 'Jeremy Ashley',
+    relationship: 'CTO, DFW Software Consulting · Direct manager',
+    date: '2026-03-27',
+    dateLabel: 'March 2026',
+    quote:
+      'He’s someone you can trust to take a task, run with it, and deliver real value to the team.',
+  },
+  {
+    author: 'Naomi Carrigan',
+    relationship: 'Mentor, Commit Your Code cohort',
+    date: '2025-08-19',
+    dateLabel: 'August 2025',
+    quote:
+      'What truly stood out was his growth in communication and his commitment to supporting teammates—he made himself available to help others while still delivering outstanding individual contributions.',
+  },
+]
 
 export default function About() {
   return (
@@ -89,6 +118,43 @@ export default function About() {
               <span>September 2025 - Present</span>
             </div>
           </aside>
+        </div>
+      </section>
+      <section
+        className="page-panel about-recommendations"
+        aria-labelledby="about-recommendations-heading"
+      >
+        <div className="about-recommendations-heading">
+          <h2
+            id="about-recommendations-heading"
+            className="about-secondary-title"
+          >
+            People I’ve worked with.
+          </h2>
+          <a className="text-link" href={recommendationsUrl}>
+            Read the full recommendations
+            <ArrowUpRight size={17} aria-hidden="true" />
+          </a>
+        </div>
+        <div className="about-recommendations-grid">
+          {recommendations.map((recommendation) => (
+            <figure
+              className="about-recommendation"
+              key={recommendation.author}
+            >
+              <Quote size={22} strokeWidth={1.6} aria-hidden="true" />
+              <blockquote cite={recommendationsUrl}>
+                <p>“{recommendation.quote}”</p>
+              </blockquote>
+              <figcaption>
+                <strong>{recommendation.author}</strong>
+                <span>{recommendation.relationship}</span>
+                <time dateTime={recommendation.date}>
+                  {recommendation.dateLabel} · LinkedIn excerpt
+                </time>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </section>
       <section

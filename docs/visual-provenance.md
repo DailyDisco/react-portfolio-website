@@ -67,3 +67,7 @@ The request trace is a finite, visitor-triggered SVG/CSS animation. It can be re
 The Hermes/MCP section describes configuration and integration work. The REA example is based on the October 11, 2026 verified CLI and Hermes MCP JavaScript analysis against a disposable fixture. It is a record of completed work, not a fresh service-health assertion. No private connector records, credentials, internal addresses, or client names are included.
 
 The portrait is in use on About. Server photography is deferred; current conceptual covers and hardware illustrations retain their explicit labels.
+
+## Recommendation excerpts
+
+About includes verbatim excerpts from two received LinkedIn recommendations supplied by Diego on October 14, 2026: Jeremy Ashley (March 27, 2026, direct manager at DFW Software Consulting; his recommendation identifies his role as CTO) and Naomi Carrigan (August 19, 2025, mentor in the six-week Commit Your Code cohort). The text preserves the original wording, identifies the relationship and date, and links to the full recommendations. These are selected excerpts, not newly solicited testimonials or an endorsement inferred from a GitHub contribution.
