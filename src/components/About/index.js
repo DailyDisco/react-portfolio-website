@@ -115,12 +115,12 @@ export default function About() {
             <h2 id="current-roles-heading">Current roles</h2>
             <div>
               <h3>DFW Software Consulting</h3>
-              <p>Full Stack Engineer (Contract)</p>
+              <p>Full Stack Engineer</p>
               <span>March 2025 - Present</span>
             </div>
             <div>
               <h3>Craft Digital</h3>
-              <p>Full Stack Engineer (Contract)</p>
+              <p>Full Stack Engineer</p>
               <span>July 2026 - Present</span>
             </div>
             <div>
