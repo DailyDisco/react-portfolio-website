@@ -20,7 +20,7 @@ export const caseStudies = [
     summary:
       'I led architecture and delivery with a four-developer team. The platform manages 1,000+ property units and cut daily admin work from 3 hours to 1 per employee.',
     outcome: '3 hours → 1 hour of daily admin work',
-    role: 'Full Stack Engineer · DFW Software Consulting, through Lumara',
+    role: 'Full Stack Engineer (Contract) · DFW Software Consulting',
     period: 'March 2025 - Present',
     brief: {
       ownership:
@@ -84,7 +84,7 @@ export const caseStudies = [
     summary:
       'I migrated seven production lead workflows from Kestra on AWS to n8n on Railway for Craft Digital. The new intake saves submissions before processing them.',
     outcome: '7 production lead workflows migrated',
-    role: 'Full Stack Engineer · Craft Digital, through Lumara',
+    role: 'Full Stack Engineer (Contract) · Craft Digital',
     period: 'July 2026 - Present',
     brief: {
       ownership:

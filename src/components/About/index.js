@@ -115,18 +115,18 @@ export default function About() {
             <h2 id="current-roles-heading">Current roles</h2>
             <div>
               <h3>DFW Software Consulting</h3>
-              <p>Primary contract through Lumara</p>
+              <p>Full Stack Engineer (Contract)</p>
               <span>March 2025 - Present</span>
             </div>
             <div>
               <h3>Craft Digital</h3>
-              <p>Engineering contract through Lumara</p>
+              <p>Full Stack Engineer (Contract)</p>
               <span>July 2026 - Present</span>
             </div>
             <div>
               <h3>Lumara Technologies</h3>
               <p>Founder · Independent client engagements</p>
-              <span>Founded 2025 · Consulting since 2022</span>
+              <span>Founded 2025 · Consulting since 2021</span>
             </div>
             <div>
               <h3>Games For Love</h3>
