@@ -26,7 +26,7 @@ export default function Infrastructure() {
           <p className="eyebrow">HOMELAB, AGENTS & OPEN SOURCE</p>
           <h1>Under the hood.</h1>
           <p>
-            I built a local inference server, now expanded to seven GPUs.
+            I built a local inference server, now expanded to eight GPUs.
             Operating it led to fixes merged into ExLlamaV3 and TabbyAPI.
           </p>
         </header>

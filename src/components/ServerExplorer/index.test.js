@@ -69,7 +69,7 @@ afterEach(() => {
 function mount() {
   return render(
     <ServerExplorer
-      fallback={<svg role="img" aria-label="Seven-GPU static schematic" />}
+      fallback={<svg role="img" aria-label="Eight-GPU static schematic" />}
     />
   )
 }
@@ -84,7 +84,7 @@ test('3D is opt-in and native controls expose rotation, chassis and hardware exp
   const user = userEvent.setup()
   mount()
   expect(
-    screen.getByRole('img', { name: 'Seven-GPU static schematic' })
+    screen.getByRole('img', { name: 'Eight-GPU static schematic' })
   ).toBeVisible()
   expect(
     screen.queryByRole('img', { name: /Interactive schematic/, hidden: true })
@@ -100,7 +100,7 @@ test('3D is opt-in and native controls expose rotation, chassis and hardware exp
   )
   expect(scene.setExploded).toHaveBeenLastCalledWith(true)
   await user.click(screen.getByRole('button', { name: 'Memory' }))
-  expect(screen.getByText('168 GiB combined.')).toBeVisible()
+  expect(screen.getByText('192 GiB combined.')).toBeVisible()
   expect(scene.setHighlight).toHaveBeenLastCalledWith('memory')
   await user.click(screen.getByRole('button', { name: 'Airflow' }))
   expect(
@@ -120,7 +120,7 @@ test('3D is opt-in and native controls expose rotation, chassis and hardware exp
     screen.queryByRole('img', { name: /Interactive schematic/, hidden: true })
   ).not.toBeInTheDocument()
   expect(
-    screen.getByRole('img', { name: 'Seven-GPU static schematic' })
+    screen.getByRole('img', { name: 'Eight-GPU static schematic' })
   ).toBeVisible()
 })
 
@@ -132,11 +132,11 @@ test('unsupported browser APIs retain the static schematic and readable hardware
   expect(createServerScene).not.toHaveBeenCalled()
   expect(screen.getByRole('status')).toHaveTextContent('3D is unavailable here')
   expect(
-    screen.getByRole('img', { name: 'Seven-GPU static schematic' })
+    screen.getByRole('img', { name: 'Eight-GPU static schematic' })
   ).toBeVisible()
   expect(screen.getByRole('button', { name: 'Rotate left' })).toBeDisabled()
   await user.click(screen.getByRole('button', { name: 'Memory' }))
-  expect(screen.getByText('168 GiB combined.')).toBeVisible()
+  expect(screen.getByText('192 GiB combined.')).toBeVisible()
 })
 
 test('a WebGL initialization failure leaves a usable static fallback', async () => {
@@ -152,7 +152,7 @@ test('a WebGL initialization failure leaves a usable static fallback', async () 
     )
   )
   expect(
-    screen.getByRole('img', { name: 'Seven-GPU static schematic' })
+    screen.getByRole('img', { name: 'Eight-GPU static schematic' })
   ).toBeVisible()
   await user.click(
     screen.getByRole('button', { name: 'Return to illustration' })
@@ -169,7 +169,7 @@ test('context recovery restores controls and live reduced motion reaches the sce
   await activate(user)
   act(() => callbacks.onUnavailable())
   expect(
-    screen.getByRole('img', { name: 'Seven-GPU static schematic' })
+    screen.getByRole('img', { name: 'Eight-GPU static schematic' })
   ).toBeVisible()
   expect(screen.getByRole('button', { name: 'Rotate right' })).toBeDisabled()
   act(() => callbacks.onReady())

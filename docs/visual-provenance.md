@@ -14,13 +14,13 @@ The public gallery contains three featured projects and one shorter supporting c
 
 Both public SVG illustrations were recolored to the current chalk, ink, cobalt, and citron palette. Their structure, evidence labels, and benchmark scope were preserved.
 
-The current server expanded to seven RTX 3090s on October 10, 2026. A live `nvidia-smi` inventory verified seven cards with 24,576 MiB each (168 GiB combined). The Homelab explorer depicts the current seven-card machine. The ExLlamaV3 benchmark artwork and its 18% cold-prompt improvement retain their original six-card scope.
+The server expanded to seven RTX 3090s on October 10, 2026. A live inventory on November 7, 2026 verified eight cards with 24,576 MiB each (192 GiB combined). The Homelab explorer depicts that eight-card inventory. The ExLlamaV3 benchmark artwork and its 18% cold-prompt improvement retain their original six-card scope.
 
 The local-inference case separately reports a Project Maya seven-RTX-3090 benchmark: a 2K-token agent tool turn fell from 6.04 seconds to 4.07 seconds with proposed prompt pipelining. Longer prompts did not show equivalent gains. A separate scheduling proposal reduced a short request's wait while increasing the long read's duration. Both proposals are labeled open as of October 13, 2026 in `src/data/caseStudies.js`; these measurements are distinct from the two merged ExLlamaV3 and TabbyAPI fixes.
 
 ## Interactive server schematic
 
-`ServerExplorer` is an optional procedural Three.js schematic reached through Explore 3D in the Homelab machine view. Its seven GPU cards represent the current card count and 168 GiB combined memory. The chassis, component spacing, and airflow arrangement are conceptual, not a scale replica of the physical server. Rotation, an open-chassis view, and GPU, memory, and airflow notes let visitors examine the illustration. The original SVG remains the initial view and WebGL fallback. No server photograph is used; the owner chose to finish with the illustration for now.
+`ServerExplorer` is an optional procedural Three.js schematic reached through Explore 3D in the Homelab machine view. Its eight GPU cards represent the current card count and 192 GiB combined memory. The chassis, component spacing, and airflow arrangement are conceptual, not a scale replica of the physical server. Rotation, an open-chassis view, and GPU, memory, and airflow notes let visitors examine the illustration. The original SVG remains the initial view and WebGL fallback. No server photograph is used; the owner chose to finish with the illustration for now.
 
 ## Portrait
 
@@ -44,7 +44,7 @@ The spruce workbench material in `src/assets/brand/workbench.webp` was generated
 
 `public/brand/code-hardware-music.webp` is an original editorial still life generated with the owner's Qwen-Image-2.1 service on the Windows RX 9070 XT. It joins a graphite heatsink, cream musical keys, a circuit board, and an ochre cable. It is preserved as historical artwork and is not mounted by the active interface. It is not a photograph of the owner's equipment, and its earlier caption identified it as an illustrated study. Its original colors are preserved.
 
-The seven-card SVG in the preserved, unmounted `HomeStory` source is a schematic of the current GPU count, not a photograph or a new performance measurement. The active infrastructure explorer also depicts seven GPUs. The active homepage links current hardware separately from the explicitly six-GPU performance benchmark.
+The seven-card SVG in the preserved, unmounted `HomeStory` source records the earlier hardware inventory, not a photograph or a new performance measurement. The active infrastructure explorer depicts eight GPUs. The active homepage links current hardware separately from the explicitly six-GPU performance benchmark.
 
 Generation: 1024 × 1024, 32 steps, seed 20261010, prompt enhancement off. Qwen returned HTTP 200. The full prompt is preserved in `docs/story-art-prompt.txt`. Original: `/home/day/Pictures/QwenImage/qwen-ab31990011ac4dad.png`; Windows filename: `Qwen_Agents_00014_.png`. The unmodified original is also retained in the local review workspace. The web asset is a quality-86 WebP conversion.
 
@@ -60,7 +60,7 @@ Generation: 1024 × 1024, 32 steps, seed 20261010, prompt enhancement off. Qwen 
 
 ## Agent environments and request-path diagram
 
-The Homelab software explorer is a conceptual request path, not a live service-health display. It shows a coding agent, an OpenAI-compatible gateway, a model server, and local GPUs. The serving description reflects the October 12, 2026 configuration: Maya as the default, with TabbyAPI/ExLlamaV3 as an alternate. Historical ExLlamaV3 benchmark claims retain their six-GPU scope.
+The Homelab software explorer is a conceptual request path, not a live service-health display. It shows a coding agent, an OpenAI-compatible gateway, a model server, and local GPUs. The serving description reflects the November 7, 2026 check: Qwen3.8-Flash-Next runs through TabbyAPI/ExLlamaV3 on six cards, and Qwen3.8-27B runs through llama.cpp on the other two. Maya is not an active backend. Historical ExLlamaV3 benchmark claims retain their six-GPU scope.
 
 The request trace is a finite, visitor-triggered SVG/CSS animation. It can be replayed and resets when changing views. Reduced-motion users receive the completed static path. It performs no inference request.
 

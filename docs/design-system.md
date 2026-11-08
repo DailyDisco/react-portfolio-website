@@ -60,4 +60,4 @@ All three result links remain on Home independently of the selected project. Det
 
 Emmut's cover composes actual desktop/mobile components rendered with synthetic data. The migration and inference covers are labeled conceptual illustrations. Their decorative object counts are not architecture, inventory, or performance evidence. The original component captures, migration map, and scoped benchmark remain in detailed project views; keep their captions and provenance intact when changing a cover.
 
-The current server has seven RTX 3090s and 168 GiB combined memory. The 18% improvement retains its earlier six-GPU benchmark scope. Neither the robot nor its props represent a hardware inventory. Earlier artwork and design iterations remain documented in `visual-provenance.md` and the preserved unmounted sources.
+The current server has eight RTX 3090s and 192 GiB combined memory. The 18% improvement retains its earlier six-GPU benchmark scope. Neither the robot nor its props represent a hardware inventory. Earlier artwork and design iterations remain documented in `visual-provenance.md` and the preserved unmounted sources.

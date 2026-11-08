@@ -16,13 +16,13 @@ const DEFAULT_PALETTE = {
   edge: '#c5c9bd',
 }
 
-// A schematic: X arrays seven cards, Y is up, and +Z is the open front.
+// A schematic: X arrays eight cards, Y is up, and +Z is the open front.
 export function createServerModel(palette = {}) {
   const colors = { ...DEFAULT_PALETTE, ...palette }
   const group = new Group()
-  group.name = 'seven-gpu-server-schematic'
+  group.name = 'eight-gpu-server-schematic'
   group.userData.schematic = true
-  group.userData.gpuCount = 7
+  group.userData.gpuCount = 8
 
   const geometries = new Map()
   const materials = new Set()
@@ -179,12 +179,12 @@ export function createServerModel(palette = {}) {
     aluminum,
     0.025
   )
-  for (let index = 0; index < 7; index += 1) {
+  for (let index = 0; index < 8; index += 1) {
     roundedBox(
       hostBoard,
       'expansion-slot',
       [0.12, 0.12, 1.45],
-      [(index - 3) * 0.445, 0.075, 0.11],
+      [(index - 3.5) * 0.38, 0.075, 0.11],
       graphite,
       0.018
     )
@@ -202,7 +202,7 @@ export function createServerModel(palette = {}) {
 
   // Each complete card is a distinct group; no extra plates imply extra GPUs.
   const gpuGroups = []
-  for (let index = 0; index < 7; index += 1) {
+  for (let index = 0; index < 8; index += 1) {
     const card = new Group()
     card.name = `gpu-${index + 1}`
     card.userData.part = 'gpus'
@@ -383,9 +383,9 @@ export function createServerModel(palette = {}) {
       : 0
     cover.position.set(0, 0.975 + progress * 1.12, -progress * 0.14)
     gpuGroups.forEach((card, index) => {
-      const distance = index - 3
+      const distance = index - 3.5
       card.position.set(
-        distance * (0.445 + progress * 0.19),
+        distance * (0.38 + progress * 0.19),
         0.04 + progress * (0.37 + Math.abs(distance) * 0.035),
         0.045 + progress * 0.56
       )
