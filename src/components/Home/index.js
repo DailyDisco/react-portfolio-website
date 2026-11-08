@@ -198,7 +198,7 @@ export default function Home() {
           <Cpu size={22} aria-hidden="true" />
           <span>
             <small>Built at home</small>
-            <strong>Seven GPUs. Built and run by me.</strong>
+            <strong>Eight GPUs. Built and run by me.</strong>
           </span>
           <ArrowUpRight size={21} aria-hidden="true" />
         </Link>

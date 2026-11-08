@@ -112,7 +112,7 @@ test('the homepage keeps hiring evidence, deeper work, and contact actions immed
     within(portfolio).getByRole('link', { name: /All projects/ })
   ).toHaveAttribute('href', '/portfolio')
   expect(
-    within(portfolio).getByRole('link', { name: /Seven GPUs/ })
+    within(portfolio).getByRole('link', { name: /Eight GPUs/ })
   ).toHaveAttribute('href', '/infrastructure')
   expect(
     within(portfolio).getByRole('link', { name: /Hermes, agents & MCP/ })

@@ -2,7 +2,7 @@ import { act, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import LabExplorer from './index'
 
-test('starts with the seven-GPU machine and its supported memory figures', () => {
+test('starts with the eight-GPU machine and its supported memory figures', () => {
   render(<LabExplorer />)
   expect(screen.getByRole('button', { name: 'The machine' })).toHaveAttribute(
     'aria-pressed',
@@ -16,10 +16,10 @@ test('starts with the seven-GPU machine and its supported memory figures', () =>
     'aria-pressed',
     'false'
   )
-  expect(screen.getByText('7 × NVIDIA RTX 3090')).toBeVisible()
-  expect(screen.getByText('24 GiB each · 168 GiB combined')).toBeVisible()
+  expect(screen.getByText('8 × NVIDIA RTX 3090')).toBeVisible()
+  expect(screen.getByText('24 GiB each · 192 GiB combined')).toBeVisible()
   expect(
-    screen.getByRole('img', { name: /seven RTX 3090 GPUs/ })
+    screen.getByRole('img', { name: /eight RTX 3090 GPUs/ })
   ).toBeInTheDocument()
 })
 
@@ -39,7 +39,7 @@ test('switching views changes both the schematic and engineering details', async
   expect(
     screen.getByText('OpenAI-compatible gateway', { selector: 'dd' })
   ).toBeVisible()
-  expect(screen.getByText('Maya', { selector: 'dd' })).toBeVisible()
+  expect(screen.getByText('llama.cpp', { selector: 'dd' })).toBeVisible()
   expect(
     screen.getByText('TabbyAPI + ExLlamaV3', { selector: 'dd' })
   ).toBeVisible()
@@ -47,7 +47,7 @@ test('switching views changes both the schematic and engineering details', async
     screen.getByRole('img', { name: /Conceptual request path/ })
   ).toBeInTheDocument()
   expect(
-    screen.queryByRole('img', { name: /seven RTX 3090 GPUs/ })
+    screen.queryByRole('img', { name: /eight RTX 3090 GPUs/ })
   ).not.toBeInTheDocument()
 
   await user.click(screen.getByRole('button', { name: 'The homelab' }))
@@ -102,7 +102,7 @@ test('keyboard users can select every view without focus being moved into the dr
     'true'
   )
   expect(
-    screen.getByRole('img', { name: /seven RTX 3090 GPUs/ })
+    screen.getByRole('img', { name: /eight RTX 3090 GPUs/ })
   ).toBeInTheDocument()
 })
 
@@ -152,7 +152,7 @@ test('reduced-motion visitors get the complete request explanation immediately',
       'Coding agent → gateway → model server → local GPUs.'
     )
     expect(
-      screen.getByRole('img', { name: /Maya is the default backend/ })
+      screen.getByRole('img', { name: /TabbyAPI with ExLlamaV3 serves the primary model/ })
     ).toBeVisible()
     await user.click(
       screen.getByRole('button', { name: 'Replay request trace' })

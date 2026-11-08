@@ -6,7 +6,7 @@
   "pages": {
     "/": {
       "title": "Diego Espino | Full Stack Engineer & Technical Lead",
-      "description": "Diego Espino builds web products and the systems they run on. Explore full-stack engineering, cloud migrations, and a seven-GPU homelab in Dallas-Fort Worth."
+      "description": "Diego Espino builds web products and the systems they run on. Explore full-stack engineering, cloud migrations, and an eight-GPU homelab in Dallas-Fort Worth."
     },
     "/portfolio": {
       "title": "Selected Work | Diego Espino",
@@ -18,7 +18,7 @@
     },
     "/infrastructure": {
       "title": "Infrastructure & Open Source | Diego Espino",
-      "description": "Inside Diego Espino's homelab: seven RTX 3090s, Hermes agent setups, MCP integrations, and merged ExLlamaV3 and TabbyAPI fixes."
+      "description": "Inside Diego Espino's homelab: eight RTX 3090s, Hermes agent setups, MCP integrations, and merged ExLlamaV3 and TabbyAPI fixes."
     },
     "/contact": {
       "title": "Contact Diego Espino",
@@ -38,7 +38,7 @@
     },
     "/work/local-inference": {
       "title": "Local LLM inference and upstream fixes | Diego Espino",
-      "description": "Operating seven RTX 3090s with merged ExLlamaV3 and TabbyAPI fixes. Cold prompt processing improved 18% in a six-GPU benchmark; decode speed was unchanged."
+      "description": "Operating eight RTX 3090s with merged ExLlamaV3 and TabbyAPI fixes. Cold prompt processing improved 18% in a six-GPU benchmark; decode speed was unchanged."
     }
   },
   "notFound": {

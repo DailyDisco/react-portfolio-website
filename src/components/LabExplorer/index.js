@@ -9,17 +9,17 @@ const views = {
     label: 'The machine',
     number: '01',
     category: 'Hardware',
-    title: 'Seven GPUs. One local inference server.',
+    title: 'Eight GPUs. One local inference server.',
     description:
-      'I built and operate a seven-RTX-3090 server for local models and coding agents.',
+      'I built and operate an eight-RTX-3090 server for local models and coding agents.',
     details: [
-      ['Hardware', '7 × NVIDIA RTX 3090', 'NVIDIA'],
-      ['GPU memory', '24 GiB each · 168 GiB combined'],
+      ['Hardware', '8 × NVIDIA RTX 3090', 'NVIDIA'],
+      ['GPU memory', '24 GiB each · 192 GiB combined'],
       ['Purpose', 'Local model inference'],
     ],
     illustration:
-      'Illustration of seven RTX 3090 GPUs with 168 GiB of combined memory',
-    caption: 'Schematic illustration · 7 GPUs × 24 GiB',
+      'Illustration of eight RTX 3090 GPUs with 192 GiB of combined memory',
+    caption: 'Schematic illustration · 8 GPUs × 24 GiB',
   },
   software: {
     label: 'The software',
@@ -27,14 +27,14 @@ const views = {
     category: 'Inference stack',
     title: 'From a coding agent to local compute.',
     description:
-      'An OpenAI-compatible gateway routes coding-agent requests to local model servers. Maya is my current default; TabbyAPI with ExLlamaV3 remains an alternate.',
+      'An OpenAI-compatible gateway routes coding-agent requests to local model servers. As of November 7, 2026, Flash-Next runs through TabbyAPI with ExLlamaV3, alongside a 27B worker served by llama.cpp.',
     details: [
       ['Interface', 'OpenAI-compatible gateway', 'OpenAI-compatible gateway'],
-      ['Default backend', 'Maya'],
-      ['Alternate backend', 'TabbyAPI + ExLlamaV3', 'ExLlamaV3'],
+      ['Primary backend', 'TabbyAPI + ExLlamaV3', 'ExLlamaV3'],
+      ['Worker backend', 'llama.cpp'],
     ],
     illustration:
-      'Conceptual request path: coding agent, OpenAI-compatible gateway, model server, then local GPUs. Maya is the default backend; TabbyAPI with ExLlamaV3 is an alternate.',
+      'Conceptual request path: coding agent, OpenAI-compatible gateway, model server, then local GPUs. TabbyAPI with ExLlamaV3 serves the primary model; llama.cpp serves the worker.',
     caption: 'Conceptual request path · Local model serving',
   },
   homelab: {
@@ -59,11 +59,11 @@ function MachineDrawing() {
   return (
     <>
       <path className="lab-guide" d="M38 286H438" />
-      {Array.from({ length: 7 }, (_, index) => (
+      {Array.from({ length: 8 }, (_, index) => (
         <g
           className="lab-board"
           key={index}
-          transform={`translate(${49 + index * 6} ${36 + index * 31})`}
+          transform={`translate(${49 + index * 6} ${36 + index * 27})`}
         >
           <path
             className="lab-board-edge"
@@ -79,7 +79,7 @@ function MachineDrawing() {
         </g>
       ))}
       <text className="lab-svg-total" x="334" y="109" textAnchor="middle">
-        168
+        192
       </text>
       <text
         className="lab-svg-label lab-svg-accent"

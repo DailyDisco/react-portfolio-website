@@ -5,13 +5,13 @@ import './style.css'
 const hardware = {
   gpus: {
     label: 'GPUs',
-    title: 'Seven RTX 3090s.',
+    title: 'Eight RTX 3090s.',
     description:
-      'Seven GPUs run local models. This layout is a schematic, not a scale replica.',
+      'Eight GPUs run local models. This layout is a schematic, not a scale replica.',
   },
   memory: {
     label: 'Memory',
-    title: '168 GiB combined.',
+    title: '192 GiB combined.',
     description:
       'Each card has 24 GiB. Usable model capacity also depends on runtime and memory overhead.',
   },
@@ -228,7 +228,7 @@ export default function ServerExplorer({ fallback }) {
             className="server-explorer-canvas"
             role="img"
             aria-hidden={!ready}
-            aria-label="Interactive schematic of a seven-GPU inference server. Use the rotation and chassis controls below."
+            aria-label="Interactive schematic of an eight-GPU inference server. Use the rotation and chassis controls below."
           />
         )}
       </div>
